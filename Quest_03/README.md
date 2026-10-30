@@ -4,7 +4,7 @@
 
 - [Windows 실행파일 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/raw/refs/heads/main/Quest_03/ORBIT-Scheduler.exe)
 - [PRD 기획서 보기 (PDF)](./PRD.pdf)
-
+- 비번 : 12345678
 ## 실행 방법
 
 `ORBIT-Scheduler.exe`를 다운로드해 실행하면 브라우저가 열립니다. 처음에는 비밀번호를 설정하세요. 필요한 앱과 런타임이 포함되어 있어 Node.js를 따로 설치할 필요가 없습니다. 최초 실행 시 파일을 자동으로 풀며, 실행 창의 **프로그램 종료**로 종료합니다.
