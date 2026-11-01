@@ -32,10 +32,10 @@ Android: ORBIT-Android.apk를 휴대폰에 복사하고 직접 설치합니다. 
 카카오톡 전체 대화 조회는 지원하지 않습니다. 알림에 보이는 내용만 보조 앱에서 처리합니다.
 웹에서 즉시 푸시 갱신은 공개 HTTPS 서버 배포가 필요한 후속 범위입니다.
 
-외부 관리자 터미널: https://orbit-appointments-quest03.cherrysocute9.chatgpt.site/owner
+외부 관리자 터미널: https://charlie-schedule.cherrysocute9.chatgpt.site/owner
 기존 PC 비밀번호로 휴대폰에서 로그인하세요. 이 업데이트 뒤 PC 프로그램을 재시작하세요.
 PC 프로그램과 인터넷을 켜 두어야 일정 조회/저장/승인이 동작합니다. 절전/종료 시 연결 대기를 표시합니다.
-고객 신청: https://orbit-appointments-quest03.cherrysocute9.chatgpt.site/booking
+고객 신청: https://charlie-schedule.cherrysocute9.chatgpt.site/booking
 설정에서 공유를 활성화하고 이 링크만 고객에게 보내세요. 30분 단위 미팅/목적/방문처를 받습니다.
 PC 원본은 SQLite, 외부 HTTPS 요청은 클라우드 Worker/D1 암호화 중계입니다.
 관리자 외부 업로드는 JSON 256KB 이하만 지원하며 큰 파일/Windows OCR/Google 최초 인증은 PC에서 진행하세요.

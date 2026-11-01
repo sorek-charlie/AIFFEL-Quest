@@ -13,7 +13,7 @@
 
 ### GitHub ↔ 이 폴더 동기화
 
-프로젝트 폴더에서 `node scripts/sync-github.mjs`로 변경을 미리 확인하고, `node scripts/sync-github.mjs --apply`로 양쪽 변경을 반영합니다. 최초 실행에서 같은 경로의 내용이 다르면 충돌로 중단합니다. 최초에 이 로컬 폴더를 기준으로 연결하려면 `node scripts/sync-github.mjs --initialize-local --apply`를 사용합니다. 양쪽에서 같은 파일을 수정한 경우에도 덮어쓰지 않습니다. 실행 중인 앱의 데이터 동기화와는 별개이며 자동 감시가 아닙니다.
+프로젝트 폴더에서 `node scripts/sync-github.mjs`로 변경을 미리 확인하고, `node scripts/sync-github.mjs --apply`로 양쪽 변경을 반영합니다. 최초 실행에서 같은 경로의 내용이 다르면 충돌로 중단합니다. 최초에 이 로컬 폴더를 기준으로 연결하려면 `node scripts/sync-github.mjs --initialize-local --apply`를 사용합니다. 양쪽에서 같은 파일을 수정한 경우에도 덮어쓰지 않습니다. 실행 중인 앱의 데이터 동기화와는 별개이며 `node scripts/sync-github.mjs --watch`를 켜 두면 30초마다 양방향 동기화하며 충돌·오류 시 중단합니다.
 
 Git 인증이 필요합니다. `build/submission-repo`를 중계 체크아웃으로 사용하며 다른 Quest 폴더는 변경하지 않습니다. exe/APK/DB/토큰/환경파일/빌드/런타임/검증 캡처는 업로드하지 않습니다. 삭제는 이전 동기화 기록이 있는 파일만 전파합니다.
 

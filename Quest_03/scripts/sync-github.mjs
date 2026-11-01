@@ -7,6 +7,7 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'), checkout=resol
 function git(...args){const r=spawnSync('git',['-C',checkout,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']});if(r.status!==0)throw Error(r.stderr||r.stdout);return r.stdout.trim();}
 const excluded=new Set(['.git','.env','node_modules','build','dist','runtime','.sites-runtime','.wrangler','.vinext','.playwright-mcp','.codex','.agents','outputs','evidence']);
 function files(dir,prefix=''){const out=new Map();if(!existsSync(dir))return out;for(const e of readdirSync(dir,{withFileTypes:true})){if(excluded.has(e.name)||e.name.startsWith('.env.')&&e.name!=='.env.example'||/\.(exe|apk|zip|db|sqlite3?|log|pem|key)$/i.test(e.name))continue;const p=prefix+e.name,full=resolve(dir,e.name);if(e.isSymbolicLink())continue;if(e.isDirectory())for(const [k,v]of files(full,p+'/'))out.set(k,v);else if(e.isFile())out.set(p,createHash('sha256').update(readFileSync(full)).digest('hex'));}return out;}
+if(process.argv.includes('--watch')){console.log('30초마다 양방향 소스 동기화. Ctrl+C로 종료.');const run=()=>{const r=spawnSync(process.execPath,[fileURLToPath(import.meta.url),'--apply'],{stdio:'inherit'});if(r.status!==0){console.error('동기화 중단: 오류를 해결한 뒤 다시 실행하세요.');process.exit(r.status||1);}};run();setInterval(run,30000);}else {
 mkdirSync(dirname(checkout),{recursive:true});
 if(!existsSync(resolve(checkout,'.git'))){const r=spawnSync('git',['clone','https://github.com/sorek-charlie/AIFFEL-Quest.git',checkout],{stdio:'inherit'});if(r.status)throw Error('GitHub clone failed');}
 if(git('status','--porcelain'))throw Error('제출 저장소에 미커밋 변경이 있습니다. 먼저 검토하세요.');
@@ -28,3 +29,5 @@ if(git('diff','--cached','--name-only'))git('commit','-m','Sync Quest_03 source 
 git('push','origin','HEAD:main');
 writeFileSync(baseline,JSON.stringify(Object.fromEntries(files(root)),null,2));
 console.log('GitHub와 로컬 소스 동기화 완료. exe와 개인 데이터는 제외했습니다.');
+
+}

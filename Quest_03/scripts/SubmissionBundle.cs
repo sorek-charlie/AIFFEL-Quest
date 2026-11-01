@@ -8,7 +8,7 @@ class SubmissionBundle {
   [STAThread] static int Main(string[] args) {
     try {
       bool smoke = Array.IndexOf(args, "--smoke-test") >= 0;
-      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261030");
+      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261101");
       Directory.CreateDirectory(root);
       using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("payload.zip"))
       using (var archive = new ZipArchive(resource, ZipArchiveMode.Read)) {

@@ -1,8 +1,8 @@
 import {seal,open} from './relay-crypto.mjs';
-const HOST='https://orbit-appointments-quest03.cherrysocute9.chatgpt.site';
+const HOST='https://charlie-schedule.cherrysocute9.chatgpt.site';
 export function createOwnerRelay(repo,owner,getLocalOrigin){
  let closed=false,timer,active=false,completed=[];const controller=new AbortController(),instanceId=crypto.randomUUID();
- async function tick(){if(closed||active)return;const c=repo.config(owner,'public-cloud');if(!c?.secret||c.url!==HOST)return;active=true;
+ async function tick(){if(closed||active)return;const c=repo.config(owner,'public-cloud');if(!c?.secret||![HOST,'https://orbit-appointments-quest03.cherrysocute9.chatgpt.site'].includes(c.url))return;active=true;
   try{
    const sent=completed;const r=await fetch(HOST+'/api/v1/bridge/owner',{method:'POST',headers:{Authorization:'Bearer '+c.secret,'Content-Type':'application/json'},body:JSON.stringify({instanceId,completed:sent}),signal:AbortSignal.any([controller.signal,AbortSignal.timeout(12000)])});if(!r.ok)throw new Error('relay unavailable');const result=await r.json();completed=completed.filter(x=>!sent.some(s=>s.id===x.id));
    await Promise.all((result.requests||[]).map(async item=>{
