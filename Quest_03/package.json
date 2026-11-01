@@ -1,0 +1,24 @@
+{
+  "name": "orbit-scheduler",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Local SQLite scheduler and approval-based booking",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check:structure": "node scripts/check-structure.mjs",
+    "map": "node scripts/generate-map.mjs",
+    "start": "node apps/api/src/bootstrap/server.mjs",
+    "dev": "node apps/api/src/bootstrap/server.mjs",
+    "test": "node --test tests/unit/*.test.mjs tests/integration/*.test.mjs",
+    "test:100": "node scripts/repeat-tests.mjs 100",
+    "build:exe": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-windows.ps1",
+    "build:android": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-android.ps1"
+  },
+  "engines": {
+    "node": ">=24.22.1"
+  },
+  "license": "UNLICENSED"
+}

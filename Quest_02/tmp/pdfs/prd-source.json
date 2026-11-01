@@ -1,0 +1,498 @@
+{
+  "metadata": {
+    "page_id": "page_60a49b480de481918599961c8d4feefd",
+    "layout": "document",
+    "symbol": null,
+    "title": "SOLAR WAR 3D 우주 전쟁 게임 PRD",
+    "preview": "# 제품 개요\n\n**제품명:** SOLAR WAR  \n**문서 버전:** 1.0 초안 · 2026년 10월 27일  \n**목적:** 아름다운 태양계 공간에서 대규모 외계 함대와 교전하는 빠르고 화려한 3D 우주 전쟁 게임을 정의한다.\n\n플레이어는 전투기를 조종해 적 전투기와 대형 기함을 격파한다. 핵심 재미는 적의 탄막을 회피하면서 상황에 맞게 5종 무기를 전환하고, 함선 격침과 대규모 폭발을 직접 만들어 내는 데 있다. 스타",
+    "creator_account_user_id": "user-yPP9y2sxAThv3yxN8JLMOCfW",
+    "owner_workspace_id": null,
+    "parent": null,
+    "drive_scope": "personal",
+    "drive_space_id": null,
+    "library_container_id": "fde3_cGFnZV82MGE0OWI0ODBkZTQ4MTkxODU5OTk2MWM4ZDRmZWVmZA_1b98a73563648191959e09fbb0a0fdf5",
+    "file_upload_page_id": "page_60a49b480de481918599961c8d4feefd",
+    "position": 1395378099130368,
+    "created_at": "2026-10-27T07:27:55.184524Z",
+    "updated_at": "2026-10-27T07:31:10.336930Z",
+    "deleted_at": null,
+    "current_sequence": 1,
+    "projection_through_sequence": 1,
+    "access": {
+      "can_read": true,
+      "can_comment": true,
+      "can_write": true,
+      "can_share": true,
+      "can_delete": true,
+      "sources": [
+        "library"
+      ]
+    },
+    "url": "https://chatgpt.com/space/page_60a49b480de481918599961c8d4feefd"
+  },
+  "content": {
+    "schema_version": 2,
+    "symbol": null,
+    "title": "SOLAR WAR 3D 우주 전쟁 게임 PRD",
+    "title_hash": "5af51df7503090085e4a92d79f8c27dbbe11d180282acb98a1fc85dcd353579f",
+    "blocks": [
+      {
+        "id": "fcf984a5-244b-45e2-a24e-9d07713f9513",
+        "kind": "markdown",
+        "markdown": "# 제품 개요",
+        "hash": "fef5f63b0b9b6732c17ee715a4083d38db4977b9babb6274c36297469ea12f5e",
+        "metadata": {}
+      },
+      {
+        "id": "7edd3e61-bb9b-4508-90f6-31e9c88f7b8c",
+        "kind": "markdown",
+        "markdown": "**제품명:** SOLAR WAR  \n**문서 버전:** 1.0 초안 · 2026년 10월 27일  \n**목적:** 아름다운 태양계 공간에서 대규모 외계 함대와 교전하는 빠르고 화려한 3D 우주 전쟁 게임을 정의한다.",
+        "hash": "3f5630453c43b5a9852455adb608a3f031045d6262f584982c68d1d2c7682397",
+        "metadata": {}
+      },
+      {
+        "id": "a827b0ab-204b-46a2-a7e8-125a679515fc",
+        "kind": "markdown",
+        "markdown": "플레이어는 전투기를 조종해 적 전투기와 대형 기함을 격파한다. 핵심 재미는 적의 탄막을 회피하면서 상황에 맞게 5종 무기를 전환하고, 함선 격침과 대규모 폭발을 직접 만들어 내는 데 있다. 스타워즈에서 연상되는 우주 함대전의 규모감과 긴박함을 시각적 방향으로 삼는다.",
+        "hash": "773b2e224762548fd54f867b47a5e3fdaea6bb29704c81ab4138c31d3bab6dfc",
+        "metadata": {}
+      },
+      {
+        "id": "26e23e21-2b68-438b-bf9d-c61e8be6b1fa",
+        "kind": "markdown",
+        "markdown": "**사용자가 확정한 요구:** 아름다운 우주·태양계·행성, 실제 3차원 표현, 멋진 입체 우주선, 많은 외계 우주선, 정확히 5종의 무기, 빠른 전투와 화려한 연출.",
+        "hash": "527f5d82ae965e09462eab36a58cdde2688e662cc035f1c4ab4739c4a3556180",
+        "metadata": {}
+      },
+      {
+        "id": "54ae94c8-0f21-498b-bde6-479bceadd1ee",
+        "kind": "markdown",
+        "markdown": "**이 문서의 설계 제안:** 브라우저 기반 싱글플레이, 3인칭 추적 시점, 8개 행성 전장, 3개 웨이브와 기함전. 인원수·수치·성능 목표는 초기 설계값이며 플레이 테스트로 조정한다.",
+        "hash": "b794ece50daf969bb8155927105806e14241d95fe3bcc14ca5fb9c0deba2d8f2",
+        "metadata": {}
+      },
+      {
+        "id": "857244d0-5e1f-473f-9b89-fab1295dd535",
+        "kind": "markdown",
+        "markdown": "# 사용자와 핵심 경험",
+        "hash": "23cf0c9851d2bbb9be04393a0a2483b3951a30bad107b6795441c677452ad8cd",
+        "metadata": {}
+      },
+      {
+        "id": "d2a4a50b-454c-4bc3-ad95-b40aacb42055",
+        "kind": "markdown",
+        "markdown": "짧은 시간 안에 우주 전쟁의 장관과 즉각적인 조작 반응을 즐기려는 캐주얼 액션 플레이어를 우선 대상으로 한다. PC 키보드와 마우스를 기본 조작으로 제공하고 모바일에는 별도 터치 조작을 제공한다.",
+        "hash": "487cf0743820c32e9988c77da78836d6e92357ced368eca0fe95271d89d4dfbe",
+        "metadata": {}
+      },
+      {
+        "id": "6b2e8164-9ed2-4bd2-9a6f-e0af21e6c473",
+        "kind": "markdown",
+        "markdown": "- **아름다운 전장:** 행성의 표면과 대기, 토성의 고리, 별빛과 성운이 화면 깊이를 만든다.",
+        "hash": "47f79bccecd9f87f7c9c1f49a70fec0e90f9204916b6c4baef8960ba06b4cb25",
+        "metadata": {}
+      },
+      {
+        "id": "767708ab-c743-44b8-912e-99621dfecbcc",
+        "kind": "markdown",
+        "markdown": "- **압도적인 함대전:** 서로 다른 실루엣의 외계 함선이 동시에 등장하고 아군 편대와 배경 전함이 교전한다.",
+        "hash": "a01d091c5ad766d28d96e39852fba22d3a26aeb5a235164908a0041f7fb46dd2",
+        "metadata": {}
+      },
+      {
+        "id": "8399ac6a-5b86-4f46-8be9-75046665004b",
+        "kind": "markdown",
+        "markdown": "- **빠른 전투:** 이동·조준·연속 사격·무기 전환이 즉시 반응한다. 부스트로 탄막을 뚫고 전열을 바꾼다.",
+        "hash": "bc20fe5f795097980cdfa95307357797dff4936e82b6c437c30efc12804411bb",
+        "metadata": {}
+      },
+      {
+        "id": "692074aa-9353-402b-a8c9-f07691882f07",
+        "kind": "markdown",
+        "markdown": "- **분명한 타격감:** 명중 표시, 섬광, 파편, 충격파와 폭발음이 격추를 전달한다.",
+        "hash": "11b9b46dbd900d025df197ddd6d459d09396f9cdabc81842214e718480e39096",
+        "metadata": {}
+      },
+      {
+        "id": "6543c9e8-f13b-403c-a31c-3d7afb216f67",
+        "kind": "markdown",
+        "markdown": "첫 플레이에서는 행성을 선택한 뒤 한 번의 출격 버튼으로 전투에 들어간다. 무기 설명은 전투 중에도 확인할 수 있어야 한다. 초기 목표 세션 길이는 3~5분으로 잡되 실제 완료 시간은 밸런스 테스트에서 확정한다.",
+        "hash": "c48735320e0c9277e0fd5ddcf3edb72cab40457ea567b13a3f6c4a9ffd72036d",
+        "metadata": {}
+      },
+      {
+        "id": "5129ee19-73ea-418a-82b7-a2d005f0ef36",
+        "kind": "markdown",
+        "markdown": "# 게임 진행과 전투 규칙",
+        "hash": "d228565ba50ca3b55b104d72164c2be685179d3ce41b72128b96edd031d6936b",
+        "metadata": {}
+      },
+      {
+        "id": "ae1a1a42-9d16-4fa8-be76-e542a180c881",
+        "kind": "markdown",
+        "markdown": "## 기본 진행",
+        "hash": "41efd134178a6c7a25fa7c00c7cc12782547afca74006baf2f41313504104b99",
+        "metadata": {}
+      },
+      {
+        "id": "6cd29327-325d-4640-aedd-c7c86df7edd5",
+        "kind": "markdown",
+        "markdown": "행성 선택 → 출격 → 1차 방어전 → 증원 함대 격퇴 → 외계 기함 격침 → 결과 확인 → 재출격 또는 다른 행성 선택.",
+        "hash": "9c098e0f4678630c7fd694bb08d2fb88dcf65d4b3900e803a0d33267daf1643d",
+        "metadata": {}
+      },
+      {
+        "id": "85b39ab0-2494-4922-9eb1-1e70593d8690",
+        "kind": "markdown",
+        "markdown": "| 단계 | 목표 | 초기 설계값 |\n| --- | --- | --- |\n| 웨이브 1 | 적 전투기 격추 | 12기 격추 시 다음 단계 |\n| 웨이브 2 | 증원 함대 격퇴 | 해당 웨이브에서 18기 격추 |\n| 웨이브 3 | 외계 기함 격침 | 기함 방어력 260과 호위 편대 |\n| 승리 | 기함 방어력 소진 | 연쇄 폭발 후 승리 결과 표시 |\n| 패배 | 플레이어 방어막 소진 | 점수·격추 수·재출격 제공 |",
+        "hash": "29c2286994bd597cb19d07237abedb59c846c8f20b4b7a6d5614e8cda14998cf",
+        "metadata": {}
+      },
+      {
+        "id": "0f16b093-2374-4857-9140-631fcecabbbe",
+        "kind": "markdown",
+        "markdown": "## 전투 자원",
+        "hash": "abab2a04c9bf2ff3770ba317e7757e47a35574a94a45e87261e123b061dcffef",
+        "metadata": {}
+      },
+      {
+        "id": "98254e0a-35c8-4e59-8968-3ebc30786181",
+        "kind": "markdown",
+        "markdown": "플레이어 방어막은 100으로 시작하고 피해를 받으면 감소한다. 방어막은 초당 0.35씩 회복하며 격추와 웨이브 돌파 시 보충한다. 부스트 에너지는 100으로 시작하고 사용 시 초당 30을 소모하며 비사용 시 초당 15를 회복한다.",
+        "hash": "0b3e42ecb57bddbba37afcdf1128b7e9358389347b0aee5e49f7b30900ff4616",
+        "metadata": {}
+      },
+      {
+        "id": "44cba6d5-90f8-499f-b9ad-bd2c5c18bcd7",
+        "kind": "markdown",
+        "markdown": "미사일은 12발로 시작한다. 7기 격추마다 2발, 웨이브 전환 시 추가 탄약을 지급한다. 일반 전투기 격추는 200점, 중장갑 공격선은 350점, 기함은 12,000점을 부여한다. 최고 점수는 해당 브라우저에 저장한다.",
+        "hash": "0483b3693e2955fa7f09637e0f93a2a4b12242083ef2d19098119a06fcaeafd6",
+        "metadata": {}
+      },
+      {
+        "id": "9b43c893-a149-4e21-acf1-da43cb6eb22f",
+        "kind": "markdown",
+        "markdown": "전투 시작 시 적 18기를 투입하고 웨이브에 따라 약 25~34기의 활성 적을 유지한다. 적은 화면 안팎에서 접근·교차·재진입하며 공격한다. 목표 수치는 전투 밀도와 프레임 속도를 함께 보고 조정한다.",
+        "hash": "e16e0fce9dc257cc83781a1711b32579ed3f40365fe8542915ab30d9640c349f",
+        "metadata": {}
+      },
+      {
+        "id": "bfc8467c-bcec-46c5-ae76-91bcbe780c93",
+        "kind": "markdown",
+        "markdown": "# 3D 우주와 함선 디자인",
+        "hash": "45873146311576734026702f1274ce7f13cb3b2bff1773530e1b476f32852414",
+        "metadata": {}
+      },
+      {
+        "id": "9c7ea131-9969-4187-acfc-8e3d2e21c08a",
+        "kind": "markdown",
+        "markdown": "## 우주와 행성",
+        "hash": "b9f29a9421ad296d96387517f7009328fc9244167a631c9282ed18b1c4b2d99b",
+        "metadata": {}
+      },
+      {
+        "id": "d4b94247-ef39-4b2a-88f2-f7cbbee6d136",
+        "kind": "markdown",
+        "markdown": "행성·함선·탄환은 원근과 깊이 판정이 있는 3D 공간에 배치한다. 카메라는 플레이어 기체 뒤에서 추적하며 좌우 기동 시 기체가 기울고 부스트 중에는 시야각이 넓어진다.",
+        "hash": "b27d70067360a710dc5dd8aa457d233438949b13029005cc39fed1f70ede3f8b",
+        "metadata": {}
+      },
+      {
+        "id": "ad595db5-a2b3-4718-8f7c-dbae9560c917",
+        "kind": "markdown",
+        "markdown": "수성·금성·지구·화성·목성·토성·천왕성·해왕성을 전장 선택지로 제공한다. 지구는 푸른 바다와 대륙, 목성은 띠와 폭풍, 토성은 입체 고리, 외행성은 청록·청색 계열로 구분한다. 아름다움과 전투 가독성을 위해 크기와 거리는 연출에 맞게 조정한다.",
+        "hash": "240b457183466ff2e841d16fa58ef62c473572f89da6c3beac7c511fd97639a5",
+        "metadata": {}
+      },
+      {
+        "id": "fff3f03b-ea24-438e-b673-7cf0e555652c",
+        "kind": "markdown",
+        "markdown": "태양광 방향, 행성의 명암 경계, 대기 가장자리의 빛, 성운과 원거리 별을 표현한다. 행성은 전투 공간 뒤에 놓고 조준점과 적 탄환의 대비를 유지한다.",
+        "hash": "ad4bbff0654c60e128499c0b9dd371536ae930879b583c002063b2b1fd1bd89e",
+        "metadata": {}
+      },
+      {
+        "id": "377627fd-a4ab-4a43-a902-23c512b7b3fa",
+        "kind": "markdown",
+        "markdown": "## 함선 구성",
+        "hash": "1a1d8248915c26f8636e0a203ea5bf671fef0d7cc94c3a57240233a3ab035b40",
+        "metadata": {}
+      },
+      {
+        "id": "45a57697-84eb-4407-a523-32dd400f3e96",
+        "kind": "markdown",
+        "markdown": "| 함선 | 외형 | 전투 역할 |\n| --- | --- | --- |\n| 플레이어 전투기 | 긴 기수, 유리 캐노피, 금속 장갑, 쌍발 엔진과 날개 끝 포구 | 고기동 다목적 전투 |\n| 외계 요격기 | 구형 중심부와 수직 측면 날개 | 빠른 정면 교전 |\n| 외계 날개형 전투기 | 넓고 기울어진 날개와 보라색 추진광 | 사선 진입과 교차 비행 |\n| 외계 원형 공격선 | 중앙 구체와 외곽 링, 녹색 발광부 | 높은 내구도와 공격 압박 |\n| 외계 중장갑 전투기 | 넓은 장갑과 분리된 측면 포구 | 집중 사격과 근접 압박 |\n| 외계 기함 | 대형 쐐기형 선체, 함교, 다수 포탑과 엔진 | 최종 보스와 탄막 공격 |",
+        "hash": "a4f1e7f0d885a13be017152bab3485b21d4b8f7170c44f4d53cbb45af7586af9",
+        "metadata": {}
+      },
+      {
+        "id": "63340f17-748f-49b9-b0df-01727958bd01",
+        "kind": "markdown",
+        "markdown": "아군 편대와 원거리 전함은 함대전의 규모를 보강한다. 실제 피해를 주는 적과 장식용 배경 함선은 레이더·명중 피드백으로 구분할 수 있어야 한다.",
+        "hash": "81ae25f1f1e1a54eecdcaf5da50a5d146efc808b0c988c98832afda186059c35",
+        "metadata": {}
+      },
+      {
+        "id": "d178bcf9-4ba3-4062-b371-41b380cbbbfe",
+        "kind": "markdown",
+        "markdown": "# 5종 무기 시스템",
+        "hash": "9d971cecc16f2c84c78a731057e7cb72b6aa2c47ca9f4a25172e8f9797cf1d23",
+        "metadata": {}
+      },
+      {
+        "id": "6124c0c3-c42c-47b1-947f-cd30b0b25d9b",
+        "kind": "markdown",
+        "markdown": "숫자키 1~5 또는 화면의 무기 버튼으로 선택한다. 선택한 무기는 클릭 또는 Space로 발사한다. Q는 현재 무기와 관계없이 유도 미사일을 발사하는 보조 조작이다.",
+        "hash": "f7da90218bcd497c427652b47f18478679d635a48ceb1091323d13c9d80fc153",
+        "metadata": {}
+      },
+      {
+        "id": "4363e6df-9947-4f2c-b42c-f597376390a2",
+        "kind": "markdown",
+        "markdown": "| 키 | 무기 | 역할과 발사 방식 | 초기 피해와 제한 |\n| --- | --- | --- | --- |\n| 1 | 쌍발 레이저 | 청록색 탄환 2발을 고속 연사 | 탄환당 피해 1, 발사 간격 0.10초, 탄약 무제한 |\n| 2 | 플라스마 산탄포 | 보라색 탄환 5발을 부채꼴로 발사 | 탄환당 피해 2, 발사 간격 0.30초 |\n| 3 | 유도 미사일 | 조준 방향의 적을 추적하고 주변에도 폭발 피해 | 직격 18, 주변 8, 탄약 소모 1, 발사 간격 0.60초 |\n| 4 | 레일건 | 빠른 관통탄으로 일직선상의 적을 공격 | 피해 10, 발사 간격 0.60초, 동일 적 중복 타격 방지 |\n| 5 | 광역 EMP | 전장 내 적에게 피해를 주고 적 탄막을 제거 | 일반 적 12, 기함 30, 재사용 대기 9초 |",
+        "hash": "d68ef29fd1ff692f6897331d14bd20edb4e2da22c195b463ccd9fec7cc07c60b",
+        "metadata": {}
+      },
+      {
+        "id": "7d0a6f5b-609c-4262-a40a-b72b4ee500b8",
+        "kind": "markdown",
+        "markdown": "무기별 색·탄속·발사음·폭발 효과가 달라야 한다. 미사일 잔량과 EMP 대기 시간은 무기 버튼에 표시한다. EMP가 다른 무기의 필요성을 없애지 않도록 범위·피해·대기 시간은 출시 전 집중 조정한다.",
+        "hash": "0c342de1142a6fccc564c1aed79c8f1c5447ac82e067a1c5ad070251dadda29c",
+        "metadata": {}
+      },
+      {
+        "id": "e8c0f02c-d3c9-467b-8dab-085f1c1edf88",
+        "kind": "markdown",
+        "markdown": "# 조작과 화면 구성",
+        "hash": "07a9a9c2648a875df4d0b01f90b81567b78d284dd30912a1a53e0b6160fd8dab",
+        "metadata": {}
+      },
+      {
+        "id": "1affd226-679d-45c3-818b-a22c2d4080a5",
+        "kind": "markdown",
+        "markdown": "| 동작 | PC | 모바일 |\n| --- | --- | --- |\n| 상하좌우 이동 | W A S D 또는 방향키 | 왼쪽 가상 조이스틱 |\n| 조준 | 마우스 이동 | 조이스틱 방향 기반 조준 |\n| 선택 무기 발사 | 마우스 클릭 또는 Space 누르기 | FIRE 누르기 |\n| 무기 전환 | 1~5 또는 무기 버튼 | 무기 버튼 |\n| 유도 미사일 | Q | 미사일 버튼 |\n| 부스트 | Shift 누르기 | BOOST 누르기 |\n| 일시 정지 | P 또는 상단 버튼 | 상단 버튼 |",
+        "hash": "ce559d8013d22fea208187913c2a8f05fa8496d03c80e05fb77bab5e173164d6",
+        "metadata": {}
+      },
+      {
+        "id": "91fea4bf-fdb4-41db-b01a-c034e1ac6f80",
+        "kind": "markdown",
+        "markdown": "출격 전에는 행성 미리보기, 8개 행성 선택 버튼, 전투 개시 버튼과 조작 설명을 제공한다. 전투 화면에는 웨이브 목표, 방어막, 부스트 에너지, 점수, 격추 수, 미사일 잔량, 레이더, 조준점, 5종 무기 버튼을 배치한다. 기함 등장 시 별도 체력바를 표시한다.",
+        "hash": "906e64e5d1e715a4c7dbe6a2c201bbf6f0ce5126491524a2f6de60e10889bafe",
+        "metadata": {}
+      },
+      {
+        "id": "ffe03df2-bf90-4816-aecb-b24742617488",
+        "kind": "markdown",
+        "markdown": "탭 이동이나 창 포커스 상실 시 전투를 자동 일시 정지한다. 재개·재출격 버튼은 키보드와 터치로 모두 동작해야 한다. 화면 폭 390px에서도 핵심 조작 버튼과 무기 선택이 겹치지 않아야 한다.",
+        "hash": "8f4add298aab2b33dbc0b71dd6b3fe9633b809e5cd47539ff4e364c781cad8bc",
+        "metadata": {}
+      },
+      {
+        "id": "32c77273-1b88-4ae1-9fca-12e9427ed7a0",
+        "kind": "markdown",
+        "markdown": "# 기능 요구사항과 수용 기준",
+        "hash": "74047dde9bc5e44065d24d7639daeabdfbeb2efba557567f29a8a676073bf956",
+        "metadata": {}
+      },
+      {
+        "id": "888af5bf-e57d-4fae-b907-bb5cd710d049",
+        "kind": "markdown",
+        "markdown": "P0는 첫 출시 필수 항목이다. P1은 첫 출시 이후 개선 항목이다.",
+        "hash": "db3191fa20568798797bd45150a98c81f759e83921a2b6848c46e2b29d84d611",
+        "metadata": {}
+      },
+      {
+        "id": "762cdaf4-3aa7-4cb4-81a2-1ef0120e8164",
+        "kind": "markdown",
+        "markdown": "| ID | 우선순위 | 요구사항 | 수용 기준 |\n| --- | --- | --- | --- |\n| FR01 | P0 | 실제 3D 렌더링 | WebGL로 깊이 판정과 원근을 가진 함선·행성·탄환 표시 |\n| FR02 | P0 | 8개 행성 전장 | 각 행성을 선택하면 행성명과 배경 외형이 변경 |\n| FR03 | P0 | 입체 플레이어 기체 | 기수·날개·캐노피·엔진이 보이고 기동 시 기울어짐 |\n| FR04 | P0 | 대규모 외계 함대 | 4종 외계 전투기와 최종 기함이 등장하고 동시 활성 적 25기 이상 처리 |\n| FR05 | P0 | 무기 5종 | 1~5 전환, 각 발사 방식·피해·자원 제한이 정의대로 동작 |\n| FR06 | P0 | 전투 판정 | 고속 탄환이 프레임 사이를 통과해도 명중 판정, 격추당 점수 1회 지급 |\n| FR07 | P0 | 보스와 승패 | 웨이브 조건 충족 후 기함 등장, 기함 격침 시 승리, 방어막 0이면 패배 |\n| FR08 | P0 | 빠른 조작 | 이동·발사·전환 입력이 다음 게임 갱신에서 반영 |\n| FR09 | P0 | 화려한 전투 효과 | 명중 섬광·파편·추진광·폭발 충격파·선택형 사운드 제공 |\n| FR10 | P0 | 안정적인 재시작 | 일시 정지 중 시간이 멈추고 재시작 시 점수·무기·적·자원이 초기화 |\n| FR11 | P0 | 모바일 대응 | 터치 이동·사격·무기 전환이 가능하고 포인터 해제 시 입력 해제 |\n| FR12 | P1 | 세부 품질 설정 | 저사양에서 파티클·해상도를 낮추고 카메라 흔들림 강도 조절 |",
+        "hash": "94779c60413be4a6d4167225673a4143d2162bc6f2c10ced5dd8bd50903d0b12",
+        "metadata": {}
+      },
+      {
+        "id": "b981adc2-65df-4ad8-85f8-5559c0a112e1",
+        "kind": "markdown",
+        "markdown": "프로토타입의 단일 관측 결과만으로 수용 완료를 선언하지 않는다. 필수 기능은 PC와 모바일의 대표 화면에서 시나리오 테스트를 통과해야 한다.",
+        "hash": "69b86d4af648469dd60708c63401335ccce447284b658be223b7f680a77b9473",
+        "metadata": {}
+      },
+      {
+        "id": "0aa54ab5-428d-4ea8-9e46-17efef6598c7",
+        "kind": "markdown",
+        "markdown": "# 성능과 품질 요구사항",
+        "hash": "3caf992ca5a9eb73813cec3265d039f12ab4575110f882b5cac3d38364341b25",
+        "metadata": {}
+      },
+      {
+        "id": "ae63a76f-57d4-4c84-8ab2-3b152fd5859b",
+        "kind": "markdown",
+        "markdown": "다음 수치는 출시 전 검증할 목표이며 달성 실적으로 간주하지 않는다. 기준 기기는 출시 검증 단계에서 고정한다.",
+        "hash": "1325fa286af7a4624f9c8c8843d8f515d8ad92b84b26c536ea6ccb2390cfc56d",
+        "metadata": {}
+      },
+      {
+        "id": "c951dfb5-c769-48ed-8408-ffb1a290ff7a",
+        "kind": "markdown",
+        "markdown": "- 데스크톱 1920×1080, 적 30기와 일반 교전에서 평균 60 FPS, 하위 1% 프레임 속도 30 FPS 이상을 목표로 한다.",
+        "hash": "c0eb86845ce46e307e5b256393f775e80a4aa4d09760610577be302328fc48b8",
+        "metadata": {}
+      },
+      {
+        "id": "0f2fb47e-0009-4c59-b623-9b311036c72d",
+        "kind": "markdown",
+        "markdown": "- 모바일 390×844 논리 해상도에서 평균 30 FPS 이상을 목표로 한다.",
+        "hash": "dab6a66aae3ee2adf34da33fa9381bb44c6c870f3530b77786e90ad0a5ccda03",
+        "metadata": {}
+      },
+      {
+        "id": "f700f79c-bd09-45f9-858d-5a6f77920283",
+        "kind": "markdown",
+        "markdown": "- 데스크톱 입력부터 화면 반응까지 100ms 이하, 20Mbps 연결의 콜드 로드에서 5초 이내 출격 가능 상태를 목표로 한다.",
+        "hash": "0d5f1fae91aa2be2617c5bcc3c022879623079110d62b5d85959c9f5e70bda9f",
+        "metadata": {}
+      },
+      {
+        "id": "430ea4ae-261e-4366-9839-4554e0fb80fc",
+        "kind": "markdown",
+        "markdown": "- 10분 연속 전투와 10회 재시작 후 메모리·렌더 객체 수가 계속 증가하지 않아야 한다.",
+        "hash": "8c05b955f31f440e0caecde7e7f362d3b6bb04124b7c8cafd40df893abd6f321",
+        "metadata": {}
+      },
+      {
+        "id": "27739fbe-7bb5-48b3-8080-3cb5363008c0",
+        "kind": "markdown",
+        "markdown": "- 창 크기 변경과 백그라운드 복귀 후 종횡비, 조준점, 입력 상태를 복구해야 한다.",
+        "hash": "b4dbce8cc7afa8482a5440438157faaf7543599beb1677c172706f94f1f67ae5",
+        "metadata": {}
+      },
+      {
+        "id": "6ec792a1-7c99-4291-8fd5-78d0fb5c1aa1",
+        "kind": "markdown",
+        "markdown": "- WebGL 초기화 실패 시 원인과 재시도 방법을 읽을 수 있게 표시한다.",
+        "hash": "020614dc3f6f588fa0736f41fa6dcaf961eb62c10e268365b10bdd89ff1a9316",
+        "metadata": {}
+      },
+      {
+        "id": "e696e7c2-4cf8-459f-bc8d-9facd69ad264",
+        "kind": "markdown",
+        "markdown": "- 효과음은 사용자가 켠 뒤 재생하며 음소거 상태를 명확히 표시한다. 조준점·버튼·자원은 색 외에도 텍스트와 수치로 구분한다.",
+        "hash": "c9730740fbb137245ebe3edfcf3cdab9256186ba59d332351eb7d3aea835d36c",
+        "metadata": {}
+      },
+      {
+        "id": "e336cbac-2f29-4531-a1fb-06e271ca449f",
+        "kind": "markdown",
+        "markdown": "공유 기하 구조, 재사용 재질, 파티클 수 제한과 화면 해상도 상한을 적용한다. 고속 투사체는 이동 선분 기반 충돌 판정으로 누락을 줄인다. 모든 필수 런타임 파일은 배포물에 포함한다.",
+        "hash": "314e358220a4581ef0b8721bf1926d66b558b68da6f852078a0b11bbc2963704",
+        "metadata": {}
+      },
+      {
+        "id": "29a4c746-fd6c-466a-88fc-eb38f602abb3",
+        "kind": "markdown",
+        "markdown": "# 구현 현황과 출시 계획",
+        "hash": "f9fdbb8c472c7a8c7a52a00c567a579a4141c4a2bba002001f8d265f96159d13",
+        "metadata": {}
+      },
+      {
+        "id": "233f309d-9c60-462d-947f-4d629eebf158",
+        "kind": "markdown",
+        "markdown": "## 2026년 10월 27일 기준",
+        "hash": "2cf4102d56569340e8b2cd3eeb9d5fa8f3d52ebaffe2afcf1f92e1c6a38e7b98",
+        "metadata": {}
+      },
+      {
+        "id": "fd7f6a6d-9b05-41e7-8a74-0d0114e50c6b",
+        "kind": "markdown",
+        "markdown": "기존 공개 링크의 초기 버전은 비행 중심이었다. 현재 작업 중인 3D 전투 버전에는 WebGL 전장, 입체 함선, 8개 행성 선택, 외계 전투기 4종, 기함, 5종 무기, 방어막·부스트·레이더·결과 화면의 소스가 구현되어 있다.",
+        "hash": "b2f86c3bbdadc6f1d0366f8d3500417aea7b1a77859d1eb274284eee0232fc88",
+        "metadata": {}
+      },
+      {
+        "id": "c3934355-e92e-4968-9aba-88a4250f39a7",
+        "kind": "markdown",
+        "markdown": "로컬 브라우저에서 3D 렌더링과 실제 메시 생성, 전투 시작, 레이저·산탄포 발사, 미사일 소모, 무기 선택, EMP 격추·탄막 제거, 2웨이브 전환과 일시 정지를 관측했다. 레일건의 독립 명중, 최종 보스 승리 흐름, 모바일 조작과 성능 목표는 추가 검증 대상으로 둔다.",
+        "hash": "9acd89068ae6f482d7f5a36c3ff85d261dc02b221d0c5d1fad019653ba7fd627",
+        "metadata": {}
+      },
+      {
+        "id": "756f3eae-b206-4d8f-b735-0b8442f50366",
+        "kind": "markdown",
+        "markdown": "[게임 배포 주소](https://solar-rush-quest-271026.blitheyew.chatgpt.site/)는 유지한다. 3D 전투 버전의 배포 여부는 검증 및 배포 결과로 별도 확정한다.",
+        "hash": "8fb8d59cd77c8b3a08522cc734d1fa4ac419259993c1766bc629d20770bf3736",
+        "metadata": {}
+      },
+      {
+        "id": "83c45211-ee01-44f5-97a4-4c7f46551130",
+        "kind": "markdown",
+        "markdown": "## 출시 순서",
+        "hash": "4cf42eaf61ec4dda34d23efa70c2befe27cc9dc058e2649eb4c7e1c0b326d0a2",
+        "metadata": {}
+      },
+      {
+        "id": "ac8a1789-8e05-43ab-8bad-6f5d4494bc48",
+        "kind": "markdown",
+        "markdown": "1. **전투 프로토타입:** 3D 우주, 함선·적 편대, 무기 5종, 승패 흐름을 완성한다.",
+        "hash": "136ea4b2cd68ba8713dc8cb163a7162c747651dc241d0ddd6f1c1738ceaa3fe0",
+        "metadata": {}
+      },
+      {
+        "id": "fa0a054a-890b-479e-aad8-15e114a7443d",
+        "kind": "markdown",
+        "markdown": "2. **플레이 검증:** 무기별 피해와 관통·유도, 기함 격침, 방어막 소진, 재시작, 모바일 입력을 확인한다.",
+        "hash": "d7ad84f8e80bdb66edf9c03b7ee8ca904b88993c014bbbb0f7d0b3f839306d74",
+        "metadata": {}
+      },
+      {
+        "id": "cb7e09a4-e375-4dbd-81ec-ce1ec6e49d48",
+        "kind": "markdown",
+        "markdown": "3. **품질 검증:** 8개 행성 외형과 좁은 화면을 확인하고 전투 밀도·EMP·미사일 보급량을 조정한다.",
+        "hash": "d5814b1c29377644933480d554f271a03396278e74a9261f978a8910b6241dfe",
+        "metadata": {}
+      },
+      {
+        "id": "d6a5c967-0241-43c8-9e9c-922c0dd2a9f7",
+        "kind": "markdown",
+        "markdown": "4. **출시:** 성능·오류 검사를 완료한 동일 소스를 기존 주소에 배포하고 실행 링크를 확인한다.",
+        "hash": "e74875abf9f91a158cda883b38dbaddceaeaf69c37475900a3a843549aa82e71",
+        "metadata": {}
+      },
+      {
+        "id": "e05140fb-de2c-48da-b736-1f53063fda71",
+        "kind": "markdown",
+        "markdown": "멀티플레이, 계정 기반 성장, 함선 업그레이드 상점, 온라인 랭킹, 행성 표면 착륙과 자유 탐험은 이번 첫 출시 범위에서 제외한다.",
+        "hash": "611f2dfb478684239ca0a7ad4a3de85fefdcdcaca1fcdb2d80ea16787e1d1b8b",
+        "metadata": {}
+      },
+      {
+        "id": "04623e8a-8d06-4889-919a-98b28f3982bd",
+        "kind": "markdown",
+        "markdown": "# 결정이 필요한 항목",
+        "hash": "6378b0d66d5eaa9865a771238d579b6f2e6a459053dc11a53d140f5be1f2d2d4",
+        "metadata": {}
+      },
+      {
+        "id": "a1bd0fe2-c19b-4bad-bf09-119f51656ac8",
+        "kind": "markdown",
+        "markdown": "아래 항목은 사용자 요구를 대신 확정한 내용이 아니라 후속 제품 결정 사항이다. 현재 프로토타입 제작은 표의 기본값으로 진행한다.",
+        "hash": "5d98b11bff0b030071bbc4f9df580ee374179fadfb5490434b3045aa0fb8c5e9",
+        "metadata": {}
+      },
+      {
+        "id": "935540e9-61df-4e30-8a2a-52c68d25f1bf",
+        "kind": "markdown",
+        "markdown": "| 항목 | 기본값 | 후속 결정 |\n| --- | --- | --- |\n| 카메라와 기동 | 3인칭 추적, 상하좌우 아케이드 기동 | 자유 회전과 6자유도 비행 확장 여부 |\n| 전장 진행 | 8개 행성을 개별 선택 | 행성 간 연속 캠페인 도입 여부 |\n| 함대 밀도 | 동시 적 약 25~34기 | 고사양 모드에서 추가 증대 여부 |\n| EMP 범위 | 활성 전장 전체 | 거리 제한 또는 자원 비용 도입 여부 |\n| 난이도 | 단일 기본 난이도 | 쉬움·보통·어려움 분리 여부 |\n| 시각 방향 | 영화 같은 우주 함대전, 독자적 함선 디자인 | 추가 외계 행성·세력과 함선 스킨 범위 |\n| 지원 환경 | PC 우선, 모바일 터치 지원 | 최소 GPU·메모리·브라우저 기준 확정 |",
+        "hash": "096b19b5e7ec1286570c136dfad20c2867022afb7db09fadbbefaa3b73976b26",
+        "metadata": {}
+      },
+      {
+        "id": "f1b19d3b-20ce-41d4-af62-bfe3d04a24f0",
+        "kind": "markdown",
+        "markdown": "출시 판단은 아름다운 우주, 대규모 교전, 5종 무기의 차별성, 빠른 반응, 안정적인 한 판 완주라는 다섯 기준으로 한다.",
+        "hash": "6d1a8b452823e29bb8acd122254639c25f2fc214ce5219ccd732cf10211731d8",
+        "metadata": {}
+      }
+    ],
+    "page_id": "page_60a49b480de481918599961c8d4feefd"
+  },
+  "view": "editing"
+}

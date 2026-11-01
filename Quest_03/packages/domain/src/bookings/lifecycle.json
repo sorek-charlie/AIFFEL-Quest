@@ -1,0 +1,35 @@
+{
+  "status": "design-specification",
+  "initial": "pending",
+  "states": [
+    "pending",
+    "confirmed",
+    "rejected",
+    "cancelled",
+    "expired"
+  ],
+  "transitions": {
+    "pending": [
+      "confirmed",
+      "rejected",
+      "cancelled",
+      "expired"
+    ],
+    "confirmed": [
+      "cancelled"
+    ],
+    "rejected": [],
+    "cancelled": [],
+    "expired": []
+  },
+  "occupiesTime": [
+    "confirmed"
+  ],
+  "approvalRequires": [
+    "owner-authentication",
+    "not-expired",
+    "availability-recheck",
+    "atomic-conflict-check",
+    "idempotency"
+  ]
+}

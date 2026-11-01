@@ -1,0 +1,15 @@
+{
+  "status": "fixture-plan-not-loaded",
+  "owners": [
+    "owner-a",
+    "owner-b"
+  ],
+  "scenarios": [
+    "empty-todos",
+    "completed-todo",
+    "same-slot-two-requests",
+    "expired-request",
+    "private-event-blocks-public-slot",
+    "dst-gap-and-fold"
+  ]
+}

@@ -1,0 +1,4 @@
+SOLAR WAR asset credits
+Three.js r180, MIT license: https://github.com/mrdoob/three.js
+Earth surface texture: https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg
+Other planet textures, ship geometry and visual effects: procedurally generated for SOLAR WAR.

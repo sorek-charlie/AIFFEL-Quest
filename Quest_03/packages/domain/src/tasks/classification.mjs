@@ -1,0 +1,6 @@
+import {requireValue} from '../index.mjs';
+export function localDate(value,optional=false){if(optional&&(value===null||value===undefined||value===''))return null;requireValue(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value,'날짜를 확인하세요.');return value;}
+export function projectFields(b){const startsOn=localDate(b.startsOn),endsOn=localDate(b.endsOn);requireValue(startsOn<=endsOn,'프로젝트 종료일은 시작일보다 빠를 수 없습니다.');const status=b.status||'planned';requireValue(['planned','active','completed'].includes(status),'프로젝트 상태를 확인하세요.');return {startsOn,endsOn,status};}
+function note(value,max){requireValue(typeof value==='string'&&value.length<=max,`${max}자 이하의 내용을 입력하세요.`);return value.trim();}
+export function eventDetails(body,old={}){return Object.fromEntries([['details',2000],['participants',500],['location',300]].map(([key,max])=>[key,note(body[key]===undefined?(old?.[key]||''):body[key],max)]));}
+export function projectDetails(body,old={}){const progress=body.progress===undefined?(old?.progress??null):body.progress;requireValue(progress===null||(Number.isInteger(progress)&&progress>=0&&progress<=100),'진척률은 0~100 정수 또는 자동 계산으로 지정하세요.');return {progress,notes:note(body.notes===undefined?(old?.notes||''):body.notes,2000)};}

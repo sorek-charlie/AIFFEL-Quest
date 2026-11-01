@@ -1,0 +1,1 @@
+import {mountPublic} from './app/public/index.mjs';await mountPublic();
