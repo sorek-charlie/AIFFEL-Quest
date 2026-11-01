@@ -3,13 +3,24 @@
 **제출 링크:** https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03  
 **마감:** 2026-11-05 23:59 (한국 시간)
 
+## 먼저: Google 일정 가져오기
+
+1. 이 폴더의 [구글일정가져오기.exe](./구글일정가져오기.exe)를 실행합니다. exe는 로컬 전용이며 GitHub에는 올리지 않습니다.
+2. PC 앱 로그인 후 **처음 연결하는 방법 · OAuth 등록**을 펼칩니다. Google Calendar API와 데스크톱 OAuth 클라이언트를 준비해 ID·시크릿을 로컬 입력칸에 저장합니다.
+3. **Google 계정 연결** → **charlie.sungjin@gmail.com** 선택 → Calendar 읽기 권한 승인.
+4. 시작일·종료일을 선택하고 **일정 미리보기** → 원하는 항목 체크 → **선택한 일정 저장**.
+
+기본 캘린더(primary), 서울 시간, 종일/반복 일정 조회를 지원합니다. 최대 366일/1,000개를 조회하며 초과 시 기간을 줄입니다. 중복은 제외하고 충돌은 검토함에 남깁니다. 전용 실행에서는 주기적 자동 가져오기를 시작하지 않습니다. Google 원본은 변경하지 않습니다. 실제 Google OAuth 승인은 아직 하지 않았으며 공급자 fixture로 검증했습니다.
+
+[웹에서 전용 화면 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/owner?view=google) — 최초 계정 연결은 PC 로컬 앱에서 진행합니다.
+
 ## 프로그램 실행 · 외부 URL · PRD
 
 | 구분 | 링크 / 실행 | 설명 |
 |---|---|---|
 | 외부 앱 | [charlie_schedule 관리자 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/owner?view=todo) | PC 앱 실행·중계 연결 후 로그인 → **과제 Todo · A/B** |
 | 고객 예약 | [외부 고객 신청](https://charlie-schedule.cherrysocute9.chatgpt.site/booking) | 추가 기능이며 Supabase 검증을 대신하지 않음 |
-| Windows 로컬 실행 | [ORBIT-Scheduler.exe](./ORBIT-Scheduler.exe) | 이 폴더의 exe를 실행. exe는 로컬 전용이므로 GitHub에는 없음 |
+| Windows 로컬 실행 | [이성진.exe](./이성진.exe) | 이 폴더의 exe를 실행. exe는 로컬 전용이므로 GitHub에는 없음 |
 | 소스 실행 | `npm start` | Node.js 24.22.1 이상. 콘솔에 출력된 로컬 주소 열기 |
 | PRD 한 장 | [PRD.md](./PRD.md) | 과제 제출용 기능·조건·검증 계획 |
 | PRD PDF | [PRD.pdf](./PRD.pdf) | 동일 내용의 A4 한 장 PDF |
@@ -54,7 +65,7 @@
 - **보안:** 일반 CRUD는 사용자 JWT와 RLS 적용. anon 접근·타 사용자 접근·소유자 위조 금지. 관리자 키 사용 금지, 키·토큰·DB는 Git 제외.
 - **완료 조건:** 각 저장소의 CRUD·재시작 보존 장면 + 두 계정 RLS 실제 결과 + 한 장 PRD.
 - **검증:** 360px 모바일·키보드 조작과 자동 테스트. 실제 Supabase 재시작 보존과 익명/A/B RLS 7항목 검증 완료.
-- **추가 기능:** ORBIT 일정·프로젝트·예약 승인·Gmail 분류. 추가 기능의 배포 성공은 과제의 Supabase 요구사항과 별개.
+- **추가 기능:** 이성진 일정·프로젝트·예약 승인·Gmail 분류. 추가 기능의 배포 성공은 과제의 Supabase 요구사항과 별개.
 
 ## 소스 동기화
 

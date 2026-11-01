@@ -8,7 +8,8 @@ class SubmissionBundle {
   [STAThread] static int Main(string[] args) {
     try {
       bool smoke = Array.IndexOf(args, "--smoke-test") >= 0;
-      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261101-time10");
+      bool googleOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("구글") || Array.IndexOf(args,"--google-calendar") >= 0;
+      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261101-calendar-import");
       Directory.CreateDirectory(root);
       using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("payload.zip"))
       using (var archive = new ZipArchive(resource, ZipArchiveMode.Read)) {
@@ -22,7 +23,7 @@ class SubmissionBundle {
         }
       }
       string app = Path.Combine(root, "ORBIT-Scheduler");
-      var start = new ProcessStartInfo(Path.Combine(app, "ORBIT-Scheduler.exe"), smoke ? "--smoke-test" : "");
+      var start = new ProcessStartInfo(Path.Combine(app, "ORBIT-Scheduler.exe"), (smoke ? "--smoke-test " : "") + (googleOnly ? "--google-calendar" : ""));
       start.WorkingDirectory = app; start.UseShellExecute = false;
       using (var child = Process.Start(start)) {
         if (smoke && !child.WaitForExit(30000)) { child.Kill(); throw new IOException("Smoke test timed out"); }
@@ -35,6 +36,6 @@ class SubmissionBundle {
         File.Copy(result, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smoke-result.txt"), true);
       }
       return 0;
-    } catch (Exception ex) { MessageBox.Show(ex.Message, "ORBIT Scheduler"); return 1; }
+    } catch (Exception ex) { MessageBox.Show(ex.Message, "이성진 일정 관리"); return 1; }
   }
 }

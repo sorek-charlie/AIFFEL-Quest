@@ -21,7 +21,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
   const repo=createRepository(dbPath||resolve(root,'runtime/data/orbit.db'),root),app=createScheduler(repo);
   app.initialize(ownerId);
   const todoWorkspace=createTodoWorkspace(repo,ownerId,app,root);
-  const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs),publicCloud=createPublicCloud(repo,ownerId,app);
+  const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs,{manualOnly:process.env.ORBIT_GOOGLE_IMPORT_ONLY==='1'}),publicCloud=createPublicCloud(repo,ownerId,app);
   const sessions=new Map(),limits=new Map();
   const server=createServer(async(req,res)=>{
     const origin=`http://${req.headers.host}`;
@@ -51,7 +51,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       const authenticated=()=>sessions.get(cookieToken)>now;
       if(p==='/api/v1/auth/session'&&req.method==='GET'){send(200,{configured:auth.configured(),authenticated:authenticated()});return;}
       if(p==='/api/v1/auth/change-password'&&req.method==='POST'){await auth.change(b.currentPassword,b.newPassword);sessions.clear();send(200,{ok:true});return;}
-      if(p==='/api/v1/auth/google/callback'&&req.method==='GET'){await google.callback(url,t=>sessions.get(t)>Date.now());res.writeHead(303,{Location:'/?google=connected'});res.end();return;}
+      if(p==='/api/v1/auth/google/callback'&&req.method==='GET'){const connected=await google.callback(url,t=>sessions.get(t)>Date.now());res.writeHead(303,{Location:connected.calendarOnly?'/?view=google&google=connected':'/?google=connected'});res.end();return;}
       if((p==='/api/v1/auth/login'||p==='/api/v1/auth/setup')&&req.method==='POST') {
         if(p.endsWith('/setup')){requireValue(typeof b.launchToken==='string'&&b.launchToken===launchToken,'프로그램 실행 창에서 초기 설정을 시작하세요.',403);await auth.setup(b.password);}else await auth.verify(b.password);
         const token=randomBytes(32).toString('hex');sessions.set(token,now+12*3600000);
@@ -75,7 +75,9 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(route==='integrations/gmail/check'&&req.method==='POST')result=await sync.run('gmail');
         else if(route==='integrations/force'&&req.method==='POST')result=await sync.run();
         else if(route==='integrations/google/config'&&req.method==='PUT'){google.configure(b);result=google.status();}
-        else if(route==='integrations/google/connect'&&req.method==='POST')result=google.connect(origin,cookieToken);
+        else if(route==='integrations/google/connect'&&req.method==='POST')result=google.connect(origin,cookieToken,{calendarOnly:b.calendarOnly===true});
+        else if(route==='integrations/google/preview'&&req.method==='POST')result=await google.preview(b,cookieToken);
+        else if(route==='integrations/google/import'&&req.method==='POST')result=google.importPreview(b,cookieToken);
         else if(route==='integrations/google/disconnect'&&req.method==='POST'){google.disconnect();result={ok:true};}
         else if(route==='settings'&&req.method==='PUT') result=app.updateSettings(ownerId,b);
         else if(/^(tasks|events|projects)(\/[^/]+)?$/.test(route)&&['POST','PATCH','DELETE'].includes(req.method)) {

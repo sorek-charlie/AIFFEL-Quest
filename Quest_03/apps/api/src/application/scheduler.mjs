@@ -3,7 +3,7 @@ import { requireValue, title, interval, overlaps, settings, slots } from '../../
 import {localDate,projectFields,eventDetails,projectDetails} from '../../../../packages/domain/src/tasks/classification.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 export function createScheduler(repo, clock=()=>Date.now()) {
-  const defaults={displayName:'나의 ORBIT',senderPhone:'010-9228-6269',enabled:false,startHour:9,endHour:18,duration:30,buffer:0,weekdays:[1,2,3,4,5],timeZone:'Asia/Seoul'};
+  const defaults={displayName:'이성진',senderPhone:'010-9228-6269',enabled:false,startHour:9,endHour:18,duration:30,buffer:0,weekdays:[1,2,3,4,5],timeZone:'Asia/Seoul'};
   const ensure=owner=> { if(!repo.getOwner(owner)) repo.saveOwner(owner,defaults); return repo.getOwner(owner); };
   const busy=owner=>repo.list(owner,'event').map(e=>({start:Date.parse(e.startsAt)-(e.buffer||0)*60000,end:Date.parse(e.endsAt)+(e.buffer||0)*60000}));
   const get=(o,k,id)=>{const e=repo.get(o,k,id);requireValue(e,'항목을 찾을 수 없습니다.',404,'NOT_FOUND');return e;};

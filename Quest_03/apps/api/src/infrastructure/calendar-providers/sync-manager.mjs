@@ -3,7 +3,7 @@ import {extname,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';
 import {requireValue} from '../../../../../packages/domain/src/index.mjs';
 import {parseIcs,textCandidates} from '../../../../../packages/domain/src/tasks/extraction.mjs';
-export function createSyncManager(repo,owner,google,inputs) {
+export function createSyncManager(repo,owner,google,inputs,{manualOnly=false}={}) {
  let busy=false,closed=false,lastPhoneStamp='';const timers=[];
  const read=()=>repo.config(owner,'sync')||{gmail:true,calendar:true,kakaoFile:'',phoneFile:'',results:{}};
  function status(){const c=read();return {...c,google:google.status(),busy,appMustRemainRunning:true,kakaoMode:'export-file-only',phoneMode:'google-calendar-or-ics',calendarRealtime:false};}
@@ -17,6 +17,7 @@ export function createSyncManager(repo,owner,google,inputs) {
     try{
      let result;
      if(source==='gmail'||source==='calendar'){
+      if(google.status().calendarOnly){results[source]={state:'manual_only',message:'Google 일정 전용 연결입니다. 전용 화면에서 미리보기 후 저장하세요.'};continue;}
       if((which!=='all'&&!c[source])||!google.status().connected){results[source]={state:'not_connected',message:'Google 계정 연결 또는 자동 확인 설정이 필요합니다.'};continue;}
       result=await google[source]();
      }else{
@@ -32,7 +33,7 @@ export function createSyncManager(repo,owner,google,inputs) {
    const latest=read();repo.saveConfig(owner,'sync',{...latest,results:{...latest.results,...results},lastRun:new Date().toISOString()});return results;
   }finally{busy=false;}
  }
- function every(ms,fn){const timer=setInterval(()=>{if(!closed&&!busy)fn().catch(()=>{});},ms);timer.unref();timers.push(timer);}
+ function every(ms,fn){if(manualOnly)return;const timer=setInterval(()=>{if(!closed&&!busy)fn().catch(()=>{});},ms);timer.unref();timers.push(timer);}
  every(3600000,async()=>{await run('gmail');await run('kakao');});
  every(60000,()=>run('calendar'));
  every(2000,()=>{const c=read();if(!c.phoneFile)return Promise.resolve();let stamp;try{stamp=c.phoneFile+':'+statSync(c.phoneFile).mtimeMs;}catch{return Promise.resolve();}if(stamp===lastPhoneStamp)return Promise.resolve();lastPhoneStamp=stamp;return run('phone');});

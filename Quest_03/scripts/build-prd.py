@@ -18,7 +18,7 @@ for line in Path('PRD.md').read_text(encoding='utf-8').splitlines():
  elif line.startswith('## '): story.append(Paragraph(escape(line[3:]),heading))
  else: story.append(Paragraph(escape(line),base))
 def footer(c,doc):
- c.setStrokeColor(HexColor('#d8e2e9'));c.line(38,37,557,37);c.setFont('Korean',8);c.setFillColor(HexColor('#5f7487'));c.drawString(38,24,'ORBIT / 과제 D-4 · 내 Todo 앱과 PRD');c.drawRightString(557,24,str(doc.page))
+ c.setStrokeColor(HexColor('#d8e2e9'));c.line(38,37,557,37);c.setFont('Korean',8);c.setFillColor(HexColor('#5f7487'));c.drawString(38,24,'이성진 / 과제 D-4 · 내 Todo 앱과 PRD');c.drawRightString(557,24,str(doc.page))
 doc=SimpleDocTemplate('PRD.pdf',pagesize=(595.28,841.89),rightMargin=38,leftMargin=38,topMargin=33,bottomMargin=48)
 doc.build(story,onFirstPage=footer,onLaterPages=footer)
 print('Built PRD.pdf')

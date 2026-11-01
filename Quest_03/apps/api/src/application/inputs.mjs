@@ -12,7 +12,7 @@ export function createInputs(repo,owner) {
   const e={id:old?.id||randomUUID(),title:title(p.title),sourceKey:p.sourceKey,source:p.source,projectId:p.projectId===undefined?(old?.projectId||null):p.projectId,version:(old?.version||0)+1,...(p.kind==='event'?{startsAt:p.startsAt,endsAt:p.endsAt,buffer:0}:{completed:old?.completed||false,dueDate:old?.dueDate||null})};
   if(p.sourceEmail)e.sourceEmail=p.sourceEmail;
   if(p.kind==='project')Object.assign(e,projectFields(p),{progress:null,notes:p.sourceEmail?.excerpt||''});
-  if(p.kind==='event')Object.assign(e,{details:old?.details||p.details||'',participants:old?.participants||p.participants||'',location:old?.location||''});
+  if(p.kind==='event')Object.assign(e,{details:old?.details||p.details||'',participants:old?.participants||p.participants||'',location:old?.location||p.location||''});
   repo.save(owner,p.kind,e);repo.audit(owner,e.id,'import',Date.now());return e;
  }
  return {

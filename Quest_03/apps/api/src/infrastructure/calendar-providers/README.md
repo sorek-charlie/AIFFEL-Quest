@@ -17,3 +17,6 @@
 ## 0.2 구현 상태
 
 google.mjs와 sync-manager.mjs: Google Desktop OAuth/PKCE, 지정 계정 검증, Gmail 1시간·Google Calendar 1분 확인, 강제 확인 및 TXT/ICS 대체 경로. 실제 계정 연결은 미완료, provider fixture 테스트 통과.
+
+Google 일정 전용 가져오기: Calendar readonly + OpenID 이메일 확인, 세션에 묶인 10분 만료 미리보기, 기간 최대 366일/1000개, 명시적 선택 저장·중복 제외·충돌 검토를 지원합니다. 전용 exe는 주기적 자동 가져오기를 시작하지 않습니다. 실제 OAuth 승인은 미실행이며 공급자 fixture 테스트 통과.
+
