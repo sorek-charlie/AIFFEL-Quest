@@ -28,3 +28,14 @@ evidence/**/*.webm
 .wrangler/
 .vinext/
 outputs/
+
+# Local credentials and runtime secrets
+.dev.vars*
+.secrets/
+secrets/
+credentials*.json
+client_secret*.json
+oauth-token*.json
+*.key
+*.pem
+smoke-result.txt

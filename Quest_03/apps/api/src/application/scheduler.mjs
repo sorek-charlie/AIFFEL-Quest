@@ -26,7 +26,7 @@ export function createScheduler(repo, clock=()=>Date.now()) {
       if(old) version(old,body);
       requireValue(kind==='task'||!old?.requestId,'예약 일정은 승인함에서 취소하세요.',409,'BOOKING_EVENT');
       if(method==='DELETE') {if(kind==='project')requireValue(!['task','event'].some(k=>repo.list(owner,k).some(e=>e.projectId===id)),'연결된 일정·할 일의 프로젝트를 먼저 해제하세요.',409,'PROJECT_IN_USE');repo.remove(owner,kind,id);repo.audit(owner,id,'delete',clock());return {ok:true};}
-      let e={id:old?.id||randomUUID(),title:title(body.title),version:(old?.version||0)+1,...(old?.sourceKey?{sourceKey:old.sourceKey,source:old.source}:{})};
+      let e={id:old?.id||randomUUID(),title:title(body.title),version:(old?.version||0)+1,...(old?.sourceKey?{sourceKey:old.sourceKey,source:old.source,...(old.sourceEmail?{sourceEmail:old.sourceEmail}:{})}:{})};
       if(kind!=='project'){const projectId=body.projectId===undefined?(old?.projectId||null):(body.projectId||null);if(projectId)requireValue(repo.get(owner,'project',projectId),'프로젝트를 찾을 수 없습니다.',404,'NOT_FOUND');e.projectId=projectId;}
       if(kind==='project')Object.assign(e,projectFields(body),projectDetails(body,old));
       else if(kind==='task') {requireValue(body.completed===undefined||typeof body.completed==='boolean','완료 값을 확인하세요.');e.completed=body.completed??old?.completed??false;e.dueDate=localDate(body.dueDate===undefined?old?.dueDate:body.dueDate,true);}

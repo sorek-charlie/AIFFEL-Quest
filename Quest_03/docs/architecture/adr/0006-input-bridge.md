@@ -6,7 +6,7 @@
 - 텍스트·파일·이미지 OCR은 후보로 추출하고 검토 후 저장합니다. 원본 파일은 보관하지 않으며 OCR 임시 파일은 처리 뒤 삭제합니다.
 - 애매한 날짜는 자동 일정으로 확정하지 않습니다. YYYY-MM-DD와 명확한 HH:mm은 일정 후보로, 다른 줄은 할 일 후보로 추출합니다. 최대 100줄을 검토합니다.
 - PC Google OAuth는 Desktop client/PKCE/일회성 state와 기존 로그인 세션을 사용합니다. Gmail readonly와 Calendar readonly만 요청합니다. 연결 계정이 지정 주소와 다르면 저장을 거부합니다.
-- Gmail 받은편지함 최근 7일을 한 시간마다 읽고 제목을 Todo로 저장합니다. 읽음/삭제/발송 상태는 바꾸지 않습니다. 원격 메시지 ID로 중복을 방지합니다.
+- Gmail 받은편지함 최근 7일을 한 시간마다 읽고 본문에서 일정·할 일·프로젝트 후보를 추출합니다. 날짜·시각과 프로젝트 키워드를 규칙으로 분류하며 사용자가 검토 후 저장합니다. 읽음/삭제/발송 상태는 바꾸지 않습니다. 원격 메시지 ID로 중복을 방지합니다.
 - Google 일정은 1분 간격으로 확인합니다. 최초 범위는 지난 1년~향후 2년, 이후 syncToken으로 변경·취소를 반영합니다. 그 범위 밖의 과거/미래 전체 이력을 보장하지 않습니다.
 - 원격 일정·ICS의 생성·변경·취소는 로컬 BEGIN IMMEDIATE 안에서 기존 점유를 검사합니다. 충돌한 항목은 검토함에 남깁니다. 강제 반영은 확인 주기를 앞당기며 충돌 경계를 우회하지 않습니다.
 - 토큰·OAuth 설정은 private_config에 AES-GCM 암호화 저장합니다. 키는 DB 옆 로컬 파일입니다. OS 계정 접근 제어를 대체하지 않습니다.
@@ -21,3 +21,5 @@
 실제 Google 인증, Android 기기 권한·알림·Calendar Provider·클라우드 동기화 경로는 사용자 계정/기기에서 추가 검증해야 합니다.
 
 공식 참고: [Google Desktop OAuth](https://developers.google.com/identity/protocols/oauth2/native-app), [Android NotificationListenerService](https://developer.android.com/reference/android/service/notification/NotificationListenerService), [Android Calendar Provider](https://developer.android.com/identity/providers/calendar-provider), [Kakao 메시지 API](https://developers.kakao.com/docs/ko/kakaotalk-message/common), [Windows OCR](https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine.trycreatefromuserprofilelanguages).
+
+2026-11-01: 지정 계정 charlie.sungjin@gmail.com, 입력 화면의 4단계 처리 현황·분류 근거·원문 발췌와 Google 등록 절차를 추가했습니다. sourceEmail은 소유자 항목에만 보관하고 공개 예약 projection에는 포함하지 않습니다. 수정 후에도 원본 messageId·계정 정보를 보존합니다. 프로젝트 기간은 검토 시 확인합니다.

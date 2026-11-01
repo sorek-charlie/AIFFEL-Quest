@@ -69,6 +69,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(/^inputs\/[^/]+\/confirm$/.test(route)&&req.method==='POST')result=inputs.confirm(route.split('/')[1],b);
         else if(route==='integrations'&&req.method==='GET')result=sync.status();
         else if(route==='integrations'&&req.method==='PUT')result=sync.configure(b);
+        else if(route==='integrations/gmail/check'&&req.method==='POST')result=await sync.run('gmail');
         else if(route==='integrations/force'&&req.method==='POST')result=await sync.run();
         else if(route==='integrations/google/config'&&req.method==='PUT'){google.configure(b);result=google.status();}
         else if(route==='integrations/google/connect'&&req.method==='POST')result=google.connect(origin,cookieToken);
