@@ -15,3 +15,5 @@ export function sourceLink(item,label=item.title){
  const url='https://mail.google.com/mail/u/'+encodeURIComponent(m.account||'')+'/#all/'+encodeURIComponent(m.messageId);
  return `<a class="gmail-source" href="${escape(url)}" target="_blank" rel="noopener noreferrer" title="원본 Gmail 열기 (새 탭)">${escape(label)} ↗</a>`;
 }
+
+export {bindTenMinuteTimes} from './time-input.mjs';

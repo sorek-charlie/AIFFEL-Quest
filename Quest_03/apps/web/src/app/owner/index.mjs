@@ -1,4 +1,4 @@
-import {api,act,escape,notice,today} from '../../platform/api/index.mjs';
+import {bindTenMinuteTimes,api,act,escape,notice,today} from '../../platform/api/index.mjs';
 import {tasksView,bindTasks} from '../../features/tasks/index.mjs';
 import {calendarView,bindCalendar,bindMonth} from '../../features/calendar/index.mjs';
 import {inboxView,bindInbox} from '../../features/booking-inbox/index.mjs';
@@ -35,6 +35,7 @@ export async function mountOwner({showDailyOnLogin=false}={}) {
   document.querySelectorAll('[data-brief-tab]').forEach(b=>b.onclick=()=>act(async()=>{tab=b.dataset.briefTab;await render();}));
   document.querySelectorAll('[data-entry-kind]').forEach(b=>b.onclick=()=>{document.querySelectorAll('details[open]').forEach(d=>d.open=false);openEntry(s,render,{kind:b.dataset.entryKind});});
   document.querySelector('#show-daily').onclick=()=>act(async()=>showDaily(briefingState(await api('owner/state')),async(next)=>{tab=next;await render();}));
+  bindTenMinuteTimes(document.querySelector('#app'));
   document.querySelector('#app').oninput=()=>{dirty=true;};
  }
  const updates=setInterval(async()=>{if(tab==='todo'||refreshing||dirty||document.hidden||document.querySelector('dialog[open],details[open]'))return;refreshing=true;try{const values=await Promise.all([api('owner/state'),api('owner/inputs')]);if(JSON.stringify([...values,today()])!==lastFingerprint)await render();}catch{}finally{refreshing=false;}},15000);
