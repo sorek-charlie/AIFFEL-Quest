@@ -6,12 +6,12 @@
 
 | 구분 | 파일 | 설명 |
 |---|---|---|
-| 실행파일 (Windows) | [`ORBIT-Scheduler.exe` 단독 실행판 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/raw/2c8898b1c5b34573379c9ef30f328f518150982c/Quest_03/ORBIT-Scheduler.exe) | 앱과 런타임이 포함된 단독 실행파일(약 37MB). 실행하면 브라우저가 열립니다. Windows 10/11용 |
+| 실행파일 (Windows) | [`ORBIT-Scheduler.exe`](https://github.com/sorek-charlie/AIFFEL-Quest/raw/refs/heads/main/Quest_03/ORBIT-Scheduler.exe) | 앱과 런타임이 모두 들어 있는 단독 실행파일(약 37MB). 내려받아 바로 실행하면 브라우저가 열립니다. Windows 10/11용 |
 | 실행파일 (Android) | [`ORBIT-Android.apk`](https://github.com/sorek-charlie/AIFFEL-Quest/raw/refs/heads/main/Quest_03/ORBIT-Android.apk) | 알림 → 확인 → Google 캘린더 저장을 돕는 보조 앱. Android 8 이상, 개발 서명판 |
 | PRD | [`PRD.pdf`](./PRD.pdf) | 상세 PRD v1.0 (14쪽, 2026-10-29) |
 | PRD 요약 | [`PRD.md`](./PRD.md) | 과제 제출용 한 장 요약본과 현재 구현 상태 |
 
-> 폴더에 있는 `ORBIT-Scheduler.exe`(10KB)는 `dist/ORBIT-Scheduler` 폴더가 함께 있어야 동작하는 실행기입니다. 내려받아 바로 실행하려면 위의 **단독 실행판**을 사용하세요.
+> 실행파일은 하위 폴더 없이 `Quest_03` 바로 아래에 있어 파일 하나만 내려받으면 됩니다.
 
 ### 실행 방법
 1. `ORBIT-Scheduler.exe`를 실행하면 브라우저가 열립니다. Node.js를 따로 설치할 필요가 없으며, 최초 실행 시 파일을 자동으로 풉니다.
