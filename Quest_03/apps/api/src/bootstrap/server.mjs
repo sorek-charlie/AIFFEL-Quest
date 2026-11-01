@@ -1,3 +1,4 @@
+import {createTodoWorkspace} from './todo-workspace.mjs';
 import { createServer } from 'node:http';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname, extname, sep } from 'node:path';
@@ -19,6 +20,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
   requireValue(process.env.NODE_ENV!=='production','로컬 인증으로 운영 실행할 수 없습니다.');
   const repo=createRepository(dbPath||resolve(root,'runtime/data/orbit.db'),root),app=createScheduler(repo);
   app.initialize(ownerId);
+  const todoWorkspace=createTodoWorkspace(repo,ownerId,app,root);
   const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs),publicCloud=createPublicCloud(repo,ownerId,app);
   const sessions=new Map(),limits=new Map();
   const server=createServer(async(req,res)=>{
@@ -60,7 +62,8 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       if(m) {
         requireValue(authenticated(),'비밀번호를 입력해 로그인하세요.',401,'UNAUTHENTICATED');
         const route=m[1];let result;
-        if(route==='state'&&req.method==='GET') result=app.state(ownerId);
+        if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
+        else if(route==='state'&&req.method==='GET') result=app.state(ownerId);
         else if(route==='public-link'&&req.method==='GET')result=publicCloud.status();
         else if(route==='public-link/sync'&&req.method==='POST')result=await publicCloud.sync();
         else if(route==='inputs'&&req.method==='GET')result=inputs.list();

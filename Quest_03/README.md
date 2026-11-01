@@ -1,99 +1,65 @@
-# Quest_03 — ORBIT Scheduler
+# Quest_03 · 과제 D-4 — 내 Todo 앱과 PRD
 
-개인 일정·할 일·프로젝트를 관리하고, 공유 링크로 들어온 고객의 약속 신청을 **내가 승인해야 확정**되는 일정 관리 서비스입니다.
+**제출 링크:** https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03  
+**마감:** 2026-11-05 23:59 (한국 시간)
 
-## 바로 실행 · 외부 접속
+## 프로그램 실행 · 외부 URL · PRD
 
-- [charlie_schedule 관리자 화면 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/owner)
-- [고객 일정 신청 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/booking)
-- [Windows 로컬 실행파일](./ORBIT-Scheduler.exe) — 이 폴더에서 실행합니다. exe는 GitHub에 올리지 않습니다. GitHub의 링크로 PC 프로그램을 직접 실행할 수는 없습니다.
-- [PRD 요약](./PRD.md) · [PRD PDF](./PRD.pdf)
+| 구분 | 링크 / 실행 | 설명 |
+|---|---|---|
+| 외부 앱 | [charlie_schedule 관리자 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/owner?view=todo) | PC 앱 실행·중계 연결 후 로그인 → **과제 Todo · A/B** |
+| 고객 예약 | [외부 고객 신청](https://charlie-schedule.cherrysocute9.chatgpt.site/booking) | 추가 기능이며 Supabase 검증을 대신하지 않음 |
+| Windows 로컬 실행 | [ORBIT-Scheduler.exe](./ORBIT-Scheduler.exe) | 이 폴더의 exe를 실행. exe는 로컬 전용이므로 GitHub에는 없음 |
+| 소스 실행 | `npm start` | Node.js 24.22.1 이상. 콘솔에 출력된 로컬 주소 열기 |
+| PRD 한 장 | [PRD.md](./PRD.md) | 과제 제출용 기능·조건·검증 계획 |
+| PRD PDF | [PRD.pdf](./PRD.pdf) | 동일 내용의 A4 한 장 PDF |
+| 실제 검증 기록 | [과제 검증 결과](./docs/assignment/verification.md) | 실행한 결과와 미실행 항목 구분 |
+| 작동 화면 | [로컬 재시작 전](./Output/submission/todo-local-before-restart.png) · [재시작 후](./Output/submission/todo-local-after-restart.png) | 고객 정보 없는 가상 Todo로 촬영 |
 
-외부 관리자는 PC 앱이 실행되고 클라우드 중계가 연결되어 있어야 합니다. 최초 비밀번호 설정과 Google OAuth 연결은 PC에서 합니다. 주소 서비스가 밑줄을 지원하지 않아 URL에는 `charlie-schedule`을 사용합니다.
+브라우저의 링크는 웹 앱을 엽니다. GitHub에서 Windows 프로그램을 직접 실행할 수는 없습니다. 로컬 exe는 별도 설치 없이 실행되며 데이터는 `%LOCALAPPDATA%\ORBIT Scheduler\data`에 저장됩니다. 외부 관리자는 PC가 켜져 있어야 동작합니다.
 
-### GitHub ↔ 이 폴더 동기화
+## 평가 기준과 현재 결과
 
-프로젝트 폴더에서 `node scripts/sync-github.mjs`로 변경을 미리 확인하고, `node scripts/sync-github.mjs --apply`로 양쪽 변경을 반영합니다. 최초 실행에서 같은 경로의 내용이 다르면 충돌로 중단합니다. 최초에 이 로컬 폴더를 기준으로 연결하려면 `node scripts/sync-github.mjs --initialize-local --apply`를 사용합니다. 양쪽에서 같은 파일을 수정한 경우에도 덮어쓰지 않습니다. 실행 중인 앱의 데이터 동기화와는 별개이며 `node scripts/sync-github.mjs --watch`를 켜 두면 30초마다 양방향 동기화하며 충돌·오류 시 중단합니다.
+| 평가 | 배점 | 구현·검증 상태 |
+|---|---:|---|
+| PRD 한 장 | 30 | PRD.md 및 한 장 PDF 작성·렌더링 확인 |
+| 데이터가 남는 Todo 앱 | 40 | 로컬 추가·조회·수정·완료·삭제 및 재시작 보존 테스트 통과. 작동 화면 첨부 |
+| 로컬·Supabase·RLS | 30 | Supabase 실제 연결·CRUD·재시작 보존·익명/A/B RLS 7항목 통과. 전후 화면 첨부 |
 
-Git 인증이 필요합니다. `build/submission-repo`를 중계 체크아웃으로 사용하며 다른 Quest 폴더는 변경하지 않습니다. exe/APK/DB/토큰/환경파일/빌드/런타임/검증 캡처는 업로드하지 않습니다. 삭제는 이전 동기화 기록이 있는 파일만 전파합니다.
+**클라우드 전환 기록 한 줄:** 2026-11-01 — SQLite 검증 후 새 Supabase 프로젝트에 사용자 JWT로 전환하여 CRUD·완료·삭제 및 앱 프로세스 재시작/재로그인 뒤 상태 보존 확인(20:51 KST).  
+**RLS 확인 기록 한 줄:** 2026-11-01 — 실제 사용자 A/B JWT와 익명으로 검사하여 익명 접근, B의 A 데이터 조회·수정·삭제, 소유자 위조 INSERT/UPDATE를 모두 차단하고 원본 유지 확인(20:49 KST).
 
-### Gmail · Google 일정 · 카카오톡
+![Supabase 재시작 후 보존·RLS 통과](./Output/submission/todo-supabase-after-restart.png)
 
-PC의 **입력 · 연동**에서 Google 데스크톱 OAuth 클라이언트를 설정하고 지정 계정으로 인증합니다. Gmail API와 Calendar API 사용 설정이 필요합니다. Google 일정은 1분마다 확인하며 충돌은 검토함으로 보냅니다. Gmail은 `charlie.sungjin@gmail.com`의 최근 7일 받은편지함 본문을 1시간마다 확인합니다. **입력 · 연동 → Gmail → 나의 계획**에서 메일 확인 → 내용 추출 → 구분 검토 → 반영 단계를 볼 수 있습니다. 일정·할 일·프로젝트는 검토 후 저장하며 제목의 원본 링크로 해당 Gmail을 엽니다. **Google 계정 등록 · 키 발급 절차**를 펼쳐 Desktop OAuth 등록을 진행하세요. 키는 입력 즉시 Git 제외 로컬 DB에 암호화 저장합니다. 실제 계정 인증과 실기기 수신 검증은 아직 완료하지 않았습니다.
+[Supabase 재시작 전](./Output/submission/todo-supabase-before-restart.png) · [재시작 후](./Output/submission/todo-supabase-after-restart.png)
 
-카카오톡은 내보낸 TXT를 지정하거나 내용을 붙여넣어 검토 후 반영합니다. Android 보조 앱은 사용자가 허용한 알림 내용만 수집합니다. 일반 카카오톡 전체 수신함이나 SMS를 직접 읽는 기능은 연결되어 있지 않습니다. 프로젝트 후보는 기간을 확인해 생성하거나 일정·할 일을 기존 프로젝트에 연결합니다.
+## 길 A → 길 B 실행 순서
+
+1. 앱 로그인 → **과제 Todo · A/B** → 길 A(SQLite)에서 할 일 추가·수정·완료·삭제.
+2. **보존 확인 항목 만들기** → PC 앱 종료·재실행 → 같은 화면에서 **재시작 보존 검증**. 새로고침만 하면 통과하지 않음.
+3. [Supabase Dashboard](https://supabase.com/dashboard) 로그인 → New project로 테스트 프로젝트 생성.
+4. SQL Editor에서 [0001_todo_rls.sql](./database/supabase/migrations/0001_todo_rls.sql)을 한 번 실행. Authentication → Users에서 확인 완료된 서로 다른 사용자 A/B 준비.
+5. 앱에 Project URL과 **Publishable 또는 anon 키** 입력 → 길 B로 전환 → A 로그인. 키는 암호화 로컬 DB에만 저장하며 Git에서 제외. service_role/secret 키는 거부.
+6. 길 B에서 CRUD·완료·삭제 및 종료·재실행·재로그인 후 보존을 확인. B 계정으로 **RLS 실제 검증** 실행.
+7. 성공 화면과 전환·RLS 기록을 제출. 현재 검증용 A/B 계정은 암호화 로컬 저장되어 **검증용 사용자 A로 로그인**, **저장된 검증용 B로 RLS 검사** 버튼으로 재현 가능. 본인 계정 로그인도 지원.
+
+저장소 전환은 저장 대상 선택입니다. 기존 로컬 자료를 자동 이관하지 않으며 두 저장소의 자료는 독립적입니다. 같은 Todo 기능을 두 저장소에서 각각 검증했습니다. 일정·예약·Gmail의 원본 DB는 기존 SQLite이며 이번 Supabase 전환 범위는 **과제 Todo**입니다.
 
 ## PRD 요약
 
-### 1. 제품 정의
-- 내 일정은 웹(2D·3D)에서 관리하고, 고객은 휴대전화에서 빈 시간을 골라 신청하며, **소유자가 승인해야 약속이 확정**됩니다.
-- 해결할 문제
-  - 메시지로 가능한 시간을 반복해서 조율해야 함
-  - 개인 일정의 상세 내용은 외부에 공개하고 싶지 않음
-  - 고객이 시간을 골랐다고 자동 확정되면 곤란함
-  - 새로고침·재시작 뒤에도 일정과 요청 상태가 유지되어야 함
+- **목표:** 앱을 껐다 켜도 남는 개인 Todo. 길 A 완료 후 길 B로 저장 대상 전환.
+- **기능:** 1~160자 제목, 추가·조회·수정·완료·삭제, 저장소 표시·선택, Supabase 로그인, 보존·RLS 확인.
+- **데이터:** id, 소유자, 제목, 완료 여부, 버전, 생성 시각. 오래된 수정·삭제는 버전 검사로 거부.
+- **구조:** 브라우저 → 인증된 Node API → SQLite 또는 Supabase REST. 저장소 선택은 bootstrap에서 결정.
+- **보안:** 일반 CRUD는 사용자 JWT와 RLS 적용. anon 접근·타 사용자 접근·소유자 위조 금지. 관리자 키 사용 금지, 키·토큰·DB는 Git 제외.
+- **완료 조건:** 각 저장소의 CRUD·재시작 보존 장면 + 두 계정 RLS 실제 결과 + 한 장 PRD.
+- **검증:** 360px 모바일·키보드 조작과 자동 테스트. 실제 Supabase 미검증은 미완료로 명시.
+- **추가 기능:** ORBIT 일정·프로젝트·예약 승인·Gmail 분류. 추가 기능의 배포 성공은 과제의 Supabase 요구사항과 별개.
 
-### 2. 사용자
+## 소스 동기화
 
-| 사용자 | 목표 | 대표 행동 |
-|---|---|---|
-| 소유자 | 내 일정과 고객 요청을 통제 | 할 일·일정 관리, 공개 시간 설정, 요청 승인·거절 |
-| 고객 | 가능한 시간을 빠르게 선택 | 링크 열기 → 날짜·시간 선택 → 신청 → 상태 확인·취소 (회원가입 없음) |
+`node scripts/sync-github.mjs`로 변경 미리보기, `node scripts/sync-github.mjs --apply`로 반영, `node scripts/sync-github.mjs --watch`로 30초 간격 양방향 확인. 충돌 시 중단합니다. exe/APK/DB/키/토큰/환경파일/런타임·빌드는 제외합니다.
 
-### 3. 제품 완료 기준
-- **지속 저장:** Todo·일정·예약 상태가 새로고침과 서버 재시작 뒤에도 유지
-- **승인 통제:** 소유자 승인 없이 확정 일정이 생기지 않음
-- **충돌 방지:** 같은 시간에 동시에 승인해도 중복 확정 0건
-- **개인정보 분리:** 고객 화면에 개인 일정 제목·메모·다른 고객 연락처가 나오지 않음
-- **3D와 대체 화면:** 3D에서 일정을 선택·편집할 수 있고, WebGL이 안 되면 2D로 같은 작업 가능
-- **계정 격리·저장소 전환:** 사용자 A가 B의 데이터에 접근 불가, SQLite와 Supabase가 같은 기능을 충족
+## Google 연결
 
-### 4. 예약 상태와 핵심 규칙
-
-```
-고객 신청 → pending(승인 대기, 시간 점유 없음) → 소유자 승인 + 충돌 재검사 → confirmed(확정, 시간 점유)
-                                            ↘ rejected(거절) / expired(만료) / cancelled(취소)
-```
-
-- 승인 대기는 시간을 점유하지 않으며, 같은 슬롯에 여러 요청이 들어올 수 있고 **먼저 승인된 1건만 확정**됩니다.
-- 승인하는 순간 만료·공개 규칙·시간 충돌을 다시 검사하고, 요청 확정과 일정 생성을 한 트랜잭션으로 저장합니다.
-- 같은 요청을 다시 보내도 중복 확정되지 않습니다(멱등성).
-- 기본값: 공개 링크 꺼짐, 시간대 Asia/Seoul, 평일 09:00~18:00, 미팅 30분, 최소 2시간 전 신청, 30일 이내 예약, 승인 대기 24시간 후 만료
-
-### 5. 주요 기능 (FR-01 ~ FR-20)
-- **소유자:** 로그인, Todo CRUD, 개인 일정, 2D 주간·목록 보기, 3D 보기(X축 요일 · Y축 시각 · Z축 분류)
-- **예약 설정:** 요일별 공개 시간·휴무·예외, 미팅 유형(길이·간격·버퍼), 공유 링크 켜기/끄기
-- **고객 예약:** 빈 시간 계산, 모바일 신청, 상태 조회·취소, 시간대 표시
-- **승인 처리:** 승인함, 원자적 승인, 거절·만료·취소
-- **저장·보안:** SQLite ↔ Supabase 전환, 사용자별 권한·RLS, 감사 기록
-
-### 6. 보안·품질 요구사항
-- 세션으로 소유자를 판별하고 요청 본문의 `owner_id`는 신뢰하지 않음
-- 관리자 키·DB 비밀번호를 프런트·Git·로그에 두지 않음
-- 고객 페이지는 3D 코드를 내려받지 않음
-- 360px 모바일·키보드·스크린리더 주요 흐름 지원
-
-### 7. 시스템 구조
-브라우저 → Node.js API → SQLite(로컬) / Supabase(클라우드). 프런트엔드는 DB에 직접 접근하지 않습니다.
-
-### 8. 구현 단계
-M0 설계 → M1 로컬 Todo·2D → M2 일정 규칙 → M3 클라우드(Supabase·RLS) → M4 예약 → M5 3D → M6 HTTPS 공개 검증
-
-### 9. 현재 상태 (2026-10-29, `PRD.md` 기준)
-- **구현:** 로컬 SQLite Todo·월간 달력·예약 신청/승인, 비밀번호, 문서·이미지 입력 추출, Google 읽기 전용 연결 어댑터, Windows EXE, Android 보조 APK, HTTPS Worker/D1 고객 신청·관리자 중계 배포
-- **미완료:** 실제 Google 계정 인증, PC 없이 동작하는 클라우드 일정 DB·RLS, WebGL 3D, 외부 문자 발송, Android 실기기 검증
-- 전체 PRD가 완료된 상태는 아닙니다.
-
-## 폴더 구성
-
-| 경로 | 내용 |
-|---|---|
-| `apps/web`, `apps/api`, `apps/android` | 웹 화면, Node.js API, Android 보조 앱 소스 |
-| `packages/` | 도메인 규칙, API 계약, 공용 UI, 디자인 토큰 |
-| `database/` | SQLite 마이그레이션, Supabase 스키마·RLS, 시드 데이터 |
-| `sites/orbit-booking/` | 고객 예약·관리자 중계용 클라우드 사이트 |
-| `docs/` | 아키텍처·API·데이터·보안·운영·과제 문서 |
-| `tests/` | 단위·통합·보안·접근성 등 테스트 |
-| `evidence/` | 로컬·클라우드·보안 검증 기록 |
-| `Output/` | 화면 캡처 이미지와 PRD PDF 사본 |
-| `scripts/`, `infra/`, `tooling/` | 빌드·배포 스크립트, 실행 환경 설정, 개발 도구 설정 |
+지정 계정은 **charlie.sungjin@gmail.com**입니다. 입력·연동의 **Google 계정 등록 · 키 발급 절차**를 펼쳐 Desktop OAuth를 연결하세요. Gmail은 메일 확인 → 추출 → 일정·할 일·프로젝트 분류 → 검토 후 반영 순서이며, 반영 항목의 제목으로 원본 Gmail을 엽니다. 실제 OAuth 승인은 사용자가 진행해야 합니다. 카카오톡은 내보낸 TXT·Android 알림 경로이며 전체 수신함 직접 읽기는 지원하지 않습니다.
