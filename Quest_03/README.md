@@ -2,23 +2,26 @@
 
 개인 일정·할 일·프로젝트를 관리하고, 공유 링크로 들어온 고객의 약속 신청을 **내가 승인해야 확정**되는 일정 관리 서비스입니다.
 
-## 실행파일 · PRD
+## 바로 실행 · 외부 접속
 
-| 구분 | 파일 | 설명 |
-|---|---|---|
-| 실행파일 (Windows) | [`ORBIT-Scheduler.exe`](https://github.com/sorek-charlie/AIFFEL-Quest/raw/refs/heads/main/Quest_03/ORBIT-Scheduler.exe) | 앱과 런타임이 모두 들어 있는 단독 실행파일(약 37MB). 내려받아 바로 실행하면 브라우저가 열립니다. Windows 10/11용 |
-| 실행파일 (Android) | [`ORBIT-Android.apk`](https://github.com/sorek-charlie/AIFFEL-Quest/raw/refs/heads/main/Quest_03/ORBIT-Android.apk) | 알림 → 확인 → Google 캘린더 저장을 돕는 보조 앱. Android 8 이상, 개발 서명판 |
-| PRD | [`PRD.pdf`](./PRD.pdf) | 상세 PRD v1.0 (14쪽, 2026-10-29) |
-| PRD 요약 | [`PRD.md`](./PRD.md) | 과제 제출용 한 장 요약본과 현재 구현 상태 |
+- [charlie_schedule 관리자 화면 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/owner)
+- [고객 일정 신청 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/booking)
+- [Windows 로컬 실행파일](./ORBIT-Scheduler.exe) — 이 폴더에서 실행합니다. exe는 GitHub에 올리지 않습니다. GitHub의 링크로 PC 프로그램을 직접 실행할 수는 없습니다.
+- [PRD 요약](./PRD.md) · [PRD PDF](./PRD.pdf)
 
-> 실행파일은 하위 폴더 없이 `Quest_03` 바로 아래에 있어 파일 하나만 내려받으면 됩니다.
+외부 관리자는 PC 앱이 실행되고 클라우드 중계가 연결되어 있어야 합니다. 최초 비밀번호 설정과 Google OAuth 연결은 PC에서 합니다. 주소 서비스가 밑줄을 지원하지 않아 URL에는 `charlie-schedule`을 사용합니다.
 
-### 실행 방법
-1. `ORBIT-Scheduler.exe`를 실행하면 브라우저가 열립니다. Node.js를 따로 설치할 필요가 없으며, 최초 실행 시 파일을 자동으로 풉니다.
-2. 처음에는 비밀번호를 직접 설정합니다. (초기 비밀번호는 없습니다.)
-3. 실행 창의 **프로그램 종료**로 종료합니다.
+### GitHub ↔ 이 폴더 동기화
 
-데이터는 `%LOCALAPPDATA%\ORBIT Scheduler\data`에 저장됩니다. Google 연동은 별도 계정 연결이 필요하며, exe는 서명되지 않아 SmartScreen 경고가 뜰 수 있습니다.
+프로젝트 폴더에서 `node scripts/sync-github.mjs`로 변경을 미리 확인하고, `node scripts/sync-github.mjs --apply`로 양쪽 변경을 반영합니다. 최초 실행에서 같은 경로의 내용이 다르면 충돌로 중단합니다. 최초에 이 로컬 폴더를 기준으로 연결하려면 `node scripts/sync-github.mjs --initialize-local --apply`를 사용합니다. 양쪽에서 같은 파일을 수정한 경우에도 덮어쓰지 않습니다. 실행 중인 앱의 데이터 동기화와는 별개이며 자동 감시가 아닙니다.
+
+Git 인증이 필요합니다. `build/submission-repo`를 중계 체크아웃으로 사용하며 다른 Quest 폴더는 변경하지 않습니다. exe/APK/DB/토큰/환경파일/빌드/런타임/검증 캡처는 업로드하지 않습니다. 삭제는 이전 동기화 기록이 있는 파일만 전파합니다.
+
+### Gmail · Google 일정 · 카카오톡
+
+PC의 **입력 · 연동**에서 Google 데스크톱 OAuth 클라이언트를 설정하고 지정 계정으로 인증합니다. Gmail API와 Calendar API 사용 설정이 필요합니다. Google 일정은 1분마다 확인하며 충돌은 검토함으로 보냅니다. Gmail은 최근 7일 받은편지함을 1시간마다 확인합니다. 실제 계정 인증과 실기기 수신 검증은 아직 완료하지 않았습니다.
+
+카카오톡은 내보낸 TXT를 지정하거나 내용을 붙여넣어 검토 후 반영합니다. Android 보조 앱은 사용자가 허용한 알림 내용만 수집합니다. 일반 카카오톡 전체 수신함이나 SMS를 직접 읽는 기능은 연결되어 있지 않습니다. 프로젝트는 검토 후 기존 프로젝트와 연결합니다.
 
 ## PRD 요약
 

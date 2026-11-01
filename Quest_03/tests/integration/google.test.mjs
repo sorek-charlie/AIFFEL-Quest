@@ -25,7 +25,7 @@ test('Google OAuth PKCE, account mismatch, token storage, Gmail and calendar upd
   let callback=new URL('http://127.0.0.1:1234/api/v1/auth/google/callback?code=fixture&state='+auth.searchParams.get('state'));
   await assert.rejects(()=>google.callback(callback,()=>true),e=>e.code==='ACCOUNT_MISMATCH');assert.equal(google.status().connected,false);
   email='charlie.sungjin@gmail.com';auth=new URL(google.connect('http://127.0.0.1:1234','session').url);callback=new URL('http://127.0.0.1:1234/api/v1/auth/google/callback?code=fixture&state='+auth.searchParams.get('state'));await google.callback(callback,s=>s==='session');assert.equal(google.status().connected,true);
-  await google.gmail();await google.gmail();assert.equal(app.state('A').tasks.length,1);
+  await google.gmail();await google.gmail();assert.equal(input.list().length,1);assert.equal(app.state('A').tasks.length,0);
   await google.calendar();await google.calendar();assert.equal(app.state('A').events.length,1);
   calendarDeleted=true;await google.calendar();assert.equal(app.state('A').events.length,0);
   google.disconnect();assert.equal(google.status().connected,false);

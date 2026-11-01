@@ -21,3 +21,10 @@ evidence/**/*.mp4
 evidence/**/*.webm
 .DS_Store
 .playwright-mcp/
+
+*.exe
+*.apk
+.sites-runtime/
+.wrangler/
+.vinext/
+outputs/
