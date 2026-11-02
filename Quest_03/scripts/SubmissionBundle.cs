@@ -8,8 +8,9 @@ class SubmissionBundle {
   [STAThread] static int Main(string[] args) {
     try {
       bool smoke = Array.IndexOf(args, "--smoke-test") >= 0;
+      bool gmailOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("메일") || Array.IndexOf(args,"--gmail-review") >= 0;
       bool googleOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("구글") || Array.IndexOf(args,"--google-calendar") >= 0;
-      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261101-calendar-import");
+      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261102-mail-review-v2");
       Directory.CreateDirectory(root);
       using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("payload.zip"))
       using (var archive = new ZipArchive(resource, ZipArchiveMode.Read)) {
@@ -23,7 +24,7 @@ class SubmissionBundle {
         }
       }
       string app = Path.Combine(root, "ORBIT-Scheduler");
-      var start = new ProcessStartInfo(Path.Combine(app, "ORBIT-Scheduler.exe"), (smoke ? "--smoke-test " : "") + (googleOnly ? "--google-calendar" : ""));
+      var start = new ProcessStartInfo(Path.Combine(app, "ORBIT-Scheduler.exe"), (smoke ? "--smoke-test " : "") + (gmailOnly ? "--gmail-review" : googleOnly ? "--google-calendar" : ""));
       start.WorkingDirectory = app; start.UseShellExecute = false;
       using (var child = Process.Start(start)) {
         if (smoke && !child.WaitForExit(30000)) { child.Kill(); throw new IOException("Smoke test timed out"); }

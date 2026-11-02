@@ -1,5 +1,5 @@
 import {randomUUID,createHash} from 'node:crypto';
-import {projectFields} from '../../../../packages/domain/src/tasks/classification.mjs';
+import {projectFields,localDate} from '../../../../packages/domain/src/tasks/classification.mjs';
 import {requireValue,title,interval,overlaps} from '../../../../packages/domain/src/index.mjs';
 export function createInputs(repo,owner) {
  function apply(p) {
@@ -9,7 +9,7 @@ export function createInputs(repo,owner) {
    const [a,b]=interval(p.startsAt,p.endsAt);
    requireValue(!repo.list(owner,'event').some(e=>e.id!==old?.id&&overlaps({start:a,end:b},{start:Date.parse(e.startsAt)-(e.buffer||0)*60000,end:Date.parse(e.endsAt)+(e.buffer||0)*60000})),'다른 일정과 충돌합니다. 시간을 조정하세요.',409,'SLOT_CONFLICT');
   }
-  const e={id:old?.id||randomUUID(),title:title(p.title),sourceKey:p.sourceKey,source:p.source,projectId:p.projectId===undefined?(old?.projectId||null):p.projectId,version:(old?.version||0)+1,...(p.kind==='event'?{startsAt:p.startsAt,endsAt:p.endsAt,buffer:0}:{completed:old?.completed||false,dueDate:old?.dueDate||null})};
+  const e={id:old?.id||randomUUID(),title:title(p.title),sourceKey:p.sourceKey,source:p.source,projectId:p.projectId===undefined?(old?.projectId||null):p.projectId,version:(old?.version||0)+1,...(p.kind==='event'?{startsAt:p.startsAt,endsAt:p.endsAt,buffer:0}:{completed:old?.completed||false,dueDate:p.dueDate===undefined?(old?.dueDate||null):localDate(p.dueDate,true)})};
   if(p.sourceEmail)e.sourceEmail=p.sourceEmail;
   if(p.kind==='project')Object.assign(e,projectFields(p),{progress:null,notes:p.sourceEmail?.excerpt||''});
   if(p.kind==='event')Object.assign(e,{details:old?.details||p.details||'',participants:old?.participants||p.participants||'',location:old?.location||p.location||''});
@@ -26,6 +26,6 @@ export function createInputs(repo,owner) {
     }return {applied,pending,skipped};
    });
   },
-  confirm(id,body) {return repo.transaction(()=>{const p=repo.proposal(owner,id);requireValue(p&&p.state==='pending','검토할 항목을 찾을 수 없습니다.',404);if(body.reject){p.state='rejected';repo.updateProposal(owner,p);return {ok:true};}requireValue(['task','event','project'].includes(body.kind),'종류를 선택하세요.');Object.assign(p,{title:title(body.title),kind:body.kind,...(body.kind==='event'?{startsAt:body.startsAt,endsAt:body.endsAt}:{})});if(body.kind==='project')Object.assign(p,projectFields(body));if(body.projectId)requireValue(repo.get(owner,'project',body.projectId),'프로젝트를 찾을 수 없습니다.',404);p.projectId=body.projectId||null;const e=apply(p);p.state='applied';repo.updateProposal(owner,p);return e;});}
+  confirm(id,body) {return repo.transaction(()=>{const p=repo.proposal(owner,id);requireValue(p&&p.state==='pending','검토할 항목을 찾을 수 없습니다.',404);if(body.reject){p.state='rejected';repo.updateProposal(owner,p);return {ok:true};}requireValue(['task','event','project'].includes(body.kind),'종류를 선택하세요.');Object.assign(p,{title:title(body.title),kind:body.kind,...(body.kind==='event'?{startsAt:body.startsAt,endsAt:body.endsAt}:{})});if(body.kind==='task'&&body.dueDate!==undefined)p.dueDate=localDate(body.dueDate,true);if(body.kind==='project')Object.assign(p,projectFields(body));if(body.projectId)requireValue(repo.get(owner,'project',body.projectId),'프로젝트를 찾을 수 없습니다.',404);p.projectId=body.projectId||null;const e=apply(p);p.state='applied';repo.updateProposal(owner,p);return e;});}
  };
 }

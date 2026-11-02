@@ -17,6 +17,7 @@ export function createSyncManager(repo,owner,google,inputs,{manualOnly=false}={}
     try{
      let result;
      if(source==='gmail'||source==='calendar'){
+      if(source==='gmail'&&repo.config(owner,'gmail-review-enabled')?.enabled){results[source]={state:'manual_only',message:'기간 지정 Gmail 분류 화면에서 조회하세요.'};continue;}
       if(google.status().calendarOnly){results[source]={state:'manual_only',message:'Google 일정 전용 연결입니다. 전용 화면에서 미리보기 후 저장하세요.'};continue;}
       if((which!=='all'&&!c[source])||!google.status().connected){results[source]={state:'not_connected',message:'Google 계정 연결 또는 자동 확인 설정이 필요합니다.'};continue;}
       result=await google[source]();

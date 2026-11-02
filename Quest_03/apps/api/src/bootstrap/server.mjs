@@ -1,3 +1,4 @@
+import {createMailReview} from '../application/mail-review.mjs';
 import {createTodoWorkspace} from './todo-workspace.mjs';
 import { createServer } from 'node:http';
 import { readFileSync, mkdirSync } from 'node:fs';
@@ -22,6 +23,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
   app.initialize(ownerId);
   const todoWorkspace=createTodoWorkspace(repo,ownerId,app,root);
   const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs,{manualOnly:process.env.ORBIT_GOOGLE_IMPORT_ONLY==='1'}),publicCloud=createPublicCloud(repo,ownerId,app);
+  const mailReview=createMailReview({repo,owner:ownerId,inputs,provider:()=>google.mailbox()});
   const sessions=new Map(),limits=new Map();
   const server=createServer(async(req,res)=>{
     const origin=`http://${req.headers.host}`;
@@ -51,7 +53,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       const authenticated=()=>sessions.get(cookieToken)>now;
       if(p==='/api/v1/auth/session'&&req.method==='GET'){send(200,{configured:auth.configured(),authenticated:authenticated()});return;}
       if(p==='/api/v1/auth/change-password'&&req.method==='POST'){await auth.change(b.currentPassword,b.newPassword);sessions.clear();send(200,{ok:true});return;}
-      if(p==='/api/v1/auth/google/callback'&&req.method==='GET'){const connected=await google.callback(url,t=>sessions.get(t)>Date.now());res.writeHead(303,{Location:connected.calendarOnly?'/?view=google&google=connected':'/?google=connected'});res.end();return;}
+      if(p==='/api/v1/auth/google/callback'&&req.method==='GET'){const connected=await google.callback(url,t=>sessions.get(t)>Date.now());res.writeHead(303,{Location:connected.gmailReview?'/?view=gmail':connected.calendarOnly?'/?view=google&google=connected':'/?google=connected'});res.end();return;}
       if((p==='/api/v1/auth/login'||p==='/api/v1/auth/setup')&&req.method==='POST') {
         if(p.endsWith('/setup')){requireValue(typeof b.launchToken==='string'&&b.launchToken===launchToken,'프로그램 실행 창에서 초기 설정을 시작하세요.',403);await auth.setup(b.password);}else await auth.verify(b.password);
         const token=randomBytes(32).toString('hex');sessions.set(token,now+12*3600000);
@@ -62,7 +64,10 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       if(m) {
         requireValue(authenticated(),'비밀번호를 입력해 로그인하세요.',401,'UNAUTHENTICATED');
         const route=m[1];let result;
-        if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
+        if(route==='gmail-review/status'&&req.method==='GET')result=mailReview.status({category:url.searchParams.get('category')||'all',page:url.searchParams.get('page')||1});
+        else if(route==='gmail-review/start'&&req.method==='POST')result=mailReview.start(b);
+        else if(/^gmail-review\/messages\/[^/]+$/.test(route)&&req.method==='POST')result=await mailReview.action(route.split('/')[2],b);
+        else if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
         else if(route==='state'&&req.method==='GET') result=app.state(ownerId);
         else if(route==='public-link'&&req.method==='GET')result=publicCloud.status();
         else if(route==='public-link/sync'&&req.method==='POST')result=await publicCloud.sync();
@@ -75,7 +80,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(route==='integrations/gmail/check'&&req.method==='POST')result=await sync.run('gmail');
         else if(route==='integrations/force'&&req.method==='POST')result=await sync.run();
         else if(route==='integrations/google/config'&&req.method==='PUT'){google.configure(b);result=google.status();}
-        else if(route==='integrations/google/connect'&&req.method==='POST')result=google.connect(origin,cookieToken,{calendarOnly:b.calendarOnly===true});
+        else if(route==='integrations/google/connect'&&req.method==='POST')result=google.connect(origin,cookieToken,{calendarOnly:b.calendarOnly===true,gmailReview:b.gmailReview===true});
         else if(route==='integrations/google/preview'&&req.method==='POST')result=await google.preview(b,cookieToken);
         else if(route==='integrations/google/import'&&req.method==='POST')result=google.importPreview(b,cookieToken);
         else if(route==='integrations/google/disconnect'&&req.method==='POST'){google.disconnect();result={ok:true};}

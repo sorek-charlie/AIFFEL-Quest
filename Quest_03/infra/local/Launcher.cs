@@ -13,8 +13,10 @@ class Launcher : Form {
   readonly string root = AppDomain.CurrentDomain.BaseDirectory;
   bool smoke;
   bool googleOnly;
+  bool gmailOnly;
   string temp;
-  public Launcher(bool test,bool calendarOnly) {
+  public Launcher(bool test,bool calendarOnly,bool mailOnly) {
+    gmailOnly=mailOnly;
     googleOnly=calendarOnly;
     smoke=test; Text="이성진 일정 관리"; Size=new Size(480,270); StartPosition=FormStartPosition.CenterScreen;
     BackColor=Color.FromArgb(241,246,255); ForeColor=Color.FromArgb(45,67,113);
@@ -34,11 +36,11 @@ class Launcher : Form {
       info.WorkingDirectory=Path.Combine(bundle,"app");info.UseShellExecute=false;info.CreateNoWindow=true;info.RedirectStandardOutput=true;info.RedirectStandardError=true;
       var data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"ORBIT Scheduler","data");
       if(smoke){temp=Path.Combine(Path.GetTempPath(),"orbit-smoke-"+Guid.NewGuid());data=temp;}
-      if(googleOnly)info.EnvironmentVariables["ORBIT_GOOGLE_IMPORT_ONLY"]="1";
+      if(googleOnly||gmailOnly)info.EnvironmentVariables["ORBIT_GOOGLE_IMPORT_ONLY"]="1";
       info.EnvironmentVariables["ORBIT_DATA_DIR"]=data;info.EnvironmentVariables["PORT"]="0";
       child=new Process {StartInfo=info,EnableRaisingEvents=true};
       child.OutputDataReceived+=(s,e)=> { if(e.Data!=null&&e.Data.StartsWith("ORBIT_URL="))BeginInvoke((Action)(()=>{
-        url=e.Data.Substring(10);if(googleOnly)url=url.Replace("/#launch=","/?view=google#launch=");status.Text="실행 중 · 이 창을 닫으면 서버도 종료됩니다.\n저장 위치: %LOCALAPPDATA%\\ORBIT Scheduler\\data";open.Enabled=true;
+        url=e.Data.Substring(10);if(googleOnly)url=url.Replace("/#launch=","/?view=google#launch=");if(gmailOnly)url=url.Replace("/#launch=","/?view=gmail#launch=");status.Text="실행 중 · 이 창을 닫으면 서버도 종료됩니다.\n저장 위치: %LOCALAPPDATA%\\ORBIT Scheduler\\data";open.Enabled=true;
         if(smoke){File.WriteAllText(Path.Combine(root,"smoke-result.txt"),"PASS: launcher started bundled Node and received server URL.");Close();}else OpenBrowser();
       }));};
       child.ErrorDataReceived+=(s,e)=>{};
@@ -47,5 +49,5 @@ class Launcher : Form {
       var timer=new System.Windows.Forms.Timer {Interval=15000};timer.Tick+=(s,e)=> {timer.Stop();if(url==null){status.Text="서버 시작에 실패했습니다. 배포 폴더를 다시 압축 해제해 주세요.";if(smoke){Environment.ExitCode=1;Close();}}};timer.Start();
     }catch(Exception ex){MessageBox.Show("실행할 수 없습니다: "+ex.Message,"이성진");Environment.ExitCode=1;Close();}
   }
-  [STAThread] static void Main(string[] args) { Application.EnableVisualStyles();Application.Run(new Launcher(Array.IndexOf(args,"--smoke-test")>=0,Array.IndexOf(args,"--google-calendar")>=0)); }
+  [STAThread] static void Main(string[] args) { Application.EnableVisualStyles();Application.Run(new Launcher(Array.IndexOf(args,"--smoke-test")>=0,Array.IndexOf(args,"--google-calendar")>=0,Array.IndexOf(args,"--gmail-review")>=0)); }
 }

@@ -15,7 +15,7 @@ export function bindInputMenus(navigate,reload) {
  document.querySelector('#force-sync').onclick=()=>act(async()=>{const button=document.querySelector('#force-sync');button.disabled=true;try{const results=await api('owner/integrations/force','POST',{});await reload();const ok=Object.values(results).filter(r=>r.state==='ok').length,failed=Object.values(results).filter(r=>r.state==='error').length;notice(ok?`동기화 확인: ${ok}개 소스 처리${failed?`, ${failed}개 오류`:''}. 검토함도 확인하세요.`:failed?'연동 오류가 있습니다. 입력·연동 화면에서 확인하세요.':'연결된 소스가 없습니다. 연동 메뉴에서 계정이나 파일을 연결하세요.');}finally{button.disabled=false;}});
 }
 export function bindInputs(proposals,reload) {
- const check=document.querySelector('#gmail-check');if(check)check.onclick=()=>act(async()=>{check.disabled=true;document.querySelector('#gmail-progress').textContent='① 메일 확인 → ② 본문 추출 → ③ 일정·할 일·프로젝트 분류 중…';try{await api('owner/integrations/gmail/check','POST',{});await reload();}finally{if(check.isConnected)check.disabled=false;}});
+ const check=document.querySelector('#gmail-check');if(check)check.onclick=()=>location.assign('/?view=gmail');
  document.querySelectorAll('[data-proposal]').forEach(f=>{
  f.elements.kind.onchange=()=>{f.querySelector('.proposal-times').hidden=f.elements.kind.value!=='event';f.querySelector('.proposal-project').hidden=f.elements.kind.value!=='project';};
  f.onsubmit=e=>{e.preventDefault();act(async()=>{const b=formObject(f);await api(`owner/inputs/${f.dataset.proposal}/confirm`,'POST',{kind:b.kind,title:b.title,projectId:b.projectId,startsOn:b.startsOn,endsOn:b.endsOn,...(b.kind==='event'?{startsAt:new Date(b.start+':00+09:00').toISOString(),endsAt:new Date(b.end+':00+09:00').toISOString()}:{})});await reload();});};
