@@ -12,8 +12,8 @@
 
 | 항목 | 링크 / 방법 |
 |---|---|
-| Windows 실행 | [이성진.exe](./이성진.exe) — 이 폴더 전용 실행 파일 |
-| Google 일정 | 이성진.exe 실행 후 **Google 일정 가져오기** 메뉴 선택 |
+| Windows 실행 | [Charlie;s Scheduler.exe](./Charlie%3Bs%20Scheduler.exe) — 이 폴더 전용 실행 파일 |
+| Google 일정 | Charlie;s Scheduler.exe 실행 후 **Google 일정 가져오기** 메뉴 선택 |
 | 소스 실행 | `npm start` — Node.js 24.22.1 이상, 출력된 주소 열기 |
 | 외부 개인 화면 | [charlie_schedule](https://charlie-schedule.cherrysocute9.chatgpt.site) — PC 앱 실행 필요 |
 | PRD | [PRD.md](./PRD.md) · [PRD.pdf](./PRD.pdf) |
@@ -24,7 +24,7 @@
 
 ## 사용하는 순서
 
-1. 이성진.exe 실행 → 비밀번호 로그인.
+1. Charlie;s Scheduler.exe 실행 → 비밀번호 로그인.
 2. **입력**에서 일정·할 일·프로젝트 또는 텍스트를 직접 입력합니다.
 3. **Google 일정 가져오기**에서 기간·미리보기·선택 저장을 진행합니다. 시간 입력은 10분 단위입니다.
 4. **Gmail 기간 분류**에서 기간과 조회 상한을 정하고 메일별 카드를 검토합니다. 일정·스케줄(할 일)·프로젝트·기타·스팸 후보로 규칙 기반 추천합니다.
