@@ -10,3 +10,5 @@ export function bindTasks(tasks,reload,onEdit) {
  document.querySelector(`[data-del-task="${t.id}"]`).onclick=()=>act(async()=>{await api('owner/tasks/'+t.id,'DELETE',{expectedVersion:t.version});await reload();});
  }
 }
+
+export {bindTaskDatePicker};
