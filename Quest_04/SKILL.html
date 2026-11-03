@@ -1,28 +1,30 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>01 · 스킬 설계</title><style>*{box-sizing:border-box}body{margin:0;background:#f3f5fa;color:#26354b;font:16px/1.8 "Malgun Gothic",sans-serif}main{max-width:1060px;margin:30px auto;background:white;padding:34px 42px;border-radius:18px;box-shadow:0 6px 24px #2030500c}nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}nav a{padding:8px 15px;background:#edf0ff;border-radius:9px;color:#3154b5;text-decoration:none}.status{background:#fff5da;border-left:5px solid #d8a52b;padding:14px 18px;margin:18px 0}h1{font-size:28px;line-height:1.4}h2{margin-top:30px;font-size:22px}h3{font-size:18px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border:1px solid #dce2ed;vertical-align:top}th{background:#edf2fa}pre{background:#edf2fa;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:10px}code{font-family:Consolas,monospace;background:#edf2fa;padding:2px 5px}a{color:#3154b5}blockquote{border-left:4px solid #687bea;padding:8px 18px;background:#f1f3ff;margin-left:0}li{margin:7px 0}.table-wrap{overflow:auto}@media(max-width:650px){main{margin:10px;padding:22px 16px}h1{font-size:23px}table{font-size:14px}}</style></head><body><main><nav><a href="SKILL.html">스킬 설계</a><a href="README.html">사용 목적·동작</a><a href="VALIDATION.html">검증 계획</a></nav><div class="status">검토용 초안 · 자동화 프로그램은 아직 수정하지 않았습니다.</div><hr />
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>스킬 사용 조건·점검 절차</title><style>*{box-sizing:border-box}body{margin:0;background:#f3f5fa;color:#26354b;font:16px/1.8 "Malgun Gothic",sans-serif}main{max-width:1060px;margin:30px auto;background:white;padding:34px 42px;border-radius:18px;box-shadow:0 6px 24px #2030500c}nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}nav a{padding:8px 15px;background:#edf0ff;border-radius:9px;color:#3154b5;text-decoration:none}.status{background:#fff5da;border-left:5px solid #d8a52b;padding:14px 18px;margin:18px 0}h1{font-size:28px;line-height:1.4}h2{margin-top:30px;font-size:22px}h3{font-size:18px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border:1px solid #dce2ed;vertical-align:top}th{background:#edf2fa}pre{background:#edf2fa;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:10px}code{font-family:Consolas,monospace;background:#edf2fa;padding:2px 5px}a{color:#3154b5}blockquote{border-left:4px solid #687bea;padding:8px 18px;background:#f1f3ff;margin-left:0}li{margin:7px 0}.table-wrap{overflow:auto}@media(max-width:650px){main{margin:10px;padding:22px 16px}h1{font-size:23px}table{font-size:14px}}</style></head><body><main><nav><a href="SKILL.html">스킬</a><a href="README.html">사용 안내</a><a href="VALIDATION.html">검증 결과</a></nav><div class="status">2026-11-03 · 프로그램 구현 및 실제 검증 결과</div><hr />
 <p>name: google-sync-recovery
-description: Charlie’s Scheduler에서 Gmail·Google 캘린더의 한국시간 08·12·18·24시 자동 조회 상태를 확인하고, PC 종료·절전·인터넷 단절로 놓친 조회를 보충하거나 실패 원인을 점검할 때 사용한다. “구글 자료 동기화해 줘” 또는 “놓친 구글 자료 가져와 줘” 요청에 적용한다.</p>
+description: Charlie’s Scheduler의 Gmail·Google 캘린더 한국시간 08·12·18·24시 자동 조회 상태를 확인하고, PC 종료·절전·인터넷 단절로 놓친 조회를 앱에서 보충하도록 실행·점검할 때 사용한다. “놓친 구글 자료 가져와 줘” 또는 “구글 자료 동기화 상태 확인해 줘” 요청에 적용한다.</p>
 <hr />
-<h1>Google 자료 동기화·누락 보충 스킬 — 검토용 초안</h1>
-<p>현재는 동작 설계를 검토하는 단계다. 이 파일을 작성한 것만으로 자동 실행·누락 보충 기능이 설치되거나 구현되지는 않는다. 아직 없는 명령·API를 추측해 호출하지 않는다.</p>
-<h2>반복 작업</h2>
-<p>Gmail·Google 캘린더를 한국시간 매일 08:00·12:00·18:00·24:00에 조회한다. 24시는 다음 날 00:00이다. 시간이 지나도록 PC나 앱이 꺼져 있었다면 앱 시작 시 마지막 성공 기록과 비교해 즉시 한 번 보충 조회한다.</p>
-<h2>AI의 점검·실행 절차</h2>
+<h1>Google 자료 동기화·누락 보충</h1>
+<p>시간에 맞춘 자동 실행은 PC 앱이 담당한다. 이 스킬은 앱의 자동 보충을 실행·점검하고 결과를 설명한다. 스킬 파일만 설치해 두는 것으로 PC가 켜지거나 예약 실행되는 것은 아니다.</p>
+<h2>적용 대상·준비</h2>
+<p>Charlie’s Scheduler 소스 프로젝트 루트에서 사용한다. <code>scripts/google-sync.mjs</code>와 로컬 <code>Charlie's Scheduler.exe</code>가 있는지 확인한다. Node.js24.22.1 이상이 필요하다. 앱에서 Google 계정과 자동 조회를 먼저 설정해야 한다. 설치 위치는 <code>&lt;프로젝트&gt;/.agents/skills/google-sync-recovery/SKILL.md</code>다.</p>
+<h2>실행 절차</h2>
 <ol>
-<li>적용 대상 프로젝트의 README·현재 동기화 모듈 문서를 읽고 실제로 지원하는 조회 경로를 확인한다.</li>
-<li>Gmail과 캘린더 각각의 연결 상태, 자동 조회 설정, 마지막 성공 시각·처리한 시간 구간을 확인한다. 계정·키·토큰을 화면이나 로그에 복사하지 않는다.</li>
-<li>현재 한국시간 기준 가장 최근 도래한 조회 시각을 구하고, 마지막 성공 기록으로 그 시각까지 조회했는지 판단한다. 기록이 없으면 초기 조회가 필요함을 구분한다.</li>
-<li>지원되는 읽기 조회 경로가 있으면 사용자가 승인한 범위에서 호출한다. 놓친 시각이 여러 개여도 현재 시점까지 자료를 포함하는 보충 조회 한 번으로 합친다. 없는 실행 기능은 구현 필요로 보고한다.</li>
-<li>실제 응답을 확인하고 Gmail·캘린더별 성공·실패·중복 제외·검토 대기 건수를 요약한다. 연결 실패를 성공으로 기록하지 않는다.</li>
+<li>프로젝트 지침과 README·<code>apps/api/src/infrastructure/calendar-providers/README.md</code>를 읽고 대상 프로젝트·조회 범위를 확인한다. 별도 연결된 Gmail/Calendar 도구로 대체하지 않는다. 이 앱에 승인된 계정과 다른 계정이 연결돼 있을 수 있다. 노트북 로그인 후 자동 실행 점검을 요청하면 옆 Quest_04 폴더의 <code>scripts/google-sync-startup.ps1 -Mode Status</code>로 사용자 예약 작업도 확인한다. 설치·해제는 그 설정 변경이 요청된 경우에만 수행한다.</li>
+<li><code>node scripts/google-sync.mjs --status</code>를 실행한다. 공개 상태 필드인 연결 여부·활성화 여부·마지막 성공·누락 시각·재시도 결과를 확인한다. DB·키·토큰·쿠키를 직접 열거나 출력하지 않는다. CLI의 DATA_UNAVAILABLE / DATA_ACCESS_DENIED 또는 EACCES/EPERM은 데이터 부재와 실행 환경 제한을 구분해야 한다. 이미 연결된 PC 앱이 있는데 접근이 막히면, 도구가 지원하는 승인된 로컬 실행 권한으로 같은 CLI를 한 번 재실행한다. 승인 거절 시 중단하고 환경 제한을 보고한다. 계정을 새로 연결하라고 먼저 단정하지 않는다.</li>
+<li>사용자가 누락 보충을 요청했다면 <code>node scripts/google-sync.mjs --recover --wait-seconds 120</code>를 실행한다. 앱이 꺼져 있으면 CLI가 로컬 실행파일을 시작하고 앱의 자동 조회 결과를 기다린다. 앱이 켜져 있으면 중복 프로세스를 만들지 않는다. CLI 자체는 별도 Google 조회나 인증 우회를 하지 않는다.</li>
+<li>대상 시간 구간을 이미 성공적으로 처리했다면 보충을 반복하지 않는다. 방금 수신한 메일을 정시와 관계없이 강제로 확인하려는 요청은 PC 앱의 수동 조회 기능을 안내한다. 이 CLI는 최신 도래 시각의 누락 보충용이다.</li>
+<li>종료 코드0과 <code>completed:true</code>, 서비스별 <code>state:ok</code>, 비어 있는 <code>outstanding</code>을 함께 확인한다. 코드2는 미완료/대기, 코드1은 실행 오류다. 시간 초과 뒤에는 <code>--status</code>로 확인하고 새 실행 요청을 반복 발행하지 않는다.</li>
+<li>Gmail 권한 부족·연결 해제·자동 조회 꺼짐은 성공으로 표시하지 않는다. 실제 권한은 앱이 이미 승인된 Gmail 프로필 읽기로 확인할 수 있으나 새 권한을 자동으로 승인하지 않는다. 필요하면 사용자가 PC 앱에서 Google을 다시 연결하도록 안내한다.</li>
 </ol>
-<h2>프로그램에 추가할 자동화 규칙 — 구현 예정</h2>
+<h2>프로그램의 동작 규칙</h2>
 <ul>
-<li>앱 시작·절전 복귀·인터넷 재연결·정기 확인 때 누락 여부를 판단한다. 노트북이 켜져도 앱이 실행되지 않으면 이 로직은 실행되지 않는다. OS 자동 시작 등록은 별도 범위다.</li>
-<li>마지막 성공 시각과 처리 구간은 Gmail·캘린더별로 보존한다. 조회 시도 시각만으로 완료 처리하지 않는다.</li>
-<li>동시 실행 잠금으로 정시 조회·보충 조회·수동 조회가 겹치지 않게 한다. 실행 중 새 요청은 중복 실행 대신 대기 상태로 표시한다.</li>
-<li>Gmail만 실패하면 Gmail만 재시도한다. 실패 시 제한된 재시도와 대기 시간을 적용하고, 권한 오류는 재연결 필요로 표시한다. 구체 재시도 횟수는 구현 시 명시한다.</li>
-<li>조회 범위는 마지막 성공 이후를 포함하되 API 조회 한도·기존 설정을 지킨다. 최초 조회는 기존 Gmail 최근 7일·캘린더 설정 범위를 사용하며 한도 때문에 누락되는 범위는 표시한다.</li>
-<li>캘린더는 기존 중복·충돌 정책을 유지한다. Gmail 후보는 일정·할 일·프로젝트로 분류하되 사용자 검토 후 저장한다.</li>
-<li>메일 발송·스팸 이동·Google 원본 수정·자료 삭제는 이 스킬의 범위가 아니다. 외부 공개 화면은 동기화 실행 권한을 갖지 않는다.</li>
+<li>한국시간 매일08·12·18·24시. 24시는 다음 날00시다. 앱 시작 즉시 검사하고 실행 중15초마다 누락을 재확인한다. Quest_04의 설치 스크립트는 Windows 사용자 로그인과 매일00·08·12·18시 앱 시작을 등록한다. 로그인 전이나 전원이 꺼진 상태에서는 수집할 수 없다. 이미 켜진 앱은 추가로 시작하지 않는다.</li>
+<li>서비스별 <code>coveredThrough</code>와 최근 도래 시각을 비교한다. 여러 시각을 놓쳤어도 현재까지 조회 한 번으로 합친다. 기록 없는 첫 실행도 초기 조회한다.</li>
+<li>Gmail·캘린더 각각 완전 성공해야 lastSuccessAt/coveredThrough를 갱신한다. 부분 응답·페이지 한도·오류를 성공으로 기록하지 않는다.</li>
+<li>구간당 초기1회+30초 뒤1회+120초 뒤1회, 총3회다. 실패한 서비스만 재시도하고 대기 상태를 보존한다. 다음 정시 구간 또는 재연결 후 다시 검사한다.</li>
+<li>진행 중 자동 확인은 새 조회를 겹치지 않는다. PC 앱에서 온 수동 요청은 대기시키고 같은 서비스 요청은 하나로 합친다.</li>
+<li>Gmail 초기 최근7일, 장기 누락은 마지막 성공 이후를 포함해 최대366일. 한도 초과는 partial로 표시한다. Gmail은 검토 후보만 생성한다. 캘린더는 변경 커서·기존 중복/충돌 정책을 사용하고 만료 커서는 전체 조회로 한 번 재시도한다.</li>
 </ul>
-<h2>결과 표시</h2>
-<p>요청 원인(정시/시작/절전 복귀/재연결/수동), 조회 대상 구간, Gmail·캘린더 각각의 성공 여부, 마지막 성공 시각, 다음 예정 시각, 검토할 후보와 남은 문제를 표시한다. 실제 실행하지 않은 항목은 “실행 안 함”으로 적는다.</p></main></body></html>
+<h2>결과 보고</h2>
+<p>요청 원인, 기준 시간 구간, Gmail·캘린더 각각의 상태·마지막 성공 시각, 이번 조회에서 읽은 메일 수·이번 조회에서 생성한 검토 후보 수·캘린더 반영 수, 다음 예정 시각과 남은 문제를 짧게 보고한다. UTC 기록은 한국시간으로 바꾸고, 실제 읽은 결과가0건이면0건 그대로 적는다. 후보 생성과 일정·할 일·프로젝트 확정 저장을 구분한다.</p>
+<p>메일 발송·스팸 이동·Google 원본 수정·삭제·권한 확대·비밀값 공개는 범위 밖이다. 외부 열람 화면에서는 실행할 수 없다. 파일 수정·설정 변경·GitHub 업로드는 별도 요청이 있을 때만 한다.</p>
+<p>조회 결과의 pending은 해당 조회가 새로 만든 후보 수다. 전체 검토함의 현재 총건수로 표현하지 않는다.</p></main></body></html>
