@@ -16,3 +16,8 @@ export function monthCells(month,events) {
     return {date,day:Number(date.slice(8)),inMonth:date.startsWith(month),events:dayEvents(events,date)};
   });
 }
+
+export function monthEvents(events,month){
+ const start=Date.parse(month+'-01T00:00:00+09:00'),end=Date.parse(shiftMonth(month,1)+'-01T00:00:00+09:00');
+ return events.filter(e=>Date.parse(e.startsAt)<end&&Date.parse(e.endsAt)>start).sort((a,b)=>a.startsAt.localeCompare(b.startsAt));
+}
