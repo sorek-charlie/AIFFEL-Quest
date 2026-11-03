@@ -1,3 +1,4 @@
+import {createPasswordRecovery} from './password-recovery.mjs';
 import {createMailReview} from '../application/mail-review.mjs';
 import {createTodoWorkspace} from './todo-workspace.mjs';
 import { createServer } from 'node:http';
@@ -91,12 +92,16 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
   const ownerRelay=createOwnerRelay(repo,ownerId,()=>server.listening?`http://127.0.0.1:${server.address().port}`:null);
   server.on('close',()=>{ownerRelay.close();sync.close();repo.close();});
   server.on('listening',()=>{ownerRelay.start();});
-  return {server,launchToken};
+  const recovery=createPasswordRecovery(()=>repo.config(ownerId,'todo-cloud'),root);
+  server.on('close',()=>{if(recovery.listening)recovery.close();});
+  return {server,launchToken,recovery};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const data=process.env.ORBIT_DATA_DIR||resolve(root,'runtime/data');mkdirSync(data,{recursive:true});
-  const {server,launchToken}=createApp({dbPath:resolve(data,'orbit.db')});
+  const {server,launchToken,recovery}=createApp({dbPath:resolve(data,'orbit.db')});
   server.listen(Number(process.env.PORT||0),'127.0.0.1',()=>console.log(`ORBIT_URL=http://127.0.0.1:${server.address().port}/#launch=${launchToken}`));
+  recovery.on('error',()=>console.error('RECOVERY: localhost:3000 사용 불가. 해당 포트를 사용하는 다른 프로그램을 확인하세요.'));
+  recovery.listen(3000,'127.0.0.1');
   process.on('SIGTERM',()=>server.close());
 }
 
