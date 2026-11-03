@@ -1,0 +1,24 @@
+{
+  "startedAt": "2026-11-03T11:06:49.300Z",
+  "finishedAt": "2026-11-03T11:07:06.893Z",
+  "requestedRuns": 2,
+  "passedRuns": 2,
+  "failedRuns": 0,
+  "totalTestExecutions": 84,
+  "runs": [
+    {
+      "run": 1,
+      "ok": true,
+      "tests": 42,
+      "failures": 0,
+      "milliseconds": 11158
+    },
+    {
+      "run": 2,
+      "ok": true,
+      "tests": 42,
+      "failures": 0,
+      "milliseconds": 6427
+    }
+  ]
+}

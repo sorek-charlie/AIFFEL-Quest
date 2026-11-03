@@ -1,0 +1,58 @@
+{
+  "testedAt": "2026-11-03T09:21:23.810Z",
+  "invokedAt": "2026-11-03T09:20:01.017Z",
+  "lastRunBefore": "2026-11-03T07:26:41.432Z",
+  "scenario": "18:00 KST missed slot; executable startup recovery",
+  "completed": true,
+  "results": {
+    "gmail": {
+      "state": "ok",
+      "checkedAt": "2026-11-03T09:21:23.242Z",
+      "trigger": "startup",
+      "scheduledSlot": "2026-11-03T18:00",
+      "applied": 0,
+      "pending": 200,
+      "skipped": 93,
+      "messages": 21,
+      "moreAvailable": false,
+      "rangeLimited": false,
+      "range": {
+        "from": "2026-10-27T09:20:10.332Z",
+        "to": "2026-11-03T09:20:10.332Z"
+      }
+    },
+    "calendar": {
+      "state": "ok",
+      "checkedAt": "2026-11-03T09:21:23.810Z",
+      "trigger": "startup",
+      "scheduledSlot": "2026-11-03T18:00",
+      "applied": 0,
+      "pending": 0,
+      "skipped": 0,
+      "moreAvailable": false
+    }
+  },
+  "progress": {
+    "gmail": {
+      "lastSuccessAt": "2026-11-03T09:21:23.242Z",
+      "coveredThrough": "2026-11-03T09:20:10.331Z",
+      "lastAttemptAt": "2026-11-03T09:20:10.331Z",
+      "lastTrigger": "startup",
+      "attemptSlot": "2026-11-03T18:00",
+      "attempts": 1,
+      "retryAt": null,
+      "blocked": false
+    },
+    "calendar": {
+      "lastSuccessAt": "2026-11-03T09:21:23.810Z",
+      "coveredThrough": "2026-11-03T09:21:23.244Z",
+      "lastAttemptAt": "2026-11-03T09:21:23.244Z",
+      "lastTrigger": "startup",
+      "attemptSlot": "2026-11-03T18:00",
+      "attempts": 1,
+      "retryAt": null,
+      "blocked": false
+    }
+  },
+  "scope": "Counts and timestamps only. Gmail candidates require review. Calendar had no new changes; no new-event demonstration claimed."
+}

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-03T11:09:29.481Z",
+  "bundle": "submission-20261103-google-recovery-v3",
+  "lastRun": "2026-11-03T09:21:23.810Z",
+  "previousSuccessRetained": true,
+  "states": {
+    "gmail": "ok",
+    "calendar": "ok"
+  },
+  "personalDataIncluded": false
+}

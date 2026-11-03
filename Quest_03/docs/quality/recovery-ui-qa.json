@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-03",
+  "siteVersion": 33,
+  "settingsButtons": [
+    "연결 설정·검토함",
+    "Todo 저장소"
+  ],
+  "notice": "입력·수정·삭제와 계정 설정 변경은 PC 앱에서만 가능합니다.",
+  "noticeColor": "rgb(128, 0, 128)",
+  "entryPreview": {
+    "editableFields": 0,
+    "saveDisabled": true
+  },
+  "gmailPreview": {
+    "editableFields": 0
+  },
+  "searchResultsForTestQuery": 4,
+  "mobile": {
+    "viewport": 390,
+    "documentWidth": 375
+  },
+  "keyboard": [
+    "Escape closes preview/search",
+    "Enter opens connection preview"
+  ],
+  "rendering": "2D HTML",
+  "personalDataIncluded": false
+}
