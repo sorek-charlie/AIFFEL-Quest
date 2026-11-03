@@ -32,4 +32,4 @@ export function bindCalendar(events,reload,state,onEdit) {
 }
 
 
-export {monthCells,shiftMonth,openMonthPicker};
+export {monthCells,shiftMonth,openMonthPicker,dayInfo};

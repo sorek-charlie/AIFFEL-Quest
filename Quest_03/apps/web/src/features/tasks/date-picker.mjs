@@ -1,6 +1,5 @@
-import {dayInfo} from '../calendar/korean-holidays.mjs';
 import {escape,today} from '../../platform/api/index.mjs';
-import {monthCells,shiftMonth,openMonthPicker} from '../calendar/index.mjs';
+import {monthCells,shiftMonth,openMonthPicker,dayInfo} from '../calendar/index.mjs';
 export function bindTaskDatePicker(input,{label='할 일 날짜',clearable=true}={}){
  if(!input||input.dataset.customDate)return;input.dataset.customDate='true';input.type='hidden';
  const trigger=document.createElement('button');trigger.type='button';trigger.className='task-date-trigger';
