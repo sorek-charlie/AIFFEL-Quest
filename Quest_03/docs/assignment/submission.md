@@ -35,7 +35,7 @@ RLS 확인: 2026-11-01 — 익명 접근 및 사용자 B의 A 자료 조회·수
 
 ## 실행
 
-Windows: 폴더의 Charlie;s Scheduler.exe 실행. 실행 파일은 로컬 전용으로 Git에 포함하지 않는다. 소스는 저장소 내려받기 후 Node.js 24.22.1 이상에서 npm start.
+Windows: 폴더의 Charlie's Scheduler.exe 실행. 실행 파일은 로컬 전용으로 Git에 포함하지 않는다. 소스는 저장소 내려받기 후 Node.js 24.22.1 이상에서 npm start.
 
 외부 공개 화면: https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html (PC 실제 자료, 실시간 읽기 전용, PC 실행 필요). 과제 Todo 저장소 전환은 설정에서 연다. 배포 화면은 PC 서버 없이 독립적으로 실행되는 클라우드 API가 아니다.
 
