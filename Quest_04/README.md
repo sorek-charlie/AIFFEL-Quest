@@ -15,7 +15,7 @@ Gmail·Google 캘린더의 새 자료를 가져오라고 반복해서 요청했�
 - [Quest_03 프로그램](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03)
 - **[Quest_04 제출 링크](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_04)**
 
-[스킬 HTML](./SKILL.html) · [README HTML](./README.html) · [검증 HTML](./VALIDATION.html)은 같은 내용의 브라우저용 문서입니다. GitHub에서 HTML이 코드로 보이면 Markdown을 읽거나 HTML을 내려받아 브라우저로 여세요.
+제출 자료는 위 Markdown 파일로 확인합니다.
 
 ## 설치
 
