@@ -1,5 +1,5 @@
 export async function api(path, method='GET',body, key) {
-  const response=await fetch('/api/v1/'+path,{method,signal:AbortSignal.timeout(25000),headers:{'Content-Type':'application/json',...(key?{'Idempotency-Key':key}:{})},...(body?{body:JSON.stringify(body)}:{})});
+  const response=await fetch('/api/v1/'+path,{method,signal:AbortSignal.timeout(path==='owner/inputs/upload'?90000:25000),headers:{'Content-Type':'application/json',...(key?{'Idempotency-Key':key}:{})},...(body?{body:JSON.stringify(body)}:{})});
   const data=await response.json();if(!response.ok){const error=new Error(data.error?.message||'서버에 연결하지 못했습니다.');error.status=response.status;error.code=data.error?.code;throw error;}return data;
 }
 export const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

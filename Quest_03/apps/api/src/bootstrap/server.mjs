@@ -1,3 +1,4 @@
+import {extractUpload} from '../infrastructure/documents/uploads.mjs';
 import {createPasswordRecovery} from './password-recovery.mjs';
 import {createMailReview} from '../application/mail-review.mjs';
 import {createTodoWorkspace} from './todo-workspace.mjs';
@@ -44,7 +45,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       if(!['GET','HEAD'].includes(req.method)) {
         requireValue(req.headers.origin===origin,'같은 앱에서 요청하세요.',403,'FORBIDDEN');
         requireValue((req.headers['content-type']||'').startsWith('application/json'),'JSON 요청만 허용합니다.',415);
-        let raw='';for await(const chunk of req) {raw+=chunk;requireValue(Buffer.byteLength(raw)<262144,'요청이 너무 큽니다.',413);}
+        let raw='';for await(const chunk of req) {raw+=chunk;requireValue(Buffer.byteLength(raw)<(p==='/api/v1/owner/inputs/upload'?12*1024*1024:262144),'요청이 너무 큽니다.',413);}
         try { b=JSON.parse(raw||'{}'); } catch {requireValue(false,'JSON을 확인하세요.');}
         requireValue(b && typeof b==='object'&&!Array.isArray(b),'입력을 확인하세요.');
       }
@@ -68,6 +69,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(/^gmail-review\/messages\/[^/]+$/.test(route)&&req.method==='POST')result=await mailReview.action(route.split('/')[2],b);
         else if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
         else if(route==='state'&&req.method==='GET') result=app.state(ownerId);
+        else if(route==='inputs/upload'&&req.method==='POST'){requireValue(b.kind===undefined||['event','task','project'].includes(b.kind),'입력 종류를 확인하세요.');const candidates=await extractUpload(b,root);result=inputs.ingest('manual',candidates.map(item=>({...item,kind:b.kind||item.kind,...(b.kind==='task'&&item.startsAt?{dueDate:new Date(Date.parse(item.startsAt)+9*3600000).toISOString().slice(0,10)}:{})})));}
         else if(route==='inputs'&&req.method==='GET')result=inputs.list();
         else if(route==='inputs/text'&&req.method==='POST'){requireValue(typeof b.text==='string'&&b.text.length<=100000,'100,000자 이하의 내용을 입력하세요.');result=inputs.ingest('manual',textCandidates(b.text));}
         else if(/^inputs\/[^/]+\/confirm$/.test(route)&&req.method==='POST')result=inputs.confirm(route.split('/')[1],b);
