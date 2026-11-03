@@ -1,5 +1,6 @@
 export async function api(path, method='GET',body, key) {
-  const response=await fetch('/api/v1/'+path,{method,signal:AbortSignal.timeout(path==='owner/inputs/upload'?90000:25000),headers:{'Content-Type':'application/json',...(key?{'Idempotency-Key':key}:{})},...(body?{body:JSON.stringify(body)}:{})});
+  let response;try{response=await fetch('/api/v1/'+path,{method,signal:AbortSignal.timeout(path==='owner/inputs/upload'?90000:25000),headers:{'Content-Type':'application/json',...(key?{'Idempotency-Key':key}:{})},...(body?{body:JSON.stringify(body)}:{})});
+  }catch(cause){throw new Error(cause.name==='TimeoutError'?'응답 시간이 초과되었습니다. 잠시 후 다시 시도하세요.':'PC 앱에 연결하지 못했습니다. 이성진 실행 창이 켜져 있는지 확인하고 새로고침하세요.',{cause});}
   const data=await response.json();if(!response.ok){const error=new Error(data.error?.message||'서버에 연결하지 못했습니다.');error.status=response.status;error.code=data.error?.code;throw error;}return data;
 }
 export const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
