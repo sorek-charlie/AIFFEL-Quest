@@ -1,6 +1,7 @@
 export const tenMinuteTimes=Array.from({length:144},(_,i)=>`${String(Math.floor(i/6)).padStart(2,'0')}:${String(i%6*10).padStart(2,'0')}`);
 export function bindTenMinuteTimes(root=document){
  for(const input of root.querySelectorAll('input[type="datetime-local"]')){
+  if(input.closest('[hidden]'))continue;
   const label=input.parentElement.textContent.trim(),required=input.required;
   const native=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');
   input.type='hidden';input.required=false;
