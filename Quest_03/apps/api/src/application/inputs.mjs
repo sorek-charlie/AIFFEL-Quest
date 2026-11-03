@@ -11,7 +11,7 @@ export function createInputs(repo,owner) {
    requireValue(!repo.list(owner,'event').some(e=>e.id!==old?.id&&overlaps({start:a,end:b},{start:Date.parse(e.startsAt)-(e.buffer||0)*60000,end:Date.parse(e.endsAt)+(e.buffer||0)*60000})),'다른 일정과 충돌합니다. 시간을 조정하세요.',409,'SLOT_CONFLICT');
   }
   const e={id:old?.id||randomUUID(),title:title(p.title),sourceKey:p.sourceKey,source:p.source,projectId:p.projectId===undefined?(old?.projectId||null):p.projectId,version:(old?.version||0)+1,...(p.kind==='event'?{startsAt:p.startsAt,endsAt:p.endsAt,buffer:0}:{completed:old?.completed||false,dueDate:p.dueDate===undefined?(old?.dueDate||null):localDate(p.dueDate,true)})};
-  if(p.sourceEmail)e.sourceEmail=p.sourceEmail;if(p.importGroupKey){e.importGroupKey=p.importGroupKey;if(p.kind!=='project'){const project=repo.list(owner,'project').find(x=>x.importGroupKey===p.importGroupKey);requireValue(project,'먼저 이 문서의 프로젝트 행을 확정하세요.');e.projectId=project.id;}}
+  if(p.sourceEmail)e.sourceEmail=p.sourceEmail;if(p.importGroupKey){e.importGroupKey=p.importGroupKey;if(p.kind!=='project'&&!p.projectId){const project=repo.list(owner,'project').find(x=>x.importGroupKey===p.importGroupKey);requireValue(project,'먼저 이 문서의 프로젝트 행을 확정하세요.');e.projectId=project.id;}}
   if(p.kind==='project')Object.assign(e,projectFields(p),{progress:null,notes:p.details||p.sourceEmail?.excerpt||''});
   Object.assign(e,eventDetails(p,old));
   repo.save(owner,p.kind,e);repo.audit(owner,e.id,'import',Date.now());return e;
