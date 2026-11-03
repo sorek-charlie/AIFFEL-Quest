@@ -120,3 +120,6 @@ PDF첨부별후보ID반환·재첨부미처리ID재사용테스트포함28개통
 ## 공개 읽기 전용 열람 · 2026-11-03
 공개 예시 데이터만 별도 namespace로 제공. 서명·만료·전용쿠키·다른서명키·변조·미인증 차단, POST/PUT/PATCH/DELETE 동시 요청403, viewer쿠키로owner자료/변경401 확인. 전체33테스트통과. 브라우저공개비밀번호로그인·달력다음달Enter·프로젝트탐색·입력요소0개, 360px문서345px확인. PC·개인DB·Gmail자료를읽지않는다.
 [데스크톱](../../Output/submission/public-viewer-desktop.png) · [모바일](../../Output/submission/public-viewer-mobile.png)
+
+공개실배포버전28검증: /viewer.html200, 공개비밀번호로그인200, 예시자료조회200, 데이터POST403, viewer쿠키로owner/state401. GitHub README.md/PRD.md/PRD.pdf/공개화면PNG존재확인. 공개화면은개인PC실행과독립적이다.
+
