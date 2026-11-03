@@ -70,3 +70,21 @@ button,input,select,textarea{font-family:inherit;letter-spacing:-.02em}
 .shell .gmail-pipeline,.shell .gmail-pipeline p,.shell .gmail-flow li{color:#34445f}.shell .gmail-flow small{color:#52637c}.shell .gmail-classification,.shell #gmail-progress{color:#475775}.shell .gmail-pipeline .hint{color:#5b6f90}
 
 .shell .nav-item>span.nav-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;flex:none;vertical-align:middle}.nav-icon svg{display:block}.all-events-panel .section-title{flex-wrap:wrap}.event-month-picker{margin:0}.event-month-picker input{width:auto;max-width:100%}
+
+/* Calendar and monthly list share one desktop viewport. Typography is unchanged. */
+.calendar-overview{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.calendar-overview>.panel{min-width:0;margin-bottom:0}
+.calendar-overview .all-events-panel{display:flex;flex-direction:column;min-height:0}
+.calendar-overview .event-list{min-height:0;overflow:auto;max-height:none;flex:1}
+@media(min-width:1050px) and (min-height:600px){
+ .calendar-shell{height:100dvh;min-height:0}.calendar-shell>main{height:100dvh;display:flex;flex-direction:column;min-height:0;padding-top:18px;padding-bottom:14px}
+ .calendar-shell header{flex:none;margin-bottom:14px;min-height:52px}.calendar-shell .eyebrow,.calendar-shell .subtitle,.calendar-shell .stats{display:none}
+ .calendar-shell .content{flex:1;min-height:0;max-width:none}.calendar-shell .calendar-overview{height:100%}
+ .calendar-overview .month-panel{min-height:0;padding:16px}.calendar-overview .month-toolbar{margin-bottom:10px;gap:8px}.calendar-overview .month-controls{flex-wrap:wrap;gap:6px}
+ .calendar-overview .month-grid{flex:1;min-height:0}.calendar-overview .month-grid.weeks-4{grid-template-rows:repeat(4,minmax(0,1fr))}.calendar-overview .month-grid.weeks-5{grid-template-rows:repeat(5,minmax(0,1fr))}.calendar-overview .month-grid.weeks-6{grid-template-rows:repeat(6,minmax(0,1fr))}
+ .calendar-overview .month-cell{min-height:0;overflow:hidden}.calendar-overview .day-items{overflow:auto;min-height:0}.calendar-overview .calendar-legend{margin-top:8px}
+ .calendar-shell footer{flex:none;padding-top:10px}
+}
+@media(max-width:1049px),(max-height:599px){.calendar-overview{grid-template-columns:minmax(0,1fr);gap:16px}.calendar-overview .event-list{max-height:60vh}.calendar-overview>.panel{margin-bottom:0}}
+
+@media(min-width:1050px) and (min-height:600px){.calendar-overview .day-number{min-height:26px;height:26px;min-width:30px;width:30px;padding:0;margin:0}.calendar-overview .month-cell{display:flex;flex-direction:column;padding:2px}.calendar-overview .day-items{flex:1;min-height:0}.calendar-overview .calendar-event{min-height:22px;padding:2px 3px}}
