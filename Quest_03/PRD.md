@@ -28,3 +28,5 @@ RLS 확인: 2026-11-01 — 익명 접근, B의 A 자료 조회·수정·삭제 �
 
 ## 6. 제출과 실행
 README.md에 공개 실행 URL·비밀번호 입력 비활성화 안내·PRD PDF 직접 링크를 둔다. docs/assignment/submission.md에 평가 기준별 증거를 연결한다. 제출 주소: github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03. 실행 파일 Charlie's Scheduler.exe는 로컬 폴더에만 둔다.
+
+공개 열람에서도 입력·구글연동·검색 버튼과 메뉴를 열 수 있습니다. 일정·할 일·프로젝트 직접입력, 문서/이미지 첨부, Gmail·캘린더 화면은 미리보기만 제공하고 데이터 입력·첨부·저장·연결 변경은 비활성화합니다. 검색과 날짜 이동은 사용 가능합니다.
