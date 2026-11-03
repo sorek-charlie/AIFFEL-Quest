@@ -69,7 +69,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(/^gmail-review\/messages\/[^/]+$/.test(route)&&req.method==='POST')result=await mailReview.action(route.split('/')[2],b);
         else if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
         else if(route==='state'&&req.method==='GET') result=app.state(ownerId);
-        else if(route==='inputs/upload'&&req.method==='POST'){requireValue(b.kind===undefined||['event','task','project'].includes(b.kind),'입력 종류를 확인하세요.');const candidates=await extractUpload(b,root);result=inputs.ingest('manual',candidates.map(item=>({...item,kind:b.kind||item.kind,...(b.kind==='task'&&item.startsAt?{dueDate:new Date(Date.parse(item.startsAt)+9*3600000).toISOString().slice(0,10)}:{})})));}
+        else if(route==='inputs/upload'&&req.method==='POST'){requireValue(b.kind===undefined||['event','task','project'].includes(b.kind),'입력 종류를 확인하세요.');const candidates=await extractUpload(b,root);result=inputs.ingest('manual',candidates.map(item=>({...item,kind:b.kind||item.kind,...(b.kind==='task'&&item.startsAt?{dueDate:new Date(Date.parse(item.startsAt)+9*3600000).toISOString().slice(0,10)}:{})})));if(candidates.metadata)result.pdf=candidates.metadata;}
         else if(route==='inputs'&&req.method==='GET')result=inputs.list();
         else if(route==='inputs/text'&&req.method==='POST'){requireValue(typeof b.text==='string'&&b.text.length<=100000,'100,000자 이하의 내용을 입력하세요.');result=inputs.ingest('manual',textCandidates(b.text));}
         else if(/^inputs\/[^/]+\/confirm$/.test(route)&&req.method==='POST')result=inputs.confirm(route.split('/')[1],b);

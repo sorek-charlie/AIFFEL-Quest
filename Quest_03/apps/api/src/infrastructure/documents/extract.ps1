@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$FilePath)
+param([Parameter(Mandatory=$true)][string]$FilePath,[int]$StartPage=1,[int]$EndPage=10)
 $ErrorActionPreference='Stop'
 [Console]::OutputEncoding=[System.Text.Encoding]::UTF8
 if([IO.Path]::GetExtension($FilePath) -eq '.docx'){
@@ -17,6 +17,6 @@ function Read-Image($stream){$decoder=Wait-WinRT ([Windows.Graphics.Imaging.Bitm
 $file=Wait-WinRT ([Windows.Storage.StorageFile]::GetFileFromPathAsync($FilePath)) ([Windows.Storage.StorageFile])
 if([IO.Path]::GetExtension($FilePath) -eq '.pdf'){
  $null=[Windows.Data.Pdf.PdfDocument,Windows.Data.Pdf,ContentType=WindowsRuntime]
- $pdf=Wait-WinRT ([Windows.Data.Pdf.PdfDocument]::LoadFromFileAsync($file)) ([Windows.Data.Pdf.PdfDocument]);if($pdf.PageCount -gt 10){throw 'Maximum 10 PDF pages'}
- for($i=0;$i -lt $pdf.PageCount;$i++){$page=$pdf.GetPage($i);$stream=New-Object Windows.Storage.Streams.InMemoryRandomAccessStream;try{$render=$page.RenderToStreamAsync($stream);Wait-Action $render;$stream.Seek(0);Read-Image $stream}finally{$stream.Dispose();$page.Dispose()}}
+ $pdf=Wait-WinRT ([Windows.Data.Pdf.PdfDocument]::LoadFromFileAsync($file)) ([Windows.Data.Pdf.PdfDocument]);if($StartPage -lt 1 -or $StartPage -gt $pdf.PageCount -or $EndPage -lt $StartPage -or $EndPage-$StartPage -ge 10){throw 'PAGE_RANGE'};$EndPage=[Math]::Min($EndPage,$pdf.PageCount);[Console]::WriteLine('__PDF_PAGES__ '+$pdf.PageCount+' '+$StartPage+' '+$EndPage)
+ for($i=$StartPage-1;$i -lt $EndPage;$i++){$page=$pdf.GetPage($i);$stream=New-Object Windows.Storage.Streams.InMemoryRandomAccessStream;try{$options=New-Object Windows.Data.Pdf.PdfPageRenderOptions;$scale=[Math]::Min(2.5,2000/[Math]::Max($page.Size.Width,$page.Size.Height));$options.DestinationWidth=[uint32][Math]::Max(1,[Math]::Round($page.Size.Width*$scale));$options.DestinationHeight=[uint32][Math]::Max(1,[Math]::Round($page.Size.Height*$scale));$render=$page.RenderToStreamAsync($stream,$options);Wait-Action $render;$stream.Seek(0);Read-Image $stream}finally{$stream.Dispose();$page.Dispose()}}
 }else{$stream=Wait-WinRT ($file.OpenAsync([Windows.Storage.FileAccessMode]::Read)) ([Windows.Storage.Streams.IRandomAccessStream]);try{Read-Image $stream}finally{$stream.Dispose()}}

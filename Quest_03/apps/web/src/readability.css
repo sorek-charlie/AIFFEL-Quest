@@ -66,3 +66,5 @@ button,input,select,textarea{font-family:inherit;letter-spacing:-.02em}
 .dropdown-list strong{color:#52637c}
 
 .dropdown-list .entry-submenu{margin:0;border-bottom:1px solid #e5eaf1}.dropdown-list .entry-submenu>summary{display:block;padding:12px;cursor:pointer;color:#475775}.dropdown-list .entry-submenu>div{padding-left:12px}.entry-submenu[open]>summary{background:#edf2ff}
+
+.shell .gmail-pipeline,.shell .gmail-pipeline p,.shell .gmail-flow li{color:#34445f}.shell .gmail-flow small{color:#52637c}.shell .gmail-classification,.shell #gmail-progress{color:#475775}.shell .gmail-pipeline .hint{color:#5b6f90}

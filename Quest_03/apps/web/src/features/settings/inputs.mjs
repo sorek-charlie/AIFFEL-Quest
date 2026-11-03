@@ -1,3 +1,4 @@
+import {askPdfRange} from './pdf-range.mjs';
 import {proposalPage} from './proposal-page.mjs';
 import {gmailFlow,googleRegistration} from './gmail-flow.mjs';
 import {bindTenMinuteTimes,api,sourceLink,escape,act,notice,formObject,today} from '../../platform/api/index.mjs';
@@ -11,7 +12,7 @@ export function bindInputMenus(navigate,reload) {
  document.querySelectorAll('[data-input-action]').forEach(button=>button.onclick=()=>{document.querySelectorAll('.action-dropdown').forEach(d=>d.open=false);act(()=>navigate(({gmail:'gmail',calendar:'google'})[button.dataset.inputAction]||'inputs'));});
  const picker=document.querySelector('#input-file');
  document.querySelectorAll('[data-file-kind]').forEach(b=>b.onclick=()=>{picker.dataset.entryTarget=b.dataset.entryTarget;picker.accept=b.dataset.fileKind==='image'?'.png,.jpg,.jpeg,.bmp':'.txt,.md,.csv,.json,.docx,.pdf';document.querySelectorAll('.action-dropdown').forEach(d=>d.open=false);picker.click();});
- picker.onchange=()=>act(async()=>{const file=picker.files[0];if(!file)return;try{if(file.size>8*1024*1024)throw Error('8MB 이하 파일을 선택하세요.');if(location.protocol==='https:'&&file.size>128*1024)throw Error('큰 파일은 PC 앱 화면에서 첨부하세요. 외부 화면은 128KB까지 지원합니다.');notice('파일을 읽고 있습니다…');const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=reject;reader.readAsDataURL(file);});await api('owner/inputs/upload','POST',{name:file.name,data,kind:picker.dataset.entryTarget});if(picker.isConnected)await navigate('inputs');notice('검토함에서 확인 후 저장하세요.');}finally{picker.value='';}});
+ picker.onchange=()=>act(async()=>{const file=picker.files[0];if(!file)return;try{if(file.size>8*1024*1024)throw Error('8MB 이하 파일을 선택하세요.');if(location.protocol==='https:'&&file.size>128*1024)throw Error('큰 파일은 PC 앱 화면에서 첨부하세요. 외부 화면은 128KB까지 지원합니다.');const range=/\.pdf$/i.test(file.name)?await askPdfRange():{};if(range===null)return;notice('파일을 읽고 있습니다…');const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=reject;reader.readAsDataURL(file);});const result=await api('owner/inputs/upload','POST',{name:file.name,data,kind:picker.dataset.entryTarget,...range});if(picker.isConnected)await navigate('inputs');notice(result.pdf?`PDF ${result.pdf.totalPages}쪽 중 ${result.pdf.from}~${result.pdf.to}쪽을 읽었습니다. 검토 후 저장하세요.`:'검토함에서 확인 후 저장하세요.');}finally{picker.value='';}});
 }
 export function bindInputs(proposals,reload,onPage) {
  document.querySelectorAll('[data-proposal-page]').forEach(b=>b.onclick=()=>act(()=>onPage(Number(b.dataset.proposalPage))));
