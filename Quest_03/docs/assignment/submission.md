@@ -31,7 +31,7 @@ RLS 확인: 2026-11-01 — 익명 접근 및 사용자 B의 A 자료 조회·수
 
 ## 공개 열람
 
-[브라우저에서 바로 실행](https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html) · 공개 비밀번호 `Quest03-View-2026!`. 실행 중인 PC의 실제 일정·할 일·프로젝트 전체를 실시간으로 열람하며 입력·수정·삭제는 차단합니다. 실제 저장·RLS 검증 증거는 위 작동 화면과 검증 기록입니다.
+[브라우저에서 바로 실행](https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html) · 공개 비밀번호 `사용하지 않음 — 비밀번호 입력 비활성화`. 실행 중인 PC의 실제 일정·할 일·프로젝트 전체를 실시간으로 열람하며 입력·수정·삭제는 차단합니다. 실제 저장·RLS 검증 증거는 위 작동 화면과 검증 기록입니다.
 
 ## 실행
 
@@ -40,3 +40,5 @@ Windows: 폴더의 Charlie's Scheduler.exe 실행. 실행 파일은 로컬 전�
 외부 공개 화면: https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html (PC 실제 자료, 실시간 읽기 전용, PC 실행 필요). 과제 Todo 저장소 전환은 설정에서 연다. 배포 화면은 PC 서버 없이 독립적으로 실행되는 클라우드 API가 아니다.
 
 [전체 검증 기록](./verification.md)
+
+최신 제출 안내: Local PC에서 마지막으로 업데이트 된 자료들이 반영되어 있습니다. 평가자는 비밀번호 없이 바로 열람하며, PC가 꺼져도 마지막 반영 자료 전체를 볼 수 있습니다. 입력·수정·삭제는 차단합니다.
