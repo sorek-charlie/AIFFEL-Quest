@@ -1,3 +1,4 @@
+import {tableCandidates} from '../../../../../packages/domain/src/tasks/table-extraction.mjs';
 import {createHash} from 'node:crypto';
 import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -24,6 +25,6 @@ export async function extractUpload(body,root){
   }finally{rmSync(dir,{recursive:true,force:true});}
  }
  requireValue(text?.trim(),'읽을 수 있는 글자가 없습니다.',422,'EXTRACTION_EMPTY');
- const candidates=textCandidates(text.slice(0,100000),body.name);
- requireValue(candidates.length,'일정이나 할 일로 읽을 내용이 없습니다.',422,'EXTRACTION_EMPTY');const fingerprint=createHash('sha256').update(bytes).digest('hex');const lines=text.split(/\r?\n/).map(x=>x.trim().replace(/^(?:[-*•]\s*|\d+[.)]\s+)/,'')).filter(x=>x.length>=2).slice(0,100);candidates.forEach((c,i)=>{c.externalId=`upload-${fingerprint}-${metadata?.from||0}-${metadata?.to||0}-${i}`;c.attachmentPreview=(lines[i]||c.title).slice(0,4000);});if(metadata)candidates.metadata=metadata;return candidates;
+ const layouts=[];text=text.replace(/^__OCR_LAYOUT__ ([A-Za-z0-9+/=]+)\r?$/gm,(_,data)=>{try{layouts.push(JSON.parse(Buffer.from(data,'base64').toString('utf8')));}catch{}return '';});const table=tableCandidates(layouts,text,body.name);const candidates=table.length?table:textCandidates(text.slice(0,100000),body.name);
+ requireValue(candidates.length,'일정이나 할 일로 읽을 내용이 없습니다.',422,'EXTRACTION_EMPTY');const fingerprint=createHash('sha256').update(bytes).digest('hex');const lines=text.split(/\r?\n/).map(x=>x.trim().replace(/^(?:[-*•]\s*|\d+[.)]\s+)/,'')).filter(x=>x.length>=2).slice(0,100);candidates.forEach((c,i)=>{c.externalId=`upload-${fingerprint}-${metadata?.from||0}-${metadata?.to||0}-${i}`;c.attachmentPreview=c.attachmentPreview||(lines[i]||c.title).slice(0,4000);});if(table.length&&body.kind==='project'){const group='upload-project-'+fingerprint;const dates=table.map(x=>x.dueDate).sort();candidates.forEach(x=>x.importGroupKey=group);candidates.unshift({kind:'project',structured:true,title:body.name.replace(/\.[^.]+$/,'').slice(0,160),startsOn:dates[0],endsOn:dates.at(-1),details:'첨부 문서의 날짜별 학습 내용',importGroupKey:group,externalId:group});}if(metadata)candidates.metadata=metadata;return candidates;
 }
