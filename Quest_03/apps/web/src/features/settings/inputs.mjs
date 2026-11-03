@@ -3,7 +3,7 @@ import {askPdfRange} from './pdf-range.mjs';
 import {proposalPage} from './proposal-page.mjs';
 import {gmailFlow,googleRegistration} from './gmail-flow.mjs';
 import {bindTenMinuteTimes,api,sourceLink,escape,act,notice,formObject,today} from '../../platform/api/index.mjs';
-export function inputMenus(pending) {return `<div class="input-toolbar"><details class="action-dropdown" data-menu="input"><summary>입력</summary><div class="dropdown-list">${[['event','일정'],['task','할 일'],['project','프로젝트']].map(([kind,label])=>`<details class="entry-submenu"><summary>${label}</summary><div><button data-entry-kind="${kind}">직접 입력</button><button data-file-kind="document" data-entry-target="${kind}">문서파일 첨부</button><button data-file-kind="image" data-entry-target="${kind}">이미지 첨부</button></div></details>`).join('')}<button data-input-action="review">검토함 ${pending?`(${pending})`:''}</button></div></details><details class="action-dropdown"><summary>구글연동</summary><div class="dropdown-list"><button data-input-action="gmail">Gmail</button><button data-input-action="calendar">캘린더</button></div></details><button type="button" id="open-search">검색</button></div><input type="file" id="input-file" hidden>`;}
+export function inputMenus(pending) {return `<div class="input-toolbar"><details class="action-dropdown" data-menu="input"><summary>입력</summary><div class="dropdown-list">${[['event','일정'],['task','할 일'],['project','프로젝트']].map(([kind,label])=>`<details class="entry-submenu"><summary>${label}</summary><div><button data-entry-kind="${kind}">직접 입력</button><button data-file-kind="document" data-entry-target="${kind}">문서파일 첨부</button><button data-file-kind="image" data-entry-target="${kind}">이미지 첨부</button></div></details>`).join('')}<button data-input-action="review">검토함 ${pending?`(${pending})`:''}</button></div></details><details class="action-dropdown" data-menu="google"><summary>구글연동</summary><div class="dropdown-list"><button data-input-action="gmail">Gmail</button><button data-input-action="calendar">캘린더</button></div></details><button type="button" id="open-search">검색</button></div><input type="file" id="input-file" hidden>`;}
 const sourceName=s=>s==='gmail'?'Gmail':s==='google-calendar'?'Google 일정':'직접 입력';
 const localTime=s=>s?new Date(Date.parse(s)+9*3600000).toISOString().slice(0,16):today()+'T09:00';
 export function inputsView(proposals,integration,projects=[],requestedPage=1) {const g=integration.google,paging=proposalPage(proposals,requestedPage);
@@ -13,7 +13,7 @@ export function bindInputMenus(navigate,reload) {
  document.querySelectorAll('.action-dropdown').forEach(menu=>{
   let closeTimer;const cancelClose=()=>clearTimeout(closeTimer);
   menu.addEventListener('pointerenter',cancelClose);menu.addEventListener('pointerover',cancelClose);
-  menu.addEventListener('pointerleave',event=>{if(event.pointerType!=='mouse'||!menu.open)return;cancelClose();if(menu.dataset.menu==='input')closeTimer=setTimeout(()=>{if(menu.isConnected&&!menu.matches(':hover'))menu.open=false;},800);else menu.open=false;});
+  menu.addEventListener('pointerleave',event=>{if(event.pointerType!=='mouse'||!menu.open)return;cancelClose();closeTimer=setTimeout(()=>{if(menu.isConnected&&!menu.matches(':hover'))menu.open=false;},menu.dataset.menu==='input'?800:500);});
   menu.addEventListener('toggle',()=>{if(!menu.open)cancelClose();});
   menu.addEventListener('keydown',event=>{if(event.key==='Escape'){cancelClose();menu.open=false;menu.querySelector('summary').focus();event.stopPropagation();}});
  });
