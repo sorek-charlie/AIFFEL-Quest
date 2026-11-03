@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-03",
+  "executable": "Charlie's Scheduler.exe",
+  "siteVersion": 30,
+  "displayComponents": [
+    "dashboardView",
+    "calendarView",
+    "tasksView",
+    "projectsView"
+  ],
+  "sharedStyles": [
+    "styles.css",
+    "owner-theme.css",
+    "readability.css",
+    "three-day.css"
+  ],
+  "readonlyApiTests": {
+    "passed": 2,
+    "failed": 0
+  },
+  "ui": {
+    "desktop": "passed",
+    "mobileViewport": 390,
+    "mobileDocumentWidth": 375,
+    "keyboardProjectNavigation": "passed",
+    "taskEntryControls": 0,
+    "projectEditControls": 0,
+    "projectDailyRows": 33
+  },
+  "privateDataIncluded": false
+}
