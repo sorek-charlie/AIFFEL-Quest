@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -24,5 +25,5 @@ export async function extractUpload(body,root){
  }
  requireValue(text?.trim(),'읽을 수 있는 글자가 없습니다.',422,'EXTRACTION_EMPTY');
  const candidates=textCandidates(text.slice(0,100000),body.name);
- requireValue(candidates.length,'일정이나 할 일로 읽을 내용이 없습니다.',422,'EXTRACTION_EMPTY');if(metadata)candidates.metadata=metadata;return candidates;
+ requireValue(candidates.length,'일정이나 할 일로 읽을 내용이 없습니다.',422,'EXTRACTION_EMPTY');const fingerprint=createHash('sha256').update(bytes).digest('hex');const lines=text.split(/\r?\n/).map(x=>x.trim().replace(/^(?:[-*•]\s*|\d+[.)]\s+)/,'')).filter(x=>x.length>=2).slice(0,100);candidates.forEach((c,i)=>{c.externalId=`upload-${fingerprint}-${metadata?.from||0}-${metadata?.to||0}-${i}`;c.attachmentPreview=(lines[i]||c.title).slice(0,4000);});if(metadata)candidates.metadata=metadata;return candidates;
 }

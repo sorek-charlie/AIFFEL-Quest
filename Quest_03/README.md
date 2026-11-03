@@ -2,6 +2,12 @@
 
 직접 입력·문서/이미지 첨부·Google Gmail/일정 가져오기를 사용하는 개인 일정·할 일·프로젝트 앱입니다.
 
+## 과제 D-2 제출 안내
+
+제출 링크: https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03
+
+[평가 기준별 결과·작동 화면](./docs/assignment/submission.md)을 먼저 확인하세요. PRD.md와 PRD.pdf는 한 장이며, 아래 실행 링크와 로컬·클라우드 증거 화면을 함께 제출합니다.
+
 ## 실행과 제출
 
 | 항목 | 링크 / 방법 |
@@ -38,7 +44,7 @@ Google Cloud에서 Gmail API·Calendar API를 활성화하고 OAuth 데스크톱
 - 보안: 비밀번호·소유자 경계·버전 검사·일정 충돌 검사·Google 지정 계정·암호화 설정·Todo RLS.
 - 제외: Android 보조 앱, 카카오톡·휴대폰 일정·ICS·고객 예약 접수·확정, 문자·카카오톡 송수신.
 
-## 과제 D-4 · 길 A → 길 B
+## 과제 D-2 · 길 A → 길 B
 
 **과제 Todo · A/B**에서 SQLite CRUD·완료·삭제 → 프로그램 종료·재실행 → 보존 확인 후 Supabase로 저장 대상을 전환합니다. 두 사용자로 타인 데이터 접근·소유자 위조 차단을 검사합니다. 제출 마감은 2026-11-05 23:59(한국 시간)입니다.
 
