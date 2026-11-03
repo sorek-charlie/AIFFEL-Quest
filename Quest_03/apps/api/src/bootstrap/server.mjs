@@ -9,11 +9,9 @@ import { createRepository } from '../infrastructure/persistence/sqlite/index.mjs
 import { createScheduler } from '../application/scheduler.mjs';
 import {createPasswordAuth} from '../infrastructure/auth/password.mjs';
 import {createInputs} from '../application/inputs.mjs';
-import {createPublicCloud} from '../infrastructure/calendar-providers/public-cloud.mjs';
 import {createOwnerRelay} from '../infrastructure/calendar-providers/owner-relay.mjs';
 import {createGoogle} from '../infrastructure/calendar-providers/google.mjs';
 import {createSyncManager} from '../infrastructure/calendar-providers/sync-manager.mjs';
-import {extractUpload} from '../infrastructure/notifications/uploads.mjs';
 import {textCandidates} from '../../../../packages/domain/src/tasks/extraction.mjs';
 import { requireValue } from '../../../../packages/domain/src/index.mjs';
 export const root=resolve(dirname(fileURLToPath(import.meta.url)),'../../../..');
@@ -22,7 +20,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
   const repo=createRepository(dbPath||resolve(root,'runtime/data/orbit.db'),root),app=createScheduler(repo);
   app.initialize(ownerId);
   const todoWorkspace=createTodoWorkspace(repo,ownerId,app,root);
-  const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs,{manualOnly:process.env.ORBIT_GOOGLE_IMPORT_ONLY==='1'}),publicCloud=createPublicCloud(repo,ownerId,app);
+  const auth=createPasswordAuth(repo,ownerId),inputs=createInputs(repo,ownerId),google=createGoogle(repo,ownerId,inputs),sync=createSyncManager(repo,ownerId,google,inputs,{manualOnly:process.env.ORBIT_GOOGLE_IMPORT_ONLY==='1'});
   const mailReview=createMailReview({repo,owner:ownerId,inputs,provider:()=>google.mailbox()});
   const sessions=new Map(),limits=new Map();
   const server=createServer(async(req,res)=>{
@@ -45,7 +43,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       if(!['GET','HEAD'].includes(req.method)) {
         requireValue(req.headers.origin===origin,'같은 앱에서 요청하세요.',403,'FORBIDDEN');
         requireValue((req.headers['content-type']||'').startsWith('application/json'),'JSON 요청만 허용합니다.',415);
-        let raw='';for await(const chunk of req) {raw+=chunk;requireValue(Buffer.byteLength(raw)<(p==='/api/v1/owner/inputs/upload'?12*1024*1024:262144),'요청이 너무 큽니다.',413);}
+        let raw='';for await(const chunk of req) {raw+=chunk;requireValue(Buffer.byteLength(raw)<262144,'요청이 너무 큽니다.',413);}
         try { b=JSON.parse(raw||'{}'); } catch {requireValue(false,'JSON을 확인하세요.');}
         requireValue(b && typeof b==='object'&&!Array.isArray(b),'입력을 확인하세요.');
       }
@@ -69,11 +67,8 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(/^gmail-review\/messages\/[^/]+$/.test(route)&&req.method==='POST')result=await mailReview.action(route.split('/')[2],b);
         else if(route.startsWith('todo/'))result=await todoWorkspace.handle(route,req.method,b,cookieToken);
         else if(route==='state'&&req.method==='GET') result=app.state(ownerId);
-        else if(route==='public-link'&&req.method==='GET')result=publicCloud.status();
-        else if(route==='public-link/sync'&&req.method==='POST')result=await publicCloud.sync();
         else if(route==='inputs'&&req.method==='GET')result=inputs.list();
-        else if(route==='inputs/text'&&req.method==='POST'){requireValue(typeof b.text==='string'&&b.text.length<=100000,'100,000자 이하의 내용을 입력하세요.');result=inputs.ingest(b.source==='kakao'?'kakao':'manual',textCandidates(b.text));}
-        else if(route==='inputs/upload'&&req.method==='POST')result=inputs.ingest('upload:'+String(b.name).slice(0,120),await extractUpload(b,root));
+        else if(route==='inputs/text'&&req.method==='POST'){requireValue(typeof b.text==='string'&&b.text.length<=100000,'100,000자 이하의 내용을 입력하세요.');result=inputs.ingest('manual',textCandidates(b.text));}
         else if(/^inputs\/[^/]+\/confirm$/.test(route)&&req.method==='POST')result=inputs.confirm(route.split('/')[1],b);
         else if(route==='integrations'&&req.method==='GET')result=sync.status();
         else if(route==='integrations'&&req.method==='PUT')result=sync.configure(b);
@@ -87,19 +82,15 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
         else if(route==='settings'&&req.method==='PUT') result=app.updateSettings(ownerId,b);
         else if(/^(tasks|events|projects)(\/[^/]+)?$/.test(route)&&['POST','PATCH','DELETE'].includes(req.method)) {
           const [kind,id]=route.split('/');requireValue(req.method==='POST'?!id:!!id,'요청 경로를 확인하세요.');result=app.mutate(ownerId,kind==='tasks'?'task':kind==='projects'?'project':'event',req.method,id,b);
-        } else { const decision=route.match(/^bookings\/([^/]+)\/(approve|reject|cancel)$/);requireValue(decision&&req.method==='POST','경로를 찾을 수 없습니다.',404,'NOT_FOUND');result=app.decide(ownerId,decision[1],decision[2],b,req.headers['idempotency-key']); }
+        } else requireValue(false,'경로를 찾을 수 없습니다.',404,'NOT_FOUND');
         send(200,result);return;
       }
-      if(p==='/api/v1/public/local'&&req.method==='GET') {send(200,app.profile(ownerId));return;}
-      if(p==='/api/v1/public/local/slots'&&req.method==='GET') {app.profile(ownerId);send(200,app.slots(ownerId,url.searchParams.get('date'),url.searchParams.has('duration')?Number(url.searchParams.get('duration')):undefined));return;}
-      if(p==='/api/v1/public/local/requests'&&req.method==='POST') {app.profile(ownerId);send(202,app.request(ownerId,b,req.headers['idempotency-key']));return;}
-      if(p==='/api/v1/public/request-status'&&req.method==='POST') {send(200,app.status(ownerId,b));return;}
       send(404,{error:{code:'NOT_FOUND',message:'찾을 수 없습니다.'}});
     } catch(e) { send(e.status||500,{error:{code:e.code||'INTERNAL_ERROR',message:e.status?e.message:'처리하지 못했습니다. 다시 시도하세요.'}}); }
   });
   const ownerRelay=createOwnerRelay(repo,ownerId,()=>server.listening?`http://127.0.0.1:${server.address().port}`:null);
-  server.on('close',()=>{ownerRelay.close();sync.close();publicCloud.close();repo.close();});
-  server.on('listening',()=>{ownerRelay.start();publicCloud.sync().catch(()=>{});});
+  server.on('close',()=>{ownerRelay.close();sync.close();repo.close();});
+  server.on('listening',()=>{ownerRelay.start();});
   return {server,launchToken};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {

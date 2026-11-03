@@ -23,6 +23,9 @@ $launcherSource = Join-Path $projectRoot 'infra\local\Launcher.cs'
 & $compiler /nologo /target:winexe /utf8output /codepage:65001 "/out:$outDir\ORBIT-Scheduler.exe" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll $launcherSource
 if ($LASTEXITCODE -ne 0) { throw 'Launcher compilation failed' }
 $deployDir = Join-Path $projectRoot 'dist\ORBIT-Scheduler'
+$resolvedDeploy = [IO.Path]::GetFullPath($deployDir)
+if ($resolvedDeploy -ne [IO.Path]::GetFullPath((Join-Path $projectRoot 'dist\ORBIT-Scheduler'))) { throw 'Unsafe deploy path' }
+if (Test-Path -LiteralPath $resolvedDeploy) { Remove-Item -LiteralPath $resolvedDeploy -Recurse -Force }
 New-Item -ItemType Directory -Force -Path $deployDir | Out-Null
 foreach ($file in Get-ChildItem -LiteralPath $outDir -Recurse -File) {
   $relativeFile = $file.FullName.Substring($outDir.Length + 1)

@@ -2,6 +2,7 @@ import {randomUUID,createHash} from 'node:crypto';
 import {projectFields,localDate} from '../../../../packages/domain/src/tasks/classification.mjs';
 import {requireValue,title,interval,overlaps} from '../../../../packages/domain/src/index.mjs';
 export function createInputs(repo,owner) {
+ const allowed=source=>['manual','gmail','google-calendar'].includes(source);
  function apply(p) {
   const old=repo.list(owner,p.kind).find(e=>e.sourceKey===p.sourceKey);
   if(p.kind==='event'){
@@ -16,8 +17,9 @@ export function createInputs(repo,owner) {
   repo.save(owner,p.kind,e);repo.audit(owner,e.id,'import',Date.now());return e;
  }
  return {
-  list:()=>repo.proposals(owner).filter(p=>p.state==='pending'),
+  list:()=>repo.proposals(owner).filter(p=>p.state==='pending'&&allowed(p.source)),
   ingest(source,candidates,{auto=false}={}) {
+   requireValue(allowed(source),'직접 입력과 Google 가져오기만 지원합니다.');
    return repo.transaction(()=>{let applied=0,pending=0,skipped=0;
     for(const item of candidates){const sourceKey=source+':'+(item.externalId||createHash('sha256').update(JSON.stringify(item)).digest('hex'));const known=repo.proposals(owner).find(p=>p.sourceKey===sourceKey);const fingerprint=createHash('sha256').update(JSON.stringify(item)).digest('hex');if(known?.fingerprint===fingerprint){skipped++;continue;}
      const p={...item,kind:['event','project'].includes(item.kind)?item.kind:'task',source,id:known?.id||randomUUID(),sourceKey,fingerprint,state:'pending'};
@@ -26,6 +28,6 @@ export function createInputs(repo,owner) {
     }return {applied,pending,skipped};
    });
   },
-  confirm(id,body) {return repo.transaction(()=>{const p=repo.proposal(owner,id);requireValue(p&&p.state==='pending','검토할 항목을 찾을 수 없습니다.',404);if(body.reject){p.state='rejected';repo.updateProposal(owner,p);return {ok:true};}requireValue(['task','event','project'].includes(body.kind),'종류를 선택하세요.');Object.assign(p,{title:title(body.title),kind:body.kind,...(body.kind==='event'?{startsAt:body.startsAt,endsAt:body.endsAt}:{})});if(body.kind==='task'&&body.dueDate!==undefined)p.dueDate=localDate(body.dueDate,true);if(body.kind==='project')Object.assign(p,projectFields(body));if(body.projectId)requireValue(repo.get(owner,'project',body.projectId),'프로젝트를 찾을 수 없습니다.',404);p.projectId=body.projectId||null;const e=apply(p);p.state='applied';repo.updateProposal(owner,p);return e;});}
+  confirm(id,body) {return repo.transaction(()=>{const p=repo.proposal(owner,id);requireValue(p&&allowed(p.source)&&p.state==='pending','검토할 항목을 찾을 수 없습니다.',404);if(body.reject){p.state='rejected';repo.updateProposal(owner,p);return {ok:true};}requireValue(['task','event','project'].includes(body.kind),'종류를 선택하세요.');Object.assign(p,{title:title(body.title),kind:body.kind,...(body.kind==='event'?{startsAt:body.startsAt,endsAt:body.endsAt}:{})});if(body.kind==='task'&&body.dueDate!==undefined)p.dueDate=localDate(body.dueDate,true);if(body.kind==='project')Object.assign(p,projectFields(body));if(body.projectId)requireValue(repo.get(owner,'project',body.projectId),'프로젝트를 찾을 수 없습니다.',404);p.projectId=body.projectId||null;const e=apply(p);p.state='applied';repo.updateProposal(owner,p);return e;});}
  };
 }

@@ -1,22 +1,9 @@
-# 외부 캘린더 확장 지점
+# calendar-providers
 
-경로: `apps/api/src/infrastructure/calendar-providers`
+책임: 직접 입력과 Google Gmail·일정 가져오기를 위한 개인 계획 관리.
 
-**책임**: 추후 Google·Outlook 일정 동기화.
+연결 규칙: 인증된 API와 공개 export만 사용하고 저장은 서버에서 검증합니다.
 
-**연결 규칙**: 처음에는 disabled, 동의·토큰 암호화·재시도 설계 후 구현.
+금지: 고객 예약 접수·확정, 휴대폰·카카오톡 가져오기, 문자·카카오톡 송수신, 비밀값 공개.
 
-**금지**: 현재 개인 캘린더를 자동 변경.
-
-**구현 시 배치할 파일**: CalendarProvider.ts, DisabledCalendarProvider.ts. 이름은 예정안이며 README 외 소스의 존재를 의미하지 않습니다.
-
-**완료 판단**: 이 모듈의 요구사항과 대응하는 `docs/quality/test-matrix.md`의 시나리오를 충족하고, 실제 실행 결과를 기록합니다.
-
-현재 단계: 설계·폴더 구성. 기능 구현과 실행 검증은 아직 진행하지 않았습니다.
-
-## 0.2 구현 상태
-
-google.mjs와 sync-manager.mjs: Google Desktop OAuth/PKCE, 지정 계정 검증, Gmail 1시간·Google Calendar 1분 확인, 강제 확인 및 TXT/ICS 대체 경로. 실제 계정 연결은 미완료, provider fixture 테스트 통과.
-
-Google 일정 전용 가져오기: Calendar readonly + OpenID 이메일 확인, 세션에 묶인 10분 만료 미리보기, 기간 최대 366일/1000개, 명시적 선택 저장·중복 제외·충돌 검토를 지원합니다. 전용 exe는 주기적 자동 가져오기를 시작하지 않습니다. 실제 OAuth 승인은 미실행이며 공급자 fixture 테스트 통과.
-
+완료 판단: 현재 PRD와 자동·UI 검증 결과를 기준으로 판단합니다. 기존 개인 데이터와 적용 migration은 유지합니다.

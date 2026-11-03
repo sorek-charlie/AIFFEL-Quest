@@ -66,12 +66,6 @@ for (const path of files) {
     }
   }
 }
-const lifecycle=JSON.parse(await readFile(resolve(root,manifest.lifecycle),'utf8'));
-if(lifecycle.initial!=='pending') failures.push('예약 최초 상태는 pending이어야 합니다.');
-if(JSON.stringify(lifecycle.occupiesTime)!==JSON.stringify(['confirmed'])) failures.push('confirmed만 시간 점유 상태여야 합니다.');
-for(const [from,targets] of Object.entries(lifecycle.transitions)) {
-  if(!lifecycle.states.includes(from)||targets.some(t=>!lifecycle.states.includes(t))) failures.push(`알 수 없는 상태 전이: ${from}`);
-}
 const pkg = JSON.parse(await readFile(resolve(root,'package.json'),'utf8'));
 if (!pkg.private) failures.push('scaffold는 private workspace여야 합니다.');
 const names=new Set();
@@ -84,6 +78,6 @@ console.log(`구조 검사: ${files.length}개 파일 / ${manifest.modules.lengt
 if (failures.length) {
   console.error(failures.map(x=>`FAIL ${x}`).join('\n')); process.exitCode=1;
 } else {
-  console.log('PASS: 필수 경로·모듈 문서·내부 링크·JSON·상태 사양·초기 import 경계');
-  console.log('범위: scaffold 검사. API·UI·DB·RLS·동시성 실행 테스트는 미수행. 비밀값 탐지 전문 도구를 대체하지 않음.');
+  console.log('PASS: 필수 경로·모듈 문서·내부 링크·JSON·초기 import 경계');
+  console.log('범위: 구조 검사이며 기능 실행 테스트는 npm test로 별도 수행. 비밀값 탐지 전문 도구를 대체하지 않음.');
 }

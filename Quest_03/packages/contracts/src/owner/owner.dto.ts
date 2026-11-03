@@ -10,17 +10,6 @@ export interface TaskView {
   dueDate?: string | null;
   projectId?: string | null;
 }
-export interface ApproveBookingInput {
-  expectedVersion: number;
-}
-export interface ApprovalResult {
-  requestId: string;
-  eventId: string;
-  status: 'confirmed';
-  startsAt: string;
-  endsAt: string;
-  version: number;
-}
 export interface InputProposalView {
   id: string;
   title: string;

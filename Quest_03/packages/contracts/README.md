@@ -1,4 +1,9 @@
-# API 계약
+# contracts
 
-owner/public/errors를 분리합니다. TypeScript 인터페이스는 설계 초안이며 런타임 입력 검증을 제공하지 않습니다.
-구현 시 schema validator와 API 응답 테스트를 추가합니다. domain entity나 DB row를 그대로 public DTO로 쓰지 않습니다.
+책임: 직접 입력과 Google Gmail·일정 가져오기를 위한 개인 계획 관리.
+
+연결 규칙: 인증된 API와 공개 export만 사용하고 저장은 서버에서 검증합니다.
+
+금지: 고객 예약 접수·확정, 휴대폰·카카오톡 가져오기, 문자·카카오톡 송수신, 비밀값 공개.
+
+완료 판단: 현재 PRD와 자동·UI 검증 결과를 기준으로 판단합니다. 기존 개인 데이터와 적용 migration은 유지합니다.
