@@ -1,0 +1,102 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02 · 사용 목적·동작</title><style>*{box-sizing:border-box}body{margin:0;background:#f3f5fa;color:#26354b;font:16px/1.8 "Malgun Gothic",sans-serif}main{max-width:1060px;margin:30px auto;background:white;padding:34px 42px;border-radius:18px;box-shadow:0 6px 24px #2030500c}nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}nav a{padding:8px 15px;background:#edf0ff;border-radius:9px;color:#3154b5;text-decoration:none}.status{background:#fff5da;border-left:5px solid #d8a52b;padding:14px 18px;margin:18px 0}h1{font-size:28px;line-height:1.4}h2{margin-top:30px;font-size:22px}h3{font-size:18px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border:1px solid #dce2ed;vertical-align:top}th{background:#edf2fa}pre{background:#edf2fa;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:10px}code{font-family:Consolas,monospace;background:#edf2fa;padding:2px 5px}a{color:#3154b5}blockquote{border-left:4px solid #687bea;padding:8px 18px;background:#f1f3ff;margin-left:0}li{margin:7px 0}.table-wrap{overflow:auto}@media(max-width:650px){main{margin:10px;padding:22px 16px}h1{font-size:23px}table{font-size:14px}}</style></head><body><main><nav><a href="SKILL.html">스킬 설계</a><a href="README.html">사용 목적·동작</a><a href="VALIDATION.html">검증 계획</a></nav><div class="status">검토용 초안 · 자동화 프로그램은 아직 수정하지 않았습니다.</div><h1>Google 자료 동기화·누락 보충 스킬</h1>
+<p><strong>검토용 초안 · 2026-11-03</strong></p>
+<p>반복 작업의 주제를 기존 “과제 제출 점검”에서 Gmail·Google 캘린더 정기 조회와 놓친 조회 보충으로 변경했습니다. 프로그램 구현에 들어가기 전에 확인할 문서입니다.</p>
+<h2>불편 → 해결</h2>
+<p>PC 앱을 사용하면서 Gmail·Google 캘린더를 다시 확인하도록 반복해서 요청했습니다. 매일 08·12·18·24시에 조회하더라도 노트북이나 앱이 꺼져 있으면 최신 자료를 놓칠 수 있습니다.</p>
+<p>앱이 시작되거나 절전에서 돌아오면 마지막 성공 기록을 확인하고, 놓친 조회가 있을 때 즉시 한 번 현재 자료를 가져오는 방식으로 개선하려 합니다. 스킬은 AI가 이 조회 기능을 실행·점검하는 절차이며, 정시 실행과 누락 감지는 프로그램이 담당합니다.</p>
+<h2>예정 동작 예시</h2>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>예정 동작</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08:00 앱 실행 중</td>
+<td>Gmail·캘린더 정기 조회</td>
+</tr>
+<tr>
+<td>08:00 꺼짐 → 09:20 앱 실행</td>
+<td>마지막 성공 확인 후 누락 조회 즉시 한 번</td>
+</tr>
+<tr>
+<td>08·12·18시 모두 놓침 → 20:10 앱 실행</td>
+<td>놓친 횟수만큼 반복하지 않고 현재까지 한 번 보충</td>
+</tr>
+<tr>
+<td>12:00 절전 → 13:30 복귀</td>
+<td>누락 여부 확인 후 필요할 때 한 번 조회</td>
+</tr>
+<tr>
+<td>인터넷 단절 → 다시 연결</td>
+<td>마지막 성공 기준으로 누락 조회</td>
+</tr>
+<tr>
+<td>Gmail 실패·캘린더 성공</td>
+<td>성공 기록을 분리하고 Gmail만 재시도</td>
+</tr>
+<tr>
+<td>노트북만 켜지고 앱은 실행 안 됨</td>
+<td>동작하지 않음. OS 자동 시작은 별도 설정 필요</td>
+</tr>
+</tbody>
+</table>
+<p>시간대는 Asia/Seoul이며 24:00은 다음 날 00:00입니다. 가져온 메일 후보는 검토 후 저장하고 캘린더의 중복·충돌 처리는 유지합니다.</p>
+<h2>현재와 예정의 구분</h2>
+<ul>
+<li>현재 코드 확인: 정해진 시각 계산, 앱 실행 중 주기 확인, 중복 시간 구간 방지 기능이 있습니다.</li>
+<li>구현 예정: 앱 시작 시 놓친 시각 보충, 서비스별 마지막 성공 기준, 절전·재연결 보충 및 실패 재시도.</li>
+<li>이번 변경: 문서·HTML 초안만 작성. 프로그램 코드·실행파일·설치된 스킬은 변경하지 않았습니다.</li>
+<li>기존 과제 제출 점검 스킬의 새 대화 검증은 이 새 스킬의 성공 증거로 사용하지 않습니다.</li>
+</ul>
+<h2>세 문서</h2>
+<ol>
+<li><a href="./SKILL.html">SKILL.html</a> · <a href="./SKILL.md">SKILL.md</a>: 스킬 이름·사용 시점·절차</li>
+<li><a href="./README.html">README.html</a> · 이 README: 만든 이유·예정 동작·제출 준비</li>
+<li><a href="./VALIDATION.html">VALIDATION.html</a> · <a href="./VALIDATION.md">VALIDATION.md</a>: 검증 계획과 미실행 상태</li>
+</ol>
+<p>HTML은 브라우저로 여는 검토본이고 Markdown은 GitHub에서 읽는 같은 내용의 원본입니다. GitHub 파일 화면에서 HTML이 코드로 보이면 로컬 HTML 파일을 브라우저로 여세요.</p>
+<h2>구현 후 설치·호출 계획</h2>
+<p>스킬 이름: <code>google-sync-recovery</code></p>
+<p>설치 예정 위치: <code>&lt;적용 대상 프로젝트&gt;/.agents/skills/google-sync-recovery/SKILL.md</code></p>
+<p>새 대화 호출 문장:</p>
+<blockquote>
+<p>놓친 구글 자료 가져와 줘.</p>
+</blockquote>
+<p>이 경로에 아직 새 스킬을 설치하지 않았습니다. 프로그램 구현과 테스트 후 설치하고, 새 대화 실행 결과를 기록합니다.</p>
+<h2>과제 평가 대응 계획</h2>
+<table>
+<thead>
+<tr>
+<th>평가 기준</th>
+<th style="text-align: right;">배점</th>
+<th>준비 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>실제 반복 작업</td>
+<td style="text-align: right;">30</td>
+<td>Gmail·캘린더 조회를 반복 요청한 불편과 해결</td>
+</tr>
+<tr>
+<td>호출 시점 명확</td>
+<td style="text-align: right;">30</td>
+<td>SKILL.md description에 정시·누락 조회 조건 명시</td>
+</tr>
+<tr>
+<td>만든 이유</td>
+<td style="text-align: right;">20</td>
+<td>README의 불편 → 해결</td>
+</tr>
+<tr>
+<td>새 대화 재사용</td>
+<td style="text-align: right;">20</td>
+<td>구현 후 설치·새 대화 호출 검증 필요 — 현재 미완료</td>
+</tr>
+</tbody>
+</table>
+<p>제출 링크: https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_04</p>
+<p>마감: 2026-11-09 23:59 (한국시간). 현재는 검토본이며 최종 제출 완료 상태가 아닙니다. 키·토큰·쿠키·개인 DB·메일 원문·강의 PDF 원본은 Git에 넣지 않습니다.</p></main></body></html>

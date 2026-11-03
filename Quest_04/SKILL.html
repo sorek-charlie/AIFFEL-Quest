@@ -1,0 +1,28 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>01 · 스킬 설계</title><style>*{box-sizing:border-box}body{margin:0;background:#f3f5fa;color:#26354b;font:16px/1.8 "Malgun Gothic",sans-serif}main{max-width:1060px;margin:30px auto;background:white;padding:34px 42px;border-radius:18px;box-shadow:0 6px 24px #2030500c}nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}nav a{padding:8px 15px;background:#edf0ff;border-radius:9px;color:#3154b5;text-decoration:none}.status{background:#fff5da;border-left:5px solid #d8a52b;padding:14px 18px;margin:18px 0}h1{font-size:28px;line-height:1.4}h2{margin-top:30px;font-size:22px}h3{font-size:18px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:12px;text-align:left;border:1px solid #dce2ed;vertical-align:top}th{background:#edf2fa}pre{background:#edf2fa;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:10px}code{font-family:Consolas,monospace;background:#edf2fa;padding:2px 5px}a{color:#3154b5}blockquote{border-left:4px solid #687bea;padding:8px 18px;background:#f1f3ff;margin-left:0}li{margin:7px 0}.table-wrap{overflow:auto}@media(max-width:650px){main{margin:10px;padding:22px 16px}h1{font-size:23px}table{font-size:14px}}</style></head><body><main><nav><a href="SKILL.html">스킬 설계</a><a href="README.html">사용 목적·동작</a><a href="VALIDATION.html">검증 계획</a></nav><div class="status">검토용 초안 · 자동화 프로그램은 아직 수정하지 않았습니다.</div><hr />
+<p>name: google-sync-recovery
+description: Charlie’s Scheduler에서 Gmail·Google 캘린더의 한국시간 08·12·18·24시 자동 조회 상태를 확인하고, PC 종료·절전·인터넷 단절로 놓친 조회를 보충하거나 실패 원인을 점검할 때 사용한다. “구글 자료 동기화해 줘” 또는 “놓친 구글 자료 가져와 줘” 요청에 적용한다.</p>
+<hr />
+<h1>Google 자료 동기화·누락 보충 스킬 — 검토용 초안</h1>
+<p>현재는 동작 설계를 검토하는 단계다. 이 파일을 작성한 것만으로 자동 실행·누락 보충 기능이 설치되거나 구현되지는 않는다. 아직 없는 명령·API를 추측해 호출하지 않는다.</p>
+<h2>반복 작업</h2>
+<p>Gmail·Google 캘린더를 한국시간 매일 08:00·12:00·18:00·24:00에 조회한다. 24시는 다음 날 00:00이다. 시간이 지나도록 PC나 앱이 꺼져 있었다면 앱 시작 시 마지막 성공 기록과 비교해 즉시 한 번 보충 조회한다.</p>
+<h2>AI의 점검·실행 절차</h2>
+<ol>
+<li>적용 대상 프로젝트의 README·현재 동기화 모듈 문서를 읽고 실제로 지원하는 조회 경로를 확인한다.</li>
+<li>Gmail과 캘린더 각각의 연결 상태, 자동 조회 설정, 마지막 성공 시각·처리한 시간 구간을 확인한다. 계정·키·토큰을 화면이나 로그에 복사하지 않는다.</li>
+<li>현재 한국시간 기준 가장 최근 도래한 조회 시각을 구하고, 마지막 성공 기록으로 그 시각까지 조회했는지 판단한다. 기록이 없으면 초기 조회가 필요함을 구분한다.</li>
+<li>지원되는 읽기 조회 경로가 있으면 사용자가 승인한 범위에서 호출한다. 놓친 시각이 여러 개여도 현재 시점까지 자료를 포함하는 보충 조회 한 번으로 합친다. 없는 실행 기능은 구현 필요로 보고한다.</li>
+<li>실제 응답을 확인하고 Gmail·캘린더별 성공·실패·중복 제외·검토 대기 건수를 요약한다. 연결 실패를 성공으로 기록하지 않는다.</li>
+</ol>
+<h2>프로그램에 추가할 자동화 규칙 — 구현 예정</h2>
+<ul>
+<li>앱 시작·절전 복귀·인터넷 재연결·정기 확인 때 누락 여부를 판단한다. 노트북이 켜져도 앱이 실행되지 않으면 이 로직은 실행되지 않는다. OS 자동 시작 등록은 별도 범위다.</li>
+<li>마지막 성공 시각과 처리 구간은 Gmail·캘린더별로 보존한다. 조회 시도 시각만으로 완료 처리하지 않는다.</li>
+<li>동시 실행 잠금으로 정시 조회·보충 조회·수동 조회가 겹치지 않게 한다. 실행 중 새 요청은 중복 실행 대신 대기 상태로 표시한다.</li>
+<li>Gmail만 실패하면 Gmail만 재시도한다. 실패 시 제한된 재시도와 대기 시간을 적용하고, 권한 오류는 재연결 필요로 표시한다. 구체 재시도 횟수는 구현 시 명시한다.</li>
+<li>조회 범위는 마지막 성공 이후를 포함하되 API 조회 한도·기존 설정을 지킨다. 최초 조회는 기존 Gmail 최근 7일·캘린더 설정 범위를 사용하며 한도 때문에 누락되는 범위는 표시한다.</li>
+<li>캘린더는 기존 중복·충돌 정책을 유지한다. Gmail 후보는 일정·할 일·프로젝트로 분류하되 사용자 검토 후 저장한다.</li>
+<li>메일 발송·스팸 이동·Google 원본 수정·자료 삭제는 이 스킬의 범위가 아니다. 외부 공개 화면은 동기화 실행 권한을 갖지 않는다.</li>
+</ul>
+<h2>결과 표시</h2>
+<p>요청 원인(정시/시작/절전 복귀/재연결/수동), 조회 대상 구간, Gmail·캘린더 각각의 성공 여부, 마지막 성공 시각, 다음 예정 시각, 검토할 후보와 남은 문제를 표시한다. 실제 실행하지 않은 항목은 “실행 안 함”으로 적는다.</p></main></body></html>
