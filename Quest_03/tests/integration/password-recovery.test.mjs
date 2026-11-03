@@ -5,6 +5,7 @@ test('loopback recovery page uses public config, rejects foreign origins and nev
  const app=createPasswordRecovery(()=>({url:'https://syntheticproject.supabase.co',key:'sb_publishable_synthetic_key_only'}),process.cwd());
  await new Promise(r=>app.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.address().port;
  try{const page=await fetch(base+'/reset-password');assert.equal(page.status,200);assert.equal(page.headers.get('referrer-policy'),'no-referrer');assert.ok(page.headers.get('content-security-policy').includes("frame-ancestors 'none'"));assert.ok((await page.text()).includes('새 비밀번호 확인'));
+ for(const path of ['/','/reset-password/']){const alias=await fetch(base+path);assert.equal(alias.status,200);assert.ok((await alias.text()).includes('새 비밀번호 확인'));}
  const config=await (await fetch(base+'/recovery-config')).json();assert.deepEqual(Object.keys(config).sort(),['key','url']);
  assert.equal((await fetch(base+'/recovery-config',{headers:{Origin:'https://evil.invalid'}})).status,403);
  assert.equal((await fetch(base+'/reset-password',{method:'POST',body:'synthetic-password'})).status,403);

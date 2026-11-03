@@ -13,7 +13,7 @@ export function createPasswordRecovery(getConfig,root){
    const c=validateSupabaseConfig(getConfig()||{});
    res.setHeader('Content-Security-Policy',`default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' ${c.url}; frame-ancestors 'none'; base-uri 'none'; form-action 'none'`);
    if(path==='/recovery-config'){if(req.headers.origin&&req.headers.origin!==`http://${req.headers.host}`)return send(403,{});return send(200,{url:c.url,key:c.key});}
-   const assets={'/reset-password':['reset-password.html','text/html'],'/recovery.mjs':['recovery.mjs','text/javascript'],'/recovery.css':['recovery.css','text/css']};
+   const assets={'/':['reset-password.html','text/html'],'/reset-password/':['reset-password.html','text/html'],'/reset-password':['reset-password.html','text/html'],'/recovery.mjs':['recovery.mjs','text/javascript'],'/recovery.css':['recovery.css','text/css']};
    const asset=assets[path];if(!asset)return send(404,{error:'찾을 수 없습니다.'});
    res.writeHead(200,{'Content-Type':asset[1]+'; charset=utf-8'});res.end(readFileSync(resolve(root,'apps/web/recovery',asset[0])));
   }catch{return send(503,{error:'PC 앱에서 Supabase 연결 정보를 먼저 저장하세요.'});}
