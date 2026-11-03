@@ -37,7 +37,7 @@ class Launcher : Form {
       var data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"ORBIT Scheduler","data");
       if(smoke){temp=Path.Combine(Path.GetTempPath(),"orbit-smoke-"+Guid.NewGuid());data=temp;}
       if(googleOnly||gmailOnly)info.EnvironmentVariables["ORBIT_GOOGLE_IMPORT_ONLY"]="1";
-      info.EnvironmentVariables["ORBIT_DATA_DIR"]=data;info.EnvironmentVariables["PORT"]="0";
+      info.EnvironmentVariables["ORBIT_DATA_DIR"]=data;info.EnvironmentVariables["PORT"]=smoke?"0":"18701";
       child=new Process {StartInfo=info,EnableRaisingEvents=true};
       child.OutputDataReceived+=(s,e)=> { if(e.Data!=null&&e.Data.StartsWith("ORBIT_URL="))BeginInvoke((Action)(()=>{
         url=e.Data.Substring(10);if(googleOnly)url=url.Replace("/#launch=","/?view=google#launch=");if(gmailOnly)url=url.Replace("/#launch=","/?view=gmail#launch=");status.Text="실행 중 · 이 창을 닫으면 서버도 종료됩니다.\n저장 위치: %LOCALAPPDATA%\\ORBIT Scheduler\\data";open.Enabled=true;
