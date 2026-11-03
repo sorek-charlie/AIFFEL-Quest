@@ -10,7 +10,7 @@ class SubmissionBundle {
       bool smoke = Array.IndexOf(args, "--smoke-test") >= 0;
       bool gmailOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("메일") || Array.IndexOf(args,"--gmail-review") >= 0;
       bool googleOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("구글") || Array.IndexOf(args,"--google-calendar") >= 0;
-      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261103-recovery-root");
+      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261103-google-fixed-times");
       Directory.CreateDirectory(root);
       using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("payload.zip"))
       using (var archive = new ZipArchive(resource, ZipArchiveMode.Read)) {

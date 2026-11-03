@@ -1,11 +1,12 @@
+import {publicPlans} from '../../../../../packages/domain/src/tasks/public-plans.mjs';
 import {seal,open} from './relay-crypto.mjs';
 import {CLOUD_ORIGIN as HOST,cloudOrigin} from './cloud-origin.mjs';
-export function createOwnerRelay(repo,owner,getLocalOrigin){
- let closed=false,timer,active=false,completed=[];const controller=new AbortController(),instanceId=crypto.randomUUID();
+export function createOwnerRelay(repo,owner,getLocalOrigin,getViewerState=null){
+ let closed=false,timer,active=false,completed=[],lastShared='';const controller=new AbortController(),instanceId=crypto.randomUUID();
  async function tick(){if(closed||active)return;active=true;
   try{
    const c=repo.config(owner,'public-cloud');if(!c?.secret)return;cloudOrigin(c.url);
-   const sent=completed;const r=await fetch(HOST+'/api/v1/bridge/owner',{method:'POST',headers:{Authorization:'Bearer '+c.secret,'Content-Type':'application/json'},body:JSON.stringify({instanceId,completed:sent}),signal:AbortSignal.any([controller.signal,AbortSignal.timeout(12000)])});if(!r.ok)throw new Error('relay unavailable');const result=await r.json();completed=completed.filter(x=>!sent.some(s=>s.id===x.id));
+   const sharing=!!getViewerState&&repo.config(owner,'public-viewer-live')?.enabled===true;let shared,signature;if(sharing){shared=publicPlans(getViewerState(),new Date().toISOString());signature=JSON.stringify([shared.events,shared.tasks,shared.projects]);}const sent=completed;const r=await fetch(HOST+'/api/v1/bridge/owner',{method:'POST',headers:{Authorization:'Bearer '+c.secret,'Content-Type':'application/json'},body:JSON.stringify({instanceId,completed:sent,...(getViewerState?{viewerSharing:sharing}:{}),...(sharing&&signature!==lastShared?{viewerState:shared}:{})}),signal:AbortSignal.any([controller.signal,AbortSignal.timeout(12000)])});if(!r.ok)throw new Error('relay unavailable');const result=await r.json();if(result.viewerPublished)lastShared=signature||'';completed=completed.filter(x=>!sent.some(s=>s.id===x.id));
    await Promise.all((result.requests||[]).map(async item=>{
     let response;try{const payload=await open(c.secret,item.id+':request',item.payload),p=payload.path;
      if(!/^\/api\/v1\/(owner\/|auth\/(session|login|logout|change-password)$)/.test(p)||p.includes('..')||p.includes('://'))throw new Error('invalid path');

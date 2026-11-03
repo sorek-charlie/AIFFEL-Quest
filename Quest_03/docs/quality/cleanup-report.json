@@ -1,0 +1,31 @@
+{
+    "removed":  [
+
+                ],
+    "preserved":  [
+                      "Charlie;s Scheduler.exe",
+                      "source and tests",
+                      "runtime data and backups",
+                      "GitHub mirror and sync baseline",
+                      "site source and dependencies",
+                      "submission evidence"
+                  ],
+    "failed":  [
+
+               ],
+    "observedRemovedGroups":  [
+                                  ".playwright-mcp",
+                                  "dist",
+                                  "ORBIT-Android.apk",
+                                  "ORBIT-Android.apk.idsig",
+                                  "orbit-scheduler-scaffold.zip",
+                                  "smoke-result.txt",
+                                  "build/android-sdk",
+                                  "build/windows-package",
+                                  "build/temporary QA databases and deployment archives",
+                                  "sites/orbit-booking/generated build caches"
+                              ],
+    "removedBytes":  0,
+    "removedFiles":  0,
+    "checkedAt":  "2026-11-03T07:24:43.1191105Z"
+}

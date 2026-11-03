@@ -91,7 +91,7 @@ export function createApp({dbPath, ownerId='local-owner', launchToken=randomByte
       send(404,{error:{code:'NOT_FOUND',message:'찾을 수 없습니다.'}});
     } catch(e) { send(e.status||500,{error:{code:e.code||'INTERNAL_ERROR',message:e.status?e.message:'처리하지 못했습니다. 다시 시도하세요.'}}); }
   });
-  const ownerRelay=createOwnerRelay(repo,ownerId,()=>server.listening?`http://127.0.0.1:${server.address().port}`:null);
+  const ownerRelay=createOwnerRelay(repo,ownerId,()=>server.listening?`http://127.0.0.1:${server.address().port}`:null,()=>app.state(ownerId));
   server.on('close',()=>{ownerRelay.close();sync.close();repo.close();});
   server.on('listening',()=>{ownerRelay.start();});
   const recovery=createPasswordRecovery(()=>repo.config(ownerId,'todo-cloud'),root);

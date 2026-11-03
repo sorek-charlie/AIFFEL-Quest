@@ -1,3 +1,4 @@
+import {publicPlans} from './public-plans.mjs';
 import {seal,open} from './relay-crypto.mjs';
 const json=(data:any,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 const digest=async(s:string)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))).join(',');
@@ -14,10 +15,12 @@ export async function ownerRelay(request:Request,env:any):Promise<Response|null>
    if(!/^[0-9a-f-]{36}$/.test(body.instanceId||''))return json({error:{message:'PC 프로그램을 최신 버전으로 재시작하세요.'}},409);
    const lease=await db.prepare('INSERT INTO public_state(id,data,updated_at) VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,updated_at=excluded.updated_at WHERE public_state.updated_at<? OR public_state.data=excluded.data RETURNING id').bind('owner-relay',JSON.stringify({instanceId:body.instanceId}),now,now-15000).first();
    if(!lease)return json({error:{message:'이미 연결된 PC 프로그램이 있습니다.'}},409);
+   if(body.viewerSharing===false)queries.push(db.prepare('DELETE FROM public_state WHERE id=?').bind('viewer-live'));
+   if(body.viewerSharing===true&&body.viewerState){const plans=publicPlans(body.viewerState,new Date(now).toISOString());queries.push(db.prepare('INSERT INTO public_state(id,data,updated_at) VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,updated_at=excluded.updated_at').bind('viewer-live',JSON.stringify({instanceId:body.instanceId,plans}),now));}
    for(const item of (body.completed||[]).slice(0,8)){if(!/^[0-9a-f-]{36}$/.test(item.id)||typeof item.payload?.data!=='string'||item.payload.data.length>1500000)continue;queries.push(db.prepare("UPDATE owner_relay SET response=?,state='done' WHERE id=? AND state='running'").bind(JSON.stringify(item.payload),item.id));}
    queries.push(db.prepare('DELETE FROM owner_relay WHERE expires_at<?').bind(now-60000));await db.batch(queries);
    const jobs=await db.prepare("UPDATE owner_relay SET state='running' WHERE id IN (SELECT id FROM owner_relay WHERE state='queued' AND expires_at>? ORDER BY rowid LIMIT 8) RETURNING id,payload").bind(now).all();
-   return json({requests:(jobs.results||[]).map((r:any)=>({id:r.id,payload:JSON.parse(r.payload)}))});
+   return json({viewerPublished:body.viewerSharing===true&&!!body.viewerState,requests:(jobs.results||[]).map((r:any)=>({id:r.id,payload:JSON.parse(r.payload)}))});
   }
   if(!['GET','POST','PUT','PATCH','DELETE'].includes(request.method))return json({error:{message:'허용되지 않은 요청입니다.'}},405);
   if(request.method!=='GET'&&request.headers.get('origin')!==url.origin)return json({error:{message:'같은 관리자 페이지에서 요청하세요.'}},403);

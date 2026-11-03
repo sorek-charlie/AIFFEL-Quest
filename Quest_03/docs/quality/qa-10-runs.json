@@ -1,0 +1,80 @@
+{
+  "startedAt": "2026-11-03T07:13:11.103Z",
+  "finishedAt": "2026-11-03T07:13:46.752Z",
+  "requestedRuns": 10,
+  "passedRuns": 10,
+  "failedRuns": 0,
+  "totalTestExecutions": 350,
+  "runs": [
+    {
+      "run": 1,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 4040
+    },
+    {
+      "run": 2,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3929
+    },
+    {
+      "run": 3,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3556
+    },
+    {
+      "run": 4,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3606
+    },
+    {
+      "run": 5,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3635
+    },
+    {
+      "run": 6,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3322
+    },
+    {
+      "run": 7,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3107
+    },
+    {
+      "run": 8,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3073
+    },
+    {
+      "run": 9,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3850
+    },
+    {
+      "run": 10,
+      "ok": true,
+      "tests": 35,
+      "failures": 0,
+      "milliseconds": 3521
+    }
+  ]
+}

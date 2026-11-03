@@ -14,7 +14,8 @@
     "dev": "node apps/api/src/bootstrap/server.mjs",
     "test": "node --test tests/unit/*.test.mjs tests/integration/*.test.mjs",
     "test:100": "node scripts/repeat-tests.mjs 100",
-    "build:exe": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-windows.ps1"
+    "build:exe": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-windows.ps1",
+    "clean": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/clean-generated.ps1 -Apply"
   },
   "engines": {
     "node": ">=24.22.1"

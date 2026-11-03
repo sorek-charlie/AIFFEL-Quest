@@ -38,12 +38,15 @@ foreach ($file in Get-ChildItem -LiteralPath $outDir -Recurse -File) {
     else { throw }
   }
 }
-$rootLauncher = Join-Path $projectRoot 'ORBIT-Scheduler.exe'
-try { Copy-Item -LiteralPath (Join-Path $outDir 'ORBIT-Scheduler.exe') -Destination $rootLauncher -Force }
-catch {
-  if ((Test-Path -LiteralPath $rootLauncher) -and (Get-Item -LiteralPath $rootLauncher).LastWriteTimeUtc -ge (Get-Item -LiteralPath $launcherSource).LastWriteTimeUtc) { Write-Warning 'The root launcher is running and current. Updated its bundled app; restart the app to load the new server.' }
-  else { throw }
-}
-Compress-Archive -LiteralPath $outDir -DestinationPath (Join-Path $projectRoot 'dist\ORBIT-Scheduler-Windows.zip') -Force
-Write-Output "Built: $deployDir\ORBIT-Scheduler.exe"
-Write-Output "Root launcher: $rootLauncher"
+# Ship one self-contained executable in the workspace root.
+$zipPath = Join-Path $projectRoot 'dist\ORBIT-Scheduler-Windows.zip'
+Compress-Archive -LiteralPath $outDir -DestinationPath $zipPath -Force
+$bundleSource = Join-Path $projectRoot 'scripts\SubmissionBundle.cs'
+$bundleCandidate = Join-Path $projectRoot 'build\CharlieScheduler-next.exe'
+& $compiler /nologo /target:winexe /utf8output /codepage:65001 /reference:System.Windows.Forms.dll /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll "/resource:$zipPath,payload.zip" "/out:$bundleCandidate" $bundleSource
+if ($LASTEXITCODE -ne 0) { throw 'Single executable compilation failed' }
+$rootLauncher = Join-Path $projectRoot 'Charlie;s Scheduler.exe'
+Copy-Item -LiteralPath $bundleCandidate -Destination $rootLauncher -Force
+$legacyRoot = Join-Path $projectRoot 'ORBIT-Scheduler.exe'
+if (Test-Path -LiteralPath $legacyRoot) { Remove-Item -LiteralPath $legacyRoot -Force }
+Write-Output "Built single executable: $rootLauncher"

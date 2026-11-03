@@ -1,0 +1,210 @@
+{
+  "checkedAt": "2026-11-03T07:17:37.148Z",
+  "mode": "production live read-only",
+  "url": "https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html",
+  "passedRuns": 10,
+  "failedRuns": 0,
+  "localDataMatches": true,
+  "runs": [
+    {
+      "run": 1,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 1073
+    },
+    {
+      "run": 2,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 852
+    },
+    {
+      "run": 3,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 989
+    },
+    {
+      "run": 4,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 869
+    },
+    {
+      "run": 5,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 870
+    },
+    {
+      "run": 6,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 1091
+    },
+    {
+      "run": 7,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 1027
+    },
+    {
+      "run": 8,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 982
+    },
+    {
+      "run": 9,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 830
+    },
+    {
+      "run": 10,
+      "passed": true,
+      "read": 200,
+      "live": true,
+      "counts": {
+        "events": 63,
+        "tasks": 34,
+        "projects": 1
+      },
+      "writeBlocked": {
+        "POST": 403,
+        "PUT": 403,
+        "PATCH": 403,
+        "DELETE": 403
+      },
+      "privateReadBlocked": 401,
+      "anonymousBlocked": 401,
+      "milliseconds": 990
+    }
+  ]
+}

@@ -10,9 +10,8 @@ import {createScheduler} from '../../apps/api/src/application/scheduler.mjs';
 import {textCandidates} from '../../packages/domain/src/tasks/extraction.mjs';
 import {createSyncManager} from '../../apps/api/src/infrastructure/calendar-providers/sync-manager.mjs';
 import {DatabaseSync} from 'node:sqlite';
-import {request as httpRequest} from 'node:http';
-// Each restart assertion needs a new TCP connection, not the previous server's pooled socket.
-function freshFetch(url,options){return new Promise((resolve,reject)=>{const req=httpRequest(url,{method:options.method,headers:options.headers,agent:false},res=>{const chunks=[];res.on('data',c=>chunks.push(c));res.on('end',()=>resolve(new Response(Buffer.concat(chunks),{status:res.statusCode,headers:Object.fromEntries(Object.entries(res.headers).map(([k,v])=>[k,Array.isArray(v)?v.join('; '):String(v)]))})));});req.on('error',reject);req.end(options.body);});}
+import {freshFetch} from './http-fixture.mjs';
+
 test('version 1 database migrates forward without losing saved tasks',()=>{
  const dir=mkdtempSync(resolve(tmpdir(),'orbit-migration-')),path=resolve(dir,'old.sqlite');let db=new DatabaseSync(path);db.exec(readFileSync(resolve('database/sqlite/migrations/0001_initial.sql'),'utf8'));db.prepare('INSERT INTO owners VALUES(?,?)').run('A','{}');db.prepare('INSERT INTO entities VALUES(?,?,?,?)').run('A','task','old-task',JSON.stringify({id:'old-task',title:'이전 버전 할 일',version:1,completed:false}));db.exec('PRAGMA user_version=1');db.close();let repo;
  try{repo=createRepository(path,resolve('.'));assert.equal(repo.list('A','task')[0].title,'이전 버전 할 일');repo.saveConfig('A','test',{secret:'Synthetic-Secret'});assert.equal(repo.config('A','test').secret,'Synthetic-Secret');assert.equal(repo.password('A'),undefined);}finally{repo?.close();rmSync(dir,{recursive:true,force:true});}

@@ -1,4 +1,4 @@
-import {viewerData} from './viewer-data.mjs';
+import {publicPlans} from './public-plans.mjs';
 const cookieName='quest03_viewer',password='Quest03-View-2026!';
 const json=(value,status=200,headers={})=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer',...headers}});
 const encode=bytes=>btoa(String.fromCharCode(...new Uint8Array(bytes))).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
@@ -18,6 +18,6 @@ export async function viewerHandle(request,env){
  const signedIn=await authorized(request,env.CLOUD_SYNC_KEY);
  if(route==='session')return json({signedIn,mode:'read-only'});
  if(!signedIn)return json({error:{message:'열람 비밀번호로 로그인하세요.'}},401);
- if(route==='state')return json(viewerData);
+ if(route==='state'){try{if(!env.DB)return json({error:{message:'PC 앱 연결이 필요합니다.'}},503);const heartbeat=await env.DB.prepare('SELECT data,updated_at FROM public_state WHERE id=?').bind('owner-relay').first(),row=await env.DB.prepare('SELECT data,updated_at FROM public_state WHERE id=?').bind('viewer-live').first();if(!heartbeat||Date.now()-heartbeat.updated_at>20000||!row)return json({error:{message:'PC 앱을 켜고 실시간 공개 연결을 확인하세요.'}},503);const current=JSON.parse(heartbeat.data),shared=JSON.parse(row.data);if(current.instanceId!==shared.instanceId)return json({error:{message:'PC 자료를 연결하고 있습니다. 잠시 후 다시 확인하세요.'}},503);return json(publicPlans(shared.plans,shared.plans.updatedAt));}catch{return json({error:{message:'PC 실시간 연결을 확인하세요.'}},503);}}
  return json({error:{message:'찾을 수 없습니다.'}},404);
 }
