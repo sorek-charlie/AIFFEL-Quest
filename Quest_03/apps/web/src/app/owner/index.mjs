@@ -9,9 +9,10 @@ import {dashboardView} from './dashboard.mjs';
 import {demoState} from './demo-state.mjs';
 import {bindBriefTasks} from './three-day.mjs';
 export async function mountOwner({showDailyOnLogin=false}={}) {
- let demoMode=sessionStorage.getItem('orbit-today-demo')!=='off';
+ let demoMode=sessionStorage.getItem('orbit-today-demo')==='on';
  const briefingState=s=>demoMode?demoState():s;
  let tab=['todo','google','gmail','inputs','calendar'].includes(new URLSearchParams(location.search).get('view'))?new URLSearchParams(location.search).get('view'):'overview',lastFingerprint='',dirty=false,refreshing=false,currentState;const calendarState={month:today().slice(0,7),selected:null};
+ async function reflectEntry(kind){demoMode=false;sessionStorage.setItem('orbit-today-demo','off');if(kind==='project')tab='projects';await render();}
  let proposalPageNumber=1;
  async function render() {
   if(tab==='gmail'){const {mountMailReview}=await import('../../features/settings/mail-review.mjs');await mountMailReview();return;}
@@ -26,15 +27,15 @@ export async function mountOwner({showDailyOnLogin=false}={}) {
   document.querySelector('#logout').onclick=()=>act(async()=>{await api('auth/logout','POST',{});location.reload();});
   document.querySelector('#demo-toggle')?.addEventListener('click',()=>act(async()=>{demoMode=!demoMode;sessionStorage.setItem('orbit-today-demo',demoMode?'on':'off');await render();}));
   if(tab==='overview')bindBriefTasks(briefingState(s),render);
-  if(tab==='tasks')bindTasks(s.tasks,render,t=>openEntry(s,render,{kind:'task',item:t}));
+  if(tab==='tasks')bindTasks(s.tasks,render,t=>openEntry(s,reflectEntry,{kind:'task',item:t}));
   if(tab==='overview')bindMonth(s.events,calendarState,render,async()=>{tab='calendar';await render();});
   if(tab==='calendar')bindCalendar(s.events,render,calendarState);
   if(tab==='settings')bindSettings(render);
   bindInputMenus(async(next)=>{tab=next;await render();},render);
   if(tab==='inputs')bindInputs(proposals,render,async page=>{proposalPageNumber=page;await render();document.querySelector('.proposal-list')?.scrollIntoView({block:'start'});});
-  if(tab==='projects')bindProjects(s,render);
+  if(tab==='projects')bindProjects(s,reflectEntry);
   document.querySelectorAll('[data-brief-tab]').forEach(b=>b.onclick=()=>act(async()=>{tab=b.dataset.briefTab;await render();}));
-  document.querySelectorAll('[data-entry-kind]').forEach(b=>b.onclick=()=>{document.querySelectorAll('details[open]').forEach(d=>d.open=false);openEntry(s,render,{kind:b.dataset.entryKind});});
+  document.querySelectorAll('[data-entry-kind]').forEach(b=>b.onclick=()=>{document.querySelectorAll('details[open]').forEach(d=>d.open=false);openEntry(s,reflectEntry,{kind:b.dataset.entryKind});});
   document.querySelector('#show-daily').onclick=()=>act(async()=>showDaily(briefingState(await api('owner/state')),async(next)=>{tab=next;await render();}));
   bindTenMinuteTimes(document.querySelector('#app'));
   document.querySelector('#app').oninput=()=>{dirty=true;};
