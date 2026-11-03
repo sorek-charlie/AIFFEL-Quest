@@ -112,3 +112,5 @@ button,input,select,textarea{font-family:inherit;letter-spacing:-.02em}
 .shell .stats article>div:not(.stat-icon){display:flex;align-items:center;gap:10px;min-height:0}.shell .stats article>div>span{margin:0;line-height:1.2;min-height:0}.shell .stats strong{line-height:1.05}.shell .stats article{height:66px;min-height:66px}.shell .stats .stat-caption{line-height:1.2}.shell{grid-template-columns:220px minmax(0,1fr)}@media(max-width:1600px){.shell .stats .stat-caption{display:none}}@media(max-width:650px){.shell{display:block}.shell .stats article{height:76px;min-height:76px}.shell .stats article>div:not(.stat-icon){display:flex;flex-direction:column;align-items:flex-start;gap:3px}.shell .stats article>div>span{font-size:17px}}
 
 .shell aside .brand{letter-spacing:normal;white-space:normal;overflow-wrap:break-word}.shell aside .brand span{letter-spacing:normal;margin-left:0}
+
+.shell .connection-summary{font-size:16px;color:#6b7280;line-height:1.6;margin:8px 0;overflow-wrap:anywhere}

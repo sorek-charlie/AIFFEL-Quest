@@ -6,7 +6,13 @@ export async function api(path, method='GET',body, key) {
 export const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const time=s=>new Date(s).toLocaleString('ko-KR',{timeZone:'Asia/Seoul',month:'short',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'});
 export const today=()=>new Date(Date.now()+9*3600000).toISOString().slice(0,10);
-export function notice(message) {document.querySelector('#notice').textContent=message;}
+let noticeTimer;
+export function notice(message) {
+ clearTimeout(noticeTimer);const element=document.querySelector('#notice');if(!element)return;
+ const dismiss=()=>{clearTimeout(noticeTimer);element.textContent='';};
+ element.textContent=message;element.onclick=dismiss;element.tabIndex=0;element.onkeydown=event=>{if(['Enter',' ','Escape'].includes(event.key)){event.preventDefault();dismiss();}};
+ if(message)noticeTimer=setTimeout(dismiss,1000);
+}
 export async function act(fn) {try {await fn();}catch(e){notice(e.message);}}
 export const formObject=f=>Object.fromEntries(new FormData(f));
 
