@@ -114,3 +114,4 @@ button,input,select,textarea{font-family:inherit;letter-spacing:-.02em}
 .shell aside .brand{letter-spacing:normal;white-space:normal;overflow-wrap:break-word}.shell aside .brand span{letter-spacing:normal;margin-left:0}
 
 .shell .connection-summary{font-size:16px;color:#6b7280;line-height:1.6;margin:8px 0;overflow-wrap:anywhere}
+.shell .project-daily{font-size:12px;color:#4b4b4b;line-height:1.65}.shell .project-daily :is(summary,table,th,td,a){font-size:inherit;color:#4b4b4b}.shell .project-daily td,.shell .project-daily th{padding:7px 9px}
