@@ -29,10 +29,14 @@ RLS 확인: 2026-11-01 — 익명 접근 및 사용자 B의 A 자료 조회·수
 
 2026-11-03 실제 클라우드 재접속은 저장된 검증 계정 로그인 단계에서 실패했다. 따라서 클라우드 재시작·RLS 최신 재검증을 성공했다고 표시하지 않는다. 위 실제 증거는 2026-11-01 실행 기록이다. 현재 계정 비밀번호를 앱에서 재설정·입력한 뒤 클라우드 로그인 → 완료/삭제 → 보존 확인 항목 만들기 → 앱 종료·재실행 → 재로그인 → 재시작 보존 검증 → 다른 사용자 B로 RLS 실전 검증을 다시 수행하면 최신 증거를 추가할 수 있다. 비밀번호는 채팅에 보내지 않는다.
 
+## 공개 열람
+
+[브라우저에서 바로 실행](https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html) · 공개 비밀번호 `Quest03-View-2026!`. 예시 데이터만 열람하며 입력·수정·삭제는 차단합니다. 실제 저장·RLS 검증 증거는 위 작동 화면과 검증 기록입니다.
+
 ## 실행
 
 Windows: 폴더의 Charlie;s Scheduler.exe 실행. 실행 파일은 로컬 전용으로 Git에 포함하지 않는다. 소스는 저장소 내려받기 후 Node.js 24.22.1 이상에서 npm start.
 
-외부 화면: https://charlie-schedule.cherrysocute9.chatgpt.site (PC 앱 실행·연결 필요). 과제 Todo 저장소 전환은 설정에서 연다. 배포 화면은 PC 서버 없이 독립적으로 실행되는 클라우드 API가 아니다.
+외부 공개 화면: https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html (예시 데이터, 읽기 전용, PC 불필요). 과제 Todo 저장소 전환은 설정에서 연다. 배포 화면은 PC 서버 없이 독립적으로 실행되는 클라우드 API가 아니다.
 
 [전체 검증 기록](./verification.md)

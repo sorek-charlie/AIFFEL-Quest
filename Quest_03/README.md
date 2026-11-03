@@ -8,6 +8,23 @@
 
 [평가 기준별 결과·작동 화면](./docs/assignment/submission.md)을 먼저 확인하세요. PRD.md와 PRD.pdf는 한 장이며, 아래 실행 링크와 로컬·클라우드 증거 화면을 함께 제출합니다.
 
+## 방문자 바로 실행 · 읽기 전용
+
+**[Charlie’s Scheduler 바로 열기](https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html)**  
+**공개 열람 비밀번호: `Quest03-View-2026!`**
+
+설치와 PC 앱 실행 없이 브라우저에서 열람합니다. 대시보드·일정·할 일·프로젝트 메뉴를 클릭할 수 있으며 입력·수정·삭제는 화면과 서버 API 모두에서 차단합니다. 공개 화면은 **과제 시연용 예시 데이터**입니다. 개인 일정·Gmail·Google/Supabase 계정·키·토큰·DB를 공개하지 않습니다. 이 비밀번호는 README에 공개하는 열람용이며 개인 앱 비밀번호가 아닙니다.
+
+## 평가 기준과 실제 파일
+
+| 평가 항목 | 제출 파일과 증거 |
+|---|---|
+| PRD 한 장 · 30점 | [PRD.md](./PRD.md) · [PRD.pdf 직접 열기](https://raw.githubusercontent.com/sorek-charlie/AIFFEL-Quest/main/Quest_03/PRD.pdf) |
+| 데이터가 남는 앱 · 40점 | CRUD·완료·삭제·재시작 보존 테스트, [로컬 종료 전](./Output/submission/todo-local-before-restart.png) · [재실행 후](./Output/submission/todo-local-after-restart.png) |
+| 로컬·클라우드·보안 · 30점 | [Supabase 종료 전](./Output/submission/todo-supabase-before-restart.png) · [재실행 후·RLS](./Output/submission/todo-supabase-after-restart.png), [전환·RLS 기록](./docs/assignment/verification.md) |
+
+실제 Supabase 보존·RLS 성공 증거는 **2026-11-01 기록**입니다. 2026-11-03 최신 개인 계정의 재시작·RLS 재검증을 완료했다고 표시하지 않습니다. 공개 예시 화면은 실제 저장 검증 증거를 대신하지 않습니다.
+
 ## 실행과 제출
 
 | 항목 | 링크 / 방법 |
@@ -15,12 +32,12 @@
 | Windows 실행 | [Charlie;s Scheduler.exe](./Charlie%3Bs%20Scheduler.exe) — 이 폴더 전용 실행 파일 |
 | Google 일정 | Charlie;s Scheduler.exe 실행 후 **Google 일정 가져오기** 메뉴 선택 |
 | 소스 실행 | `npm start` — Node.js 24.22.1 이상, 출력된 주소 열기 |
-| 외부 개인 화면 | [charlie_schedule](https://charlie-schedule.cherrysocute9.chatgpt.site) — PC 앱 실행 필요 |
+| 외부 읽기 전용 화면 | [charlie_schedule](https://charlie-schedule.cherrysocute9.chatgpt.site/viewer.html) — PC 앱 실행 불필요 |
 | PRD | [PRD.md](./PRD.md) · [PRD.pdf](./PRD.pdf) |
 | 검증 기록 | [과제 검증 결과](./docs/assignment/verification.md) |
 | 제출 | [GitHub Quest_03](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_03) |
 
-실행 파일은 GitHub에 올리지 않습니다. 데이터와 Google 연결 정보는 `%LOCALAPPDATA%\ORBIT Scheduler\data`에 유지됩니다. 외부 개인 화면은 PC 앱에 인증된 요청을 중계합니다.
+실행 파일은 GitHub에 올리지 않습니다. 데이터와 Google 연결 정보는 `%LOCALAPPDATA%\ORBIT Scheduler\data`에 유지됩니다. 공개 열람 화면은 예시 데이터만 제공합니다. 개인 관리 화면(/owner.html)은 별도 PC 앱 인증과 연결이 필요합니다.
 
 ## 사용하는 순서
 

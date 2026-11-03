@@ -116,3 +116,7 @@ PDF첨부별후보ID반환·재첨부미처리ID재사용테스트포함28개통
 
 2026-11-03: 할일목록내중복제목/완료건수제거. CSS명시글자18px초과만0.9배,18px이하작은글씨유지. 프로젝트날짜별내용14px·기본펼침·요약2줄·눌러접기. 원문데이터수정없음.
 
+
+## 공개 읽기 전용 열람 · 2026-11-03
+공개 예시 데이터만 별도 namespace로 제공. 서명·만료·전용쿠키·다른서명키·변조·미인증 차단, POST/PUT/PATCH/DELETE 동시 요청403, viewer쿠키로owner자료/변경401 확인. 전체33테스트통과. 브라우저공개비밀번호로그인·달력다음달Enter·프로젝트탐색·입력요소0개, 360px문서345px확인. PC·개인DB·Gmail자료를읽지않는다.
+[데스크톱](../../Output/submission/public-viewer-desktop.png) · [모바일](../../Output/submission/public-viewer-mobile.png)
