@@ -7,7 +7,7 @@
 | 항목 | 링크 / 방법 |
 |---|---|
 | Windows 실행 | [이성진.exe](./이성진.exe) — 이 폴더 전용 실행 파일 |
-| Google 일정 바로 열기 | [구글일정가져오기.exe](./구글일정가져오기.exe) |
+| Google 일정 | 이성진.exe 실행 후 **Google 일정 가져오기** 메뉴 선택 |
 | 소스 실행 | `npm start` — Node.js 24.22.1 이상, 출력된 주소 열기 |
 | 외부 개인 화면 | [charlie_schedule](https://charlie-schedule.cherrysocute9.chatgpt.site) — PC 앱 실행 필요 |
 | PRD | [PRD.md](./PRD.md) · [PRD.pdf](./PRD.pdf) |
