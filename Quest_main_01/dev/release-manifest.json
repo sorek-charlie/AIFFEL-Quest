@@ -183,8 +183,8 @@
     },
     {
       "path": "app/login.html",
-      "bytes": 3291,
-      "sha256": "fcd05adc27ab24725dc6ba2d20c729093f0af4730dea8373af41652fac2df107"
+      "bytes": 3294,
+      "sha256": "144d41c2de9f733984ceea96f951636399b1dbdc47408cfef952cb1950603709"
     },
     {
       "path": "app/vendor/jszip-LICENSE.txt",
@@ -238,8 +238,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 4859,
-      "sha256": "33fba93066b1b01695045ba685657cd9212afcc7bd555bcdf195087f5eef28ac"
+      "bytes": 4756,
+      "sha256": "17d7a7202d0ccfed5e0aa5d0cba82297c5896959602c9da51c6850ad5037942c"
     },
     {
       "path": "docs/00_설치_사용안내.html",
@@ -277,16 +277,6 @@
       "sha256": "b0185adfb93a53c8b70033149a9d6bf6ae341bb39e027db86fbc8ba272fcffd8"
     },
     {
-      "path": "docs/submission/DEMO_SCRIPT.md",
-      "bytes": 570,
-      "sha256": "983479d189269df7134fb00929345f05dd8988c9fc694a82e26c44ae99ac7923"
-    },
-    {
-      "path": "docs/submission/README.md",
-      "bytes": 4154,
-      "sha256": "19e3b618d7e301306f09d7d1ddcb3f3b758316abf3ebf6bc4e500002be2e7606"
-    },
-    {
       "path": "docs/submission/screenshots/01-individual-upload.png",
       "bytes": 85829,
       "sha256": "445bbdd78c920b8bd6b273030ec2d52c566f6dc7d1ce5212ff28eb8f5ad4895c"
@@ -303,88 +293,13 @@
     },
     {
       "path": "docs/submission/screenshots/04-login.png",
-      "bytes": 354074,
-      "sha256": "f482a4128bfd43e1857f29f17157bcfca6dbf75ce52b87b03a965e493cd2d702"
-    },
-    {
-      "path": "docs/submission/storyboard/DREAMINA_실사영상_편집표.md",
-      "bytes": 6401,
-      "sha256": "0bb546c15d725975d79fda056693e32300765789aaa51dafa79a9f90cd8cce6c"
-    },
-    {
-      "path": "docs/submission/storyboard/README.md",
-      "bytes": 1334,
-      "sha256": "2d02cc94f859309a505de2da8a7f72008ccb1c66aa1bfe794046f16b7b561a42"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/01-service-access.png",
-      "bytes": 2456186,
-      "sha256": "ca23893557771b19c2bcbfdeb72b709c3921e043cdbf4916c25a7652cb4dd034"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/02-login.png",
-      "bytes": 2232043,
-      "sha256": "e65af728cadb76a668fe0fca918be5e9f65db012905d16c542eba2ba02a28f7f"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/03-signup-prompt.png",
-      "bytes": 2541001,
-      "sha256": "fd19a2129690f6291f7ea99476a2b0ccbc0dcf1d25e85b4f08d2af62ffd18dee"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/04-auto-login.png",
-      "bytes": 2450021,
-      "sha256": "710148a2a128a8c50c294bdcf83c9d420bcfe501d628bebda0ce059784fea643"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/05-document-upload.png",
-      "bytes": 2471701,
-      "sha256": "5a38af0c266d034a01ac1adb288341c2241d00500309ec9a38fb31d86cdeeaf1"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/06-other-document.png",
-      "bytes": 2530681,
-      "sha256": "4aa8edac414bcfcdb54f4c133935f1c78575e3ff8192fd409cca0c2ffdc25e22"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/07-qna-review.png",
-      "bytes": 2422268,
-      "sha256": "45201f3d91a863cc0a4eb08d8f8b35f2b86f4cf8069153737f9190e87e5a19f5"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/08-annual-results.png",
-      "bytes": 2563942,
-      "sha256": "3def98169276181efca95c29f24af0775403923fe248ea07cf6c8bcaa5204aa4"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/09-report-save.png",
-      "bytes": 2400092,
-      "sha256": "d7dc3eb9f02e8a7e9255518d43e1fa1038f2d7a35654165cdc5a54a2a8d400d2"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/10-reset-logout.png",
-      "bytes": 2447985,
-      "sha256": "144c44cca93c943777b5bd3b19d2601a81293d53019f8e2e908045db5c40cd6e"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/README.md",
-      "bytes": 2503,
-      "sha256": "db6333bb1b146716be3b450a6541279624966a43f4336093ad882a3d37274f42"
-    },
-    {
-      "path": "docs/submission/storyboard/scenes-16x9/scene-manifest.json",
-      "bytes": 17930,
-      "sha256": "b879c39629acab281b53260413d79fbc65b016a4fc7ea4467c29f3249c6020c7"
-    },
-    {
-      "path": "docs/submission/storyboard/usage-storyboard-10-scenes.png",
-      "bytes": 1893664,
-      "sha256": "c1f757fdccbabbcdad2d4fd845be4f2e571ff40ead3a2e36025b1d3ec56eb3b0"
+      "bytes": 62930,
+      "sha256": "59b8fe0307ad3a0414795728293aea9382f28916369883a2af8672b4d6f66efd"
     },
     {
       "path": "docs/submission/VERIFICATION.md",
-      "bytes": 5654,
-      "sha256": "9e6808e82d9b77ba8c8f5d2c42f69c503f3c55cb63c2afeaf67e158fca83a957"
+      "bytes": 6086,
+      "sha256": "97e92396db17e6107765991419253c35e877038e0a9e63378d2fadfa1c7988c4"
     },
     {
       "path": "docs/추가확인_질문목록.txt",
@@ -398,8 +313,8 @@
     },
     {
       "path": "outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4",
-      "bytes": 6834436,
-      "sha256": "169f6e2b79f2bc7cb04a11a92885addb5437a3fd97b142a722542fc6d67eeb3b"
+      "bytes": 6835794,
+      "sha256": "9a6863aadba107a8154bcfa46444599b4edfc5689d9e9fb5eace054e409805dc"
     },
     {
       "path": "outputs/main-quest/video/preview-presenter.png",
@@ -408,13 +323,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 4310,
-      "sha256": "72c4babace94475481450e2425746e434ea3249503eac1cc1c0739cb272234a4"
+      "bytes": 2933,
+      "sha256": "37b1dfa27286cc5b5667d274f78c8d570448871d898f0750b9393ae8a7aab847"
     },
     {
       "path": "경정청구.exe",
-      "bytes": 28061696,
-      "sha256": "31aecba9d75f04e6b4806e12505bedf74f9f86c47c0ad75dad12e5d938b95b58"
+      "bytes": 1489408,
+      "sha256": "4e471b3b153720454ce92718600123f332a6f382873de9318333eecdff230c1b"
     }
   ]
 }

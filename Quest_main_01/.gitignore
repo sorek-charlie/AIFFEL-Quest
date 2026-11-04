@@ -41,4 +41,3 @@ app/reports/
 
 # Reviewed submission artifacts; other EXE/ZIP files remain excluded.
 !/경정청구.exe
-!/outputs/main-quest/scene-images-16x9.zip

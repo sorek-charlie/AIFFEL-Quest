@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "duration_seconds": 170.02,
   "resolution": "1920x1080",
   "aspect": "16:9",
@@ -13,6 +13,7 @@
   "visual_review_frames": 14,
   "privacy_review": "14 scenes + three upload progress states reviewed; identity headers excluded by crop; numerical values unchanged",
   "input_parity": "18 individual files versus ZIP: identical five-year result rows; 5/5 returns and 110 employment records",
-  "sha256": "169f6e2b79f2bc7cb04a11a92885addb5437a3fd97b142a722542fc6d67eeb3b",
-  "limit": "실제 앱 조작 후 화면 캡처 편집. 회원가입은 양식 안내, 사용자 로그인 입력 생략. 전문가 과제 상담준비이며 회신·세액 확정 미완료."
+  "sha256": "9a6863aadba107a8154bcfa46444599b4edfc5689d9e9fb5eace054e409805dc",
+  "limit": "실제 앱 조작 후 화면 캡처 편집. 회원가입은 양식 안내, 사용자 로그인 입력 생략. 전문가 과제 상담준비이며 회신·세액 확정 미완료.",
+  "login_title": "경정청구 도우미"
 }
