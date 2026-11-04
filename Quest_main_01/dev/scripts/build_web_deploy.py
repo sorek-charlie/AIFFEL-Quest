@@ -4,6 +4,7 @@ import hashlib,json,shutil
 
 ROOT=Path(__file__).resolve().parents[2]
 paths=[ROOT/'index.html']
+paths.extend([ROOT/'demo/index.html',ROOT/'outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4',ROOT/'outputs/main-quest/video/preview-presenter.png'])
 paths.extend(p for p in (ROOT/'app').rglob('*') if p.is_file() and p.suffix in {'.html','.css','.js','.json','.txt'})
 paths.extend(p for p in (ROOT/'docs').iterdir() if p.is_file() and p.suffix in {'.html','.txt'})
 # A content-addressed directory prevents stale/private files from being deployed.

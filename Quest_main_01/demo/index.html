@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>데모 영상 · 경정청구 자료 검토 도우미</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eff4fa;color:#19344e;font-family:"Malgun Gothic",system-ui,sans-serif;line-height:1.7}main{max-width:1120px;margin:0 auto;padding:36px 24px}h1{font-size:clamp(22px,4vw,32px);margin:0 0 10px}p{margin:10px 0;color:#50677e}.player{margin-top:24px;background:#0f1e2e;border-radius:14px;overflow:hidden;box-shadow:0 12px 32px #17324d18}video{display:block;width:100%;aspect-ratio:16/9;background:#101927}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;flex-wrap:wrap}button,.button{display:inline-block;font:inherit;font-weight:700;background:#315cd3;border:0;border-radius:9px;padding:11px 22px;color:white;text-decoration:none;cursor:pointer}button:hover,.button:hover{background:#2148b2}.links{display:flex;gap:20px;flex-wrap:wrap}a{color:#254fae}.note{border:1px solid #dce5ef;background:white;border-radius:12px;padding:18px 22px;margin:18px 0}.note p{margin:6px 0;font-size:14px}#status{font-size:14px;min-height:24px}#error{color:#a3273c;background:#fff2f2;border-radius:10px;padding:14px}footer{font-size:13px;color:#687b8d;margin-top:22px}[hidden]{display:none!important}
+</style></head>
+<body><main>
+<h1>경정청구 자료 검토 도우미 · 데모 영상</h1>
+<p>2분50초 · 1920×1080 · 한국어 남성 AI 내레이션·자막</p>
+<div class="player"><video id="demoVideo" controls playsinline preload="metadata" poster="../outputs/main-quest/video/preview-presenter.png" aria-label="경정청구 자료 검토 도우미 소개 영상"><source src="../outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4" type="video/mp4">이 브라우저는 HTML5 동영상 재생을 지원하지 않습니다.</video></div>
+<div class="toolbar"><button id="playButton" type="button">▶ 데모 재생</button><span id="status" role="status" aria-live="polite">영상 정보를 불러오는 중입니다.</span></div>
+<p id="error" role="alert" hidden>영상을 불러오지 못했습니다. 인터넷 연결을 확인하고 페이지를 새로고침해 주세요. 로컬에서 열었다면 demo 폴더와 outputs 폴더의 위치를 유지해 주세요.</p>
+<div class="links"><a class="button" href="https://tax-return-review-quest.pages.dev/">프로그램 실행하기</a><a href="https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_main_01">GitHub 제출 폴더</a><a href="../outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4" download>MP4 다운로드</a></div>
+<section class="note"><strong>영상 구성 안내</strong><p>실제 앱 캡처와 실사형 AI 남성 발표자·AI 내레이션을 사용한 소개 편집본입니다. 실제 클릭·대기 전체를 녹화한 영상은 아니며 미촬영 기능은 영상 안에 표시했습니다.</p><p>표시 금액은 잠정 검토값이며 확정 환급액이 아닙니다. 발표자 원본은720p로 제작했고 최종 영상은1080p로 편집했습니다.</p></section>
+<footer>이 페이지에서 재생하면 Windows 기본 동영상 앱을 실행하지 않습니다. GitHub 파일 미리보기 화면 대신 이 웹 재생 페이지를 이용하세요.</footer>
+</main><script>
+(()=>{'use strict';const video=document.getElementById('demoVideo'),button=document.getElementById('playButton'),status=document.getElementById('status'),error=document.getElementById('error');
+function ready(){if(Number.isFinite(video.duration))status.textContent=`재생 준비 완료 · ${Math.floor(video.duration/60)}분 ${Math.round(video.duration%60)}초`;}
+video.addEventListener('loadedmetadata',ready);if(video.readyState>=1)ready();
+video.addEventListener('playing',()=>{button.textContent='Ⅱ 일시정지';status.textContent='재생 중입니다.';error.hidden=true});
+video.addEventListener('pause',()=>{button.textContent='▶ 계속 재생';status.textContent='일시정지했습니다.'});
+video.addEventListener('ended',()=>{button.textContent='↻ 다시 보기';status.textContent='재생을 마쳤습니다.'});
+video.addEventListener('error',()=>{error.hidden=false;status.textContent='영상 연결을 확인해 주세요.'});
+button.addEventListener('click',async()=>{if(!video.paused){video.pause();return}try{await video.play()}catch{status.textContent='영상 안의 재생 버튼을 눌러 주세요.'}});
+})();
+</script></body></html>

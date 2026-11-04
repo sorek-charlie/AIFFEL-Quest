@@ -52,3 +52,12 @@
 ## 해석할 때 주의할 범위
 
 고용·보험료 증빙이 없는 샘플로 자료정리·파일 인식·보고서 흐름을 확인했다. 화면의 0원은 실제 환급 불가 확정이나 세법상 정답을 뜻하지 않는다. 세무적 계산 정확성, 실제 기관 인증·다운로드, 시연 영상은 이번 검증의 완료 항목이 아니다. 공개 배포는 GitHub Pages가 아닌 Cloudflare Pages로 완료했다.
+
+
+## 데모 웹 재생 수정 검증
+
+GitHub의 MP4 파일 미리보기 제한과 Windows 기본 재생 앱의 패키지 등록 오류를 피하도록 [전용 데모 페이지](https://tax-return-review-quest.pages.dev/demo/)를 추가했다. 원본 MP4를 교체하거나 Windows 기본 앱 설정을 바꾸지 않고 브라우저에서 직접 재생한다.
+
+숙제 폴더의 `demo/index.html`과 실제 공개 URL을 Microsoft Edge에서 검증했다. 영상은170.02초·1920×1080이며 재생·일시정지·125초 구간 이동을 통과했고 JavaScript 오류는 없었다. 서버가 `Range: bytes=0-1023` 요청에 HTTP206과 정확한1024바이트를 반환하는 것도 확인했다. 전체 재생·부분 범위·접미 범위·잘못된 범위·HEAD에 대한 추가 Node 테스트5개가 통과했다.
+
+재실행: `node --test dev/tests/demo-range.test.cjs`, `python dev/tests/demo_video_qa.py --url https://tax-return-review-quest.pages.dev/demo/`. 실제 클릭·대기를 촬영한 영상이 아니라는 기존 소개 편집본의 한계는 동일하다.

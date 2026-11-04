@@ -8,8 +8,10 @@ for rel in re.findall(r'(?:src|href|data-src)="([^"]+)"',page.read_text(encoding
         assert (page.parent/rel.split('#')[0]).resolve().exists(),rel
 paths=[ROOT/'index.html',ROOT/'README.md']
 if (ROOT/'경정청구.exe').exists(): paths.append(ROOT/'경정청구.exe')
-for directory in ['app','docs']:
+for directory in ['app','docs','demo']:
     paths.extend(p for p in (ROOT/directory).rglob('*') if p.is_file())
+for rel in ['outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4','outputs/main-quest/video/preview-presenter.png']:
+    if (ROOT/rel).exists():paths.append(ROOT/rel)
 manifest={'version':'2026-11-04-public-source','files':[{'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}for p in sorted(paths)]}
 (ROOT/'dev'/'release-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')
 print('PASS: runtime links and',len(paths),'manifest entries')

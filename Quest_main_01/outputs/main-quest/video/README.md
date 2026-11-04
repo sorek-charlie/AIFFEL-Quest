@@ -1,5 +1,9 @@
 # 실사형 AI 남성 발표자 · 캡처 기반 소개 영상
 
+## 웹에서 바로 재생
+
+[데모 웹 재생 페이지](https://tax-return-review-quest.pages.dev/demo/)를 열고 재생 버튼을 누르세요. GitHub의 MP4 미리보기 제한이나 Windows 기본 동영상 앱 등록 오류가 있어도 브라우저에서 재생할 수 있습니다. 로컬 재생은 루트의 `demo/index.html`을 Chrome·Edge로 여세요.
+
 ## 결과물
 
 - `main-quest-capture-introduction-1080p.mp4`: 2분50초,1920×1080·16:9, 한국어 남성 AI 내레이션·자막 포함 소개 편집본.

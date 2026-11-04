@@ -16,6 +16,27 @@ async function passwordHash(password,salt){
  return hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:enc.encode(salt),iterations:100000,hash:'SHA-256'},key,256));
 }
 function equal(a,b){let diff=a.length^b.length;for(let i=0;i<Math.max(a.length,b.length);i++)diff|=(a.charCodeAt(i)||0)^(b.charCodeAt(i)||0);return diff===0;}
+async function publicDemoVideo(request,env){
+ const assetHeaders=new Headers(request.headers);assetHeaders.delete('Range');assetHeaders.delete('If-Range');assetHeaders.set('Accept-Encoding','identity');
+ const full=await env.ASSETS.fetch(new Request(request.url,{method:'GET',headers:assetHeaders}));
+ if(!full.ok)return full;
+ const resultHeaders=new Headers(full.headers);resultHeaders.set('Content-Type','video/mp4');resultHeaders.set('Accept-Ranges','bytes');resultHeaders.set('Cache-Control','public, max-age=600');
+ const range=request.headers.get('Range'),ifRange=request.headers.get('If-Range');
+ if(!range||(ifRange&&ifRange!==full.headers.get('ETag')&&ifRange!==full.headers.get('Last-Modified'))){
+  return new Response(request.method==='HEAD'?null:full.body,{status:200,headers:resultHeaders});
+ }
+ const bytes=await full.arrayBuffer(),length=bytes.byteLength,match=/^bytes=(\d*)-(\d*)$/.exec(range);
+ let start=0,end=length-1;
+ if(match&&(match[1]||match[2])){
+  if(!match[1])start=Math.max(0,length-Number(match[2]));
+  else {start=Number(match[1]);if(match[2])end=Math.min(end,Number(match[2]));}
+ }
+ if(!match||(!match[1]&&!match[2])||(!match[1]&&Number(match[2])===0)||!Number.isSafeInteger(start)||!Number.isSafeInteger(end)||start>=length||start>end){
+  resultHeaders.set('Content-Range',`bytes */${length}`);resultHeaders.delete('Content-Length');return new Response(null,{status:416,headers:resultHeaders});
+ }
+ resultHeaders.set('Content-Range',`bytes ${start}-${end}/${length}`);resultHeaders.set('Content-Length',String(end-start+1));
+ return new Response(request.method==='HEAD'?null:bytes.slice(start,end+1),{status:206,headers:resultHeaders});
+}
 async function limited(db,key,max,seconds){
  const now=Date.now(),expiry=now+seconds*1000;
  const row=await db.prepare('INSERT INTO auth_limits(key,count,expires_at) VALUES (?,1,?) ON CONFLICT(key) DO UPDATE SET count=CASE WHEN expires_at<=? THEN 1 ELSE count+1 END, expires_at=CASE WHEN expires_at<=? THEN excluded.expires_at ELSE expires_at END RETURNING count').bind(key,expiry,now,now).first();
@@ -24,6 +45,7 @@ async function limited(db,key,max,seconds){
 export default {
  async fetch(request,env,ctx){
   const url=new URL(request.url),path=url.pathname;
+  if(path==='/outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4'&&['GET','HEAD'].includes(request.method))return publicDemoVideo(request,env);
   if(!path.startsWith('/api/auth/')){
    if(path==='/'||path==='/index'||path==='/index.html'||/^\/app(?:\/(?:index(?:\.html)?)?)?\/?$/.test(path)||path.startsWith('/docs/')){
     if(!env.AUTH_DB)return new Response('로그인 서비스를 준비 중입니다. 잠시 후 다시 접속하세요.',{status:503});
