@@ -6,11 +6,26 @@ using System.Reflection;
 using System.Windows.Forms;
 class SubmissionBundle {
   [STAThread] static int Main(string[] args) {
+    if (Array.IndexOf(args, "--smoke-test") >= 0) return Run(args);
+    using (var gate = new System.Threading.Mutex(false, @"Local\CharlieScheduler.Desktop")) {
+      bool owned = false;
+      try {
+        try { owned = gate.WaitOne(0); } catch (System.Threading.AbandonedMutexException) { owned = true; }
+        if (!owned) {
+          string view = Array.IndexOf(args,"--gmail-review") >= 0 ? "?view=gmail" : Array.IndexOf(args,"--google-calendar") >= 0 ? "?view=google" : "";
+          Process.Start(new ProcessStartInfo("http://127.0.0.1:18701/" + view) { UseShellExecute = true });
+          return 0;
+        }
+        return Run(args);
+      } finally { if (owned) gate.ReleaseMutex(); }
+    }
+  }
+  static int Run(string[] args) {
     try {
       bool smoke = Array.IndexOf(args, "--smoke-test") >= 0;
       bool gmailOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("메일") || Array.IndexOf(args,"--gmail-review") >= 0;
       bool googleOnly = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location).Contains("구글") || Array.IndexOf(args,"--google-calendar") >= 0;
-      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261103-google-recovery-v3");
+      string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ORBIT Scheduler", "bundle", "submission-20261105-korean-calendar-v12");
       Directory.CreateDirectory(root);
       using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("payload.zip"))
       using (var archive = new ZipArchive(resource, ZipArchiveMode.Read)) {

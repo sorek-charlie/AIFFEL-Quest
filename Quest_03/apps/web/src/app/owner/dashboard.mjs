@@ -1,3 +1,2 @@
 import {threeDayView} from './three-day.mjs';
-export function dashboardView(state){return threeDayView(state);}
-
+export function dashboardView(state,date){return threeDayView(state,date);}

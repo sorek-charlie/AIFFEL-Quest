@@ -39,3 +39,5 @@ oauth-token*.json
 *.key
 *.pem
 smoke-result.txt
+
+.github-updates-blocked
