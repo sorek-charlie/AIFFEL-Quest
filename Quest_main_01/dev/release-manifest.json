@@ -238,8 +238,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 473759,
-      "sha256": "c082fe9c1c47a46fc929764bedcf9685cdad9188a687ecf24c3a76d17f20049d"
+      "bytes": 476459,
+      "sha256": "047399d5ef068f4ee25651447c2dd7fc95966305b35defa32306b1842a4c1c4f"
     },
     {
       "path": "docs/00_설치_사용안내.html",
@@ -298,8 +298,8 @@
     },
     {
       "path": "docs/submission/VERIFICATION.md",
-      "bytes": 7562,
-      "sha256": "118341d762cfa0c88d7be8501eb2fd08d91214fb751e1bdc2cb0eb066bf85395"
+      "bytes": 7830,
+      "sha256": "a83c659b0efc7660319dcf8ebdf5fccad4fe1923681308d4637ae7a04464e1c3"
     },
     {
       "path": "docs/추가확인_질문목록.txt",
@@ -323,8 +323,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 3968,
-      "sha256": "3f37cc0c6a6b53b3d49bfe29a059f9985744a363fcfc0e53cae86bbaa65fb896"
+      "bytes": 4119,
+      "sha256": "abe7bd62164cfc511c290cfbfb4afabb793a9097a9e35d5b5388122d4f9fa066"
     },
     {
       "path": "경정청구.exe",

@@ -35,7 +35,12 @@ def main():
   page.locator('#document-ai summary').click()
   page.wait_for_function("(()=>{const d=document.getElementById('document-ai');const a=d.querySelector('article');const y=a.getBoundingClientRect().top;return d.open && y>=0 && y<=32 && document.activeElement===a})()")
   assert not page.locator('#document-prd').evaluate('e=>e.open')
-  page.locator('#document-ai summary').click()
+  page.locator('#document-ai .document-navigation [data-doc-link="report"]').click()
+  page.wait_for_function("(()=>{const d=document.getElementById('document-report');const a=d.querySelector('article');const y=a.getBoundingClientRect().top;return d.open && y>=0 && y<=32 && document.activeElement===a})()")
+  assert not page.locator('#document-ai').evaluate('e=>e.open')
+  assert page.locator('#document-report .document-navigation a').count()==4
+  assert page.locator('#document-report summary').evaluate('e=>getComputedStyle(e).color')=='rgb(36, 88, 201)'
+  page.locator('#document-report summary').click()
   page.locator('#readmeHeading').scroll_into_view_if_needed()
   page.screenshot(path=str(out/('online-readme.png' if a.url else 'local-readme.png')),full_page=True)
   page.locator('#replayButton').click()
@@ -43,5 +48,5 @@ def main():
   page.locator('#playButton').click()
   page.screenshot(path=str(out/('online.png' if a.url else 'local.png')),full_page=True)
   assert not errors,errors;browser.close()
- print(json.dumps({'mode':a.url or str(a.root),'play_pause_seek':'PASS','enlarged_player':'PASS','ended_to_readme':'PASS','exclusive_documents':'PASS','document_start_scroll':'PASS','replay':'PASS','media':info,'javascript_errors':errors},ensure_ascii=True))
+ print(json.dumps({'mode':a.url or str(a.root),'play_pause_seek':'PASS','enlarged_player':'PASS','ended_to_readme':'PASS','exclusive_documents':'PASS','document_start_scroll':'PASS','bottom_document_links':'PASS','replay':'PASS','media':info,'javascript_errors':errors},ensure_ascii=True))
 if __name__=='__main__':main()
