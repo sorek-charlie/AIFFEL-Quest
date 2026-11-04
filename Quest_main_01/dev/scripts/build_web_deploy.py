@@ -1,8 +1,9 @@
 """Stage only browser runtime and its public help pages for hosting."""
 from pathlib import Path
-import hashlib,json,shutil
+import hashlib,json,shutil,subprocess,sys
 
 ROOT=Path(__file__).resolve().parents[2]
+subprocess.run([sys.executable,str(ROOT/'dev/scripts/build_demo_page.py')],check=True)
 paths=[ROOT/'index.html']
 paths.extend([ROOT/'demo/index.html',ROOT/'outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4',ROOT/'outputs/main-quest/video/preview-presenter.png'])
 paths.extend(p for p in (ROOT/'app').rglob('*') if p.is_file() and p.suffix in {'.html','.css','.js','.json','.txt'})

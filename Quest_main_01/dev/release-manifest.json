@@ -238,8 +238,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 4756,
-      "sha256": "17d7a7202d0ccfed5e0aa5d0cba82297c5896959602c9da51c6850ad5037942c"
+      "bytes": 473061,
+      "sha256": "2c96649be5a315e121271184a2da0af90e44d57f6cee53a3a39a3567ef3fa565"
     },
     {
       "path": "docs/00_설치_사용안내.html",
@@ -298,8 +298,8 @@
     },
     {
       "path": "docs/submission/VERIFICATION.md",
-      "bytes": 6086,
-      "sha256": "97e92396db17e6107765991419253c35e877038e0a9e63378d2fadfa1c7988c4"
+      "bytes": 7301,
+      "sha256": "86cf4c344a8880654f51da205cd26f449c0f836fc6838a1de87d0059c4272147"
     },
     {
       "path": "docs/추가확인_질문목록.txt",
@@ -313,18 +313,18 @@
     },
     {
       "path": "outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4",
-      "bytes": 6835794,
-      "sha256": "9a6863aadba107a8154bcfa46444599b4edfc5689d9e9fb5eace054e409805dc"
+      "bytes": 16007588,
+      "sha256": "a481cd0141ce13a1131f58c40fa8d1740d316b88707d880cc1baae4d4a66c839"
     },
     {
       "path": "outputs/main-quest/video/preview-presenter.png",
-      "bytes": 397803,
-      "sha256": "805294dd43383ded4de09a6def10b8c0d886d67226327f835119f0f636ee1b50"
+      "bytes": 825899,
+      "sha256": "a04b4dc26bf6d7bb3071feabf8c7b877bcc8ba938f268f2794d9d732604c47bf"
     },
     {
       "path": "README.md",
-      "bytes": 2933,
-      "sha256": "37b1dfa27286cc5b5667d274f78c8d570448871d898f0750b9393ae8a7aab847"
+      "bytes": 3968,
+      "sha256": "3f37cc0c6a6b53b3d49bfe29a059f9985744a363fcfc0e53cae86bbaa65fb896"
     },
     {
       "path": "경정청구.exe",

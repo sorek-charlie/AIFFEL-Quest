@@ -1,19 +1,29 @@
 {
-  "version": 3,
-  "duration_seconds": 170.02,
+  "version": 4,
+  "date": "2026-11-05",
+  "duration_seconds": 170.12,
   "resolution": "1920x1080",
   "aspect": "16:9",
-  "audio": "AAC stereo 48000Hz Korean male AI voice",
+  "audio": "AAC stereo 48000Hz Korean AI voice",
   "volume_db": {
     "mean_volume": -20.0,
-    "max_volume": -4.4
+    "max_volume": -4.3
   },
   "full_decode": "PASS",
   "long_black_frames": "none",
   "visual_review_frames": 14,
-  "privacy_review": "14 scenes + three upload progress states reviewed; identity headers excluded by crop; numerical values unchanged",
-  "input_parity": "18 individual files versus ZIP: identical five-year result rows; 5/5 returns and 110 employment records",
-  "sha256": "9a6863aadba107a8154bcfa46444599b4edfc5689d9e9fb5eace054e409805dc",
-  "limit": "실제 앱 조작 후 화면 캡처 편집. 회원가입은 양식 안내, 사용자 로그인 입력 생략. 전문가 과제 상담준비이며 회신·세액 확정 미완료.",
-  "login_title": "경정청구 도우미"
+  "presenter": "Local Wav2Lip speech-driven mouth animation on fictional Dreamina presenter; intro and outro",
+  "robot": "Reference-based transparent sprite; smooth 25fps cursor movement and fingertip tap overlays",
+  "pointer_motion_frame_delta": 0.7584027777777778,
+  "privacy_review": "identity headers excluded; company label 주식회사0000; numerical cells not rewritten; case material processed locally",
+  "sha256": "a481cd0141ce13a1131f58c40fa8d1740d316b88707d880cc1baae4d4a66c839",
+  "limit": "실제 앱 조작 후 캡처 편집. 로봇은 안내용 포인터 연출. 회원가입은 양식 안내, 로그인 입력 구간 비공개. 전문가 회신·세액 확정 미완료.",
+  "touch_effect": "hollow ring, no filled box over numerical cells",
+  "viewer_checks": {
+    "enlarged_player": "PASS",
+    "ended_to_readme": "PASS",
+    "exclusive_document_dropdowns": "PASS",
+    "replay": "PASS",
+    "browser_errors": 0
+  }
 }
