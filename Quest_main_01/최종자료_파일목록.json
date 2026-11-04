@@ -1,5 +1,4 @@
 {
-  "date": "2026-11-04",
   "files": [
     {
       "path": ".gitattributes",
@@ -258,8 +257,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 4549,
-      "sha256": "2bbf9e46d3a19098ef24a25fa309cf454c135a65a9d862f29403f14510a0b792"
+      "bytes": 4859,
+      "sha256": "33fba93066b1b01695045ba685657cd9212afcc7bd555bcdf195087f5eef28ac"
     },
     {
       "path": "dev/cloudflare/schema.sql",
@@ -274,12 +273,17 @@
     {
       "path": "dev/release-manifest.json",
       "bytes": 14599,
-      "sha256": "8c05d7141b01aebe8e30c21822a0425bd8531dd40331e1edd71eddd090b1863d"
+      "sha256": "53dd490842d703e5526931914972764f7e8938e41593b59a57649d191509689c"
     },
     {
       "path": "dev/scripts/AcquisitionHost.cs",
       "bytes": 15845,
       "sha256": "0dd9aebe3d5198dee4e1e01a35db3cb6cecfac70b86509c5e521123b9706d7ba"
+    },
+    {
+      "path": "dev/scripts/build_case_demo.py",
+      "bytes": 12504,
+      "sha256": "6d5b979ea4fa9a6469e7b0f8740f44b177ba2425d764afa9370e6ad910c0e9a3"
     },
     {
       "path": "dev/scripts/build_dreamina_demo.py",
@@ -468,8 +472,8 @@
     },
     {
       "path": "docs/submission/storyboard/DREAMINA_실사영상_편집표.md",
-      "bytes": 5164,
-      "sha256": "5096e9fbbe5b812cf4291b79366a329118d94b2027e3d7b5eff1523e7bb17e52"
+      "bytes": 6401,
+      "sha256": "0bb546c15d725975d79fda056693e32300765789aaa51dafa79a9f90cd8cce6c"
     },
     {
       "path": "docs/submission/storyboard/README.md",
@@ -543,8 +547,8 @@
     },
     {
       "path": "docs/submission/VERIFICATION.md",
-      "bytes": 5599,
-      "sha256": "0ad368b8de310e917d33f54fbc1ccf3d989a849ad8b3bf8ad6da21edd87a1fe7"
+      "bytes": 5654,
+      "sha256": "9e6808e82d9b77ba8c8f5d2c42f69c503f3c55cb63c2afeaf67e158fca83a957"
     },
     {
       "path": "docs/추가확인_질문목록.txt",
@@ -583,63 +587,133 @@
     },
     {
       "path": "outputs/main-quest/video/korean-captions.srt",
-      "bytes": 2975,
-      "sha256": "aef5d9c626c307838d74b2be022bafb44d2dcb1d311cc0bd5851b915af7373b8"
+      "bytes": 3880,
+      "sha256": "4cc3b86b24333a746364ca0a21e7ec4ee9d2676701e463eb27e37c42758fa617"
     },
     {
       "path": "outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4",
-      "bytes": 6227416,
-      "sha256": "0848af59f713f10b1d12c0bcf964e9e344d6469af140c20622d522d4fed70900"
+      "bytes": 6834436,
+      "sha256": "169f6e2b79f2bc7cb04a11a92885addb5437a3fd97b142a722542fc6d67eeb3b"
     },
     {
       "path": "outputs/main-quest/video/narration-ko.txt",
-      "bytes": 2311,
-      "sha256": "00e1e00ec7158791415768cd3071751821dbb41c52e7d6d5189105c639b5bd78"
+      "bytes": 2933,
+      "sha256": "0509236790bf8ace767f40df66cd12dc0f7554841afe40c1242ff48798aadf5d"
     },
     {
       "path": "outputs/main-quest/video/preview-login.png",
-      "bytes": 253899,
-      "sha256": "f598576aa6024a7327be98afb2d2bc2efa5a6f4126de66dae18078bef2de2bde"
+      "bytes": 213077,
+      "sha256": "7bd18f105c26c0f163188b30c8463cfcfd529453d579a90346c8e3c2d1660e29"
     },
     {
       "path": "outputs/main-quest/video/preview-presenter.png",
-      "bytes": 704648,
-      "sha256": "cffb7966fd92de086d9f92b5768ef1a9a87182849e9e5ef7dbaa307314ba87a0"
+      "bytes": 397803,
+      "sha256": "805294dd43383ded4de09a6def10b8c0d886d67226327f835119f0f636ee1b50"
     },
     {
       "path": "outputs/main-quest/video/preview-report.png",
-      "bytes": 252877,
-      "sha256": "7da262494df022c67af8878155786f30576153514d8bf72f89662939d69a2fed"
+      "bytes": 396959,
+      "sha256": "e36250f0ffd990e78f2b5c39b2d30871e8526c3f5a8bc1063d1535fcb58a04d9"
     },
     {
       "path": "outputs/main-quest/video/preview-results.png",
-      "bytes": 337891,
-      "sha256": "e04b2cf08aa517c2529b0a112995b561fa25501b0770b190903379072d6e53b8"
+      "bytes": 397803,
+      "sha256": "805294dd43383ded4de09a6def10b8c0d886d67226327f835119f0f636ee1b50"
     },
     {
       "path": "outputs/main-quest/video/preview-signup.png",
-      "bytes": 717396,
-      "sha256": "85fff2ed1427b53f76ae9cc14978179c447934ab3bbb2f59b7a218c8c892420b"
+      "bytes": 196770,
+      "sha256": "5109ba25d48e9f07dd94cf880d2546371496f13c5e60eeaab73bb23b2a590717"
     },
     {
       "path": "outputs/main-quest/video/preview-upload.png",
-      "bytes": 358182,
-      "sha256": "ba4c6e6e283d1898b510faa6589b70287b13b11522f42085c81a5949296a3aae"
+      "bytes": 462250,
+      "sha256": "5f8f3d5511599fc88060d6681d90846c113bc80942ac3f6800e1bbb539683046"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-01.png",
+      "bytes": 213077,
+      "sha256": "7bd18f105c26c0f163188b30c8463cfcfd529453d579a90346c8e3c2d1660e29"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-02.png",
+      "bytes": 196770,
+      "sha256": "5109ba25d48e9f07dd94cf880d2546371496f13c5e60eeaab73bb23b2a590717"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-03.png",
+      "bytes": 209088,
+      "sha256": "02d1fec2fb6a0b21bf09dab6314511743e9268f7af49b046f5e4febc71f830a2"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-04.png",
+      "bytes": 462250,
+      "sha256": "5f8f3d5511599fc88060d6681d90846c113bc80942ac3f6800e1bbb539683046"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-05.png",
+      "bytes": 276136,
+      "sha256": "db6c0205ab7dc361ce29c8fc48cd20c5f8e224ee6cadddd6891f83bc17a86cc7"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-06.png",
+      "bytes": 521075,
+      "sha256": "65583dc8da73b6a900ccec1c9504f1e412a28f869f635fe6337a12675b1b8c94"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-07.png",
+      "bytes": 455622,
+      "sha256": "da6fd2c598908c1ac7ab8e8cf8ee2c0303c70d502755850d5443f6aa546c2979"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-08.png",
+      "bytes": 397803,
+      "sha256": "805294dd43383ded4de09a6def10b8c0d886d67226327f835119f0f636ee1b50"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-09.png",
+      "bytes": 315704,
+      "sha256": "2c286ac4f589953f03a99562e6e9888b5e4ab7a18e06f16a4ab46af5606e5009"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-10.png",
+      "bytes": 639360,
+      "sha256": "f5995d61c061e63ead194300d31081ff33548285d3451a8700424187ac228736"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-11.png",
+      "bytes": 378065,
+      "sha256": "9acdf4a3b343fa1357fc6cedf1f01552ded469dcab5df395c93f7c2eaa51f83e"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-12.png",
+      "bytes": 396959,
+      "sha256": "e36250f0ffd990e78f2b5c39b2d30871e8526c3f5a8bc1063d1535fcb58a04d9"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-13.png",
+      "bytes": 296277,
+      "sha256": "0a24950997158a6be6e2a01a2fbc1483e162ba94b73a146dbfd36e92deab3e7f"
+    },
+    {
+      "path": "outputs/main-quest/video/previews/scene-14.png",
+      "bytes": 848055,
+      "sha256": "38ff8789768922f32bb2a065ad030659b1c61305f93c1a6f78beef6998548577"
     },
     {
       "path": "outputs/main-quest/video/qa-report.json",
-      "bytes": 544,
-      "sha256": "a7d9ef7410ef8f0c7947921ee7df3e37026bc1d390413f37ff9a52841c160542"
+      "bytes": 859,
+      "sha256": "50f3d96ec131b3099933f76ff1a2bd9407fe75f2ec93e081949b4e791c307027"
     },
     {
       "path": "outputs/main-quest/video/README.md",
-      "bytes": 3064,
-      "sha256": "95e5686c2ced347d36a89be97a34dc677539db8f0ea5bd28a18fee2b2c687411"
+      "bytes": 1508,
+      "sha256": "048d96b99cfaaea64100cd0361e987b326a5e7d4e2f2fd1a3b6e5a080c66148c"
     },
     {
       "path": "outputs/main-quest/video/video-production.json",
-      "bytes": 5946,
-      "sha256": "3a129c2c2ae6a46f5e5e5e407f71e048d6bb620184ec28be01d4ac3c72fb79b8"
+      "bytes": 7072,
+      "sha256": "c326625e5c313fa9a999c85198c8c91d671733b83b1692cb27167c00ecd3d36b"
     },
     {
       "path": "PRD.md",
@@ -648,8 +722,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 3497,
-      "sha256": "5a9224fbfff1701be880840a33c985b81696fe5353b975ffc5b8c10f5702f848"
+      "bytes": 4310,
+      "sha256": "72c4babace94475481450e2425746e434ea3249503eac1cc1c0739cb272234a4"
     },
     {
       "path": "retrospective.md",

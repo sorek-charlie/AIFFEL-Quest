@@ -1,15 +1,18 @@
 {
+  "version": 2,
   "duration_seconds": 170.02,
   "resolution": "1920x1080",
   "aspect": "16:9",
   "audio": "AAC stereo 48000Hz Korean male AI voice",
   "volume_db": {
-    "mean_volume": -20.9,
-    "max_volume": -4.3
+    "mean_volume": -20.0,
+    "max_volume": -4.4
   },
   "full_decode": "PASS",
   "long_black_frames": "none",
-  "visual_review_frames": 6,
-  "sha256": "0848af59f713f10b1d12c0bcf964e9e344d6469af140c20622d522d4fed70900",
-  "limit": "실제 앱 전체 녹화가 아닌 캡처 기반 소개 편집본. 발표자 원본720p 확대. 미촬영 기능은 화면·음성으로 구분."
+  "visual_review_frames": 14,
+  "privacy_review": "14 scenes + three upload progress states reviewed; identity headers excluded by crop; numerical values unchanged",
+  "input_parity": "18 individual files versus ZIP: identical five-year result rows; 5/5 returns and 110 employment records",
+  "sha256": "169f6e2b79f2bc7cb04a11a92885addb5437a3fd97b142a722542fc6d67eeb3b",
+  "limit": "실제 앱 조작 후 화면 캡처 편집. 회원가입은 양식 안내, 사용자 로그인 입력 생략. 전문가 과제 상담준비이며 회신·세액 확정 미완료."
 }

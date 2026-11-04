@@ -238,8 +238,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 4549,
-      "sha256": "2bbf9e46d3a19098ef24a25fa309cf454c135a65a9d862f29403f14510a0b792"
+      "bytes": 4859,
+      "sha256": "33fba93066b1b01695045ba685657cd9212afcc7bd555bcdf195087f5eef28ac"
     },
     {
       "path": "docs/00_설치_사용안내.html",
@@ -308,8 +308,8 @@
     },
     {
       "path": "docs/submission/storyboard/DREAMINA_실사영상_편집표.md",
-      "bytes": 5164,
-      "sha256": "5096e9fbbe5b812cf4291b79366a329118d94b2027e3d7b5eff1523e7bb17e52"
+      "bytes": 6401,
+      "sha256": "0bb546c15d725975d79fda056693e32300765789aaa51dafa79a9f90cd8cce6c"
     },
     {
       "path": "docs/submission/storyboard/README.md",
@@ -383,8 +383,8 @@
     },
     {
       "path": "docs/submission/VERIFICATION.md",
-      "bytes": 5599,
-      "sha256": "0ad368b8de310e917d33f54fbc1ccf3d989a849ad8b3bf8ad6da21edd87a1fe7"
+      "bytes": 5654,
+      "sha256": "9e6808e82d9b77ba8c8f5d2c42f69c503f3c55cb63c2afeaf67e158fca83a957"
     },
     {
       "path": "docs/추가확인_질문목록.txt",
@@ -398,18 +398,18 @@
     },
     {
       "path": "outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4",
-      "bytes": 6227416,
-      "sha256": "0848af59f713f10b1d12c0bcf964e9e344d6469af140c20622d522d4fed70900"
+      "bytes": 6834436,
+      "sha256": "169f6e2b79f2bc7cb04a11a92885addb5437a3fd97b142a722542fc6d67eeb3b"
     },
     {
       "path": "outputs/main-quest/video/preview-presenter.png",
-      "bytes": 704648,
-      "sha256": "cffb7966fd92de086d9f92b5768ef1a9a87182849e9e5ef7dbaa307314ba87a0"
+      "bytes": 397803,
+      "sha256": "805294dd43383ded4de09a6def10b8c0d886d67226327f835119f0f636ee1b50"
     },
     {
       "path": "README.md",
-      "bytes": 3497,
-      "sha256": "5a9224fbfff1701be880840a33c985b81696fe5353b975ffc5b8c10f5702f848"
+      "bytes": 4310,
+      "sha256": "72c4babace94475481450e2425746e434ea3249503eac1cc1c0739cb272234a4"
     },
     {
       "path": "경정청구.exe",
