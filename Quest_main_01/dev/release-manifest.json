@@ -273,18 +273,18 @@
     },
     {
       "path": "docs/submission/AI_COLLABORATION.md",
-      "bytes": 4537,
-      "sha256": "bf65d4a0becc73595e95d7a0e8a4ba0963b4e7d708da2e3d8a34b8cd6949fc4f"
+      "bytes": 4543,
+      "sha256": "b0185adfb93a53c8b70033149a9d6bf6ae341bb39e027db86fbc8ba272fcffd8"
     },
     {
       "path": "docs/submission/DEMO_SCRIPT.md",
-      "bytes": 545,
-      "sha256": "ad1e93bac31a5af199a57cd5359cfb6e8a63a42455466320646ea2b7b011c144"
+      "bytes": 570,
+      "sha256": "983479d189269df7134fb00929345f05dd8988c9fc694a82e26c44ae99ac7923"
     },
     {
       "path": "docs/submission/README.md",
-      "bytes": 4322,
-      "sha256": "e32c67dd435734d13f449e5b30011a8f8a2699ac06e71cf7a3f3ef31b4177270"
+      "bytes": 4154,
+      "sha256": "19e3b618d7e301306f09d7d1ddcb3f3b758316abf3ebf6bc4e500002be2e7606"
     },
     {
       "path": "docs/submission/screenshots/01-individual-upload.png",
@@ -313,8 +313,8 @@
     },
     {
       "path": "docs/submission/storyboard/README.md",
-      "bytes": 1340,
-      "sha256": "642d8d47446bd5af6f9a0f670b43b8959c9e1ead08b53e8366c92b964cabd37c"
+      "bytes": 1334,
+      "sha256": "2d02cc94f859309a505de2da8a7f72008ccb1c66aa1bfe794046f16b7b561a42"
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/01-service-access.png",
@@ -368,8 +368,8 @@
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/README.md",
-      "bytes": 2467,
-      "sha256": "65ffca0473d300c096d9c55fce0be61869ef332cfb3a7641bccd5c1be41b4fae"
+      "bytes": 2503,
+      "sha256": "db6333bb1b146716be3b450a6541279624966a43f4336093ad882a3d37274f42"
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/scene-manifest.json",

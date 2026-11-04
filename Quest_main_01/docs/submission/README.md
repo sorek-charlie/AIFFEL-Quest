@@ -11,7 +11,6 @@
 | 회고 초안 | [retrospective.md](../../retrospective.md) | 어려움·AI 협업·배운 점·다음 단계 |
 | AI 협업 기록 | [AI_COLLABORATION.md](AI_COLLABORATION.md) | 개인정보를 뺀 실제 요청 발췌와 작업 요약 |
 | 가상자료 | [샘플 안내](../../samples/README.md) | 5개년 XLSX, 기타 TXT |
-| AI 영상 제작·최신 시연 대본 | [AI영상제작.md](../../AI영상제작.md) | 로그인·가입 타이머를 포함한2분50초 구성·복사 지시문 |
 | AI 영상·Cloudflare 가이드 | [가이드.md](../../가이드.md) | AI 전달 지시문·편집 순서·기존 배포 주소 활용 |
 | 기능 검증·캡처 | [VERIFICATION.md](VERIFICATION.md) | 샘플 입력·보고서·초기화 확인 |
 | 실행·배포 안내 | [README.md](../../README.md) | 로컬 실행·GitHub Pages 설정 |

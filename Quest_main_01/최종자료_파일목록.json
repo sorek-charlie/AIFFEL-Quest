@@ -18,28 +18,8 @@
     },
     {
       "path": "00_제출자료안내.md",
-      "bytes": 2441,
-      "sha256": "86251fd641cf8c871830d28be31975405d3dc5eaf90d4e635accc1d943dd18d5"
-    },
-    {
-      "path": "AI영상제작.md",
-      "bytes": 8368,
-      "sha256": "fa5c70543a2d8e7d2decfa3ce714b1a497f2575d0600eb39ee02304044e2d023"
-    },
-    {
-      "path": "GitHub 저장소.url",
-      "bytes": 95,
-      "sha256": "a7b2e27a6824d3dce0f5978dd1bbf8da4837af9c8d040540b82717b83abcd624"
-    },
-    {
-      "path": "PRD.md",
-      "bytes": 3553,
-      "sha256": "d2ac20808e3c313126a45aef351ce8423758c7a6a0336880eeb953932c97d27c"
-    },
-    {
-      "path": "README.md",
-      "bytes": 3497,
-      "sha256": "5a9224fbfff1701be880840a33c985b81696fe5353b975ffc5b8c10f5702f848"
+      "bytes": 2371,
+      "sha256": "bbe00b0514b351ea6569e5176ac7c8689197b08d85a416d51a44afa5e2d8c8f7"
     },
     {
       "path": "app/assets/acquisition-core.js",
@@ -267,14 +247,14 @@
       "sha256": "c66437f80886aecf074804b61af4cc10ad90a95310c8e0a717f31ea377c26b03"
     },
     {
-      "path": "app/vendor/webview2/WebView2Loader.dll",
-      "bytes": 194912,
-      "sha256": "d3fce90bdeecb08596e377dea6a316354dd8949e32ff09b89d51be00c14e21b6"
-    },
-    {
       "path": "app/vendor/webview2/source.json",
       "bytes": 284,
       "sha256": "d12fa33b9965bd50b4ba83052dac4d429c1eec3b6904bd01fe475dfe6c602b26"
+    },
+    {
+      "path": "app/vendor/webview2/WebView2Loader.dll",
+      "bytes": 194912,
+      "sha256": "d3fce90bdeecb08596e377dea6a316354dd8949e32ff09b89d51be00c14e21b6"
     },
     {
       "path": "demo/index.html",
@@ -294,27 +274,12 @@
     {
       "path": "dev/release-manifest.json",
       "bytes": 14599,
-      "sha256": "ccd43a788c9efa91f53eb6067249b2c59b27cb6afb76908b72d926b5e18bfb17"
+      "sha256": "8c05d7141b01aebe8e30c21822a0425bd8531dd40331e1edd71eddd090b1863d"
     },
     {
       "path": "dev/scripts/AcquisitionHost.cs",
       "bytes": 15845,
       "sha256": "0dd9aebe3d5198dee4e1e01a35db3cb6cecfac70b86509c5e521123b9706d7ba"
-    },
-    {
-      "path": "dev/scripts/InstitutionCollectorForm.cs",
-      "bytes": 16360,
-      "sha256": "aae0a713a846d3a779fafb414d193cd8b3be97bc50e0aab454cb293b0223d3dc"
-    },
-    {
-      "path": "dev/scripts/InstitutionCollectorSmoke.cs",
-      "bytes": 3100,
-      "sha256": "4635cf90f7aeaf7cdfdc9345df3ac892625ad28ce3b325744857a54162d49173"
-    },
-    {
-      "path": "dev/scripts/ReturnCheckLauncher.cs",
-      "bytes": 7362,
-      "sha256": "0524358530278c66743af80d68b6dd74e6610e68cffb6ed458ddb59fae498276"
     },
     {
       "path": "dev/scripts/build_dreamina_demo.py",
@@ -348,8 +313,8 @@
     },
     {
       "path": "dev/scripts/collect_submission.py",
-      "bytes": 5998,
-      "sha256": "5d50db21bff56fe1692a3014c77acaff09b87339f35850f2b494fa79283958d0"
+      "bytes": 5252,
+      "sha256": "09e55dab1393dd940ce69990d7be49cb7d9bb551bbf46ea236ac694752411f14"
     },
     {
       "path": "dev/scripts/export_video_scene_frames.ps1",
@@ -357,9 +322,24 @@
       "sha256": "401e65c24d9edc37a93add3b898be1a033fe429d75768379d8e52c2640f19df2"
     },
     {
+      "path": "dev/scripts/InstitutionCollectorForm.cs",
+      "bytes": 16360,
+      "sha256": "aae0a713a846d3a779fafb414d193cd8b3be97bc50e0aab454cb293b0223d3dc"
+    },
+    {
+      "path": "dev/scripts/InstitutionCollectorSmoke.cs",
+      "bytes": 3100,
+      "sha256": "4635cf90f7aeaf7cdfdc9345df3ac892625ad28ce3b325744857a54162d49173"
+    },
+    {
       "path": "dev/scripts/private_backup.py",
       "bytes": 2134,
       "sha256": "91bb86bc6577bc3d6ffb97bcfefe331bb87ba029a542d9470e0d5dd49b352ef5"
+    },
+    {
+      "path": "dev/scripts/ReturnCheckLauncher.cs",
+      "bytes": 7362,
+      "sha256": "0524358530278c66743af80d68b6dd74e6610e68cffb6ed458ddb59fae498276"
     },
     {
       "path": "dev/scripts/update_manifest.py",
@@ -453,23 +433,18 @@
     },
     {
       "path": "docs/submission/AI_COLLABORATION.md",
-      "bytes": 4537,
-      "sha256": "bf65d4a0becc73595e95d7a0e8a4ba0963b4e7d708da2e3d8a34b8cd6949fc4f"
+      "bytes": 4543,
+      "sha256": "b0185adfb93a53c8b70033149a9d6bf6ae341bb39e027db86fbc8ba272fcffd8"
     },
     {
       "path": "docs/submission/DEMO_SCRIPT.md",
-      "bytes": 545,
-      "sha256": "ad1e93bac31a5af199a57cd5359cfb6e8a63a42455466320646ea2b7b011c144"
+      "bytes": 570,
+      "sha256": "983479d189269df7134fb00929345f05dd8988c9fc694a82e26c44ae99ac7923"
     },
     {
       "path": "docs/submission/README.md",
-      "bytes": 4322,
-      "sha256": "e32c67dd435734d13f449e5b30011a8f8a2699ac06e71cf7a3f3ef31b4177270"
-    },
-    {
-      "path": "docs/submission/VERIFICATION.md",
-      "bytes": 5599,
-      "sha256": "0ad368b8de310e917d33f54fbc1ccf3d989a849ad8b3bf8ad6da21edd87a1fe7"
+      "bytes": 4154,
+      "sha256": "19e3b618d7e301306f09d7d1ddcb3f3b758316abf3ebf6bc4e500002be2e7606"
     },
     {
       "path": "docs/submission/screenshots/01-individual-upload.png",
@@ -498,8 +473,8 @@
     },
     {
       "path": "docs/submission/storyboard/README.md",
-      "bytes": 1340,
-      "sha256": "642d8d47446bd5af6f9a0f670b43b8959c9e1ead08b53e8366c92b964cabd37c"
+      "bytes": 1334,
+      "sha256": "2d02cc94f859309a505de2da8a7f72008ccb1c66aa1bfe794046f16b7b561a42"
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/01-service-access.png",
@@ -553,8 +528,8 @@
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/README.md",
-      "bytes": 2467,
-      "sha256": "65ffca0473d300c096d9c55fce0be61869ef332cfb3a7641bccd5c1be41b4fae"
+      "bytes": 2503,
+      "sha256": "db6333bb1b146716be3b450a6541279624966a43f4336093ad882a3d37274f42"
     },
     {
       "path": "docs/submission/storyboard/scenes-16x9/scene-manifest.json",
@@ -567,9 +542,19 @@
       "sha256": "c1f757fdccbabbcdad2d4fd845be4f2e571ff40ead3a2e36025b1d3ec56eb3b0"
     },
     {
+      "path": "docs/submission/VERIFICATION.md",
+      "bytes": 5599,
+      "sha256": "0ad368b8de310e917d33f54fbc1ccf3d989a849ad8b3bf8ad6da21edd87a1fe7"
+    },
+    {
       "path": "docs/추가확인_질문목록.txt",
       "bytes": 1444,
       "sha256": "400ff69a284716e8721cc7cb4a423aae39df7807a549fede5ad1c48640829929"
+    },
+    {
+      "path": "GitHub 저장소.url",
+      "bytes": 95,
+      "sha256": "a7b2e27a6824d3dce0f5978dd1bbf8da4837af9c8d040540b82717b83abcd624"
     },
     {
       "path": "index.html",
@@ -585,11 +570,6 @@
       "path": "outputs/main-quest/synthetic-tax-summary.xlsx",
       "bytes": 4450,
       "sha256": "079d2a7d7979cae31b276501a462e3aa00a78705df542addbbb300f57f3df14a"
-    },
-    {
-      "path": "outputs/main-quest/video/README.md",
-      "bytes": 3064,
-      "sha256": "95e5686c2ced347d36a89be97a34dc677539db8f0ea5bd28a18fee2b2c687411"
     },
     {
       "path": "outputs/main-quest/video/dreamina-presenter-720p.mp4",
@@ -652,9 +632,24 @@
       "sha256": "a7d9ef7410ef8f0c7947921ee7df3e37026bc1d390413f37ff9a52841c160542"
     },
     {
+      "path": "outputs/main-quest/video/README.md",
+      "bytes": 3064,
+      "sha256": "95e5686c2ced347d36a89be97a34dc677539db8f0ea5bd28a18fee2b2c687411"
+    },
+    {
       "path": "outputs/main-quest/video/video-production.json",
       "bytes": 5946,
       "sha256": "3a129c2c2ae6a46f5e5e5e407f71e048d6bb620184ec28be01d4ac3c72fb79b8"
+    },
+    {
+      "path": "PRD.md",
+      "bytes": 3553,
+      "sha256": "d2ac20808e3c313126a45aef351ce8423758c7a6a0336880eeb953932c97d27c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3497,
+      "sha256": "5a9224fbfff1701be880840a33c985b81696fe5353b975ffc5b8c10f5702f848"
     },
     {
       "path": "retrospective.md",
@@ -678,13 +673,13 @@
     },
     {
       "path": "가이드.md",
-      "bytes": 3385,
-      "sha256": "f7a5772ce658590131c632142417b2c3a7f786ed8f67aafbcb9aa78720e3a558"
+      "bytes": 3435,
+      "sha256": "daf5f093cb66ed62da2be3187f57eb11fca0789ebd29e6be2668ed41893f2270"
     },
     {
       "path": "개발_실행안내.md",
-      "bytes": 7429,
-      "sha256": "2b439a12412d4aabeff0cdefba2df3bb3efa548729ecef442f945994937943b0"
+      "bytes": 7397,
+      "sha256": "e77c55c452bc6b102a7eb01d8081464b91a9037da0943d743b005190e97b989a"
     },
     {
       "path": "경정청구.exe",
@@ -698,8 +693,8 @@
     },
     {
       "path": "제출보고서.md",
-      "bytes": 6084,
-      "sha256": "05df156435c278ff625b8b9db3e81ed014217fedbbd44682f1de8d6d03109d0b"
+      "bytes": 5975,
+      "sha256": "e586c58c10f9798fb319ac4152882bc45f4068e0389473331d508abc431b32c1"
     },
     {
       "path": "프로그램 웹 실행.url",

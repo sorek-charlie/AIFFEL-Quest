@@ -4,7 +4,7 @@ import argparse,hashlib,json,re,shutil,datetime
 ROOT=Path(__file__).resolve().parents[2]
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser();p.add_argument('--destination',type=Path,required=True);p.add_argument('--video-guide',type=Path,required=True);p.add_argument('--private-literals',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--destination',type=Path,required=True);p.add_argument('--private-literals',type=Path,required=True);a=p.parse_args()
  dest=a.destination.resolve();assert dest!=ROOT and not dest.is_relative_to(ROOT)
  dest.mkdir(parents=True,exist_ok=True)
  selected=[]
@@ -17,7 +17,7 @@ def main():
    if set(rel.parts)&{'__pycache__','node_modules','.git','.wrangler','.claude','.codex'}:continue
    if path.is_relative_to(ROOT/'dev/build') or path.suffix in {'.pyc','.tmp','.log'} or path.name.endswith('.inspect.ndjson'):continue
    selected.append(path)
- pairs={x.relative_to(ROOT).as_posix():x for x in selected};pairs['AI영상제작.md']=a.video_guide
+ pairs={x.relative_to(ROOT).as_posix():x for x in selected if x.name!='AI영상제작.md'}
  patterns=[str(t).encode(enc) for t in json.loads(a.private_literals.read_text('utf8')) for enc in ('utf8','utf-16le') if t]
  records=[];stamp=datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
  for rel,src in sorted(pairs.items()):
@@ -28,12 +28,6 @@ def main():
    previous=dest/'기존파일_보관'/stamp/rel;previous.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(dst,previous)
   shutil.copy2(src,dst);assert sha(src)==sha(dst),rel
   records.append({'path':rel,'bytes':dst.stat().st_size,'sha256':sha(dst)})
- # The guide was moved by the user; preserve its original and update this copy.
- guide=dest/'AI영상제작.md';text=guide.read_text('utf8')
- text+='\n\n## 제작 결과\n\n[실사형 AI 남성 발표자·2분50초 소개 MP4](outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4)를 제작했습니다. 실제 녹화본이 없어 캡처·기능 설명으로 구분했습니다. [최신 편집표·추가 촬영 목록](docs/submission/storyboard/DREAMINA_실사영상_편집표.md)을 참고하세요.\n'
- guide.write_text(text,encoding='utf8')
- for record in records:
-  if record['path']=='AI영상제작.md':record.update(bytes=guide.stat().st_size,sha256=sha(guide))
  intro='''# 최종 프로그램·메인퀘스트 제출 자료
 
 이 폴더에 프로그램·문서·가상 샘플·이미지·영상 자료를 모았습니다. 실제 회사자료·개인정보·인증서·로그인 토큰·Git 내부 이력·개발 임시파일은 포함하지 않습니다.
@@ -48,7 +42,6 @@ def main():
 | 제출 보고서 | [제출보고서.md](제출보고서.md) |
 | 요구사항·회고 | [PRD.md](PRD.md), [retrospective.md](retrospective.md) |
 | 협업 기록·체크리스트 | [제출 안내](docs/submission/README.md) |
-| 영상 제작 지시서 | [AI영상제작.md](AI영상제작.md) |
 | 완성 소개 영상 | [2분50초 MP4](outputs/main-quest/video/main-quest-capture-introduction-1080p.mp4) |
 | 영상 재생 오류 방지 | 루트의 ‘동영상 바로 재생.lnk’로 팟플레이어 실행 |
 | 영상·자막·원고·검수 | `outputs/main-quest/video/` |
