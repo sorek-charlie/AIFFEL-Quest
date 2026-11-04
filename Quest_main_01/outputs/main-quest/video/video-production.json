@@ -1,0 +1,129 @@
+{
+  "type": "실제 앱 캡처+AI 발표자 기반 소개 영상; 실제 동작 녹화 아님",
+  "presenter_source": "Dreamina Seedance1.0Fast 720p,25existingcredits",
+  "voice": "ko-KR-InJoonNeural",
+  "output": "1920x1080",
+  "duration": 170.02,
+  "scenes": [
+    {
+      "id": "01",
+      "title": "서비스 소개",
+      "start": 0,
+      "seconds": 15,
+      "narration": "경정청구 자료 검토 도우미입니다. 여러 해의 자료를 기관과 서류, 연도별로 정리하고 검토 결과를 보고서로 확인합니다. 실제 앱 캡처와 AI 발표자로 소개합니다.",
+      "caption": "경정청구 자료 검토 도우미 / 캡처 기반 소개",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\04-login.png",
+      "voice_seconds": 15.58,
+      "tempo": 1.0819444444444444
+    },
+    {
+      "id": "02",
+      "title": "ID/PW 로그인·회원가입",
+      "start": 15,
+      "seconds": 15,
+      "narration": "ID와 비밀번호로 로그인하고 처음 방문하면 회원가입을 진행합니다. 계정 인증정보와 회사 첨부자료를 분리해 처리합니다.",
+      "caption": "ID/PW 로그인·회원가입",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\04-login.png",
+      "voice_seconds": 10.75,
+      "tempo": 1
+    },
+    {
+      "id": "03",
+      "title": "방문2~3분 후 가입 안내",
+      "start": 30,
+      "seconds": 10,
+      "narration": "가입 안내는 방문 후 이삼 분 사이에 표시됩니다. 지금은 기능 설명이며 실제 대기 녹화는 추가로 필요합니다.",
+      "caption": "가입 안내: 기능 설명 / 실제 대기 미촬영",
+      "real": false,
+      "source": "docs\\submission\\storyboard\\scenes-16x9\\03-signup-prompt.png",
+      "voice_seconds": 10.22,
+      "tempo": 1.0872340425531914
+    },
+    {
+      "id": "04",
+      "title": "가입10초 후 자동 로그인",
+      "start": 40,
+      "seconds": 20,
+      "narration": "회원가입 완료 뒤 십 초가 지나면 새 계정으로 자동 로그인합니다. 서버도 십 초 이전 로그인을 막도록 검증했습니다. 이 장면은 기능 설명이며 실제 카운트다운 녹화는 아직 없습니다.",
+      "caption": "가입 완료10초 후 자동 로그인 / 실제 카운트다운 미촬영",
+      "real": false,
+      "source": "docs\\submission\\storyboard\\scenes-16x9\\04-auto-login.png",
+      "voice_seconds": 16.06,
+      "tempo": 1
+    },
+    {
+      "id": "05",
+      "title": "기관·서류·연도별 첨부",
+      "start": 60,
+      "seconds": 25,
+      "narration": "기관과 서류, 귀속연도별 기본 열여덟 칸에 파일을 하나씩 넣습니다. 시연 자료는 실제 회사와 무관하게 만든 가상 오개년 요약자료입니다. 파일 첨부와 요건 충족은 구분합니다.",
+      "caption": "기관·서류·연도별 자료 첨부 / 가상자료",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\01-individual-upload.png",
+      "voice_seconds": 16.51,
+      "tempo": 1
+    },
+    {
+      "id": "06",
+      "title": "기타 서류 등록",
+      "start": 85,
+      "seconds": 15,
+      "narration": "기타 서류는 이름과 부서, 연도를 직접 입력합니다. 참고용 첨부는 자동계산에 반영되지 않는다고 표시합니다.",
+      "caption": "기타 이름·부서·연도 / 자동계산 미반영",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\01-individual-upload.png",
+      "voice_seconds": 10.63,
+      "tempo": 1
+    },
+    {
+      "id": "07",
+      "title": "법인 Q&A·검토",
+      "start": 100,
+      "seconds": 20,
+      "narration": "법인 질문과 항목별 검토에서 추가 증빙과 확인사항을 살펴봅니다. 자료가 첨부됐다고 모든 공제 요건이 충족되는 것은 아닙니다. 실제 검토 화면 촬영은 추가로 필요합니다.",
+      "caption": "법인 Q&A·추가 증빙 / 기능 설명",
+      "real": false,
+      "source": "docs\\submission\\storyboard\\scenes-16x9\\07-qna-review.png",
+      "voice_seconds": 15.31,
+      "tempo": 1
+    },
+    {
+      "id": "08",
+      "title": "5개년 잠정 결과",
+      "start": 120,
+      "seconds": 20,
+      "narration": "결과는 확보한 자료 기준의 잠정 검토값입니다. 가상 샘플에는 고용과 보험료 증빙이 없습니다. 화면의 영 원을 실제 환급 불가 판정으로 해석하지 않습니다. 세액 계산은 전문가 확인이 필요합니다.",
+      "caption": "잠정 검토값 / 0원은 환급 불가 확정 아님",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\02-year-results.png",
+      "voice_seconds": 18.19,
+      "tempo": 1
+    },
+    {
+      "id": "09",
+      "title": "보고서4·HTML 저장",
+      "start": 140,
+      "seconds": 20,
+      "narration": "현재 업로드 자료로 보고서를 생성합니다. 원자료 보고서에서 파일명과 기관, 귀속연도, 처리 상태를 확인하고 HTML로 저장할 수 있습니다.",
+      "caption": "보고서4·업로드 자료분석 / HTML 저장",
+      "real": true,
+      "source": "docs\\submission\\screenshots\\03-upload-report.png",
+      "voice_seconds": 12.84,
+      "tempo": 1
+    },
+    {
+      "id": "10",
+      "title": "Reset·로그아웃",
+      "start": 160,
+      "seconds": 10,
+      "narration": "Reset은 입력자료를 지우고 로그아웃은 계정 접속을 종료합니다. 다음에는 전문가 기준 사례로 계산을 검증하겠습니다.",
+      "caption": "Reset·로그아웃 / 다음 단계: 계산 검증",
+      "real": false,
+      "source": "docs\\submission\\storyboard\\scenes-16x9\\10-reset-logout.png",
+      "voice_seconds": 10.58,
+      "tempo": 1.125531914893617
+    }
+  ]
+}

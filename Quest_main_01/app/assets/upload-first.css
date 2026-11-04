@@ -1,0 +1,13 @@
+.empty-data{display:none}
+body.no-data .empty-data{display:block;margin:48px auto;max-width:660px;text-align:center;padding:44px 30px;border:1px dashed #9fb7d6;border-radius:14px;background:#f8fbff;color:#17324d}
+body.no-data .empty-data h2{margin:0 0 10px;font-size:23px}body.no-data .empty-data p{margin:0 0 20px;color:#5f7286;line-height:1.6}
+body.no-data .empty-data .button{display:inline-block;padding:11px 20px;border-radius:8px;background:#204e8d;color:#fff;font-weight:800;text-decoration:none}
+body.no-data section[data-view=overview]>:not(.empty-data),body.no-data section[data-view=results]>:not(.empty-data),body.no-data section[data-view=policies]>:not(.empty-data),body.no-data section[data-view=consult]>:not(.empty-data){display:none!important}
+body.no-data .category-dock{display:none!important}
+
+#upload>.section-head h2{display:inline-block;margin-right:12px;vertical-align:middle}
+.reset-all{vertical-align:middle;padding:7px 14px;border:1px solid #d9a3a8;border-radius:8px;background:#fff5f5;color:#b42335;font-weight:800;font-size:14px;cursor:pointer}
+.reset-all:hover{background:#ffe3e5}
+#results .matrix-items thead th:first-child{font-size:11px!important;word-break:break-all;line-height:1.2}
+.category-dock .matrix-category,.category-dock .matrix-category *{font-size:0!important}
+.category-dock thead th:first-child{font-size:11px!important;word-break:break-all;line-height:1.2}

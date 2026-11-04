@@ -1,0 +1,405 @@
+{
+  "version": "2026-11-04-public-source",
+  "files": [
+    {
+      "path": "app/assets/acquisition-core.js",
+      "bytes": 3192,
+      "sha256": "14c429c72ad31c8ab1b149917ca1526ecc299a042a5ad644d906de983f5a2905"
+    },
+    {
+      "path": "app/assets/acquisition-ui.js",
+      "bytes": 10231,
+      "sha256": "d63ed4a6207506a39ebe5e8a2ff29a3de7d5d4dfbb9bc34e6c2448c4452a7f02"
+    },
+    {
+      "path": "app/assets/acquisition.css",
+      "bytes": 2986,
+      "sha256": "b075edf54998b1c6e1e3689fc15135218d17aa5e39806dd2cd77c248c383e8b5"
+    },
+    {
+      "path": "app/assets/analysis2-core.js",
+      "bytes": 10057,
+      "sha256": "ddff27ea4041e9ce0286127d00acc10d40ec61aea9fb5ebd801e57e7765be14a"
+    },
+    {
+      "path": "app/assets/analysis2-ui.js",
+      "bytes": 17587,
+      "sha256": "5266bdddb452ee7654aafb76ce6286fe3fbbc11fd7b9349dc8614c7b6ef0ebe0"
+    },
+    {
+      "path": "app/assets/analysis2.css",
+      "bytes": 5586,
+      "sha256": "5a08887548242351339cc513d7f990631a5310b6fdd7afa5e6552311344de511"
+    },
+    {
+      "path": "app/assets/app-shell.js",
+      "bytes": 13831,
+      "sha256": "bb74e5d64e14d765bd56218c769a479c30c5577f2d34000e8bf26590b4d4989d"
+    },
+    {
+      "path": "app/assets/auth-session.js",
+      "bytes": 1142,
+      "sha256": "03c9d9a1b113a1d95935e7564013104a34b89628612d6b55fa1ebaea0087d326"
+    },
+    {
+      "path": "app/assets/auth.css",
+      "bytes": 3310,
+      "sha256": "bf190af67553b42adf14455fb78e713ac0e7499efc30bd1b3305fe4bb4237819"
+    },
+    {
+      "path": "app/assets/auth.js",
+      "bytes": 3699,
+      "sha256": "f4ba5569130854c0c1b20d51b28257739b6ee185d7f0a4aa161b76a639f0e3d4"
+    },
+    {
+      "path": "app/assets/category-dock.css",
+      "bytes": 2186,
+      "sha256": "4771dd06ed4bf023f44071783c06d9d698184bd9871645715d866a6724a0ec72"
+    },
+    {
+      "path": "app/assets/category-dock.js",
+      "bytes": 3535,
+      "sha256": "54f0bfc4e108881aa0c972308c6e21d6e129022c6f9a877bce9a4e8241055a1a"
+    },
+    {
+      "path": "app/assets/collection-flow.css",
+      "bytes": 6283,
+      "sha256": "783a6a3d6a0cd058271ebde1d1d7d7cc59482f2276cfbe3ac3c4b099176cbcc2"
+    },
+    {
+      "path": "app/assets/collection-flow.js",
+      "bytes": 9699,
+      "sha256": "f7041e865fc2533c62ffa47d326f2a5f5e2ab7983f8701d214114636501c0c8a"
+    },
+    {
+      "path": "app/assets/evidence-popup.css",
+      "bytes": 4838,
+      "sha256": "d76b0c66abf2a437a031c255fbeadcaec3a71659085ff6be5b8c129574dcb6e5"
+    },
+    {
+      "path": "app/assets/evidence-popup.js",
+      "bytes": 4987,
+      "sha256": "1e5f04166f2ed7c875901b7bad1e04fc008e2a5627976af7336925b7187f9b68"
+    },
+    {
+      "path": "app/assets/evidence-requirements.js",
+      "bytes": 12868,
+      "sha256": "3637089dbc662380d345dfbcaf02e706594cd85c78bf9d4e483e8d2b1024ee99"
+    },
+    {
+      "path": "app/assets/portal-automation.js",
+      "bytes": 7590,
+      "sha256": "23905b308c0b0385caff1aced6464d03a4b8200ff46a8906df888cb7760ae690"
+    },
+    {
+      "path": "app/assets/report-preview.js",
+      "bytes": 4847,
+      "sha256": "050af77b2371e45fe9d461f9314612c461967ef213575d7ccde9db7dc96020e7"
+    },
+    {
+      "path": "app/assets/report.css",
+      "bytes": 4799,
+      "sha256": "48ef74be595715a8614a5413fe9cafa13cb2ee1fa6e06964b54b54d87535acf1"
+    },
+    {
+      "path": "app/assets/result-matrix-ui.js",
+      "bytes": 7176,
+      "sha256": "d9d07e51d8d1dd0c900bf690ba952d85f7bea49e3dc716a4992d59e573cb68c4"
+    },
+    {
+      "path": "app/assets/result-matrix.js",
+      "bytes": 4686,
+      "sha256": "aa4ee47e4f0e5b5b5e8dc4d32c68468ba59c8a39200563b5c28ba5165d063402"
+    },
+    {
+      "path": "app/assets/results-layout.css",
+      "bytes": 7821,
+      "sha256": "e0f6d806c1d4c9c7b62bc973635973d434f448fd30fda6f686b8cb3c872f3ecf"
+    },
+    {
+      "path": "app/assets/results.css",
+      "bytes": 8192,
+      "sha256": "8ab7b035c3c5e25e843a7c0220276b40c48b2595e6d0f0ba7e937443b18714d8"
+    },
+    {
+      "path": "app/assets/session-reset.js",
+      "bytes": 219,
+      "sha256": "f3cc045210579aaeef797da1c05264a03c275ea833c403b4913363589008053b"
+    },
+    {
+      "path": "app/assets/shell.css",
+      "bytes": 3378,
+      "sha256": "e31a57b66d743e1fbede4103d9b48639947bf4f0a961aeb44acae95ce319fcc0"
+    },
+    {
+      "path": "app/assets/single-file-intake.css",
+      "bytes": 2333,
+      "sha256": "83c0aba762b6f0bb279967c45ad7b052991bc90c48b627ce23786482079c8526"
+    },
+    {
+      "path": "app/assets/single-file-intake.js",
+      "bytes": 7515,
+      "sha256": "0a7fdd49f77f2ca70a5c25646c0ef066e57d6bbd142aa10e324c54881f9c81bb"
+    },
+    {
+      "path": "app/assets/source-reader.js",
+      "bytes": 10263,
+      "sha256": "3f3bfc7fa9364ce3f1e2814ff401d489e2c4a86077bf50ff2082c450083d1057"
+    },
+    {
+      "path": "app/assets/tax-review.js",
+      "bytes": 12178,
+      "sha256": "3afcbad08c650ef3e8ac049ab6df7848d2a2356427d280e8aa67135e1a7c1613"
+    },
+    {
+      "path": "app/assets/upload-first.css",
+      "bytes": 1420,
+      "sha256": "61897d50194473c675a080475dd7c4768787e2adb945467e9d0e47911bf308a9"
+    },
+    {
+      "path": "app/data/acquisition_routes.js",
+      "bytes": 8220,
+      "sha256": "1ffbf56987a625901d426f0c87d4be3faaebf7119bf84a3cbf8486e7212f9cd2"
+    },
+    {
+      "path": "app/data/acquisition_routes.json",
+      "bytes": 10217,
+      "sha256": "d8828d425bbb7295bfc81bd31e086a1ea710fc0cc4fed188f5795985b7de8add"
+    },
+    {
+      "path": "app/data/analysis_support.js",
+      "bytes": 4933,
+      "sha256": "6597f534d7c7b5fc801fb903da1220e04db695e7c798b6232694c8d886b168b3"
+    },
+    {
+      "path": "app/data/analysis_support.json",
+      "bytes": 5970,
+      "sha256": "14d180fdf79a66e26991a423241d3e54b85352e6d245b41848b4fb02e402ed82"
+    },
+    {
+      "path": "app/index.html",
+      "bytes": 37061,
+      "sha256": "023c39763ed071345b4384539f9ec79d0d48e05a0496d80a7d7b6d955557420a"
+    },
+    {
+      "path": "app/login.html",
+      "bytes": 3291,
+      "sha256": "fcd05adc27ab24725dc6ba2d20c729093f0af4730dea8373af41652fac2df107"
+    },
+    {
+      "path": "app/vendor/jszip-LICENSE.txt",
+      "bytes": 33753,
+      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
+    },
+    {
+      "path": "app/vendor/jszip.min.js",
+      "bytes": 97630,
+      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+    },
+    {
+      "path": "app/vendor/pdf.js",
+      "bytes": 1032490,
+      "sha256": "02c9b1c5b42947185691a07b6f451e714dc2bb539653d23b651bd5c15557b7b5"
+    },
+    {
+      "path": "app/vendor/pdf.worker.js",
+      "bytes": 2428368,
+      "sha256": "98521dd06b3c038c588940d321ae30acc0a8f900bdc8c0ac49c8fca17acbb05e"
+    },
+    {
+      "path": "app/vendor/pdfjs-dist-LICENSE.txt",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "app/vendor/webview2/LICENSE.txt",
+      "bytes": 1487,
+      "sha256": "0af8f1b807512aae39c2ac1aa4d0cae65cabecb6fd554b8439a5162a0d6eca55"
+    },
+    {
+      "path": "app/vendor/webview2/Microsoft.Web.WebView2.Core.dll",
+      "bytes": 703328,
+      "sha256": "acdd517b951829f763d1255f32df1e6a936cb8623a7ebff6b8b24172dede6bd6"
+    },
+    {
+      "path": "app/vendor/webview2/Microsoft.Web.WebView2.WinForms.dll",
+      "bytes": 38792,
+      "sha256": "c66437f80886aecf074804b61af4cc10ad90a95310c8e0a717f31ea377c26b03"
+    },
+    {
+      "path": "app/vendor/webview2/source.json",
+      "bytes": 284,
+      "sha256": "d12fa33b9965bd50b4ba83052dac4d429c1eec3b6904bd01fe475dfe6c602b26"
+    },
+    {
+      "path": "app/vendor/webview2/WebView2Loader.dll",
+      "bytes": 194912,
+      "sha256": "d3fce90bdeecb08596e377dea6a316354dd8949e32ff09b89d51be00c14e21b6"
+    },
+    {
+      "path": "docs/00_설치_사용안내.html",
+      "bytes": 843,
+      "sha256": "3053eab871dc1bbc5d0192cabb4131c55df040d0465c5bacdda0df7e70d7df5a"
+    },
+    {
+      "path": "docs/01_자료별_확보방법.html",
+      "bytes": 871,
+      "sha256": "837eb48d1175981d5d331409f62878ae1dc4c422c4226523fd5edf74e1db2605"
+    },
+    {
+      "path": "docs/02_5개년정책_적용여부.html",
+      "bytes": 867,
+      "sha256": "0b5f9bba4dd4250a65e5a078a0c72cc7dca1b2658eb0d72e7ed46ee95fc1ded3"
+    },
+    {
+      "path": "docs/03_기한_소멸시효.html",
+      "bytes": 826,
+      "sha256": "b0f8ca4dbecdf1692a151f3ba5bb7abb114ad6a20ad46a68a753d12e0445cc0e"
+    },
+    {
+      "path": "docs/04_개발설계_출처.html",
+      "bytes": 887,
+      "sha256": "2bd2fc80227c95d1ee4cba3d45fbf46db35b0ac6f5dc52c3ac2221d86467fc77"
+    },
+    {
+      "path": "docs/05_화면시안_2종.html",
+      "bytes": 847,
+      "sha256": "3f5fe6e0aa29a09ec7ccd3e8d8391b0b7c9a18635b8f9ec79dad9e80b6c1ce4a"
+    },
+    {
+      "path": "docs/submission/AI_COLLABORATION.md",
+      "bytes": 4537,
+      "sha256": "bf65d4a0becc73595e95d7a0e8a4ba0963b4e7d708da2e3d8a34b8cd6949fc4f"
+    },
+    {
+      "path": "docs/submission/DEMO_SCRIPT.md",
+      "bytes": 545,
+      "sha256": "ad1e93bac31a5af199a57cd5359cfb6e8a63a42455466320646ea2b7b011c144"
+    },
+    {
+      "path": "docs/submission/README.md",
+      "bytes": 4322,
+      "sha256": "e32c67dd435734d13f449e5b30011a8f8a2699ac06e71cf7a3f3ef31b4177270"
+    },
+    {
+      "path": "docs/submission/screenshots/01-individual-upload.png",
+      "bytes": 85829,
+      "sha256": "445bbdd78c920b8bd6b273030ec2d52c566f6dc7d1ce5212ff28eb8f5ad4895c"
+    },
+    {
+      "path": "docs/submission/screenshots/02-year-results.png",
+      "bytes": 104341,
+      "sha256": "e28f8b776a2da7628afbc9ea118090be64ba5a547d57efb444eddc1e7e532838"
+    },
+    {
+      "path": "docs/submission/screenshots/03-upload-report.png",
+      "bytes": 70700,
+      "sha256": "92b62f8fa57d6a8e730908085cf62ed0c652c2a8c0ba8e6951cf8bec379f1770"
+    },
+    {
+      "path": "docs/submission/screenshots/04-login.png",
+      "bytes": 354074,
+      "sha256": "f482a4128bfd43e1857f29f17157bcfca6dbf75ce52b87b03a965e493cd2d702"
+    },
+    {
+      "path": "docs/submission/storyboard/DREAMINA_실사영상_편집표.md",
+      "bytes": 5164,
+      "sha256": "5096e9fbbe5b812cf4291b79366a329118d94b2027e3d7b5eff1523e7bb17e52"
+    },
+    {
+      "path": "docs/submission/storyboard/README.md",
+      "bytes": 1340,
+      "sha256": "642d8d47446bd5af6f9a0f670b43b8959c9e1ead08b53e8366c92b964cabd37c"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/01-service-access.png",
+      "bytes": 2456186,
+      "sha256": "ca23893557771b19c2bcbfdeb72b709c3921e043cdbf4916c25a7652cb4dd034"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/02-login.png",
+      "bytes": 2232043,
+      "sha256": "e65af728cadb76a668fe0fca918be5e9f65db012905d16c542eba2ba02a28f7f"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/03-signup-prompt.png",
+      "bytes": 2541001,
+      "sha256": "fd19a2129690f6291f7ea99476a2b0ccbc0dcf1d25e85b4f08d2af62ffd18dee"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/04-auto-login.png",
+      "bytes": 2450021,
+      "sha256": "710148a2a128a8c50c294bdcf83c9d420bcfe501d628bebda0ce059784fea643"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/05-document-upload.png",
+      "bytes": 2471701,
+      "sha256": "5a38af0c266d034a01ac1adb288341c2241d00500309ec9a38fb31d86cdeeaf1"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/06-other-document.png",
+      "bytes": 2530681,
+      "sha256": "4aa8edac414bcfcdb54f4c133935f1c78575e3ff8192fd409cca0c2ffdc25e22"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/07-qna-review.png",
+      "bytes": 2422268,
+      "sha256": "45201f3d91a863cc0a4eb08d8f8b35f2b86f4cf8069153737f9190e87e5a19f5"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/08-annual-results.png",
+      "bytes": 2563942,
+      "sha256": "3def98169276181efca95c29f24af0775403923fe248ea07cf6c8bcaa5204aa4"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/09-report-save.png",
+      "bytes": 2400092,
+      "sha256": "d7dc3eb9f02e8a7e9255518d43e1fa1038f2d7a35654165cdc5a54a2a8d400d2"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/10-reset-logout.png",
+      "bytes": 2447985,
+      "sha256": "144c44cca93c943777b5bd3b19d2601a81293d53019f8e2e908045db5c40cd6e"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/README.md",
+      "bytes": 2467,
+      "sha256": "65ffca0473d300c096d9c55fce0be61869ef332cfb3a7641bccd5c1be41b4fae"
+    },
+    {
+      "path": "docs/submission/storyboard/scenes-16x9/scene-manifest.json",
+      "bytes": 17930,
+      "sha256": "b879c39629acab281b53260413d79fbc65b016a4fc7ea4467c29f3249c6020c7"
+    },
+    {
+      "path": "docs/submission/storyboard/usage-storyboard-10-scenes.png",
+      "bytes": 1893664,
+      "sha256": "c1f757fdccbabbcdad2d4fd845be4f2e571ff40ead3a2e36025b1d3ec56eb3b0"
+    },
+    {
+      "path": "docs/submission/VERIFICATION.md",
+      "bytes": 4517,
+      "sha256": "89c0cf661c3c5ef46199c882d106cf3d029c6d174b069a59c0e57709e3aca825"
+    },
+    {
+      "path": "docs/추가확인_질문목록.txt",
+      "bytes": 1444,
+      "sha256": "400ff69a284716e8721cc7cb4a423aae39df7807a549fede5ad1c48640829929"
+    },
+    {
+      "path": "index.html",
+      "bytes": 220,
+      "sha256": "81957ecd5cd94694c7f8127df2e545bfd3dc39f129b0bc44f638e7141cdc4a12"
+    },
+    {
+      "path": "README.md",
+      "bytes": 931,
+      "sha256": "b58cde2c9560de759a0f3b5d4636304d816c73114a4464454f1224f5df424659"
+    },
+    {
+      "path": "경정청구.exe",
+      "bytes": 28061696,
+      "sha256": "31aecba9d75f04e6b4806e12505bedf74f9f86c47c0ad75dad12e5d938b95b58"
+    }
+  ]
+}

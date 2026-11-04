@@ -1,0 +1,15 @@
+{
+  "duration_seconds": 170.02,
+  "resolution": "1920x1080",
+  "aspect": "16:9",
+  "audio": "AAC stereo 48000Hz Korean male AI voice",
+  "volume_db": {
+    "mean_volume": -20.9,
+    "max_volume": -4.3
+  },
+  "full_decode": "PASS",
+  "long_black_frames": "none",
+  "visual_review_frames": 6,
+  "sha256": "0848af59f713f10b1d12c0bcf964e9e344d6469af140c20622d522d4fed70900",
+  "limit": "실제 앱 전체 녹화가 아닌 캡처 기반 소개 편집본. 발표자 원본720p 확대. 미촬영 기능은 화면·음성으로 구분."
+}

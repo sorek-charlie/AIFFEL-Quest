@@ -1,0 +1,12 @@
+{
+  "name": "tax-return-review-quest",
+  "pages_build_output_dir": "./dev/build/web-c2535defef83",
+  "compatibility_date": "2026-11-04",
+  "d1_databases": [
+    {
+      "binding": "AUTH_DB",
+      "database_name": "tax-return-review-auth",
+      "database_id": "5c663d6d-9285-4eba-a63d-b5272c62b7cb"
+    }
+  ]
+}

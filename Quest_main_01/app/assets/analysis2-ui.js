@@ -1,0 +1,80 @@
+(function(){
+'use strict';
+const C=Analysis2Core,S=ANALYSIS_SUPPORT,$=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>n===null||n===undefined?'미판정':(n<0?'−':'')+Math.abs(n).toLocaleString('ko-KR')+'원';
+let companyId='',storageKey='returncheck-institution-workflow-empty';
+let state={schema:1,companyId,contacts:structuredClone(S.defaultContacts),cases:{},inputs:[]},rows=[],model,result,selected=null;
+const expandedItems=new Set();
+try{const saved=localStorage.getItem(storageKey);if(saved)state=validateState(JSON.parse(saved))}catch(error){$('caseFeedback').textContent='저장 자료를 불러오지 못했습니다. JSON 저장본을 확인하세요.'}
+function validateState(p){
+ if(p.schema!==1||p.companyId!==companyId||!Array.isArray(p.contacts)||p.contacts.length>200||!p.cases||Array.isArray(p.cases)||typeof p.cases!=='object')throw Error('현재 회사의 상담 저장 파일 형식이 아닙니다.');
+ const contacts=p.contacts.filter(c=>!['노무사','고용센터·운영기관','고용센터'].includes(c.role)).map(c=>({id:String(c.id||'').slice(0,100),role:String(c.role||'').slice(0,30),name:String(c.name||'').slice(0,150),phone:String(c.phone||'').slice(0,40),email:String(c.email||'').slice(0,200),verified:c.verified===true,source:String(c.source||'').slice(0,500),note:String(c.note||'').slice(0,1000)}));
+ if(contacts.some(c=>!c.id||!c.name)||new Set(contacts.map(c=>c.id)).size!==contacts.length)throw Error('연락처 ID·기관명을 확인하세요.');
+ const cases={};for(const[key,v]of Object.entries(p.cases)){if(!/^tax:202[1-5]:[a-z0-9-]+$/.test(key))continue;C.validateCase(v);cases[key]={status:v.status,ownerId:String(v.ownerId||'').slice(0,100),due:String(v.due||'').slice(0,10),response:String(v.response||'').slice(0,5000),evidence:String(v.evidence||'').slice(0,1000),evidenceChecked:v.evidenceChecked===true,action:String(v.action||'').slice(0,2000),updatedAt:String(v.updatedAt||'').slice(0,40)}}
+ return{schema:1,companyId,contacts,cases,inputs:Array.isArray(p.inputs)?p.inputs.slice(-250).map(i=>({name:String(i.name||'').slice(0,250),intent:String(i.intent||'auto').slice(0,30),documentId:String(i.documentId||'').slice(0,100),agency:String(i.agency||'').slice(0,120),documentName:String(i.documentName||'').slice(0,180),displayName:String(i.displayName||'').slice(0,180),declaredYear:String(i.declaredYear||'auto').slice(0,10),actualType:String(i.actualType||'참고자료').slice(0,80),actualYears:Array.isArray(i.actualYears)?i.actualYears.filter(y=>Number.isInteger(y)&&y>=2010&&y<=2030):[],error:i.error===true,status:String(i.status||'').slice(0,300)})):[]};
+}
+function persist(){try{localStorage.setItem(storageKey,JSON.stringify(state));return true}catch{note('이 브라우저에서 저장이 제한됩니다. 상담 진행 JSON을 내려받으세요.',true);return false}}
+function note(text,error=false){$('caseFeedback').textContent=text;$('caseFeedback').classList.toggle('negative',error)}
+function file(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function currentRow(){return rows.find(r=>r.key===selected)}
+function assigned(row){const stored=state.cases[row.key];return state.contacts.find(c=>c.id===stored?.ownerId)}
+function renderTable(){
+ const y=$('reviewYear').value,q=$('reviewSearch').value.trim(),type=$('analysisType').value,progress=$('analysisProgress').value;
+ const visible=rows.filter(r=>(!y||r.year===+y)&&(!type||r.type===type)&&(!q||(r.name+r.law+r.rule+r.missing).includes(q))&&(!progress||(state.cases[r.key]?.status||'검토대기')===progress));
+ const groups=C.groupRows(visible);
+ $('reviewRows').innerHTML=['세액공제'].map(type=>{const list=groups.filter(g=>g.type===type),span=list.length+list.filter(g=>expandedItems.has(g.key)).length;return list.map((g,index)=>{const open=expandedItems.has(g.key),r=g.rows[g.rows.length-1],c=assigned(r),id='analysis-detail-'+(type==='세액공제'?'tax-':'grant-')+g.id,allExcluded=g.rows.every(x=>C.applicability(x).excluded),known=g.rows.filter(x=>typeof x.cash==='number'&&!C.applicability(x).excluded),total=known.reduce((s,x)=>s+x.cash,0);return`<tr class="analysis-item-row">${index===0?`<th class="analysis-category ${type==='세액공제'?'tax':'grant'}" scope="rowgroup" rowspan="${span}"><span>${esc(type)}</span></th>`:''}<td><button class="analysis-item-toggle" data-analysis-item="${esc(g.key)}" aria-expanded="${open}" aria-controls="${id}">${open?'▾':'▸'} ${esc(g.name)}</button><small>${g.rows.length}개년 분석 · 항목명을 누르면 펼쳐집니다</small></td><td>${esc(r.law)}<small>각 연도 적용 규정·시행일은 아래 상세에서 확인</small></td><td>${allExcluded?'<b class="analysis-not-applicable">미적용</b>':known.length?`<b class="${total<0?'negative':'positive'}">확인분 소계 ${money(total)}</b>`:'<b>자료 확인 필요</b>'}<small>공제 발생액와 환급 반영액은 별도</small></td><td><button data-evidence-id="${esc(g.id)}">필요자료·Q&A</button><small>${esc(r.missing||r.note||'원 근거 대조')}</small></td><td>${esc(c?.name||r.owner)}<small>연도별 확인 과제 ${g.rows.filter(x=>state.cases[x.key]).length}건</small></td><td><button data-analysis-item="${esc(g.key)}">${open?'접기':'연도별 보기'}</button></td></tr>${open?`<tr class="analysis-expanded-row"><td colspan="6"><div id="${id}" class="analysis-year-detail"><h3>${esc(g.name)} · 연도별 분석</h3><div class="scroll"><table><thead><tr><th>연도</th><th>적용 법·정책</th><th>판정·금액</th><th>부족자료</th><th>확인</th></tr></thead><tbody>${g.rows.map(x=>{const a=C.applicability(x);return`<tr><th scope="row">${x.year}년</th><td><b>${esc(x.version)}</b><p>${esc(x.rule)}</p>${x.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a>`).join('')}</td><td>${a.excluded?`<span class="analysis-not-applicable">미적용</span><small>${esc(a.reason)}</small>`:`<b>${esc(x.status)}</b><small>${esc(x.amountLabel)}: ${money(x.amount)}</small>${x.cash!==null?`<small class="${x.cash<0?'negative':'positive'}">${esc(x.cashLabel)}: ${money(x.cash)}</small>`:''}${x.policyCap?`<small>정책 한도 ${money(x.policyCap)} · 회사 확정액 아님</small>`:''}`}</td><td>${esc(a.excluded?'신규 발생분 미적용. 과거 발생분 계속·이월은 해당 행에서 별도 확인':x.missing||x.note||'원 증빙 대조')}<button data-evidence-id="${esc(x.id)}" data-evidence-year="${x.year}">정부·회사 자료 / Q&A</button></td><td><button data-case="${esc(x.key)}">해당 연도 전문가 확인</button><small>${esc(state.cases[x.key]?.status||'검토대기')}</small></td></tr>`}).join('')}</tbody></table></div></div></td></tr>`:''}`}).join('')}).join('')||'<tr><td colspan="7">조건에 맞는 항목이 없습니다.</td></tr>';
+ $('analysisCount').textContent=groups.length+'개 항목 · '+visible.length+'개 연도 분석 / 전체 '+rows.length+'개 연도·항목';
+ $('analysisStats').textContent='세액공제 '+C.groupRows(rows.filter(r=>r.type==='세액공제')).length+'개 · 확인 과제 '+Object.keys(state.cases).length+'건';
+}
+function renderInputs(){
+ const defs=C.inputStatus(model,state.inputs);
+ $('inputRequirements').innerHTML=defs.map(d=>`<tr><td><b>${d.name}</b><small>${d.purpose}</small></td><td>${d.years}</td><td>${d.state}<small>${esc(d.evidence)}</small></td><td>${esc(d.required)}</td><td>${d.owner}</td></tr>`).join('');
+ $('intakeRows').innerHTML=state.inputs.slice(-30).reverse().map(i=>`<tr><td>${esc(i.displayName||i.name)}${i.displayName?`<small>원본: ${esc(i.name)}</small>`:''}</td><td>${esc(i.documentName||C.INPUTS.find(d=>d.id===i.intent)?.name||'자동')}${i.agency?`<small>${esc(i.agency)}</small>`:''}</td><td>${esc(i.declaredYear==='auto'?'자동':i.declaredYear)}</td><td>${esc(i.actualType)}<small>${i.actualYears.length?i.actualYears.join('·')+' 귀속': '귀속 미확인'}</small></td><td>${esc(i.status)}${i.declaredYear!=='auto'&&i.actualYears.length&&!i.actualYears.includes(+i.declaredYear)?'<small class="negative">지정 연도와 다름 · 원자료 귀속 유지</small>':''}</td></tr>`).join('')||'<tr><td colspan="5">추가 입력 이력 없음</td></tr>';
+}
+function renderContacts(){
+ $('contactList').innerHTML=state.contacts.map(c=>`<article class="contact-card"><b>${esc(c.name)}</b><small>${esc(c.role)} · ${c.verified?'사용자 확인':'연락처 확인 필요'}</small><p>${esc(c.phone||'전화 미등록')}<br>${esc(c.email||'이메일 미등록')}</p><small>${esc(c.source||'직접 등록')}</small><button data-edit-contact="${esc(c.id)}">수정</button></article>`).join('')||'<p>확인 기관를 등록하세요.</p>';
+ $('expertDirectories').innerHTML=S.directories.map(d=>`<a class="button" href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)} ↗</a>`).join('');
+}
+function renderQueue(){const existing=Object.entries(state.cases).map(([key,v])=>({r:rows.find(r=>r.key===key),key,v})).filter(x=>x.r);$('caseQueue').innerHTML=existing.map(({r,key,v})=>`<tr><td>${r.year} / ${r.type}</td><td>${esc(r.name)}</td><td>${esc(state.contacts.find(c=>c.id===v.ownerId)?.name||'담당 미지정')}</td><td>${esc(v.status)}</td><td>${esc(v.due||'—')}</td><td><button data-case="${esc(key)}">열기</button></td></tr>`).join('')||'<tr><td colspan="6">2차 분석 표의 ‘상세·상담’에서 해결 과제를 등록하세요.</td></tr>'}
+function institutionMatches(c,row){return c.role===row.owner||(c.role==='세무사'&&row.type==='세액공제')||(c.role==='국세청'&&row.owner.includes('국세청'))||c.role==='회사 담당자'}
+function fillOwner(row,ownerId){
+ const candidates=state.contacts.filter(c=>institutionMatches(c,row));
+ $('caseOwner').innerHTML='<option value="">확인 기관 선택</option>'+candidates.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} · ${esc(c.role)}</option>`).join('');
+ $('caseOwner').value=candidates.some(c=>c.id===ownerId)?ownerId:'';
+}
+function openCase(key){
+ const r=rows.find(r=>r.key===key);if(!r)return;selected=key;const v=state.cases[key]||{status:'상담준비',ownerId:state.contacts.find(c=>institutionMatches(c,r))?.id||'',due:'',response:'',evidence:'',action:r.next,evidenceChecked:false};
+ $('caseEmpty').hidden=true;$('caseForm').hidden=false;$('caseHeading').textContent=r.year+'년 · '+r.name;$('caseSummary').textContent=r.status+' / '+r.version+' / 부족자료: '+(r.missing||'적용 근거 재확인');
+ fillOwner(r,v.ownerId);$('caseStatus').value=v.status;$('caseDue').value=v.due||'';$('caseResponse').value=v.response||'';$('caseEvidence').value=v.evidence||'';$('caseAction').value=v.action||r.next;$('caseEvidenceChecked').checked=v.evidenceChecked===true;
+ $('casePolicy').innerHTML=r.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a>`).join('');updateRequest();location.hash='consult';
+}
+function updateRequest(){const row=currentRow();if(!row)return;const c=state.contacts.find(c=>c.id===$('caseOwner').value);$('requestPreview').value=C.requestText(row,model.company,c);$('requestContact').textContent=c?(c.verified?'담당자 확인됨':'원문·사용자 등록 연락처: 현재 담당 확인 필요'):'확인 기관를 먼저 등록·지정하세요.';
+ $('caseMail').hidden=!c?.email;$('casePhone').hidden=!c?.phone;if(c?.email){try{$('caseMail').href=C.mailto(c.email,'[검토 요청] '+model.company+' '+row.year+'년 '+row.name,$('requestPreview').value)}catch{$('caseMail').hidden=true}}
+ if(c?.phone)$('casePhone').href='tel:'+c.phone.replace(/[^+\d]/g,'');
+}
+function collectCase(){return{status:$('caseStatus').value,ownerId:$('caseOwner').value,due:$('caseDue').value,response:$('caseResponse').value.trim(),evidence:$('caseEvidence').value.trim(),evidenceChecked:$('caseEvidenceChecked').checked,action:$('caseAction').value.trim(),updatedAt:new Date().toISOString()}}
+function saveCase(){if(!selected)return;try{const value=collectCase();C.validateCase(value);state.cases[selected]=value;persist();renderQueue();renderTable();note('진행 상태를 저장했습니다. 회신 내용은 1차 세액에 자동 반영되지 않습니다.')}catch(e){note(e.message,true)}}
+function editContact(id){const c=state.contacts.find(c=>c.id===id);if(!c)return;$('contactId').value=c.id;$('contactRole').value=c.role;$('contactName').value=c.name;$('contactPhone').value=c.phone;$('contactEmail').value=c.email;$('contactVerified').checked=c.verified;$('contactNote').value=c.note||'';$('contactForm').scrollIntoView({block:'center'})}
+$('reviewRows').addEventListener('click',e=>{const toggle=e.target.closest('[data-analysis-item]');if(toggle){const key=toggle.dataset.analysisItem;if(expandedItems.has(key))expandedItems.delete(key);else expandedItems.add(key);renderTable();return}const b=e.target.closest('[data-case]');if(b)openCase(b.dataset.case)});$('caseQueue').addEventListener('click',e=>{const b=e.target.closest('[data-case]');if(b)openCase(b.dataset.case)});
+$('contactList').addEventListener('click',e=>{const b=e.target.closest('[data-edit-contact]');if(b)editContact(b.dataset.editContact)});
+for(const id of['reviewYear','analysisType','analysisProgress'])$(id).addEventListener('change',renderTable);$('reviewSearch').addEventListener('input',renderTable);
+$('caseStatus').innerHTML=C.WORKFLOW.map(s=>`<option>${s}</option>`).join('');$('analysisProgress').innerHTML='<option value="">진행 전체</option>'+C.WORKFLOW.map(s=>`<option>${s}</option>`).join('');
+$('caseOwner').onchange=updateRequest;$('saveCase').onclick=saveCase;$('requestDownload').onclick=()=>{const r=currentRow();if(r)file(r.year+'_'+r.name+'_상담요청.txt',$('requestPreview').value,'text/plain;charset=utf-8')};
+$('contactForm').addEventListener('submit',e=>{e.preventDefault();try{
+ const id=$('contactId').value||'contact-'+Date.now(),old=state.contacts.find(c=>c.id===id),c={id,role:$('contactRole').value,name:$('contactName').value.trim(),phone:$('contactPhone').value.trim(),email:$('contactEmail').value.trim(),verified:$('contactVerified').checked,note:$('contactNote').value.trim(),source:old?.source||'사용자 직접 등록'};
+ if(!c.name)throw Error('기관명을 입력하세요.');if(c.email)C.mailto(c.email,'','');if(c.phone&&!/^[+\d ()-]{3,40}$/.test(c.phone))throw Error('전화번호 형식을 확인하세요.');
+ const i=state.contacts.findIndex(x=>x.id===id);if(i<0)state.contacts.push(c);else state.contacts[i]=c;persist();renderContacts();renderTable();renderQueue();if(currentRow()){fillOwner(currentRow(),id);updateRequest()}
+ $('contactForm').reset();$('contactId').value='';note('연락처를 저장했습니다. 실제 연락·발송은 별도입니다.');
+ }catch(err){note(err.message,true)}});
+$('newContact').onclick=()=>{$('contactForm').reset();$('contactId').value='';$('contactName').focus()};
+$('analysisCsv').onclick=()=>{const cell=v=>{let t=String(v??'미판정');if(typeof v!=='number'&&/^[=+@-]/.test(t))t="'"+t;return'"'+t.replace(/"/g,'""')+'"'};const lines=[['연도','구분','항목','법령·정책','적용버전','연도요건','공제 발생액','당년환급반영액','분석결과','부족자료','주담당','진행상태','근거링크'],...rows.map(r=>[r.year,r.type,r.name,r.law,r.version,r.rule,r.amount,r.cash,r.status,r.missing,r.owner,state.cases[r.key]?.status||'검토대기',r.sources.map(s=>s.url).join(' ')])];file('2차_세액공제_항목별분석.csv','\ufeff'+lines.map(r=>r.map(cell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
+$('caseExport').onclick=()=>file('상담진행_저장.json',JSON.stringify(state,null,2),'application/json');$('caseImport').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024)throw Error('상담 JSON은 2MB 이하로 넣어 주세요.');const parsed=validateState(JSON.parse(await f.text()));state=parsed;persist();renderContacts();renderQueue();renderTable();renderInputs();if(selected&&state.cases[selected])openCase(selected);else{selected=null;$('caseForm').hidden=true;$('caseEmpty').hidden=false;$('caseHeading').textContent='항목 상담 준비';$('requestPreview').value=''}note('연락처·상담 진행을 복원했습니다.')}catch(err){note('복원 실패: '+err.message,true)}finally{e.target.value=''}};
+const api={
+ refresh(m,r){if(companyId!==(m.companyId||'')){companyId=m.companyId||'';storageKey='returncheck-institution-workflow-'+(companyId||'empty');state={schema:1,companyId,contacts:structuredClone(S.defaultContacts),cases:{},inputs:[]};selected=null;expandedItems.clear();$('caseForm').hidden=true;$('caseEmpty').hidden=false}model=m;result=r;rows=C.buildRows(m,r,S);renderTable();renderInputs();renderContacts();renderQueue();$('overviewCount').textContent=rows.length+'개 연도·항목';$('reviewCount').textContent='세액 검토 145행 + 추징 대조 5행. 금액은 중복 합산하지 않습니다.'},
+ renderTable,openCase,
+ intakeContext(){return{intent:$('inputPurpose').value,declaredYear:$('inputYear').value}},
+ recordInput(entry){state.inputs.push(entry);state.inputs=state.inputs.slice(-250);persist();if(model)renderInputs()},
+ get rows(){return structuredClone(rows)},get state(){return structuredClone(state)},validateState
+};
+window.Analysis2=api;
+})();

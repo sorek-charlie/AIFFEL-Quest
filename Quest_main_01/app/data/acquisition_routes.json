@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "version": "2026.10.25.3",
+  "publishedAt": "2026-10-25",
+  "routes": [
+    {
+      "id": "tax-return",
+      "name": "법인세 신고서·부속명세",
+      "agency": "국세청 홈택스",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "세금신고",
+        "법인세 신고",
+        "신고내역 조회(접수증·납부서)",
+        "접수번호·신고서 보기",
+        "전체 서식 인쇄·PDF 저장"
+      ],
+      "years": "2021~2025",
+      "intent": "tax",
+      "attached": [],
+      "export": "문자형 PDF",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "tax-history",
+      "name": "세금 신고내역",
+      "agency": "국세청 홈택스",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "세금신고",
+        "신고서 조회/삭제/부속서류",
+        "전자신고 결과 조회",
+        "법인세·신고기간 선택",
+        "조회·엑셀/인쇄"
+      ],
+      "years": "2021~2025 및 신고일",
+      "intent": "carry",
+      "attached": [],
+      "export": "XLSX 또는 PDF",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "tax-due",
+      "name": "납부할 세액·실제 납부내역",
+      "agency": "국세청 홈택스",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "납부·고지·환급",
+        "세금납부",
+        "납부할 세액 조회/납부 또는 납부내역 조회",
+        "법인세·기간 선택",
+        "조회·인쇄/PDF"
+      ],
+      "years": "2021~2025 및 납부일",
+      "intent": "carry",
+      "attached": [],
+      "export": "PDF / 제공 시 XLSX",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "tax-refund",
+      "name": "국세 환급금 상세내역",
+      "agency": "국세청 홈택스",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "납부·고지·환급",
+        "국세환급",
+        "환급금 상세조회",
+        "조회기간·세목 확인",
+        "조회·인쇄/PDF"
+      ],
+      "years": "2021~2025 및 지급일",
+      "intent": "carry",
+      "attached": [],
+      "export": "PDF / 제공 시 XLSX",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "business-registration",
+      "name": "사업자등록증명",
+      "agency": "국세청 홈택스",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "증명·등록·신청",
+        "즉시발급 증명",
+        "사업자등록증명",
+        "신청·발급",
+        "출력·PDF 저장"
+      ],
+      "years": "현재 법인 정보",
+      "intent": "tax",
+      "attached": [],
+      "export": "PDF",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "employment",
+      "name": "근로자 고용 취득·상실 이력",
+      "agency": "근로복지공단 토탈서비스",
+      "url": "https://total.comwel.or.kr/",
+      "menu": [
+        "사업장·법인 인증",
+        "정보조회",
+        "보험가입정보 조회",
+        "근로자고용정보현황조회(20103)",
+        "사업장관리번호·고용보험·전체 이력",
+        "조회·엑셀/인쇄"
+      ],
+      "years": "2020~2025",
+      "intent": "employment",
+      "attached": [],
+      "export": "XLSX / 제공 시 PDF",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://total.comwel.or.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "insurance-rate",
+      "name": "사업장 고용·산재 보험료율",
+      "agency": "근로복지공단 토탈서비스",
+      "url": "https://total.comwel.or.kr/",
+      "menu": [
+        "사업장·법인 인증",
+        "정보조회",
+        "보험료정보 조회",
+        "사업장요율조회(20206)",
+        "연도·관리번호 선택",
+        "조회·인쇄/PDF"
+      ],
+      "years": "2020~2026 (계산대상 2021~2025)",
+      "intent": "insurance",
+      "attached": [],
+      "export": "PDF",
+      "note": "요율표는 실납부 증빙이 아닙니다. 사회보험료 세액공제에는 사업주 부담·지원 차감 내역을 대조하세요.",
+      "source": "https://total.comwel.or.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "insurance-paid",
+      "name": "4대보험 납부확인·산출내역",
+      "agency": "국민건강보험공단 통합징수포털",
+      "url": "https://si4n.nhis.or.kr/",
+      "menu": [
+        "사업장 로그인",
+        "제증명발급",
+        "증명서 발급",
+        "납부확인서",
+        "보험종류·연도 선택",
+        "발급·인쇄/PDF"
+      ],
+      "years": "2021~2025",
+      "intent": "insurance",
+      "attached": [],
+      "export": "PDF / 산출내역 제공 시 XLSX",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://si4n.nhis.or.kr/jpca/JpCae00101.do",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "공개 메뉴 확인",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "insurance-edi",
+      "name": "개인별·월별 보험료 보완",
+      "agency": "국민건강보험 EDI",
+      "url": "https://edi.nhis.or.kr/",
+      "menu": [
+        "사업장 인증",
+        "제증명",
+        "제증명신청",
+        "납부확인서 신청 및 발급",
+        "월별/연도별 선택",
+        "조회·출력"
+      ],
+      "years": "2021~2025",
+      "intent": "insurance",
+      "attached": [],
+      "export": "PDF",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://edi.nhis.or.kr/webedi/help/html/confi/co_01.html",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "공개 메뉴 확인",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "salary",
+      "name": "지급명세서·월별 급여",
+      "agency": "국세청 홈택스 / 회사 인사자료",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인 로그인",
+        "지급명세·자료제출",
+        "근로소득 지급명세서",
+        "제출내역 조회",
+        "귀속연도 선택",
+        "인쇄/PDF + 회사 월별 급여대장"
+      ],
+      "years": "2020~2025",
+      "intent": "salary",
+      "attached": [],
+      "export": "PDF / 회사 XLSX",
+      "note": "현재 법인의 해당 귀속연도 원자료를 발급받아 업로드하세요. 기관별 인증 및 법인 권한이 필요합니다.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    },
+    {
+      "id": "derived-summary",
+      "name": "첨부 종합정보 요약",
+      "agency": "회사 내부 재가공 자료",
+      "url": "https://www.hometax.go.kr/",
+      "menu": [
+        "법인세 신고서·납부·환급 원자료 수집",
+        "프로그램에서 원자료 대조"
+      ],
+      "years": "2021~2025",
+      "intent": "carry",
+      "attached": [],
+      "export": "프로그램 분석 / 내부 XLSX",
+      "note": "재가공 요약은 원 신고서와 동일함을 보장하지 않습니다. 실제 귀속·금액은 원본으로 대조하세요.",
+      "source": "https://www.nts.go.kr/",
+      "checkedAt": "2026-10-25",
+      "routeStatus": "인증 후 메뉴 확인 필요",
+      "policyFrom": "2021-01-01",
+      "policyTo": "2025-12-31"
+    }
+  ],
+  "notices": [
+    {
+      "name": "국세청 안내",
+      "url": "https://www.nts.go.kr/"
+    },
+    {
+      "name": "통합징수포털 공지",
+      "url": "https://si4n.nhis.or.kr/jpca/JpCae00101.do"
+    }
+  ]
+}
