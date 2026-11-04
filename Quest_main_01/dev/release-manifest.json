@@ -238,8 +238,8 @@
     },
     {
       "path": "demo/index.html",
-      "bytes": 476459,
-      "sha256": "047399d5ef068f4ee25651447c2dd7fc95966305b35defa32306b1842a4c1c4f"
+      "bytes": 476744,
+      "sha256": "1a1c8d1624ed0460cb0c220ca52dd3d6f884fd33ce067625211a514e1a3dec62"
     },
     {
       "path": "docs/00_설치_사용안내.html",
@@ -323,8 +323,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4119,
-      "sha256": "abe7bd62164cfc511c290cfbfb4afabb793a9097a9e35d5b5388122d4f9fa066"
+      "bytes": 4086,
+      "sha256": "043f5cdad8afe16313141f5a156dfbdf3dbc52acade8917badf1ad45a593ce69"
     },
     {
       "path": "경정청구.exe",

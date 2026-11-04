@@ -2,7 +2,9 @@
 
 회사 회계 담당자와 세무사가 기관·서류·연도별 자료를 정리하고, 5개년 잠정 계산 결과와 근거를 검토해 보고서로 저장하는 프로그램입니다.
 
-## 1. [▶ 데모 영상 — 2분50초](https://tax-return-review-quest.pages.dev/demo/)
+## 1. [▶ 데모·README 통합 화면 — 2분50초](https://tax-return-review-quest.pages.dev/demo/)
+
+드롭다운·자동 접힘·첫 문단 이동은 위 **웹 통합 화면**에서 작동합니다. GitHub README는 링크 안내용이며, 아래 파란색 서류 링크를 누르면 같은 웹 화면에서 해당 문서가 바로 펼쳐집니다.
 
 브라우저에서 큰 화면으로 재생하며 전체 화면 버튼도 지원합니다. 영상이 끝나면 같은 페이지의 README 안내로 자동 이동합니다. 웹 제출 페이지에서 파란색 서류 제목을 누르면 문서가 펼쳐집니다. 문서 아래의 다른 제출서류 링크를 누르면 이전 문서는 접히고 새 문서의 첫 문단으로 이동합니다. 실사형 AI 남성 발표자가 음성에 맞춘 입 움직임으로 소개한 뒤 “지금부터는 도우미 AI가 데모를 진행합니다”라고 역할을 넘깁니다. 첨부 로봇을 바탕으로 만든 도우미 AI 포인터가 주요 버튼·결과 행으로 이동해 손끝으로 짚고 터치하며, 마지막에는 남성 발표자가 다시 마무리합니다. 로그인·회원가입 양식부터 개별 자료 첨부, 업로드 결과, Q&A, 시뮬레이션, 연도별·카테고리별·항목별 결과, 계산 근거, 2차 분석과 전문가 상담준비까지 보여줍니다. 회사는 **주식회사0000**으로 표시하고 계정·개인정보·원자료는 공개하지 않습니다.
 
@@ -16,47 +18,24 @@ Windows에서 오프라인으로 사용하려면 이 폴더의 `경정청구.exe
 
 ## 제출 문서
 
-<details name="submission-docs">
-<summary>제출보고서 — 서비스 개요·구현 범위·한계</summary>
+파란색 링크를 누르면 해당 문서의 첫 문단으로 이동합니다. 문서 아래의 다른 서류 링크로 계속 읽을 수 있습니다.
 
-[문서 원문 열기](제출보고서.md)
+[제출보고서 — 서비스 개요·구현 범위·한계](https://tax-return-review-quest.pages.dev/demo/#document-report)
 
-대상 사용자, 자료 입력부터 보고서까지의 흐름, 구현 방식과 이번 제출의 한계를 정리했습니다.
+대상 사용자, 구현 방식과 이번 제출의 한계를 정리했습니다.
 
-</details>
+[PRD — 요구사항·사용자·성공 기준](https://tax-return-review-quest.pages.dev/demo/#document-prd)
 
-<details name="submission-docs">
-<summary>PRD — 요구사항·사용자·성공 기준</summary>
+핵심 기능, 성공 기준과 제외 범위를 설명합니다.
 
-[문서 원문 열기](PRD.md)
+[회고록 — 어려움·배운 점·다음 단계](https://tax-return-review-quest.pages.dev/demo/#document-retrospective)
 
-해결할 문제와 핵심 기능, 성공 기준·제외 범위를 설명합니다.
+개발 과정에서 배운 점과 다음 개선 과제를 정리했습니다.
 
-</details>
+[AI 협업 기록 — 주요 요청·역할·작업 결과](https://tax-return-review-quest.pages.dev/demo/#document-ai)
 
-<details name="submission-docs">
-<summary>회고록 — 어려움·배운 점·다음 단계</summary>
+개인정보를 제외한 주요 요청과 AI 협업 결과를 기록했습니다.
 
-[문서 원문 열기](retrospective.md)
+[기능 검증 기록 — 확인한 동작·미완료 범위](https://tax-return-review-quest.pages.dev/demo/#document-verification)
 
-개발 과정과 전문가 결과 대조, 자료 공개 범위에서 배운 점을 정리한 작성자 확인용 초안입니다.
-
-</details>
-
-<details name="submission-docs">
-<summary>AI 협업 기록 — 주요 요청·역할·작업 결과</summary>
-
-[문서 원문 열기](docs/submission/AI_COLLABORATION.md)
-
-개인정보를 제외한 주요 대화 발췌와 AI가 지원한 작업, 실제 검증 범위를 기록했습니다.
-
-</details>
-
-<details name="submission-docs">
-<summary>기능 검증 기록 — 확인한 동작·미완료 범위</summary>
-
-[문서 원문 열기](docs/submission/VERIFICATION.md)
-
-로그인·자료 첨부·보고서 저장·실제 자료 기반 데모의 확인 결과와 추가 검토가 필요한 내용을 구분합니다.
-
-</details>
+실제 확인한 결과와 추가 검토가 필요한 내용을 구분합니다.
