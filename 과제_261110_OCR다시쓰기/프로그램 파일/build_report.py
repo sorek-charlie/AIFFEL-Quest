@@ -36,7 +36,8 @@ def build():
 
     def paragraph(text, style=body):
         story.append(Paragraph(escape(text), style))
-        notes.extend([text, ''])
+        prefix = '## ' if style is heading else ('### ' if style is sub else '')
+        notes.extend([prefix + text, ''])
 
     def section(title):
         if story:
@@ -48,6 +49,7 @@ def build():
         with PILImage.open(path) as im:
             height = width * im.height / im.width
         story.append(Image(str(path), width=width, height=height))
+        notes.extend(['![' + caption + '](' + path.relative_to(ROOT).as_posix().replace(' ', '%20') + ')', ''])
         story.append(Spacer(1, 8))
         paragraph(caption, small)
         story.append(Spacer(1, 12))
@@ -76,7 +78,7 @@ def build():
     final = list(csv.DictReader((OUT / 'ocr/table.csv').open(encoding='utf-8-sig', newline='')))
 
     section('01 | 과제 목적과 입력 자료')
-    paragraph('일반 OCR로 얻은 문자열을 텍스트와 표로 구분하고, 표의 행·열 구조를 복원하여 검색·복사가 가능한 문서를 만든다. 자동 추출 결과와 원본 대조 후 교정 결과를 별도로 보존한다.')
+    paragraph('일반 OCR로 얻은 문자열을 텍스트와 표로 구분하고, 표의 행·열 구조를 복원하여 검색·복사가 가능한 문서를 만든다. 웹에서 기본 과제를 확인하고 다른 PDF·이미지를 업로드해 실제 OCR을 수행한다. 자동 추출 결과와 원본 대조 후 교정 결과를 별도로 보존한다.')
     paragraph('자료: 미국 인구조사국 1910 Census Volume I(1913), PDF 2쪽 / 인쇄 22쪽 Table 1. 원문을 200 dpi로 렌더링한 뒤 [675, 785, 1760, 1290] 영역을 잘랐다. 입력은 1085 × 505 픽셀이다.')
     figure(ROOT / '프로그램 파일/input/census-table.png', '그림 1. 입력 이미지. 표의 세 열과 11개 데이터 행, 표 제목과 두 각주를 포함한다.')
     paragraph('처리 범위는 포함된 단일 표 이미지다. 원문 페이지의 주변 본문과 다른 표는 입력에 포함되지 않는다. 따라서 전체 페이지 본문 레이아웃 분석을 완료했다고 주장하지 않는다.')
@@ -133,26 +135,60 @@ def build():
     story.append(Spacer(1, 14))
     paragraph('현재 Windows PC에서 확인한 내용', sub)
     paragraph('구조 추출과 교정 표 재생성을 실행했다. 11행 × 3열, 별도 텍스트 3개, OCR id 중복 배치 없음, 표 본문과 제목·각주의 분리, 빈 면적 유지, 교정 전 OCR 오독 보존을 확인했다. 11행 교정값과 33개 셀 검토 로그, 입력 SHA256도 점검했다.')
-    paragraph('전체 OCR 추론과 새 가상환경 설치는 이번 점검에서 재실행하지 않았다. 포함된 42개 OCR 영역은 기존 실행 결과이며, 새 구조 추출 단계가 이를 입력으로 사용한다. review_log.csv와 corrections.csv는 원시값과 교정 근거를 연결한다.')
+    paragraph('기본 과제의 전체 PaddleOCR 추론과 새 가상환경 설치는 이번 점검에서 재실행하지 않았다. 외부 업로드 자료는 Tesseract로 새 OCR을 실행해 검증했으며 9절에 구분해 기록한다. 포함된 42개 OCR 영역은 기존 실행 결과이며, 새 구조 추출 단계가 이를 입력으로 사용한다. review_log.csv와 corrections.csv는 원시값과 교정 근거를 연결한다.')
     paragraph('알고리즘 한계', sub)
-    paragraph('단일 유선 표에 맞춘 휴리스틱이다. 무선 표, 병합 셀, 여러 표와 여러 줄 행 제목을 일반적으로 지원하지 않는다. 제목 분류는 위치 규칙이며 범용 레이아웃 모델이 아니다. 다른 문서나 전체 페이지를 처리하려면 OCR 범위 확대와 별도 레이아웃 검출이 필요하다.')
+    paragraph('기본 과제용 extract_layout.py는 단일 유선 표에 맞춘 휴리스틱이다. 무선 표, 병합 셀, 여러 표와 여러 줄 행 제목을 일반적으로 지원하지 않는다. 제목 분류는 위치 규칙이며 범용 레이아웃 모델이 아니다. 다른 문서나 전체 페이지를 처리하려면 OCR 범위 확대와 별도 레이아웃 검출이 필요하다.')
 
-    section('07 | 실행 방법·파일 구성·제출')
-    paragraph('프로그램 파일 폴더: run_ocr.py, extract_layout.py, reconstruct_table.py, prepare_input.py, reviewed_cells.json, requirements.txt 및 입력 이미지. 참고자료 폴더: 공식 원문 PDF, OCR·레이아웃 결과, 교정 표, 로그와 환경 기록.')
-    paragraph('프로그램 파일 폴더에서 Python 3.12 가상환경을 만들고 활성화한 다음 실행한다. 입력 이미지는 포함되어 있어 PDF 재변환은 선택 사항이다. 최초 OCR 모델 다운로드에는 인터넷이 필요하다.')
-    table(['순서', '명령'], [
-        ['설치', 'python -m pip install -r requirements.txt'],
-        ['1. OCR', 'python run_ocr.py'],
-        ['2. 텍스트·표 분리', 'python extract_layout.py'],
-        ['3. 교정 표 재생성', 'python reconstruct_table.py'],
+    section('07 | 웹 실행: 기본 과제와 INPUT / OUTPUT')
+    paragraph('웹 주소는 http://127.0.0.1:8501 이다. 처음 접속하거나 새로고침하면 항상 과제 제출 자료가 기본으로 선택된다. 기존 과제의 원본 이미지와 저장된 결과를 즉시 표시한다.')
+    figure(REF / 'web-preview.png', '그림 3. 기본 웹 화면. 왼쪽 INPUT은 과제 이미지와 추출 버튼, 오른쪽 OUTPUT은 텍스트·표와 다운로드다.', width=465)
+    paragraph('왼쪽 INPUT에서 입력 자료와 원본을 확인하고 텍스트·표 추출을 실행한다. 오른쪽 OUTPUT에서 자동 추출 표, 텍스트, 교정 표, 영역 보기, 원시 OCR 탭을 전환한다. CSV·텍스트·JSON 다운로드와 PDF 보고서 열기를 제공한다.')
+    paragraph('기본 과제의 추출 버튼은 기존 PaddleOCR 좌표와 이미지 구분선을 사용해 11행 × 3열과 텍스트 3개를 재생성한다. 교정 표는 별도의 수동 검토값을 이용한다. 기본 과제의 저장 결과를 새 OCR 모델 추론 결과로 설명하지 않는다.')
+    paragraph('웹 서버는 현재 PC의 127.0.0.1에만 연결된다. GitHub는 코드·보고서·결과를 제공하며 Python 서버를 실행하지 않는다. 다른 PC에서는 저장소를 내려받아 웹 서버를 실행해야 한다.')
+
+    section('08 | PDF·이미지 업로드 OCR')
+    paragraph('입력 자료에서 다른 PDF·이미지 업로드를 선택하고 파일과 언어를 지정한다. 한국어+영어, 영어, 한국어를 지원한다. 기본 과제와 다른 자료는 Tesseract로 실제 문자 인식을 수행한다.')
+    figure(REF / 'web-upload-preview.png', '그림 4. 스캔 PDF 2쪽의 OCR 완료 화면. 왼쪽 업로드·언어 설정, 오른쪽 페이지 선택과 표 결과를 확인한다.', width=455)
+    paragraph('PDF는 페이지별로 렌더링한 뒤 OCR한다. 처리 중 완료 페이지 수를 표시하고, 완료 후 페이지 선택으로 원본·텍스트·표·영역을 함께 바꾼다. 페이지별 표 CSV, 전체 인식 텍스트, 좌표 JSON을 내려받을 수 있다.')
+    paragraph('업로드 자료에는 과제의 수동 교정값을 적용하지 않는다. 교정 표 탭을 비활성화하고 실제 자동 인식값을 보여 준다. 표가 검출되지 않아도 인식한 텍스트를 제공한다.')
+    paragraph('업로드 한도: 파일 30MB, PDF 50쪽. PNG/JPG/WEBP/BMP/TIFF를 지원한다. 암호 PDF는 해제 후 업로드한다.', small)
+
+    section('09 | 업로드 처리 과정·실제 검증·한계')
+    table(['단계', '처리 내용'], [
+        ['입력 준비', 'PDF는 최대 200 dpi 및 약 500만 화소로 렌더링. 이미지 방향 정보를 반영하고 최대 3000 × 3000으로 축소.'],
+        ['글자 인식', '긴 표 선을 제거한 이미지에 Tesseract kor+eng OCR 실행. 문자열, 신뢰도, 단어 좌표를 저장.'],
+        ['표·텍스트 구분', '원본의 수직·수평선을 검출하고 유선 표 경계·열과 OCR 좌표를 연결. 표 밖의 단어는 텍스트로 분리.'],
+        ['자료 분리', 'uploads/<작업ID>에 원본·페이지 이미지·OCR 결과를 보관. 기본 과제 원본·출력은 유지. Git과 ZIP에서 업로드 제외.'],
+    ], [100, 395])
+    story.append(Spacer(1, 12))
+    paragraph('실제 검증 결과', sub)
+    evidence = json.loads((REF / 'UPLOAD_VALIDATION.json').read_text(encoding='utf-8'))
+    table(['검증 입력·동작', '확인 결과'], [
+        ['PNG 이미지', str(evidence['upload-test.png']['pages']) + '쪽 실제 OCR 완료. 한국어·영어·숫자 인식, 표 1개 확인.'],
+        ['2쪽 스캔 PDF', str(evidence['scan-test.pdf']['pages']) + '쪽 모두 OCR 완료. 각 페이지 표 1개와 한국어·영어 인식 확인.'],
+        ['브라우저 조작', '실제 파일 선택 → OCR 실행 → 2쪽 선택 → CSV HTTP 200 확인.'],
+        ['기본 과제 보존', '입력 이미지·기본 표·레이아웃 파일 SHA256 유지. 기본 모드 복귀 및 새로고침 시 11행 표 확인.'],
+    ], [125, 370])
+    story.append(Spacer(1, 10))
+    paragraph('한계: 업로드 표 추출은 유선 표 중심의 휴리스틱이다. 무선 표, 병합 셀, 복잡한 다단 문서와 흐린 글자는 원본 검토가 필요하다. 열 이름을 확정할 수 없을 때 일반 열 번호를 사용하며 OCR 오독을 자동 확정값으로 교정하지 않는다. 사용자 업로드 작업 목록은 서버 재시작 시 초기화되며 디스크 파일은 자동 삭제하지 않는다.')
+
+    section('10 | 웹 실행 방법·제출 파일')
+    paragraph('프로그램 파일 폴더에서 아래 명령을 실행한다. Python 패키지와 별도로 업로드 OCR용 Tesseract 실행 프로그램 및 kor/eng 언어 데이터가 필요하다. 현재 PC에는 설치되어 있으며 설치·환경변수 설정은 WEB_USAGE.md에 기록했다.')
+    table(['작업', '명령·위치'], [
+        ['웹 의존성 설치', 'python -m pip install -r requirements-web.txt'],
+        ['웹 실행', 'python web_app.py'],
+        ['접속 주소', 'http://127.0.0.1:8501'],
+        ['언어 확인', 'tesseract --list-langs (kor, eng 확인)'],
+        ['웹 종료', '서버 터미널에서 Ctrl+C'],
+        ['보고서 재생성', 'requirements-report.txt 설치 후 python build_report.py'],
     ], [130, 365])
-    story.append(Spacer(1, 14))
-    paragraph('기존 OCR 결과로 구조 추출만 확인할 때는 numpy, opencv-python, Pillow를 설치하고 extract_layout.py를 실행하면 된다. 결과는 과제 폴더의 참고자료/outputs 아래에 저장한다.')
-    paragraph('README에서 실행 코드, 입력, 텍스트, 자동 표, 교정 표, PDF와 결과 이미지를 상대 링크로 바로 열 수 있다. GitHub에서는 Markdown 표를 바로 읽을 수 있고 HTML은 소스 파일로 열린다.')
-    paragraph('제출 위치: sorek-charlie/AIFFEL-Quest 저장소의 과제_261110_OCR다시쓰기 폴더. 최종 ZIP은 프로그램 파일, 참고자료, README와 보고서를 포함하며 ZIP 자기 자신과 Git 내부 파일은 제외한다.')
-    paragraph('GitHub 폴더 주소', sub)
+    story.append(Spacer(1, 12))
+    paragraph('프로그램 파일/: web_app.py, upload_ocr.py, web/index.html, requirements-web.txt와 기존 OCR·복원 코드, 입력 이미지. 참고자료/: 공식 원문, OCR·레이아웃 결과, 검증 JSON과 웹 화면 이미지. 업로드 파일은 제출물에 포함하지 않는다.')
+    paragraph('README.md는 소개·실행·결과·제출 링크와 로컬↔GitHub 경로 대응을 제공한다. WEB_USAGE.md는 웹·업로드 설치와 사용법, SUBMISSION.md는 제출 순서와 설명문이다. PDF와 REPORT.md는 같은 생성 코드로 작성한다.')
+    paragraph('최종 ZIP은 프로그램 파일, 참고자료, README, 사용·제출 안내와 보고서를 묶는다. ZIP 자기 자신, .git, 가상환경·캐시, 사용자 uploads 폴더는 제외한다. 최상위 제출파일 폴더의 ZIP·PDF는 동일한 제출용 복사본이다.')
+    paragraph('과제 제출용 GitHub 폴더', sub)
     paragraph('https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기', small)
-    paragraph('강의 사이트에는 이 폴더 링크를 제출한다. 강의 사이트 제출 버튼은 이번 작업 범위에서 누르지 않는다. 과제 요구사항의 출처는 기존 기록의 강의자료 8~10쪽이며 해당 강의 원본 파일은 현재 작업 폴더에 없다.')
+    paragraph('강의 제출란에는 위 폴더 링크를 입력하고, 파일 첨부 방식이면 최종 ZIP과 PDF를 첨부한다. 강의 사이트 제출 버튼은 이번 작업에서 누르지 않았다. 기존 과제 요구사항의 출처는 강의자료 8~10쪽이며 해당 강의 원본은 현재 폴더에 없다.')
 
     def footer(canvas, doc):
         canvas.saveState()

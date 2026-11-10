@@ -35,3 +35,6 @@ https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시�
 
 ## 추가 기능: 외부 자료 OCR
 기본 화면은 항상 과제 제출 자료입니다. 다른 PDF·이미지를 업로드하면 Tesseract 한국어·영어 OCR을 실제 실행합니다. PDF 페이지별 결과, 표·텍스트·좌표 다운로드를 제공하며 업로드는 기본 과제 자료와 분리합니다. [사용 안내](WEB_USAGE.md) · [실제 OCR 검증](참고자료/UPLOAD_VALIDATION.json)
+
+## 최종 보고서 구성
+[최종 PDF 10쪽](OCR_Assignment_Report.pdf)과 [보고서 원문](REPORT.md)에 기본 과제 처리, 웹 INPUT/OUTPUT, PDF·이미지 업로드 OCR, 실제 검증 결과와 실행·제출 방법을 반영했습니다. [최종 ZIP](OCR_Assignment_Final.zip)에는 이 보고서와 현재 웹 코드를 포함합니다.

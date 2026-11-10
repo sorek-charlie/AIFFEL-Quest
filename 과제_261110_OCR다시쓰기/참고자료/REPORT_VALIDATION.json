@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-10",
+  "pdf_pages": 10,
+  "pdf_sha256": "06a699256bd9eeb31e86329b84fa7a81acb6bac98d54604a7d57d58e7fc32f53",
+  "review": "All ten pages rendered; web and upload pages and detailed tables inspected; text bounds checked.",
+  "topics": [
+    "basic OCR and separate text/table extraction",
+    "web INPUT left and OUTPUT right",
+    "assignment always default",
+    "PDF/image upload with Tesseract Korean+English",
+    "real PNG and 2-page scanned PDF OCR verification",
+    "default-file preservation and upload isolation",
+    "web setup, execution and submission"
+  ],
+  "readme_links": {
+    "README.md": 10,
+    "과제_261110_OCR다시쓰기/README.md": 71,
+    "과제_261110_OCR다시쓰기/SUBMISSION.md": 19,
+    "과제_261110_OCR다시쓰기/WEB_USAGE.md": 9,
+    "과제_261110_OCR다시쓰기/REPORT.md": 4
+  },
+  "archive_excludes": [
+    "uploads",
+    ".git",
+    ".venv",
+    "__pycache__",
+    "archive itself"
+  ]
+}

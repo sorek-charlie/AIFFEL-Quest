@@ -12,6 +12,20 @@
 
 [과제 제출 안내·붙여 넣을 설명](SUBMISSION.md) · [최종 제출 ZIP](OCR_Assignment_Final.zip) · [PDF 보고서](OCR_Assignment_Report.pdf) · [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기)
 
+## 최종 PDF 보고서
+
+[최종 보고서 PDF · 10쪽](OCR_Assignment_Report.pdf) · [같은 내용의 Markdown 보고서](REPORT.md) · [보고서 생성 코드](프로그램%20파일/build_report.py)
+
+| 쪽 | 반영 내용 |
+|---|---|
+| 1~6 | 입력 자료, OCR, 텍스트·표 구분, 자동 표와 교정 표, 수정 근거 |
+| 7 | 왼쪽 INPUT·오른쪽 OUTPUT 웹 실행과 기본 과제 모드 |
+| 8 | PDF·이미지 업로드, 언어 설정, 페이지별 결과 확인 |
+| 9 | 업로드 처리 과정, 이미지·2쪽 스캔 PDF 실제 OCR 검증과 한계 |
+| 10 | 설치·웹 실행·파일 구성·과제 제출 방법 |
+
+보고서·README·제출 ZIP은 현재 웹 버전을 기준으로 정리했습니다. 사용자 업로드 원본과 실행 결과는 제출 ZIP 및 GitHub에 포함하지 않습니다.
+
 ## 결과 바로 보기
 
 | 결과 | 바로 열기 | 내용 |
@@ -121,7 +135,7 @@ python extract_layout.py
 
 ## 검증
 
-현재 Windows PC의 웹 브라우저에서 추출 버튼을 눌러 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 7쪽 및 최종 ZIP 무결성도 확인했습니다. 업로드 모드에서는 이미지와 2쪽 스캔 PDF에 실제 Tesseract OCR을 실행해 한국어·영어·숫자와 표를 확인했습니다. 기존 과제의 전체 PaddleOCR 추론과 새 가상환경 설치는 재실행하지 않았습니다.
+현재 Windows PC의 웹 브라우저에서 추출 버튼을 눌러 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 10쪽 및 최종 ZIP 무결성도 확인했습니다. 업로드 모드에서는 이미지와 2쪽 스캔 PDF에 실제 Tesseract OCR을 실행해 한국어·영어·숫자와 표를 확인했습니다. 기존 과제의 전체 PaddleOCR 추론과 새 가상환경 설치는 재실행하지 않았습니다.
 
 ## 출처 및 제출
 
@@ -139,7 +153,7 @@ python extract_layout.py
 | 제출 안내와 설명문 | [SUBMISSION.md](SUBMISSION.md) | 제출 순서와 제출란에 붙여 넣을 내용 |
 | 제출 링크 | [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기) | 링크 제출 시 사용 |
 | 전체 제출 파일 | [최종 ZIP](OCR_Assignment_Final.zip) | 코드·입력·결과·문서 전체 |
-| 최종 보고서 | [PDF](OCR_Assignment_Report.pdf) · [Markdown](REPORT.md) | 7쪽 수행 보고서 |
+| 최종 보고서 | [PDF](OCR_Assignment_Report.pdf) · [Markdown](REPORT.md) | 10쪽 수행 보고서 |
 | 자동 표 | [표 보기](참고자료/outputs/layout/table_001.md) · [CSV](참고자료/outputs/layout/table_001.csv) | 11행 × 3열 자동 구조 추출 결과 |
 | 교정 표 | [표와 해설](참고자료/outputs/ocr/document.md) · [CSV](참고자료/outputs/ocr/table.csv) | 원본 대조 후 교정 결과 |
 | 분리된 텍스트 | [text.txt](참고자료/outputs/layout/text.txt) | 표 제목과 각주 |
