@@ -1,8 +1,14 @@
 # 선택과제 B · OCR 텍스트와 표 구조 추출
 
+## 바로가기
+
+[프로젝트 소개](#프로젝트-소개) · [실행 파일](#실행-파일) · [실행 방법](#실행-방법) · [결과 보기](#결과-바로-보기) · [과제 제출](#과제-제출) · [로컬·GitHub 구조](#로컬과-github-폴더-매칭) · [검증](#검증)
+
+## 프로젝트 소개
+
 미국 인구조사국 1910 Census의 표 이미지에서 글자와 좌표를 인식하고, **일반 텍스트와 표를 분리**한 뒤 행·열 구조를 복원합니다. 자동 추출 결과와 원본 대조 후 교정 결과를 각각 보존합니다.
 
-[최종 제출 ZIP 다운로드](OCR_Assignment_Final.zip)
+[과제 제출 안내·붙여 넣을 설명](SUBMISSION.md) · [최종 제출 ZIP](OCR_Assignment_Final.zip) · [PDF 보고서](OCR_Assignment_Report.pdf) · [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기)
 
 ## 결과 바로 보기
 
@@ -35,6 +41,9 @@ HTML 링크는 GitHub에서 소스 파일로 열립니다. 바로 읽는 표는 
 | 1 | [run_ocr.py](프로그램%20파일/run_ocr.py) | PaddleOCR로 글자·점수·좌표·시각화를 저장 |
 | 2 | [extract_layout.py](프로그램%20파일/extract_layout.py) | 이미지 구분선과 OCR 좌표로 텍스트·표 및 행·열 구조를 추출 |
 | 3 | [reconstruct_table.py](프로그램%20파일/reconstruct_table.py) | [수동 검토값](프로그램%20파일/reviewed_cells.json)으로 교정된 CSV·문서·검토 기록을 생성 |
+| 보고서 | [build_report.py](프로그램%20파일/build_report.py) | 최종 PDF와 Markdown 보고서 생성 |
+
+[실행 패키지](프로그램%20파일/requirements.txt) · [직접 의존성 버전](프로그램%20파일/requirements-lock.txt) · [보고서 생성 패키지](프로그램%20파일/requirements-report.txt)
 
 GitHub 링크는 코드를 엽니다. 실제 실행은 저장소를 내려받은 후 아래 명령을 사용합니다.
 
@@ -94,13 +103,76 @@ python extract_layout.py
 
 [보고서 생성 코드](프로그램%20파일/build_report.py)를 제공합니다. `프로그램 파일`에서 `python -m pip install -r requirements-report.txt` 후 `python build_report.py`를 실행하세요. Windows 맑은 고딕을 사용하며 다른 OS에서는 코드의 한국어 TTF 경로를 지정해야 합니다.
 
-## 폴더 구성
+## 과제 제출
 
-- **프로그램 파일/**: 실행 코드, 패키지 목록, 입력 이미지, 수동 검토값. 저장소와 함께 내려받아 실행합니다.
-- **참고자료/**: 공식 원문 PDF, 기존 OCR 출력, 자동 구조 추출 및 교정 결과, 환경·검증 기록.
-- **OCR_Assignment_Report.pdf / REPORT.md**: 텍스트·표 분리까지 반영한 최종 보고서.
-- **OCR_Assignment_Final.zip**: 위 제출물 전체를 묶은 파일(자기 자신은 포함하지 않음).
+| 제출 항목 | 바로 열기 | 용도 |
+|---|---|---|
+| 제출 안내와 설명문 | [SUBMISSION.md](SUBMISSION.md) | 제출 순서와 제출란에 붙여 넣을 내용 |
+| 제출 링크 | [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기) | 링크 제출 시 사용 |
+| 전체 제출 파일 | [최종 ZIP](OCR_Assignment_Final.zip) | 코드·입력·결과·문서 전체 |
+| 최종 보고서 | [PDF](OCR_Assignment_Report.pdf) · [Markdown](REPORT.md) | 7쪽 수행 보고서 |
+| 자동 표 | [표 보기](참고자료/outputs/layout/table_001.md) · [CSV](참고자료/outputs/layout/table_001.csv) | 11행 × 3열 자동 구조 추출 결과 |
+| 교정 표 | [표와 해설](참고자료/outputs/ocr/document.md) · [CSV](참고자료/outputs/ocr/table.csv) | 원본 대조 후 교정 결과 |
+| 분리된 텍스트 | [text.txt](참고자료/outputs/layout/text.txt) | 표 제목과 각주 |
+| 검증 근거 | [검증 기록](참고자료/VALIDATION.txt) · [셀 검토 로그](참고자료/outputs/ocr/review_log.csv) | 실행·원본 대조 확인 |
 
-[과제 제출용 GitHub 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기)
+강의 제출란에 GitHub 과제 폴더 주소를 입력하세요. 파일 첨부 방식이면 ZIP과 PDF를 사용하세요. 채점자가 저장소를 열 수 있는지 확인한 뒤 제출 완료 상태를 확인합니다.
 
-저장소를 내려받아 이 과제 폴더를 열면 됩니다. GitHub에서는 위 코드·결과 링크가 바로 열립니다.
+## 로컬과 GitHub 폴더 매칭
+
+로컬 `OCR다시쓰기`는 `AIFFEL-Quest` 저장소와 연결되어 있습니다. 다른 과제는 sparse checkout으로 숨겨져 있으며, 아래 과제 하위 경로는 로컬과 GitHub에서 동일합니다.
+
+| 로컬 위치 (현재 작업 폴더 기준) | GitHub 위치 |
+|---|---|
+| `과제_261110_OCR다시쓰기/` | [과제 루트](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기) |
+| `과제_261110_OCR다시쓰기/프로그램 파일/` | [프로그램 파일](프로그램%20파일/) |
+| `과제_261110_OCR다시쓰기/프로그램 파일/input/` | [입력 이미지 폴더](프로그램%20파일/input/) |
+| `과제_261110_OCR다시쓰기/참고자료/` | [참고자료](참고자료/) |
+| `과제_261110_OCR다시쓰기/참고자료/outputs/layout/` | [텍스트·표 분리 결과](참고자료/outputs/layout/) |
+| `과제_261110_OCR다시쓰기/참고자료/outputs/ocr/` | [OCR·교정 결과](참고자료/outputs/ocr/) |
+| `과제_261110_OCR다시쓰기/README.md` | [현재 README](README.md) |
+| `과제_261110_OCR다시쓰기/SUBMISSION.md` | [과제 제출 안내](SUBMISSION.md) |
+
+로컬 최상위의 `제출파일/`은 이 과제 폴더에 있는 최종 ZIP·PDF의 편의용 복사본입니다. 최상위 `제출안내.txt`와 `.git/`은 로컬 안내·연결 정보이며 과제 제출 경로는 위 표를 따릅니다.
+
+```text
+과제_261110_OCR다시쓰기/           # 로컬·GitHub 공통 경로
+├─ README.md                    # 소개·실행·결과·제출 링크
+├─ SUBMISSION.md                # 제출 순서·제출 설명문
+├─ REPORT.md                    # 보고서 원문
+├─ OCR_Assignment_Report.pdf    # 최종 보고서
+├─ OCR_Assignment_Final.zip     # 전체 제출 묶음
+├─ .gitattributes               # 파일 바이트 보존 설정
+├─ 프로그램 파일/
+│  ├─ input/census-table.png    # OCR 입력
+│  ├─ prepare_input.py          # 원문 이미지 준비
+│  ├─ run_ocr.py                # 글자·좌표 인식
+│  ├─ extract_layout.py         # 텍스트·표 구조 분리
+│  ├─ reconstruct_table.py      # 검토 후 교정 표 생성
+│  ├─ build_report.py           # 보고서 생성
+│  ├─ reviewed_cells.json       # 수동 검토값
+│  ├─ requirements.txt          # 실행 의존성
+│  ├─ requirements-lock.txt     # 직접 의존성 버전 목록
+│  ├─ requirements-report.txt   # 보고서 의존성
+│  └─ .gitignore                # 가상환경·캐시 제외
+└─ 참고자료/
+   ├─ census_source.pdf         # 공식 원문
+   ├─ environment-original.txt  # 최초 실행 환경
+   ├─ VALIDATION.txt            # 검증 기록
+   └─ outputs/
+      ├─ layout/                # 자동 구조 추출 결과
+      │  ├─ text.txt
+      │  ├─ table_001.csv / .md / .html
+      │  ├─ document.md
+      │  ├─ layout.json
+      │  └─ layout_regions.png
+      └─ ocr/                   # 원시 OCR·교정 표·근거
+         ├─ raw_ocr.json / raw_text.txt
+         ├─ text_coordinates.json
+         ├─ table.csv / document.md
+         ├─ corrections.csv / review_log.csv
+         ├─ manifest.json / execution.log
+         └─ input_copy.png / ocr_regions.png / census-table_ocr_res_img.png
+```
+
+경로에 공백이 있는 `프로그램 파일` 링크는 `%20`으로 표기해 GitHub와 로컬 Markdown에서 열리도록 했습니다. `.py` 링크는 코드 열기 기능이며 실행은 터미널에서 안내된 명령을 사용합니다.
