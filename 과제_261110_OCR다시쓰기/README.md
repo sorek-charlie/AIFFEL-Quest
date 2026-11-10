@@ -1,6 +1,6 @@
 # 선택과제 B · OCR 텍스트와 표 구조 추출
 
-[Windows 실행파일 EXE](프로그램%20파일/OCR_Assignment.exe) · [EXE 사용 안내](EXE_USAGE.md)
+[웹 실행 안내](WEB_USAGE.md) · [실행 중인 로컬 웹](http://127.0.0.1:8501) · [웹 서버 코드](프로그램%20파일/web_app.py)
 
 ## 바로가기
 
@@ -35,22 +35,31 @@ HTML 링크는 GitHub에서 소스 파일로 열립니다. 바로 읽는 표는 
 
 ![초록색 표와 행·열 경계, 파란색 표 제목과 각주](참고자료/outputs/layout/layout_regions.png)
 
-## Windows EXE 실행
+## 웹 실행
 
-1. [최종 제출 ZIP](OCR_Assignment_Final.zip)을 내려받아 전체 압축을 해제합니다.
-2. [프로그램 파일 폴더](프로그램%20파일/)의 **[OCR_Assignment.exe](프로그램%20파일/OCR_Assignment.exe)**를 더블클릭합니다.
-3. **텍스트·표 추출 실행** 버튼을 누릅니다.
-4. 텍스트·자동 표·교정 표 탭에서 결과를 확인합니다. 결과 폴더·구분 이미지·PDF 열기 버튼도 제공합니다.
+[웹 실행 안내](WEB_USAGE.md) · [현재 PC의 로컬 웹 열기](http://127.0.0.1:8501) · [화면 미리보기](참고자료/web-preview.png)
 
-Python 설치가 필요 없는 Windows x64 실행파일입니다. EXE 용량은 **68,825,070바이트 (약 68.8MB / 65.64MiB)**입니다. EXE만 옮기지 말고 입력 이미지와 참고자료를 포함한 과제 폴더 전체를 유지하세요. 포함된 기존 OCR 좌표로 구조를 추출하며 새 OCR 모델 추론은 실행하지 않습니다. 새 OCR 인식은 아래 Python 코드를 이용합니다. 자세한 내용은 [EXE 사용 안내](EXE_USAGE.md)를 확인하세요.
+README가 있는 과제 폴더에서 실행합니다.
+
+```powershell
+cd "프로그램 파일"
+python -m pip install -r requirements-web.txt
+python web_app.py
+```
+
+브라우저가 자동으로 열립니다. 주소는 `http://127.0.0.1:8501`입니다. 서버를 실행한 PC에서 접속하세요. GitHub는 코드와 결과를 확인하는 곳이며 Python 웹 서버를 실행하지 않습니다.
+
+- **왼쪽 INPUT**: 원본 표 이미지, 자료 정보, 텍스트·표 추출 실행 버튼.
+- **오른쪽 OUTPUT**: 자동 추출 표, 텍스트, 교정 표, 영역 이미지, 원시 OCR 탭 및 다운로드.
+- 포함된 이미지와 기존 OCR 좌표로 구조 추출·교정 표 생성을 실제로 실행합니다. 새 OCR 모델 추론은 아래 별도 Python 코드로 수행합니다.
 
 ## 실행 파일
 
 | 순서 | 실행 코드 | 역할 |
 |---|---|---|
-| EXE | [OCR_Assignment.exe](프로그램%20파일/OCR_Assignment.exe) | Python 설치 없이 텍스트·표 추출 및 결과 확인 |
-| GUI 소스 | [ocr_app.py](프로그램%20파일/ocr_app.py) | EXE 화면과 기능의 Python 원본 |
-| 빌드 | [build_exe.py](프로그램%20파일/build_exe.py) | BAT 없이 EXE 재생성 |
+| 웹 실행 | [web_app.py](프로그램%20파일/web_app.py) | 왼쪽 INPUT·오른쪽 OUTPUT 로컬 웹 서버 |
+| 웹 화면 | [index.html](프로그램%20파일/web/index.html) | 브라우저 화면·결과 탭·다운로드 |
+| 웹 패키지 | [requirements-web.txt](프로그램%20파일/requirements-web.txt) | 구조 추출용 경량 패키지 목록 |
 | 선택 | [prepare_input.py](프로그램%20파일/prepare_input.py) | 원문 PDF 2쪽을 200 dpi로 렌더링하고 표를 자름 |
 | 1 | [run_ocr.py](프로그램%20파일/run_ocr.py) | PaddleOCR로 글자·점수·좌표·시각화를 저장 |
 | 2 | [extract_layout.py](프로그램%20파일/extract_layout.py) | 이미지 구분선과 OCR 좌표로 텍스트·표 및 행·열 구조를 추출 |
@@ -106,7 +115,7 @@ python extract_layout.py
 
 ## 검증
 
-현재 Windows PC에서 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 7쪽 및 최종 ZIP 무결성도 확인했습니다. 이번 점검에서는 전체 OCR 추론 및 새 가상환경 설치는 재실행하지 않았습니다.
+현재 Windows PC의 웹 브라우저에서 추출 버튼을 눌러 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 7쪽 및 최종 ZIP 무결성도 확인했습니다. 이번 점검에서는 전체 OCR 추론 및 새 가상환경 설치는 재실행하지 않았습니다.
 
 ## 출처 및 제출
 
@@ -152,7 +161,7 @@ python extract_layout.py
 ```text
 과제_261110_OCR다시쓰기/           # 로컬·GitHub 공통 경로
 ├─ README.md                    # 소개·실행·결과·제출 링크
-├─ EXE_USAGE.md                 # Windows 실행파일 사용 안내
+├─ WEB_USAGE.md                 # 웹 실행 안내
 ├─ SUBMISSION.md                # 제출 순서·제출 설명문
 ├─ REPORT.md                    # 보고서 원문
 ├─ OCR_Assignment_Report.pdf    # 최종 보고서
@@ -160,10 +169,9 @@ python extract_layout.py
 ├─ .gitattributes               # 파일 바이트 보존 설정
 ├─ 프로그램 파일/
 │  ├─ input/census-table.png    # OCR 입력
-│  ├─ OCR_Assignment.exe        # 더블클릭 Windows 실행파일
-│  ├─ ocr_app.py                # GUI 원본
-│  ├─ build_exe.py              # EXE 생성 코드
-│  ├─ requirements-build.txt    # EXE 빌드 의존성
+│  ├─ web_app.py               # 로컬 웹 서버
+│  ├─ web/index.html           # INPUT·OUTPUT 웹 화면
+│  ├─ requirements-web.txt     # 웹 실행 의존성
 │  ├─ prepare_input.py          # 원문 이미지 준비
 │  ├─ run_ocr.py                # 글자·좌표 인식
 │  ├─ extract_layout.py         # 텍스트·표 구조 분리

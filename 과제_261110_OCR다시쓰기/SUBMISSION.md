@@ -2,7 +2,8 @@
 
 [README](README.md) · [실행 코드](프로그램%20파일/) · [결과 폴더](참고자료/outputs/) · [PDF 보고서](OCR_Assignment_Report.pdf) · [최종 제출 ZIP](OCR_Assignment_Final.zip)
 
-[Windows EXE](프로그램%20파일/OCR_Assignment.exe) · [EXE 사용 안내](EXE_USAGE.md)
+
+[웹 실행 안내](WEB_USAGE.md) · [웹 서버](프로그램%20파일/web_app.py) · [웹 화면](참고자료/web-preview.png)
 
 ## 제출 순서
 
@@ -19,7 +20,7 @@ https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시�
 
 선택과제 B: 오래된 표 이미지의 OCR 및 텍스트·표 구조 추출
 
-미국 인구조사국 1910 Census의 표 이미지에서 PaddleOCR로 글자와 좌표를 추출하고, 이미지 구분선과 OCR 좌표를 이용해 표 제목·각주와 11행 × 3열 표를 분리했습니다. 자동 추출 결과와 원본 대조 후 교정 결과를 별도로 보존했습니다. 보고서, 실행 코드, 원문과 입력 이미지, OCR 원시 결과, 구조 추출 결과, 셀 검토 기록 및 최종 ZIP을 README 링크에서 확인할 수 있습니다.
+미국 인구조사국 1910 Census의 표 이미지에서 PaddleOCR로 글자와 좌표를 추출하고, 이미지 구분선과 OCR 좌표를 이용해 표 제목·각주와 11행 × 3열 표를 분리했습니다. 자동 추출 결과와 원본 대조 후 교정 결과를 별도로 보존했습니다. 왼쪽 INPUT·오른쪽 OUTPUT 웹 화면에서 추출과 결과 확인이 가능합니다. 보고서, 웹 실행 코드, 원문과 입력 이미지, OCR 원시 결과, 구조 추출 결과, 셀 검토 기록 및 최종 ZIP을 README 링크에서 확인할 수 있습니다.
 
 ## 결과와 근거
 
