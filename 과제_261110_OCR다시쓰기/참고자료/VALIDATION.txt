@@ -7,7 +7,7 @@ PASS Missing area empty and OCR footnote errors preserved
 PASS 42 saved OCR regions; input SHA256 matches original manifest
 PASS 11 corrected rows and 33 review records
 PASS Final PDF: 10 readable pages, text inside page bounds; rendered pages inspected
-PASS README relative links: 71
+PASS README relative links: 31
 NOT RUN Full OCR inference and clean dependency installation; previous OCR evidence retained
 NOTE original manifest paths and environment refer to original Linux run; current output paths are documented in README
 PASS Final ZIP CRC; all submission members match working files
@@ -29,3 +29,8 @@ PASS Final report expanded to 10 pages: web UI, upload OCR, real verification an
 PASS REPORT.md generated with matching content and screenshot links
 PASS Final PDF rendered and inspected; text lies inside page boundaries
 PASS All README, submission, usage and report Markdown local links exist
+
+PASS Public deployment: anonymous HTTP 200; default 11-row assignment
+PASS Public browser OCR: PNG and 2-page scanned PDF, Korean/English, tables and page switching
+PASS Browser file handling makes no document-upload request; CSV download HTTP 200
+PASS README top links only execution web and actual task evidence; developer details below

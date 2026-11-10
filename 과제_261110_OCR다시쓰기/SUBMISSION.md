@@ -1,5 +1,10 @@
 # 과제 제출 안내
 
+**[공개 실행 웹](https://sorek-ocr-document-lab-261110.cherrysocute9.chatgpt.site)**
+
+설치나 로그인 없이 PDF·이미지 한국어·영어 OCR을 실행할 수 있습니다. 과제 자료가 기본이며, 외부 파일은 방문자 브라우저에서 처리합니다.
+
+
 [README](README.md) · [실행 코드](프로그램%20파일/) · [결과 폴더](참고자료/outputs/) · [PDF 보고서](OCR_Assignment_Report.pdf) · [최종 제출 ZIP](OCR_Assignment_Final.zip)
 
 
@@ -38,3 +43,6 @@ https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시�
 
 ## 최종 보고서 구성
 [최종 PDF 10쪽](OCR_Assignment_Report.pdf)과 [보고서 원문](REPORT.md)에 기본 과제 처리, 웹 INPUT/OUTPUT, PDF·이미지 업로드 OCR, 실제 검증 결과와 실행·제출 방법을 반영했습니다. [최종 ZIP](OCR_Assignment_Final.zip)에는 이 보고서와 현재 웹 코드를 포함합니다.
+
+## 공개 웹 검증
+로그인하지 않은 새 브라우저에서 이미지와 2쪽 스캔 PDF를 실제 OCR 처리했습니다. [공개 배포 검증](참고자료/PUBLIC_DEPLOYMENT.json)을 확인하세요. 제출란에 GitHub 과제 폴더와 위 공개 웹 주소를 함께 입력하면 됩니다.

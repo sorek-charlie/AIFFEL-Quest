@@ -1,0 +1,15 @@
+{
+  "name": "ocr-document-lab-public",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "tesseract.js": "7.0.0",
+    "pdfjs-dist": "6.5.438",
+    "@tesseract.js-data/eng": "1.0.0",
+    "@tesseract.js-data/kor": "1.0.0"
+  }
+}

@@ -1,5 +1,12 @@
 # 웹 실행 및 업로드 OCR
 
+**[공개 실행 웹](https://sorek-ocr-document-lab-261110.cherrysocute9.chatgpt.site)**
+
+공개 웹은 설치나 로그인 없이 사용합니다. 과제 제출 자료가 기본이며, 다른 PDF·이미지를 선택하고 한국어·영어 OCR을 실행하세요. 방문자 브라우저 안에서 처리하고 서버로 파일을 보내지 않습니다. PDF·PNG·JPG·WEBP·BMP, 30MB·50쪽을 지원합니다. 결과는 다운로드하여 보관합니다. [공개 웹 코드](프로그램%20파일/public-web/)
+
+아래는 선택 사항인 로컬 Python 버전의 설치·실행 설명입니다. 공개 웹 사용에는 아래 설치가 필요하지 않습니다.
+
+
 [README](README.md) · [웹 서버](프로그램%20파일/web_app.py) · [업로드 OCR 코드](프로그램%20파일/upload_ocr.py) · [웹 화면](프로그램%20파일/web/index.html) · [웹 패키지](프로그램%20파일/requirements-web.txt) · [기본 화면](참고자료/web-preview.png) · [업로드 화면](참고자료/web-upload-preview.png)
 
 ## 설치와 실행

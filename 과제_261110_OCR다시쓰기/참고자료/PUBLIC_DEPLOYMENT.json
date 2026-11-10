@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-10",
+  "url": "https://sorek-ocr-document-lab-261110.cherrysocute9.chatgpt.site",
+  "access": "public, anonymous visitors verified",
+  "provider": "Sites",
+  "project_id": "appgprj_6af2c8a330e4819198f84e7cb315c8fc",
+  "version_id": "appgprj_6af2c8a330e4819198f84e7cb315c8fc~appgver_59a5c90076e08191805da6314deac1a8",
+  "source_commit": "912f1bed8bb17dc69070206f96cd8efae7724d4d",
+  "deployment_id": "appgdep_6af2cb91b55c8191b1cae5604c202a00",
+  "runtime": "Tesseract.js 7.0.0 WebAssembly + PDF.js 6.5.438, processing in visitor browser",
+  "tests": {
+    "anonymous_http_status": 200,
+    "default_assignment_rows": 11,
+    "image_ocr": "PASS Korean/English/12345/67890, table 3 rows x 2 columns",
+    "scanned_pdf_ocr": "PASS 2 pages, table on each page, page switch",
+    "csv_download_status": 200,
+    "return_to_default": "PASS",
+    "page_errors": 0,
+    "document_upload_requests": 0
+  },
+  "observed_error": "Scanned PDF numeric value 67890 was read as 6/890; uncorrected OCR retained.",
+  "limits": "30MB, PDF 50 pages; ruled-table heuristic; no manual correction for uploads",
+  "privacy": "Document data stays in browser. Platform may make ordinary security/challenge requests; app makes no document-upload request."
+}
