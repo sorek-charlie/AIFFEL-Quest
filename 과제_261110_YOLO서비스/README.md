@@ -1,154 +1,70 @@
-# 선택과제 A | 버스 사진의 객체 탐지와 인스턴스 분할
+# YOLO Vision Lab · 객체 탐지와 인스턴스 분할
 
-버스 사진에서 객체를 탐지하고 인스턴스별로 분할한 과제입니다. Windows에서 실행 코드로 직접 재검증했으며, 아래 이미지와 링크에서 결과를 확인할 수 있습니다.
+사진에서 객체의 위치와 모양을 찾고 신뢰도 임계값에 따른 결과를 비교하는 AIFFEL 선택과제 A입니다.
 
+## 웹으로 실행
+
+### [공개 웹앱 열기 ↗](https://yolo-vision-lab-261110.cherrysocute9.chatgpt.site)
+
+설치 없이 브라우저에서 사용합니다. 예제 버스 사진을 그대로 분석하거나 JPG·PNG·WEBP 사진을 선택하세요. 사진은 서버에 업로드하지 않고 사용자의 브라우저 안에서 처리합니다. 첫 분석 때 모델과 브라우저 추론 런타임을 내려받습니다.
+
+1. 사진을 선택하거나 버스 예제를 사용합니다.
+2. 객체 탐지 또는 인스턴스 분할을 선택하고 **분석 시작**을 누릅니다.
+3. 임계값을 조절하거나 **0.25와 0.50 비교**를 선택합니다.
+4. 결과 이미지, 좌표 JSON, 객체별 이진 마스크 PNG를 저장합니다.
+
+큰 사진은 긴 변 1600px로 줄여 처리합니다. 점수는 정확도를 보장하는 확률이 아니며, 예측 결과는 실제 객체·경계와 다를 수 있습니다.
+
+![웹앱 실제 실행 화면](과제제출내용/web-preview.png)
 
 ## 폴더 구성
 
-- [실행프로그램](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/): 실행 코드, EXE 빌드 설정, 설치 목록, 모델 가중치, 입력 사진
-- [과제제출내용](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/): 보고서, 탐지·분할 결과, 좌표·마스크, 실행·검증 기록
+- [실행프로그램](실행프로그램/): 웹앱, 브라우저용 모델, Python 원본 코드·모델·입력 사진
+- [과제제출내용](과제제출내용/): 보고서, 기존 실행 결과, 웹 검증 기록
 
-## 실행 방법
+로컬과 GitHub 과제 폴더의 구조를 동일하게 유지합니다. 가상환경, node_modules, 로컬 재실행 결과와 Sites 저장소 메타데이터는 GitHub 업로드에서 제외합니다. EXE 실행파일 및 EXE Releases 배포는 삭제하고 웹으로 전환했습니다.
 
-**[Python 설치가 필요 없는 단일 EXE 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/releases/download/yolo-standalone-v1.0.0/YOLO_Standalone.exe)**
+## 프로그램·실행 링크
 
-Windows 10/11 64비트 컴퓨터에서 `YOLO_Standalone.exe` 하나를 다운로드하고 쓰기 가능한 폴더에 저장한 뒤 더블클릭한다. Python, pip, 가상환경, 모델 파일을 따로 설치하거나 복사할 필요가 없다. 예제 버스 사진과 CPU 추론용 모델 2개가 EXE 안에 포함된다. 다운로드가 끝난 뒤 실행에는 인터넷이 필요 없다.
-
-단일 EXE는 실행할 때 내장 런타임을 임시 폴더에 풀기 때문에 준비 시간이 걸릴 수 있다. 실행 중에는 콘솔 창이 표시되고 완료·오류 내용을 확인한 뒤 Enter로 닫는다.
-
-- EXE만 다른 PC로 복사한 경우: EXE 옆 `YOLO_results` 폴더에 결과 저장
-- 현재 과제의 실행프로그램 폴더에서 실행한 경우: `과제제출내용/outputs/local_run`에 결과 저장
-- 다른 사진 실행: `YOLO_Standalone.exe --source "사진경로.jpg" --output "결과폴더"`
-
-소스 코드 실행과 재빌드는 [실행프로그램 안내](실행프로그램/README.md)를 따른다. EXE 파일은 용량 때문에 GitHub Releases로 배포하며, 코드는 이 저장소에서 확인할 수 있다.
-
-EXE 크기는 약 298MB이며, [SHA-256 확인값](과제제출내용/SHA256SUMS.txt)으로 다운로드 파일을 확인할 수 있다.
-
-## 바로 열기
-
-| 항목 | 파일 |
+| 항목 | 바로 열기 |
 |---|---|
-| 더블클릭 실행 | [YOLO_Standalone.exe 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/releases/download/yolo-standalone-v1.0.0/YOLO_Standalone.exe) |
-| EXE 소스 코드 | [standalone.py](실행프로그램/standalone.py) · [빌드 설정](실행프로그램/YOLO_Standalone.spec) |
-| 실행 코드 | [run.py](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/run.py) |
-| 설치 목록 | [requirements.txt](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements.txt) |
-| 제출 보고서 | [PDF 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/Bus_Assignment_Report.pdf) · [텍스트 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/REPORT.md) |
-| 입력 사진 | [bus.jpg](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/input/bus.jpg) |
-| 단일 EXE 검증 | [검증 결과](과제제출내용/STANDALONE_CHECK.md) · [상세 JSON](과제제출내용/STANDALONE_CHECK.json) |
-| 실제 실행 검증 | [Windows 실행 점검 기록](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/WINDOWS_RUN_CHECK.txt) · [제출 파일 점검](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/SUBMISSION_CHECK.txt) |
-| 재실행 환경 | [Windows 패키지 버전](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements-windows-verified.txt) |
-| 결과 데이터 | [결과 요약 JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/summary.json) · [실행 환경·해시·설정](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/manifest.json) |
+| 공개 웹앱 | [Vision Lab](https://yolo-vision-lab-261110.cherrysocute9.chatgpt.site) |
+| 웹 개발·로컬 실행 안내 | [web/README.md](실행프로그램/web/README.md) |
+| 웹 화면 | [index.html](실행프로그램/web/dist/index.html) · [CSS](실행프로그램/web/dist/style.css) |
+| 웹 기능 | [app.js](실행프로그램/web/dist/app.js) |
+| 추론·NMS·마스크 계산 | [inference.js](실행프로그램/web/dist/inference.js) |
+| 웹용 모델 | [탐지 ONNX](실행프로그램/web/dist/models/detect.onnx) · [분할 ONNX](실행프로그램/web/dist/models/segment.onnx) · [모델 정보](실행프로그램/web/dist/models/metadata.json) |
+| 모델 변환 | [export_web.py](실행프로그램/export_web.py) · [변환 패키지](실행프로그램/requirements-web-export.txt) |
+| 원본 Python 실행 | [run.py](실행프로그램/run.py) · [설치 목록](실행프로그램/requirements.txt) · [Windows 패키지](실행프로그램/requirements-windows-verified.txt) |
+| 입력 사진 | [bus.jpg](실행프로그램/input/bus.jpg) |
 
-`run.py` 링크는 실행 코드를 엽니다. 실제 추론은 저장소를 다운로드한 뒤 아래 재실행 명령으로 실행합니다.
+## 과제 제출 자료
 
-## 실제 실행 결과
-
-Windows / Python 3.11.14 / Ultralytics 8.4.208 / CPU에서 네 조건 모두 정상 종료했습니다.
-
-| 작업 | 임계값 | 검출 결과 | 결과 이미지 | 좌표·점수 JSON | 마스크 |
-|---|---|---|---|---|---|
-| 객체 탐지 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.25/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.25/boxes.json) | 해당 없음 |
-| 객체 탐지 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.50/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.50/boxes.json) | 해당 없음 |
-| 인스턴스 분할 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/boxes.json) | [객체별 PNG 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25) |
-| 인스턴스 분할 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/boxes.json) | [객체별 PNG 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50) |
-
-두 임계값에서 객체 수가 같았습니다. 이번 사진에서는 모든 검출 점수가 0.50 이상이므로 임계값을 올려도 제거되는 객체가 없었습니다. 정답 라벨이 없어 정확도·mAP 수치는 산출하지 않았습니다.
-
-### 객체 탐지 비교
-
-왼쪽은 conf=0.25, 오른쪽은 conf=0.50입니다. 이미지를 클릭하면 원본 크기로 열 수 있습니다.
-
-[![객체 탐지 임계값 비교](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_comparison.jpg)](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_comparison.jpg)
-
-### 인스턴스 분할 비교
-
-왼쪽은 conf=0.25, 오른쪽은 conf=0.50입니다. 박스는 위치를, 마스크는 객체에 속한다고 예측한 픽셀 영역을 나타냅니다.
-
-[![인스턴스 분할 임계값 비교](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_comparison.jpg)](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_comparison.jpg)
-
-### 개별 마스크 바로 열기
-
-마스크는 원본과 같은 810×1080 크기의 이진 PNG이며, 각 실행의 JSON에서 `id`와 `mask_file`을 대조할 수 있습니다.
-
-| 객체 ID | conf=0.25 | conf=0.50 |
-|---|---|---|
-| 0 | [mask_00.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_00.png) | [mask_00.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_00.png) |
-| 1 | [mask_01.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_01.png) | [mask_01.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_01.png) |
-| 2 | [mask_02.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_02.png) | [mask_02.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_02.png) |
-| 3 | [mask_03.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_03.png) | [mask_03.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_03.png) |
-| 4 | [mask_04.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_04.png) | [mask_04.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_04.png) |
-
-최초 Linux 실행 결과도 [기존 결과 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/yolo)와 [실행 기록](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/yolo/manifest.json)에 보존했습니다. PDF와 텍스트 보고서는 최초 실행을 설명하며, Windows 추가 검증은 위 실행 점검 기록에서 확인할 수 있습니다.
-
-## 1. 목적과 입력
-첨부한 bus.jpg에서 버스와 보행자의 클래스·위치·점수를 추출하고, 사각형 박스와 픽셀 마스크가 제공하는 정보의 차이를 비교한다. conf=0.25와 0.50을 비교하여 임계값이 결과에 미치는 영향을 관찰한다. 학습은 수행하지 않고 공개 사전학습 가중치로 추론한다.
-
-입력은 사용자가 제공한 bus.jpg 한 장이다. 촬영자·원본 배포 조건은 별도로 확인되지 않았다. 개인 촬영 사진이라고 단정하지 않는다. 별도 자기 사진의 일반화 실험은 아직 수행하지 않았다. 외부 공유 전 사진의 출처·공유 조건을 확인해야 한다.
-
-## 2. 재실행 방법
-Python 3.11 또는 3.12 환경을 사용한다. Windows Python 3.11.14에서 실행을 검증했다. 터미널에서 이 과제의 `실행프로그램` 폴더로 이동한다. 가상환경을 만든 뒤 다음 순서로 실행한다.
-
-```bash
-cd "실행프로그램"
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-python run.py
-```
-
-모델 가중치 두 개는 제출 폴더에 포함되어 있다. 패키지 설치에는 인터넷이 필요하며, 가중치를 삭제한 경우 모델도 다시 다운로드한다. GPU 없이 CPU에서 실행한다. 다른 사진은 `--source input/my_photo.jpg --output outputs/my_photo`로 지정한다. 기존 결과와 구별되는 출력 폴더를 사용한다. 기본 입력과 모델 경로는 run.py의 위치를 기준으로 찾는다. `--source`와 `--output`에 별도 상대경로를 지정하면 현재 작업 폴더를 기준으로 처리한다.
-
-## 3. 도구·설정 선택 이유
-- Ultralytics: 객체 탐지와 분할을 같은 API로 실행하며 좌표·클래스·점수·마스크를 파일로 저장할 수 있다.
-- yolo26n.pt: 과제에서 지정한 nano 탐지 모델. CPU 실행을 위해 사용한다.
-- yolo26n-seg.pt: 과제에서 지정한 분할 모델. 대상의 픽셀 경계를 비교하기 위해 사용한다.
-- imgsz=640: 과제에서 지정한 추론 크기. 내부 리사이즈·패딩이 적용될 수 있으며 저장 JSON의 박스는 원본 좌표계이다.
-- conf=0.25/0.50: 점수 컷오프만 바꾸어 결과를 비교한다. 점수는 개별 박스가 맞을 확률로 보장되는 값이 아니다.
-- retina_masks=True: 저장할 마스크를 원본 해상도에 맞춘다. 저장 직후 PNG를 다시 열어 가로·세로 크기를 확인한다.
-
-## 4. 실행 과정과 산출물
-1. 원본 크기와 해시를 기록한다.
-2. 탐지 모델을 두 임계값으로 실행한다.
-3. 분할 모델을 두 임계값으로 실행한다.
-4. 각 실행의 result.jpg와 boxes.json을 저장한다.
-5. 분할 객체별 mask_XX.png를 0/255 이진 이미지로 저장한다.
-6. 원본 크기·좌표계와 마스크 파일명을 JSON으로 연결한다.
-7. 임계값 비교 이미지 두 장과 summary.json, manifest.json을 저장한다.
-
-`과제제출내용/outputs/yolo/` 아래 detect_0.25, detect_0.50, segment_0.25, segment_0.50에 최초 실행 결과가 있다. Windows 검증 결과는 `과제제출내용/outputs/windows_verified/`에 있다. 재실행 명령은 `과제제출내용/outputs/local_run/`에 새 결과를 저장한다. 객체 id는 해당 실행 내부에서만 유효하다. 두 임계값의 id가 같아도 동일 객체라는 보장은 없으므로 클래스와 위치로 대응시킨다.
-
-## 5. 원본 대조 방법
-좌표의 원점은 왼쪽 위이며 x는 오른쪽, y는 아래쪽으로 증가한다. xyxy=[x1,y1,x2,y2]는 왼쪽 위와 오른쪽 아래 꼭짓점이다. 결과 이미지에서 버스 박스를 골라 같은 실행의 boxes.json에서 class_name=bus인 항목의 좌표·점수를 확인한다.
-
-박스는 배경을 포함하는 직사각형 영역이고, 분할 마스크는 대상에 속한다고 예측한 픽셀의 집합이다. 버스 앞을 가린 사람, 잘린 좌우 가장자리 사람, 다리·팔 사이 빈 공간, 버스 하단과 도로 경계를 확대하여 원본과 비교한다. 그림자까지 대상에 포함했는지 확인한다. 작은/가려진 대상은 누락될 수 있다.
-
-## 6. 검토 원칙과 한계
-정답 박스·정답 마스크를 따로 구축하지 않았으므로 정확도, IoU, precision, recall, mAP 수치를 산출하지 않는다. 객체 수가 줄었다는 사실만으로 성능 향상이라고 결론내리지 않는다. 서로 다른 탐지 모델과 분할 모델의 점수 차이를 임계값 효과로 혼동하지 않는다. 마스크는 실제 대상의 완벽한 윤곽이나 뒤에 가려진 형태를 보장하지 않는다.
-
-원시 JSON과 원시 마스크는 수동으로 고치지 않는다. 발견한 문제·해당 객체·대략적 위치·판단 근거·확인 필요 여부를 REPORT에 분리하여 기록한다. 별도 사진을 추가하면 그 실험의 manifest와 결과도 보관한다.
-
-## 7. 평가 기준 대응
-| 기준 | 확인할 파일과 근거 |
+| 항목 | 바로 열기 |
 |---|---|
-| 실행 가능성 25점 | run.py, requirements.txt, 실행 명령, 저장된 결과, manifest.json |
-| 원본 대조·근거 25점 | REPORT, 원본 이미지, 객체별 좌표 JSON, 분할 PNG |
-| 범위 정직성 25점 | 미실행·미확인 범위와 정답 데이터 부재 명시, 원시 결과 보존 |
-| 설명 25점 | 목적, 실행 위치, 모델·설정 선택 이유, 실제 결과와 해석 |
+| 제출 보고서 | [PDF](과제제출내용/Bus_Assignment_Report.pdf) · [텍스트](과제제출내용/REPORT.md) |
+| 웹 실행 검증 | [WEB_CHECK.md](과제제출내용/WEB_CHECK.md) · [실행 화면](과제제출내용/web-preview.png) |
+| Python 실행 검증 | [Windows 기록](과제제출내용/WINDOWS_RUN_CHECK.txt) · [파일 점검](과제제출내용/SUBMISSION_CHECK.txt) |
+| 기존 결과 요약 | [summary.json](과제제출내용/outputs/windows_verified/summary.json) · [manifest.json](과제제출내용/outputs/windows_verified/manifest.json) |
+| 탐지 비교 | [비교 이미지](과제제출내용/outputs/windows_verified/detect_comparison.jpg) |
+| 분할 비교 | [비교 이미지](과제제출내용/outputs/windows_verified/segment_comparison.jpg) |
+| 최초 Linux 결과 | [실행 폴더](과제제출내용/outputs/yolo/) · [manifest](과제제출내용/outputs/yolo/manifest.json) |
 
-## 8. 제출 방법
-GitHub의 `과제_261110_YOLO서비스` 폴더 링크를 제출한다. 이 README에서 실행 코드, 보고서, 결과 이미지를 열 수 있다. 실행하려면 저장소를 내려받은 뒤 해당 과제 폴더에서 위 명령을 실행한다. `.venv/`와 `.yolo_config/`는 업로드하지 않는다. 채점자가 링크를 열어 README와 결과 이미지를 볼 수 있도록 접근 권한을 확인한 뒤 과제 제출란에는 그 링크를 붙여 넣는다. ZIP 다운로드 링크 자체는 강의에서 지정한 GitHub/Drive 제출 링크를 대신하지 않는다. 모델 가중치는 GitHub 용량을 고려해 생략할 수 있으며 최초 실행에서 다시 내려받는다.
+| 작업 / 임계값 | 기존 결과 이미지 | 좌표·점수 | 마스크 |
+|---|---|---|---|
+| 탐지 / 0.25 | [PNG/JPG](과제제출내용/outputs/windows_verified/detect_0.25/result.jpg) | [JSON](과제제출내용/outputs/windows_verified/detect_0.25/boxes.json) | — |
+| 탐지 / 0.50 | [PNG/JPG](과제제출내용/outputs/windows_verified/detect_0.50/result.jpg) | [JSON](과제제출내용/outputs/windows_verified/detect_0.50/boxes.json) | — |
+| 분할 / 0.25 | [PNG/JPG](과제제출내용/outputs/windows_verified/segment_0.25/result.jpg) | [JSON](과제제출내용/outputs/windows_verified/segment_0.25/boxes.json) | [객체별 PNG](과제제출내용/outputs/windows_verified/segment_0.25/) |
+| 분할 / 0.50 | [PNG/JPG](과제제출내용/outputs/windows_verified/segment_0.50/result.jpg) | [JSON](과제제출내용/outputs/windows_verified/segment_0.50/boxes.json) | [객체별 PNG](과제제출내용/outputs/windows_verified/segment_0.50/) |
 
-공개 서비스 배포 시 Ultralytics의 AGPL-3.0 또는 Enterprise 조건을 확인한다. 본 묶음은 과제 검토용이다.
+버스 예제에서 웹 탐지·분할 모두 conf 0.25/0.50에 버스 1대·사람 4명이 나왔습니다. 웹은 고정 640×640 ONNX 입력을 사용하므로 전처리·후처리가 다른 최초 Python 실행과 점수·좌표·마스크는 일부 다를 수 있습니다. 기존 보고서는 최초 실행 기록으로 보존하고 웹 관찰값은 별도로 기록했습니다. 정답 데이터가 없어 precision·recall·IoU·mAP는 보고하지 않습니다.
 
-## 9. 참고
-- 강의자료 「노드04_AI가 문서와 사진에서」 7~10쪽: 선택과제 A와 공통 평가 기준.
-- https://docs.ultralytics.com/modes/predict/
-- https://docs.ultralytics.com/tasks/segment/
+## 과제 제출
 
-## 10. 제출 전 점검 및 설치 목록 안내
-requirements.txt는 실행에 필요한 설치 목록이다. requirements-lock.txt는 최초 Linux 실행 환경의 전체 패키지 기록이며 다른 작업용 패키지와 로컬 경로도 포함하므로 설치 명령에 사용하지 않는다. Windows Python 3.11.14에서 실제 추론 네 조건을 재실행하여 정상 종료했다. outputs/windows_verified 및 WINDOWS_RUN_CHECK.txt 참조. 자세한 결과는 SUBMISSION_CHECK.txt를 참조한다.
+[이 GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_YOLO서비스)와 [공개 웹앱](https://yolo-vision-lab-261110.cherrysocute9.chatgpt.site) 주소를 제출하면 코드·보고서 검토와 실제 웹 실행이 가능합니다. 강의의 학번·이름·제출 형식 규칙은 별도로 적용하세요.
 
-## 로컬·GitHub 구조 매칭
+## 참고
 
-로컬 과제 폴더와 GitHub `과제_261110_YOLO서비스` 폴더의 README 및 제출 파일 구조는 동일하다. `실행프로그램/.venv`, 로컬 EXE·빌드 중간 파일과 재실행 결과 `과제제출내용/outputs/local_run`은 로컬에서만 유지한다. 중복 ZIP과 이전 준비 폴더는 제거했으며, 사전조사의 보고서와 검증 근거는 과제제출내용에 보존했다.
+[Ultralytics 추론](https://docs.ultralytics.com/modes/predict/) · [ONNX 내보내기](https://docs.ultralytics.com/modes/export/) · [ONNX Runtime Web](https://onnxruntime.ai/docs/get-started/with-javascript/web.html)
+
+과제 지시 원문은 기존 보고서가 인용한 「노드04_AI가 문서와 사진에서」 7~10쪽입니다. 현재 폴더에 원문이 없어 요구 조건 자체를 재확인하지 못했습니다. 입력 사진의 원 촬영자·재배포 조건은 미확인입니다. Ultralytics 모델·도구의 AGPL-3.0 또는 Enterprise 조건을 확인하세요.

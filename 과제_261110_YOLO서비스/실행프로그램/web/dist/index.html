@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="사진 한 장으로 객체 탐지와 인스턴스 분할을 비교하는 YOLO 실습 웹앱. 사진은 브라우저 안에서 처리됩니다.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23182f2b%27/%3E%3Ctext x=%277%27 y=%2724%27 font-size=%2724%27 fill=%27%23d6efb9%27%3EV%3C/text%3E%3C/svg%3E"><title>Vision Lab · YOLO 이미지 분석</title><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./"><span class="brand-icon">⌘</span> VISION LAB<span class="brand-sub">/ YOLO</span></a><nav><a href="./assets/report.pdf" target="_blank" rel="noopener">과제 보고서 ↗</a><a href="https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_YOLO서비스" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">AIFFEL QUEST · COMPUTER VISION</p><h1>사진 속 객체를, <span>한눈에.</span></h1><p class="lead">위치를 찾는 탐지부터, 윤곽을 구분하는 분할까지.<br>사진 한 장으로 직접 비교해 보세요.</p></div><div class="privacy"><span class="live-dot"></span><div><strong>사진은 이 브라우저 안에만</strong><p>서버 전송 없이 내 기기에서 분석합니다.</p></div></div></section>
+  <div class="workspace">
+    <aside class="settings card">
+      <div class="section-heading"><span class="step">01</span><h2>분석 설정</h2></div>
+      <label id="dropzone" class="dropzone" for="file"><span class="upload-icon">↥</span><strong>사진을 놓거나 선택하세요</strong><span>JPG · PNG · WEBP / 최대 15 MB</span><input id="file" type="file" accept="image/jpeg,image/png,image/webp"></label>
+      <button id="sample" class="sample-button" type="button">↗ 버스 예제 사진 사용</button>
+      <div class="divider"></div>
+      <label class="field-label">분석 방식</label><div class="segmented" role="group" aria-label="분석 방식"><button id="detect" class="selected" aria-pressed="true" type="button">객체 탐지</button><button id="segment" aria-pressed="false" type="button">인스턴스 분할</button></div>
+      <p id="mode-help" class="hint">사각형 박스로 객체의 위치를 찾습니다.</p>
+      <div class="range-title"><label for="confidence" class="field-label">신뢰도 임계값</label><output id="confidence-value" for="confidence">0.25</output></div><input id="confidence" type="range" min="0.05" max="0.95" step="0.05" value="0.25"><div class="range-labels"><span>더 많은 객체</span><span>더 높은 점수</span></div>
+      <label class="check"><input id="compare" type="checkbox"> <span>0.25와 0.50 결과 비교하기</span></label>
+      <button id="run" class="primary" type="button" disabled><span>분석 시작</span><span>↗</span></button>
+      <p id="status" class="status" role="status" aria-live="polite">예제 사진을 준비하고 있습니다.</p>
+      <p class="small-note">처음 분석할 때 모델을 불러옵니다.<br>큰 사진은 긴 변 1600px로 줄여 처리합니다.</p>
+    </aside>
+    <section class="results" aria-label="분석 결과">
+      <div class="image-grid" id="image-grid">
+        <article class="image-card card"><div class="image-heading"><h2>원본 이미지</h2><span id="image-info" class="tag">INPUT</span></div><div class="canvas-wrap"><canvas id="original" aria-label="선택한 원본 이미지"></canvas></div><div class="image-foot"><span id="filename">bus.jpg</span><span>원본 미리보기</span></div></article>
+        <article class="image-card card"><div class="image-heading"><h2 id="result-title">분석 결과</h2><span id="result-tag" class="tag mint">OUTPUT</span></div><div class="canvas-wrap result-wrap"><canvas id="result" aria-label="객체 탐지 또는 분할 결과" hidden></canvas><div id="empty" class="empty"><span>◎</span><strong>장면 속 발견을 기다리는 중</strong><p>사진과 분석 방식을 선택한 뒤<br>‘분석 시작’을 눌러주세요.</p></div></div><div class="image-foot"><span id="result-count">아직 분석하지 않았습니다</span><button id="download-image" disabled type="button">이미지 저장 ↓</button></div></article>
+        <article id="compare-card" class="image-card card" hidden><div class="image-heading"><h2>임계값 0.50</h2><span class="tag mint">COMPARE</span></div><div class="canvas-wrap"><canvas id="comparison" aria-label="임계값 0.50 비교 결과"></canvas></div><div class="image-foot"><span id="comparison-count"></span><button id="download-compare" type="button">비교 이미지 저장 ↓</button></div></article>
+      </div>
+      <section class="object-card card"><div class="object-heading"><div><p class="eyebrow">PREDICTION DETAILS</p><h2>검출 객체 <span id="object-total">—</span></h2></div><button id="download-json" class="outline" type="button" disabled>좌표 JSON ↓</button></div><div id="metrics" class="metrics" hidden></div><div class="table-scroll"><table><thead><tr><th>객체</th><th>클래스</th><th>점수</th><th>좌표 (x₁, y₁, x₂, y₂)</th><th>마스크</th></tr></thead><tbody id="objects"><tr><td colspan="5" class="table-empty">분석 후 객체별 클래스, 점수, 좌표를 확인할 수 있습니다.</td></tr></tbody></table></div><p class="table-note">좌표는 처리 이미지의 픽셀 기준입니다. 예측 결과이며, 실제 객체나 경계와 다를 수 있습니다.</p></section>
+    </section>
+  </div>
+  <section class="explanation"><div><span>01 / DETECTION</span><h3>어디에 있는지 찾고</h3><p>사각형 박스로 객체의 위치를 표시합니다.<br>박스 안에는 배경이나 다른 객체도 포함될 수 있어요.</p></div><div><span>02 / SEGMENTATION</span><h3>어떤 모양인지 구분해요</h3><p>객체에 속한다고 예측한 픽셀을 색으로 표시합니다.<br>각 객체의 이진 마스크도 저장할 수 있어요.</p></div><div><span>03 / CONFIDENCE</span><h3>같은 장면, 다른 기준</h3><p>임계값보다 점수가 높은 객체만 표시합니다.<br>임계값을 올려도 객체 수가 같을 수 있어요.</p></div></section>
+</main><footer><span>VISION LAB / 선택과제 A</span><span>YOLO26 nano · ONNX Runtime Web · 브라우저 내 추론</span></footer>
+<script type="module" src="./app.js"></script>
+</body></html>

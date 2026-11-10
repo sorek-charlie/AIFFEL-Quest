@@ -1,0 +1,16 @@
+{
+  "name": "yolo-vision-lab",
+  "version": "1.0.0",
+  "description": "Browser-only YOLO detection and instance segmentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node serve.mjs",
+    "check": "node --check dist/app.js && node --check dist/inference.js"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "onnxruntime-web": "^1.31.1"
+  },
+  "private": true
+}

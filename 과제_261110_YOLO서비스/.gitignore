@@ -1,8 +1,10 @@
 실행프로그램/.venv/
 **/__pycache__/
 **/.yolo_config/
+**/node_modules/
+**/.git/
+**/.openai/.local/
 과제제출내용/outputs/local_run/
-실행프로그램/*.exe
-실행프로그램/build/
-실행프로그램/dist/
-실행프로그램/build.log
+.playwright-mcp/
+실행프로그램/web-export.log
+실행프로그램/site-deploy.tar.gz

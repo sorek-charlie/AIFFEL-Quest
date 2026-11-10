@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 .yolo_config/
-*.exe
-build/
-dist/
-build.log
+web/node_modules/
+web/.git/
+web/.openai/.local/
+site-deploy.tar.gz
+web-export.log
+/yolo26n.onnx
+/yolo26n-seg.onnx

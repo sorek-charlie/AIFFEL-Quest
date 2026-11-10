@@ -2,4 +2,5 @@
 *.pt binary
 *.jpg binary
 *.png binary
-*.exe binary
+*.onnx binary
+*.wasm binary
