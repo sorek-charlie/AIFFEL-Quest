@@ -10,3 +10,7 @@
 - [최초 Linux 결과](outputs/yolo/)
 
 `requirements-lock.txt`는 최초 Linux 환경 전체 패키지 기록입니다. 실행용 설치 목록은 `실행프로그램/requirements.txt`를 사용합니다. 보고서와 원본 manifest는 최초 실행을 기록하며, Windows 검증 기록은 추가 실행을 설명합니다. 기록 안의 과거 실행 경로는 재현 이력을 위해 보존했습니다.
+
+- [단일 EXE 검증](STANDALONE_CHECK.md)
+- [상세 검증 JSON](STANDALONE_CHECK.json)
+- [EXE SHA-256](SHA256SUMS.txt)

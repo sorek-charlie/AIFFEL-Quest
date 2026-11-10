@@ -5,31 +5,36 @@
 
 ## 폴더 구성
 
-- [실행프로그램](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/): 실행 코드, 설치 목록, 모델 가중치, 입력 사진
+- [실행프로그램](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/): 실행 코드, EXE 빌드 설정, 설치 목록, 모델 가중치, 입력 사진
 - [과제제출내용](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/): 보고서, 탐지·분할 결과, 좌표·마스크, 실행·검증 기록
 
 ## 실행 방법
 
-Windows에서는 [실행.exe](실행프로그램/실행.exe)를 내려받은 로컬 폴더에서 더블클릭한다. GitHub에서는 EXE를 다운로드하고 전체 과제 폴더와 함께 로컬에서 실행한다. EXE는 같은 폴더의 run.py를 실행하는 Windows 런처이며, Python과 모델을 하나로 묶은 독립 배포판은 아니다. Python 3.11 또는 3.12가 필요하다. 최초 실행 시 가상환경이 없으면 생성하고 패키지를 설치한다. 결과와 오류는 창에 남는다.
+**[Python 설치가 필요 없는 단일 EXE 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/releases/download/yolo-standalone-v1.0.0/YOLO_Standalone.exe)**
 
-이미 설치된 이 PC에서는 과제 최상위 폴더에서 다음 명령으로 실행할 수도 있다.
+Windows 10/11 64비트 컴퓨터에서 `YOLO_Standalone.exe` 하나를 다운로드하고 쓰기 가능한 폴더에 저장한 뒤 더블클릭한다. Python, pip, 가상환경, 모델 파일을 따로 설치하거나 복사할 필요가 없다. 예제 버스 사진과 CPU 추론용 모델 2개가 EXE 안에 포함된다. 다운로드가 끝난 뒤 실행에는 인터넷이 필요 없다.
 
-```powershell
-.\실행프로그램\.venv\Scripts\python.exe .\실행프로그램\run.py
-```
+단일 EXE는 실행할 때 내장 런타임을 임시 폴더에 풀기 때문에 준비 시간이 걸릴 수 있다. 실행 중에는 콘솔 창이 표시되고 완료·오류 내용을 확인한 뒤 Enter로 닫는다.
 
-결과는 `과제제출내용/outputs/local_run/`에 저장된다.
+- EXE만 다른 PC로 복사한 경우: EXE 옆 `YOLO_results` 폴더에 결과 저장
+- 현재 과제의 실행프로그램 폴더에서 실행한 경우: `과제제출내용/outputs/local_run`에 결과 저장
+- 다른 사진 실행: `YOLO_Standalone.exe --source "사진경로.jpg" --output "결과폴더"`
+
+소스 코드 실행과 재빌드는 [실행프로그램 안내](실행프로그램/README.md)를 따른다. EXE 파일은 용량 때문에 GitHub Releases로 배포하며, 코드는 이 저장소에서 확인할 수 있다.
+
+EXE 크기는 약 298MB이며, [SHA-256 확인값](과제제출내용/SHA256SUMS.txt)으로 다운로드 파일을 확인할 수 있다.
 
 ## 바로 열기
 
 | 항목 | 파일 |
 |---|---|
-| 더블클릭 실행 | [실행.exe](실행프로그램/실행.exe) |
-| EXE 소스 코드 | [Launcher.cs](실행프로그램/Launcher.cs) |
+| 더블클릭 실행 | [YOLO_Standalone.exe 다운로드](https://github.com/sorek-charlie/AIFFEL-Quest/releases/download/yolo-standalone-v1.0.0/YOLO_Standalone.exe) |
+| EXE 소스 코드 | [standalone.py](실행프로그램/standalone.py) · [빌드 설정](실행프로그램/YOLO_Standalone.spec) |
 | 실행 코드 | [run.py](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/run.py) |
 | 설치 목록 | [requirements.txt](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements.txt) |
 | 제출 보고서 | [PDF 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/Bus_Assignment_Report.pdf) · [텍스트 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/REPORT.md) |
 | 입력 사진 | [bus.jpg](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/input/bus.jpg) |
+| 단일 EXE 검증 | [검증 결과](과제제출내용/STANDALONE_CHECK.md) · [상세 JSON](과제제출내용/STANDALONE_CHECK.json) |
 | 실제 실행 검증 | [Windows 실행 점검 기록](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/WINDOWS_RUN_CHECK.txt) · [제출 파일 점검](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/SUBMISSION_CHECK.txt) |
 | 재실행 환경 | [Windows 패키지 버전](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements-windows-verified.txt) |
 | 결과 데이터 | [결과 요약 JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/summary.json) · [실행 환경·해시·설정](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/manifest.json) |
@@ -146,4 +151,4 @@ requirements.txt는 실행에 필요한 설치 목록이다. requirements-lock.t
 
 ## 로컬·GitHub 구조 매칭
 
-로컬 과제 폴더와 GitHub `과제_261110_YOLO서비스` 폴더의 README 및 제출 파일 구조는 동일하다. `실행프로그램/.venv`와 재실행 결과 `과제제출내용/outputs/local_run`은 로컬에서만 유지한다. 중복 ZIP과 이전 준비 폴더는 제거했으며, 사전조사의 보고서와 검증 근거는 과제제출내용에 보존했다.
+로컬 과제 폴더와 GitHub `과제_261110_YOLO서비스` 폴더의 README 및 제출 파일 구조는 동일하다. `실행프로그램/.venv`, 로컬 EXE·빌드 중간 파일과 재실행 결과 `과제제출내용/outputs/local_run`은 로컬에서만 유지한다. 중복 ZIP과 이전 준비 폴더는 제거했으며, 사전조사의 보고서와 검증 근거는 과제제출내용에 보존했다.

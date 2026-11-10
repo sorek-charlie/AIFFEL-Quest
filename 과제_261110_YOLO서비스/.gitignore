@@ -2,3 +2,7 @@
 **/__pycache__/
 **/.yolo_config/
 과제제출내용/outputs/local_run/
+실행프로그램/*.exe
+실행프로그램/build/
+실행프로그램/dist/
+실행프로그램/build.log

@@ -1,0 +1,60 @@
+{
+  "tested_utc": "2026-11-10T06:43:57.168226+00:00",
+  "status": "PASS",
+  "exe": "YOLO_Standalone.exe",
+  "size_bytes": 297803878,
+  "sha256": "ae9229aea0b3e45633e065ec0657b41531faa560f4f724427427b2d37c881787",
+  "method": "Copied only EXE into empty temporary folder; PATH limited to Windows/System32 and Windows; PYTHONHOME/PYTHONPATH removed; offline mode; bundled runtime confirmed by executable/standalone_exe in manifest.",
+  "limitation": "Isolated execution on build computer; a separate clean Windows computer was not available.",
+  "standalone_exe": true,
+  "input_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+  "versions": {
+    "ultralytics": "8.4.208",
+    "torch": "2.15.0",
+    "torchvision": "0.29.2",
+    "numpy": "2.4.6",
+    "pillow": "13.0.0"
+  },
+  "summary": [
+    {
+      "task": "detect",
+      "conf": 0.25,
+      "count": 5,
+      "classes": {
+        "bus": 1,
+        "person": 4
+      }
+    },
+    {
+      "task": "detect",
+      "conf": 0.5,
+      "count": 5,
+      "classes": {
+        "bus": 1,
+        "person": 4
+      }
+    },
+    {
+      "task": "segment",
+      "conf": 0.25,
+      "count": 5,
+      "classes": {
+        "bus": 1,
+        "person": 4
+      }
+    },
+    {
+      "task": "segment",
+      "conf": 0.5,
+      "count": 5,
+      "classes": {
+        "bus": 1,
+        "person": 4
+      }
+    }
+  ],
+  "validated_masks": 10,
+  "exit_code": 0,
+  "build_tool": "PyInstaller 6.22.3 / pyinstaller-hooks-contrib 2026.10",
+  "native_extension_fix": "Explicitly bundled torchvision 0.29+ _C_stable.pyd, image_stable.pyd and codec DLLs; included python311.dll, vcruntime140.dll, vcruntime140_1.dll, msvcp140.dll."
+}
