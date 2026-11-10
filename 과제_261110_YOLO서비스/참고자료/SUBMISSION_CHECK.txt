@@ -1,0 +1,49 @@
+제출 준비 점검 (2026-11-10)
+
+PASS: run.py Python syntax
+PASS: input SHA256 matches original manifest
+PASS: model SHA256 detect 0.25
+PASS: model SHA256 detect 0.5
+PASS: model SHA256 segment 0.25
+PASS: model SHA256 segment 0.5
+PASS: detect_0.25 object count
+PASS: detect_0.25 class counts
+PASS: detect_0.25 object 0 coordinates/confidence
+PASS: detect_0.25 object 1 coordinates/confidence
+PASS: detect_0.25 object 2 coordinates/confidence
+PASS: detect_0.25 object 3 coordinates/confidence
+PASS: detect_0.25 object 4 coordinates/confidence
+PASS: detect_0.50 object count
+PASS: detect_0.50 class counts
+PASS: detect_0.50 object 0 coordinates/confidence
+PASS: detect_0.50 object 1 coordinates/confidence
+PASS: detect_0.50 object 2 coordinates/confidence
+PASS: detect_0.50 object 3 coordinates/confidence
+PASS: detect_0.50 object 4 coordinates/confidence
+PASS: segment_0.25 object count
+PASS: segment_0.25 class counts
+PASS: segment_0.25 object 0 coordinates/confidence
+PASS: segment_0.25 object 0 mask size/values/pixels
+PASS: segment_0.25 object 1 coordinates/confidence
+PASS: segment_0.25 object 1 mask size/values/pixels
+PASS: segment_0.25 object 2 coordinates/confidence
+PASS: segment_0.25 object 2 mask size/values/pixels
+PASS: segment_0.25 object 3 coordinates/confidence
+PASS: segment_0.25 object 3 mask size/values/pixels
+PASS: segment_0.25 object 4 coordinates/confidence
+PASS: segment_0.25 object 4 mask size/values/pixels
+PASS: segment_0.50 object count
+PASS: segment_0.50 class counts
+PASS: segment_0.50 object 0 coordinates/confidence
+PASS: segment_0.50 object 0 mask size/values/pixels
+PASS: segment_0.50 object 1 coordinates/confidence
+PASS: segment_0.50 object 1 mask size/values/pixels
+PASS: segment_0.50 object 2 coordinates/confidence
+PASS: segment_0.50 object 2 mask size/values/pixels
+PASS: segment_0.50 object 3 coordinates/confidence
+PASS: segment_0.50 object 3 mask size/values/pixels
+PASS: segment_0.50 object 4 coordinates/confidence
+PASS: segment_0.50 object 4 mask size/values/pixels
+PASS: report PDF matches standalone report
+
+추가 확인: 현재 PC에서 Ultralytics 설치 및 실제 추론 재실행, pip check 통과. WINDOWS_RUN_CHECK.txt 참조. 결과는 기존 실행 산출물이며 원본 manifest를 보존했다. 강의 과제 안내 원문은 현재 폴더에 없어 보고서가 인용한 평가 조건 자체는 확인하지 못했다.

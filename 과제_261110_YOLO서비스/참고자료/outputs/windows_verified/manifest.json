@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-11-10T04:04:10.036686+00:00",
+  "input": "D:\\AI_Agent\\실습과제\\261110_YOLO서비스 & OCR 다시쓰기\\YOLO서비스\\submission_ready\\bus_assignment\\input\\bus.jpg",
+  "input_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+  "input_origin": "User attached bus.jpg; original photographer and redistribution permission unverified",
+  "execution_cwd": "D:\\AI_Agent\\실습과제\\261110_YOLO서비스 & OCR 다시쓰기\\YOLO서비스\\submission_ready\\bus_assignment",
+  "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "versions": {
+    "ultralytics": "8.4.208",
+    "torch": "2.15.0",
+    "torchvision": "0.29.2",
+    "numpy": "2.4.6",
+    "pillow": "13.0.0"
+  },
+  "runs": [
+    {
+      "task": "detect",
+      "weights": "yolo26n.pt",
+      "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "conf": 0.25,
+      "imgsz": 640,
+      "device": "cpu",
+      "retina_masks": true
+    },
+    {
+      "task": "detect",
+      "weights": "yolo26n.pt",
+      "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "conf": 0.5,
+      "imgsz": 640,
+      "device": "cpu",
+      "retina_masks": true
+    },
+    {
+      "task": "segment",
+      "weights": "yolo26n-seg.pt",
+      "weights_sha256": "361fbfabab285c3237700b6bb91d7ecfa602cd945fffda8dbe1242829b71e73f",
+      "conf": 0.25,
+      "imgsz": 640,
+      "device": "cpu",
+      "retina_masks": true
+    },
+    {
+      "task": "segment",
+      "weights": "yolo26n-seg.pt",
+      "weights_sha256": "361fbfabab285c3237700b6bb91d7ecfa602cd945fffda8dbe1242829b71e73f",
+      "conf": 0.5,
+      "imgsz": 640,
+      "device": "cpu",
+      "retina_masks": true
+    }
+  ],
+  "additional_independent_image_tested": false
+}

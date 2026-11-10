@@ -1,0 +1,14 @@
+Windows 실제 실행 검증 (2026-11-10)
+PASS: run.py 종료 코드 0 / pip check 통과
+Python: 3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]
+Platform: Windows-10-10.0.26300-SP0
+Packages: {"ultralytics": "8.4.208", "torch": "2.15.0", "torchvision": "0.29.2", "numpy": "2.4.6", "pillow": "13.0.0"}
+실행: python run.py --source input/bus.jpg --output outputs/windows_verified
+탐지/분할 conf=0.25/0.50 네 조건 모두 bus 1, person 4. 기존 summary와 일치.
+객체 20개의 좌표/점수 및 마스크 크기/이진값/픽셀 수 점검 통과.
+결과 이미지 4장, 비교 이미지 2장, 마스크 10장 열기 확인.
+입력 SHA256 기존 manifest와 일치.
+수정: run.py의 summary/manifest 저장 인코딩을 UTF-8로 명시하여 Windows 한글 경로 호환성 개선. 수정 후 실제 재실행 성공.
+Windows 실행 기록: outputs/windows_verified/manifest.json
+설치 환경: requirements-windows-verified.txt
+기존 Linux 보고서와 결과는 보존. 본 파일은 추가 검증 기록.
