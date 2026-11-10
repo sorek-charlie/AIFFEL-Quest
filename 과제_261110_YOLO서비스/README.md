@@ -10,7 +10,7 @@
 
 ## 실행 방법
 
-Windows에서는 [실행.bat](실행프로그램/실행.bat)를 내려받은 로컬 폴더에서 더블클릭한다. GitHub 링크는 파일 내용을 열며, 프로그램은 다운로드 후 실행한다. 최초 실행 시 가상환경이 없으면 생성하고 패키지를 설치한다. 결과와 오류는 창에 남는다.
+Windows에서는 [실행.exe](실행프로그램/실행.exe)를 내려받은 로컬 폴더에서 더블클릭한다. GitHub에서는 EXE를 다운로드하고 전체 과제 폴더와 함께 로컬에서 실행한다. EXE는 같은 폴더의 run.py를 실행하는 Windows 런처이며, Python과 모델을 하나로 묶은 독립 배포판은 아니다. Python 3.11 또는 3.12가 필요하다. 최초 실행 시 가상환경이 없으면 생성하고 패키지를 설치한다. 결과와 오류는 창에 남는다.
 
 이미 설치된 이 PC에서는 과제 최상위 폴더에서 다음 명령으로 실행할 수도 있다.
 
@@ -24,7 +24,8 @@ Windows에서는 [실행.bat](실행프로그램/실행.bat)를 내려받은 로
 
 | 항목 | 파일 |
 |---|---|
-| 더블클릭 실행 | [실행.bat](실행프로그램/실행.bat) |
+| 더블클릭 실행 | [실행.exe](실행프로그램/실행.exe) |
+| EXE 소스 코드 | [Launcher.cs](실행프로그램/Launcher.cs) |
 | 실행 코드 | [run.py](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/run.py) |
 | 설치 목록 | [requirements.txt](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements.txt) |
 | 제출 보고서 | [PDF 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/Bus_Assignment_Report.pdf) · [텍스트 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/REPORT.md) |
