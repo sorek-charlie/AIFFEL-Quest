@@ -7,9 +7,13 @@ PASS Missing area empty and OCR footnote errors preserved
 PASS 42 saved OCR regions; input SHA256 matches original manifest
 PASS 11 corrected rows and 33 review records
 PASS Final PDF: 7 readable pages, text inside page bounds; rendered pages inspected
-PASS README relative links: 57
+PASS README relative links: 66
 NOT RUN Full OCR inference and clean dependency installation; previous OCR evidence retained
 NOTE original manifest paths and environment refer to original Linux run; current output paths are documented in README
 PASS Final ZIP CRC; all submission members match working files
 PASS SUBMISSION.md relative links: 11
 PASS Local assignment subtree maps to same GitHub path
+PASS Windows x64 GUI PE executable: 68,825,070 bytes (65.64 MiB)
+PASS Frozen extraction with Python absent from PATH; 11 x 3 table and 3 text blocks
+PASS Frozen Tk GUI creation and result-tab loading; missing-input error handling
+NOTE EXE operates on included saved OCR coordinates; full OCR inference is not bundled

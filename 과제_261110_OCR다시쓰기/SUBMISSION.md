@@ -2,6 +2,8 @@
 
 [README](README.md) · [실행 코드](프로그램%20파일/) · [결과 폴더](참고자료/outputs/) · [PDF 보고서](OCR_Assignment_Report.pdf) · [최종 제출 ZIP](OCR_Assignment_Final.zip)
 
+[Windows EXE](프로그램%20파일/OCR_Assignment.exe) · [EXE 사용 안내](EXE_USAGE.md)
+
 ## 제출 순서
 
 1. [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_OCR다시쓰기)를 열어 보고서·실행 코드·결과 링크를 확인합니다.

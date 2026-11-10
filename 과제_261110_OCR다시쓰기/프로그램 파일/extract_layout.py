@@ -35,8 +35,8 @@ def line_positions(binary, vertical):
     return [round(median(group)) for group in groups]
 
 
-def main():
-    root = Path(__file__).resolve().parent
+def main(root=None):
+    root = Path(root) if root is not None else Path(__file__).resolve().parent
     source = root / 'input/census-table.png'
     output = root.parent / '참고자료/outputs/layout'
     output.mkdir(parents=True, exist_ok=True)

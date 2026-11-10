@@ -1,5 +1,7 @@
 # 선택과제 B · OCR 텍스트와 표 구조 추출
 
+[Windows 실행파일 EXE](프로그램%20파일/OCR_Assignment.exe) · [EXE 사용 안내](EXE_USAGE.md)
+
 ## 바로가기
 
 [프로젝트 소개](#프로젝트-소개) · [실행 파일](#실행-파일) · [실행 방법](#실행-방법) · [결과 보기](#결과-바로-보기) · [과제 제출](#과제-제출) · [로컬·GitHub 구조](#로컬과-github-폴더-매칭) · [검증](#검증)
@@ -33,10 +35,22 @@ HTML 링크는 GitHub에서 소스 파일로 열립니다. 바로 읽는 표는 
 
 ![초록색 표와 행·열 경계, 파란색 표 제목과 각주](참고자료/outputs/layout/layout_regions.png)
 
+## Windows EXE 실행
+
+1. [최종 제출 ZIP](OCR_Assignment_Final.zip)을 내려받아 전체 압축을 해제합니다.
+2. [프로그램 파일 폴더](프로그램%20파일/)의 **[OCR_Assignment.exe](프로그램%20파일/OCR_Assignment.exe)**를 더블클릭합니다.
+3. **텍스트·표 추출 실행** 버튼을 누릅니다.
+4. 텍스트·자동 표·교정 표 탭에서 결과를 확인합니다. 결과 폴더·구분 이미지·PDF 열기 버튼도 제공합니다.
+
+Python 설치가 필요 없는 Windows x64 실행파일입니다. EXE 용량은 **68,825,070바이트 (약 68.8MB / 65.64MiB)**입니다. EXE만 옮기지 말고 입력 이미지와 참고자료를 포함한 과제 폴더 전체를 유지하세요. 포함된 기존 OCR 좌표로 구조를 추출하며 새 OCR 모델 추론은 실행하지 않습니다. 새 OCR 인식은 아래 Python 코드를 이용합니다. 자세한 내용은 [EXE 사용 안내](EXE_USAGE.md)를 확인하세요.
+
 ## 실행 파일
 
 | 순서 | 실행 코드 | 역할 |
 |---|---|---|
+| EXE | [OCR_Assignment.exe](프로그램%20파일/OCR_Assignment.exe) | Python 설치 없이 텍스트·표 추출 및 결과 확인 |
+| GUI 소스 | [ocr_app.py](프로그램%20파일/ocr_app.py) | EXE 화면과 기능의 Python 원본 |
+| 빌드 | [build_exe.py](프로그램%20파일/build_exe.py) | BAT 없이 EXE 재생성 |
 | 선택 | [prepare_input.py](프로그램%20파일/prepare_input.py) | 원문 PDF 2쪽을 200 dpi로 렌더링하고 표를 자름 |
 | 1 | [run_ocr.py](프로그램%20파일/run_ocr.py) | PaddleOCR로 글자·점수·좌표·시각화를 저장 |
 | 2 | [extract_layout.py](프로그램%20파일/extract_layout.py) | 이미지 구분선과 OCR 좌표로 텍스트·표 및 행·열 구조를 추출 |
@@ -138,6 +152,7 @@ python extract_layout.py
 ```text
 과제_261110_OCR다시쓰기/           # 로컬·GitHub 공통 경로
 ├─ README.md                    # 소개·실행·결과·제출 링크
+├─ EXE_USAGE.md                 # Windows 실행파일 사용 안내
 ├─ SUBMISSION.md                # 제출 순서·제출 설명문
 ├─ REPORT.md                    # 보고서 원문
 ├─ OCR_Assignment_Report.pdf    # 최종 보고서
@@ -145,6 +160,10 @@ python extract_layout.py
 ├─ .gitattributes               # 파일 바이트 보존 설정
 ├─ 프로그램 파일/
 │  ├─ input/census-table.png    # OCR 입력
+│  ├─ OCR_Assignment.exe        # 더블클릭 Windows 실행파일
+│  ├─ ocr_app.py                # GUI 원본
+│  ├─ build_exe.py              # EXE 생성 코드
+│  ├─ requirements-build.txt    # EXE 빌드 의존성
 │  ├─ prepare_input.py          # 원문 이미지 준비
 │  ├─ run_ocr.py                # 글자·좌표 인식
 │  ├─ extract_layout.py         # 텍스트·표 구조 분리

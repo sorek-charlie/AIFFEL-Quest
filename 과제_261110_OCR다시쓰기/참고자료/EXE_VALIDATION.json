@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-10",
+  "platform": "Windows x64",
+  "exe": "프로그램 파일/OCR_Assignment.exe",
+  "size_bytes": 68825070,
+  "size_mib": 65.64,
+  "sha256": "88fd2e3f574ad347c4f5866547965cc1644fbd2eec04d7ad776c180456a836b8",
+  "tests": {
+    "frozen_extraction_without_python_on_path": {
+      "rows": 11,
+      "columns": 3,
+      "text_blocks": 3,
+      "log": "Extracted 11 rows x 3 columns; 3 separate text blocks.\nsaved 11 rows; 33 source-linked review records\n",
+      "frozen": true,
+      "python": "3.11.14"
+    },
+    "packaged_tk_gui": {
+      "ui_smoke": true,
+      "frozen": true,
+      "python": "3.11.14"
+    },
+    "missing_inputs_error": "PASS"
+  },
+  "scope": "saved OCR coordinates -> text/table extraction and reviewed-table reconstruction; no fresh OCR model inference"
+}
