@@ -5,20 +5,33 @@
 
 ## 폴더 구성
 
-- [프로그램 파일](%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%ED%8C%8C%EC%9D%BC/): 실행 코드, 설치 목록, 모델 가중치, 입력 사진
-- [참고자료](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/): 보고서, 탐지·분할 결과, 좌표·마스크, 실행·검증 기록
+- [실행프로그램](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/): 실행 코드, 설치 목록, 모델 가중치, 입력 사진
+- [과제제출내용](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/): 보고서, 탐지·분할 결과, 좌표·마스크, 실행·검증 기록
+
+## 실행 방법
+
+Windows에서는 [실행.bat](실행프로그램/실행.bat)를 내려받은 로컬 폴더에서 더블클릭한다. GitHub 링크는 파일 내용을 열며, 프로그램은 다운로드 후 실행한다. 최초 실행 시 가상환경이 없으면 생성하고 패키지를 설치한다. 결과와 오류는 창에 남는다.
+
+이미 설치된 이 PC에서는 과제 최상위 폴더에서 다음 명령으로 실행할 수도 있다.
+
+```powershell
+.\실행프로그램\.venv\Scripts\python.exe .\실행프로그램\run.py
+```
+
+결과는 `과제제출내용/outputs/local_run/`에 저장된다.
 
 ## 바로 열기
 
 | 항목 | 파일 |
 |---|---|
-| 실행 코드 | [run.py](%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%ED%8C%8C%EC%9D%BC/run.py) |
-| 설치 목록 | [requirements.txt](%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%ED%8C%8C%EC%9D%BC/requirements.txt) |
-| 제출 보고서 | [PDF 보고서](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/Bus_Assignment_Report.pdf) · [텍스트 보고서](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/REPORT.md) |
-| 입력 사진 | [bus.jpg](%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%ED%8C%8C%EC%9D%BC/input/bus.jpg) |
-| 실제 실행 검증 | [Windows 실행 점검 기록](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/WINDOWS_RUN_CHECK.txt) · [제출 파일 점검](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/SUBMISSION_CHECK.txt) |
-| 재실행 환경 | [Windows 패키지 버전](%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%ED%8C%8C%EC%9D%BC/requirements-windows-verified.txt) |
-| 결과 데이터 | [결과 요약 JSON](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/summary.json) · [실행 환경·해시·설정](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/manifest.json) |
+| 더블클릭 실행 | [실행.bat](실행프로그램/실행.bat) |
+| 실행 코드 | [run.py](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/run.py) |
+| 설치 목록 | [requirements.txt](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements.txt) |
+| 제출 보고서 | [PDF 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/Bus_Assignment_Report.pdf) · [텍스트 보고서](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/REPORT.md) |
+| 입력 사진 | [bus.jpg](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/input/bus.jpg) |
+| 실제 실행 검증 | [Windows 실행 점검 기록](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/WINDOWS_RUN_CHECK.txt) · [제출 파일 점검](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/SUBMISSION_CHECK.txt) |
+| 재실행 환경 | [Windows 패키지 버전](%EC%8B%A4%ED%96%89%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8/requirements-windows-verified.txt) |
+| 결과 데이터 | [결과 요약 JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/summary.json) · [실행 환경·해시·설정](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/manifest.json) |
 
 `run.py` 링크는 실행 코드를 엽니다. 실제 추론은 저장소를 다운로드한 뒤 아래 재실행 명령으로 실행합니다.
 
@@ -28,10 +41,10 @@ Windows / Python 3.11.14 / Ultralytics 8.4.208 / CPU에서 네 조건 모두 정
 
 | 작업 | 임계값 | 검출 결과 | 결과 이미지 | 좌표·점수 JSON | 마스크 |
 |---|---|---|---|---|---|
-| 객체 탐지 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_0.25/result.jpg) | [JSON](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_0.25/boxes.json) | 해당 없음 |
-| 객체 탐지 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_0.50/result.jpg) | [JSON](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_0.50/boxes.json) | 해당 없음 |
-| 인스턴스 분할 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/result.jpg) | [JSON](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/boxes.json) | [객체별 PNG 폴더](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25) |
-| 인스턴스 분할 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/result.jpg) | [JSON](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/boxes.json) | [객체별 PNG 폴더](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50) |
+| 객체 탐지 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.25/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.25/boxes.json) | 해당 없음 |
+| 객체 탐지 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.50/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_0.50/boxes.json) | 해당 없음 |
+| 인스턴스 분할 | 0.25 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/boxes.json) | [객체별 PNG 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25) |
+| 인스턴스 분할 | 0.50 | 버스 1대 · 사람 4명 | [이미지](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/result.jpg) | [JSON](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/boxes.json) | [객체별 PNG 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50) |
 
 두 임계값에서 객체 수가 같았습니다. 이번 사진에서는 모든 검출 점수가 0.50 이상이므로 임계값을 올려도 제거되는 객체가 없었습니다. 정답 라벨이 없어 정확도·mAP 수치는 산출하지 않았습니다.
 
@@ -39,13 +52,13 @@ Windows / Python 3.11.14 / Ultralytics 8.4.208 / CPU에서 네 조건 모두 정
 
 왼쪽은 conf=0.25, 오른쪽은 conf=0.50입니다. 이미지를 클릭하면 원본 크기로 열 수 있습니다.
 
-[![객체 탐지 임계값 비교](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_comparison.jpg)](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/detect_comparison.jpg)
+[![객체 탐지 임계값 비교](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_comparison.jpg)](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/detect_comparison.jpg)
 
 ### 인스턴스 분할 비교
 
 왼쪽은 conf=0.25, 오른쪽은 conf=0.50입니다. 박스는 위치를, 마스크는 객체에 속한다고 예측한 픽셀 영역을 나타냅니다.
 
-[![인스턴스 분할 임계값 비교](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_comparison.jpg)](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_comparison.jpg)
+[![인스턴스 분할 임계값 비교](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_comparison.jpg)](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_comparison.jpg)
 
 ### 개별 마스크 바로 열기
 
@@ -53,13 +66,13 @@ Windows / Python 3.11.14 / Ultralytics 8.4.208 / CPU에서 네 조건 모두 정
 
 | 객체 ID | conf=0.25 | conf=0.50 |
 |---|---|---|
-| 0 | [mask_00.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/mask_00.png) | [mask_00.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/mask_00.png) |
-| 1 | [mask_01.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/mask_01.png) | [mask_01.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/mask_01.png) |
-| 2 | [mask_02.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/mask_02.png) | [mask_02.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/mask_02.png) |
-| 3 | [mask_03.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/mask_03.png) | [mask_03.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/mask_03.png) |
-| 4 | [mask_04.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.25/mask_04.png) | [mask_04.png](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/windows_verified/segment_0.50/mask_04.png) |
+| 0 | [mask_00.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_00.png) | [mask_00.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_00.png) |
+| 1 | [mask_01.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_01.png) | [mask_01.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_01.png) |
+| 2 | [mask_02.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_02.png) | [mask_02.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_02.png) |
+| 3 | [mask_03.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_03.png) | [mask_03.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_03.png) |
+| 4 | [mask_04.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.25/mask_04.png) | [mask_04.png](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/windows_verified/segment_0.50/mask_04.png) |
 
-최초 Linux 실행 결과도 [기존 결과 폴더](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/yolo)와 [실행 기록](%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/outputs/yolo/manifest.json)에 보존했습니다. PDF와 텍스트 보고서는 최초 실행을 설명하며, Windows 추가 검증은 위 실행 점검 기록에서 확인할 수 있습니다.
+최초 Linux 실행 결과도 [기존 결과 폴더](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/yolo)와 [실행 기록](%EA%B3%BC%EC%A0%9C%EC%A0%9C%EC%B6%9C%EB%82%B4%EC%9A%A9/outputs/yolo/manifest.json)에 보존했습니다. PDF와 텍스트 보고서는 최초 실행을 설명하며, Windows 추가 검증은 위 실행 점검 기록에서 확인할 수 있습니다.
 
 ## 1. 목적과 입력
 첨부한 bus.jpg에서 버스와 보행자의 클래스·위치·점수를 추출하고, 사각형 박스와 픽셀 마스크가 제공하는 정보의 차이를 비교한다. conf=0.25와 0.50을 비교하여 임계값이 결과에 미치는 영향을 관찰한다. 학습은 수행하지 않고 공개 사전학습 가중치로 추론한다.
@@ -67,18 +80,18 @@ Windows / Python 3.11.14 / Ultralytics 8.4.208 / CPU에서 네 조건 모두 정
 입력은 사용자가 제공한 bus.jpg 한 장이다. 촬영자·원본 배포 조건은 별도로 확인되지 않았다. 개인 촬영 사진이라고 단정하지 않는다. 별도 자기 사진의 일반화 실험은 아직 수행하지 않았다. 외부 공유 전 사진의 출처·공유 조건을 확인해야 한다.
 
 ## 2. 재실행 방법
-Python 3.11 또는 3.12 환경을 사용한다. Windows Python 3.11.14에서 실행을 검증했다. 터미널에서 이 과제의 `프로그램 파일` 폴더로 이동한다. 가상환경을 만든 뒤 다음 순서로 실행한다.
+Python 3.11 또는 3.12 환경을 사용한다. Windows Python 3.11.14에서 실행을 검증했다. 터미널에서 이 과제의 `실행프로그램` 폴더로 이동한다. 가상환경을 만든 뒤 다음 순서로 실행한다.
 
 ```bash
-cd "프로그램 파일"
+cd "실행프로그램"
 python -m venv .venv
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python run.py --source input/bus.jpg --output outputs/my_run
+python run.py
 ```
 
-모델 가중치 두 개는 제출 폴더에 포함되어 있다. 패키지 설치에는 인터넷이 필요하며, 가중치를 삭제한 경우 모델도 다시 다운로드한다. GPU 없이 CPU에서 실행한다. 다른 사진은 `--source input/my_photo.jpg --output outputs/my_photo`로 지정한다. 기존 결과와 구별되는 출력 폴더를 사용한다. run.py의 기본 경로는 현재 작업 폴더를 기준으로 하므로 반드시 프로젝트 폴더에서 실행한다.
+모델 가중치 두 개는 제출 폴더에 포함되어 있다. 패키지 설치에는 인터넷이 필요하며, 가중치를 삭제한 경우 모델도 다시 다운로드한다. GPU 없이 CPU에서 실행한다. 다른 사진은 `--source input/my_photo.jpg --output outputs/my_photo`로 지정한다. 기존 결과와 구별되는 출력 폴더를 사용한다. 기본 입력과 모델 경로는 run.py의 위치를 기준으로 찾는다. `--source`와 `--output`에 별도 상대경로를 지정하면 현재 작업 폴더를 기준으로 처리한다.
 
 ## 3. 도구·설정 선택 이유
 - Ultralytics: 객체 탐지와 분할을 같은 API로 실행하며 좌표·클래스·점수·마스크를 파일로 저장할 수 있다.
@@ -97,7 +110,7 @@ python run.py --source input/bus.jpg --output outputs/my_run
 6. 원본 크기·좌표계와 마스크 파일명을 JSON으로 연결한다.
 7. 임계값 비교 이미지 두 장과 summary.json, manifest.json을 저장한다.
 
-`참고자료/outputs/yolo/` 아래 detect_0.25, detect_0.50, segment_0.25, segment_0.50에 최초 실행 결과가 있다. Windows 검증 결과는 `참고자료/outputs/windows_verified/`에 있다. 재실행 명령은 `프로그램 파일/outputs/my_run/`에 새 결과를 저장한다. 객체 id는 해당 실행 내부에서만 유효하다. 두 임계값의 id가 같아도 동일 객체라는 보장은 없으므로 클래스와 위치로 대응시킨다.
+`과제제출내용/outputs/yolo/` 아래 detect_0.25, detect_0.50, segment_0.25, segment_0.50에 최초 실행 결과가 있다. Windows 검증 결과는 `과제제출내용/outputs/windows_verified/`에 있다. 재실행 명령은 `과제제출내용/outputs/local_run/`에 새 결과를 저장한다. 객체 id는 해당 실행 내부에서만 유효하다. 두 임계값의 id가 같아도 동일 객체라는 보장은 없으므로 클래스와 위치로 대응시킨다.
 
 ## 5. 원본 대조 방법
 좌표의 원점은 왼쪽 위이며 x는 오른쪽, y는 아래쪽으로 증가한다. xyxy=[x1,y1,x2,y2]는 왼쪽 위와 오른쪽 아래 꼭짓점이다. 결과 이미지에서 버스 박스를 골라 같은 실행의 boxes.json에서 class_name=bus인 항목의 좌표·점수를 확인한다.
@@ -129,3 +142,7 @@ GitHub의 `과제_261110_YOLO서비스` 폴더 링크를 제출한다. 이 READM
 
 ## 10. 제출 전 점검 및 설치 목록 안내
 requirements.txt는 실행에 필요한 설치 목록이다. requirements-lock.txt는 최초 Linux 실행 환경의 전체 패키지 기록이며 다른 작업용 패키지와 로컬 경로도 포함하므로 설치 명령에 사용하지 않는다. Windows Python 3.11.14에서 실제 추론 네 조건을 재실행하여 정상 종료했다. outputs/windows_verified 및 WINDOWS_RUN_CHECK.txt 참조. 자세한 결과는 SUBMISSION_CHECK.txt를 참조한다.
+
+## 로컬·GitHub 구조 매칭
+
+로컬 과제 폴더와 GitHub `과제_261110_YOLO서비스` 폴더의 README 및 제출 파일 구조는 동일하다. `실행프로그램/.venv`와 재실행 결과 `과제제출내용/outputs/local_run`은 로컬에서만 유지한다. 중복 ZIP과 이전 준비 폴더는 제거했으며, 사전조사의 보고서와 검증 근거는 과제제출내용에 보존했다.

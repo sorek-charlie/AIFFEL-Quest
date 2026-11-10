@@ -2,4 +2,3 @@
 __pycache__/
 *.py[cod]
 .yolo_config/
-outputs/my_run/

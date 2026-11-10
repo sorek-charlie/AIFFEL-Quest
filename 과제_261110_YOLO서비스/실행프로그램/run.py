@@ -5,14 +5,15 @@ import numpy as np
 from PIL import Image, ImageOps, ImageDraw
 from ultralytics import YOLO
 
+BASE_DIR=Path(__file__).resolve().parent
 p=argparse.ArgumentParser()
-p.add_argument('--source', default='input/bus.jpg')
-p.add_argument('--output', default='outputs/yolo')
+p.add_argument('--source', default=str(BASE_DIR/'input/bus.jpg'))
+p.add_argument('--output', default=str(BASE_DIR.parent/'과제제출내용/outputs/local_run'))
 a=p.parse_args()
 source=Path(a.source).resolve(); out=Path(a.output); out.mkdir(parents=True,exist_ok=True)
 summary=[]; runs=[]
 for task, weights in [('detect','yolo26n.pt'),('segment','yolo26n-seg.pt')]:
-    model=YOLO(weights)
+    model=YOLO(str(BASE_DIR/weights))
     for conf in [0.25,0.50]:
         dest=out/f'{task}_{conf:.2f}'; dest.mkdir(exist_ok=True)
         r=model.predict(str(source),imgsz=640,device='cpu',conf=conf,retina_masks=True,verbose=False)[0]
