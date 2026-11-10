@@ -61,6 +61,8 @@
 
 ## 과제 제출
 
+[제출안내.md](과제제출내용/제출안내.md)에 제출 링크, 복사할 제출 설명, 보고서·코드·검증 기록·저장 결과 바로가기를 모았습니다.
+
 [이 GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/과제_261110_YOLO서비스)와 [공개 웹앱](https://yolo-vision-lab-261110.cherrysocute9.chatgpt.site) 주소를 제출하면 코드·보고서 검토와 실제 웹 실행이 가능합니다. 강의의 학번·이름·제출 형식 규칙은 별도로 적용하세요.
 
 ## 참고

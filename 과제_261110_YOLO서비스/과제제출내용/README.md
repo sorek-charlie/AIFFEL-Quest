@@ -2,6 +2,7 @@
 
 [전체 안내·공개 웹앱](../README.md)
 
+- [제출 링크·제출 설명·전체 자료 바로가기](제출안내.md)
 - [PDF 보고서](Bus_Assignment_Report.pdf) · [텍스트 보고서](REPORT.md)
 - [웹 실제 추론 검증](WEB_CHECK.md) · [웹 실행 화면](web-preview.png)
 - [Windows Python 실행 검증](WINDOWS_RUN_CHECK.txt)
