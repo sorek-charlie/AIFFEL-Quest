@@ -51,13 +51,19 @@ python web_app.py
 
 - **왼쪽 INPUT**: 원본 표 이미지, 자료 정보, 텍스트·표 추출 실행 버튼.
 - **오른쪽 OUTPUT**: 자동 추출 표, 텍스트, 교정 표, 영역 이미지, 원시 OCR 탭 및 다운로드.
-- 포함된 이미지와 기존 OCR 좌표로 구조 추출·교정 표 생성을 실제로 실행합니다. 새 OCR 모델 추론은 아래 별도 Python 코드로 수행합니다.
+- **기본값은 항상 과제 제출 자료**입니다. 새로 열거나 새로고침하면 기본 이미지와 11행 표를 표시합니다.
+- **다른 PDF·이미지 업로드**를 선택하면 한국어+영어, 영어, 한국어를 선택해 실제 OCR을 실행합니다. PDF는 페이지별로 처리하고 결과 페이지를 선택할 수 있습니다.
+- 업로드는 최대 30MB, PDF 50쪽이며 PNG/JPG/WEBP/BMP/TIFF를 지원합니다. 암호 PDF는 해제 후 업로드하세요.
+- 기본 과제는 기존 PaddleOCR 좌표를 이용하며, 업로드는 Tesseract로 새로 인식합니다. 두 결과를 섞지 않습니다. 업로드에는 과제의 수동 교정값을 적용하지 않습니다.
+- 업로드 OCR에는 [Tesseract 설치와 한국어·영어 데이터](https://tesseract-ocr.github.io/tessdoc/Installation.html)가 필요합니다. [상세 설치·사용 안내](WEB_USAGE.md)를 확인하세요.
+- [업로드 화면 미리보기](참고자료/web-upload-preview.png) · [실제 이미지·PDF OCR 검증](참고자료/UPLOAD_VALIDATION.json)
 
 ## 실행 파일
 
 | 순서 | 실행 코드 | 역할 |
 |---|---|---|
 | 웹 실행 | [web_app.py](프로그램%20파일/web_app.py) | 왼쪽 INPUT·오른쪽 OUTPUT 로컬 웹 서버 |
+| 업로드 OCR | [upload_ocr.py](프로그램%20파일/upload_ocr.py) | PDF 렌더링·한국어/영어 실제 OCR·표/텍스트 분리 |
 | 웹 화면 | [index.html](프로그램%20파일/web/index.html) | 브라우저 화면·결과 탭·다운로드 |
 | 웹 패키지 | [requirements-web.txt](프로그램%20파일/requirements-web.txt) | 구조 추출용 경량 패키지 목록 |
 | 선택 | [prepare_input.py](프로그램%20파일/prepare_input.py) | 원문 PDF 2쪽을 200 dpi로 렌더링하고 표를 자름 |
@@ -115,7 +121,7 @@ python extract_layout.py
 
 ## 검증
 
-현재 Windows PC의 웹 브라우저에서 추출 버튼을 눌러 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 7쪽 및 최종 ZIP 무결성도 확인했습니다. 이번 점검에서는 전체 OCR 추론 및 새 가상환경 설치는 재실행하지 않았습니다.
+현재 Windows PC의 웹 브라우저에서 추출 버튼을 눌러 구조 추출과 교정 표 재생성을 실행했습니다. 11행 × 3열, 텍스트 블록 3개, 본문 OCR id 중복 배치 없음, 원문 미기재 면적의 빈 값, 자동 추출값의 오독 보존을 확인했습니다. 입력 SHA256, 최종 PDF 7쪽 및 최종 ZIP 무결성도 확인했습니다. 업로드 모드에서는 이미지와 2쪽 스캔 PDF에 실제 Tesseract OCR을 실행해 한국어·영어·숫자와 표를 확인했습니다. 기존 과제의 전체 PaddleOCR 추론과 새 가상환경 설치는 재실행하지 않았습니다.
 
 ## 출처 및 제출
 
@@ -169,6 +175,8 @@ python extract_layout.py
 ├─ .gitattributes               # 파일 바이트 보존 설정
 ├─ 프로그램 파일/
 │  ├─ input/census-table.png    # OCR 입력
+│  ├─ upload_ocr.py            # PDF·이미지 실제 OCR
+│  ├─ uploads/                 # 사용자 업로드·OCR 결과 (Git/ZIP 제외)
 │  ├─ web_app.py               # 로컬 웹 서버
 │  ├─ web/index.html           # INPUT·OUTPUT 웹 화면
 │  ├─ requirements-web.txt     # 웹 실행 의존성

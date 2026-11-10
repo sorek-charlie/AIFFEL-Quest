@@ -1,7 +1,7 @@
 """Local web interface: input image on the left, extracted output on the right."""
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs, unquote
 import argparse
 import contextlib
 import csv
@@ -10,6 +10,8 @@ import json
 import threading
 import traceback
 import webbrowser
+import re
+import upload_ocr
 
 import extract_layout
 import reconstruct_table
@@ -61,6 +63,27 @@ class Handler(BaseHTTPRequestHandler):
                     self.json(200, results())
             except Exception as error:
                 self.json(500, {'error': str(error)})
+        elif route == '/api/job':
+            try:
+                identifier = parse_qs(urlsplit(self.path).query).get('id', [''])[0]
+                self.json(200, upload_ocr.public(upload_ocr.get(identifier)))
+            except ValueError as error:
+                self.json(404, {'error': str(error)})
+        elif route.startswith('/uploads/'):
+            try:
+                match = re.fullmatch(r'/uploads/([a-f0-9]{32})/(page|regions|text|tables|result)-(\d+)\.(png|txt|csv|json)', route)
+                if not match:
+                    raise ValueError('파일 경로가 잘못되었습니다.')
+                identifier, kind, number, extension = match.groups()
+                job = upload_ocr.get(identifier)
+                if kind == 'page' and extension == 'png':
+                    path = upload_ocr.render_page(job, int(number))
+                else:
+                    path = job['folder'] / f'{kind}-{int(number)}.{extension}'
+                mime = {'png':'image/png','txt':'text/plain; charset=utf-8','csv':'text/csv; charset=utf-8','json':'application/json; charset=utf-8'}[extension]
+                self.send(200, path.read_bytes(), mime)
+            except (ValueError, FileNotFoundError) as error:
+                self.json(404, {'error': str(error)})
         elif route in FILES:
             path, mime = FILES[route]
             if path.is_file():
@@ -73,30 +96,47 @@ class Handler(BaseHTTPRequestHandler):
             self.json(404, {'error': 'Not found'})
 
     def do_POST(self):
-        if urlsplit(self.path).path != '/api/process':
-            self.json(404, {'error': 'Not found'})
-            return
+        route = urlsplit(self.path).path
         origin = self.headers.get('Origin')
         expected = f'http://127.0.0.1:{self.server.server_port}'
         if origin and origin not in (expected, f'http://localhost:{self.server.server_port}'):
             self.json(403, {'error': 'Local origin required'})
             return
-        if not LOCK.acquire(blocking=False):
-            self.json(409, {'error': '이미 처리 중입니다. 잠시 후 다시 시도하세요.'})
-            return
         try:
-            log = io.StringIO()
-            with contextlib.redirect_stdout(log):
-                extract_layout.main(ROOT)
-                reconstruct_table.main(ROOT)
-            data = results()
-            data['log'] = log.getvalue()
-            self.json(200, data)
+            size = int(self.headers.get('Content-Length', '0'))
+            if size < 0 or size > 30 * 1024 * 1024:
+                self.json(413, {'error': '파일은 30MB 이하로 업로드하세요.'})
+                return
+            content = self.rfile.read(size)
+            if route == '/api/upload':
+                if not content:
+                    raise ValueError('업로드할 파일을 선택하세요.')
+                name = unquote(self.headers.get('X-Filename', 'upload'))
+                self.json(200, upload_ocr.register(content, name))
+                return
+            if route == '/api/start':
+                data = json.loads(content)
+                self.json(200, upload_ocr.start(data['id'], data.get('language', 'kor+eng')))
+                return
+            if route != '/api/process':
+                self.json(404, {'error': 'Not found'})
+                return
+            if not LOCK.acquire(blocking=False):
+                self.json(409, {'error': '이미 처리 중입니다.'})
+                return
+            try:
+                log = io.StringIO()
+                with contextlib.redirect_stdout(log):
+                    extract_layout.main(ROOT)
+                    reconstruct_table.main(ROOT)
+                data = results()
+                data['log'] = log.getvalue()
+                self.json(200, data)
+            finally:
+                LOCK.release()
         except Exception as error:
             traceback.print_exc()
-            self.json(500, {'error': str(error)})
-        finally:
-            LOCK.release()
+            self.json(400, {'error': str(error)})
 
 
 def main():

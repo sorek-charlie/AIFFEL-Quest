@@ -1,0 +1,26 @@
+{
+  "upload-test.png": {
+    "status": "done",
+    "pages": 1,
+    "tables": [
+      1
+    ],
+    "korean_and_english": "PASS"
+  },
+  "scan-test.pdf": {
+    "status": "done",
+    "pages": 2,
+    "tables": [
+      1,
+      1
+    ],
+    "korean_and_english": "PASS"
+  },
+  "default_assignment_unchanged": "PASS",
+  "date": "2026-11-10",
+  "engine": "Tesseract kor+eng",
+  "browser_file_upload": "PASS: 2-page scanned PDF via actual file chooser",
+  "browser_page_switch": "PASS: second page preview and table CSV HTTP 200",
+  "browser_default_on_reload": "PASS: assignment selected, 11 rows, manual correction available",
+  "default_file_hashes_unchanged": true
+}
