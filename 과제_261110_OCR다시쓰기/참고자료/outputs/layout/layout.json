@@ -1,0 +1,294 @@
+{
+  "method": "image ruling lines + OCR coordinates; no reviewed-cell input",
+  "scope": "supplied cropped image; not full-page layout recognition",
+  "text_blocks": [
+    {
+      "type": "title",
+      "ocr_id": 0,
+      "text": "able1",
+      "polygon": [
+        [
+          35,
+          32
+        ],
+        [
+          121,
+          32
+        ],
+        [
+          121,
+          49
+        ],
+        [
+          35,
+          49
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "ocr_id": 40,
+      "text": "1 Population in 1903.",
+      "polygon": [
+        [
+          175,
+          475
+        ],
+        [
+          349,
+          477
+        ],
+        [
+          349,
+          498
+        ],
+        [
+          174,
+          496
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "ocr_id": 41,
+      "text": " Population in 1912.",
+      "polygon": [
+        [
+          735,
+          474
+        ],
+        [
+          910,
+          477
+        ],
+        [
+          909,
+          498
+        ],
+        [
+          735,
+          495
+        ]
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "id": "table_001",
+      "bbox": [
+        14,
+        14,
+        1068,
+        460
+      ],
+      "column_boundaries": [
+        14,
+        681,
+        868,
+        1068
+      ],
+      "header_bottom": 102,
+      "headers": [
+        "ARDA.",
+        "Gross area land and water) in square miles.",
+        "Population: 1010"
+      ],
+      "row_centers": [
+        136.0,
+        181.0,
+        226.0,
+        268.25,
+        292.0,
+        312.75,
+        335.75,
+        357.5,
+        380.0,
+        402.0,
+        425.0
+      ],
+      "rows": [
+        [
+          "United States, with outlying possessions.",
+          "3, 743, 306",
+          "101, 115, 487"
+        ],
+        [
+          "United States, exclusive of outlying possessions -",
+          "3, 026, 789",
+          "91, 972, 266"
+        ],
+        [
+          "Outlying possessions..",
+          "716, 517",
+          "9, 143, 221"
+        ],
+        [
+          "Alaska.",
+          "590, 884.",
+          "64, 356"
+        ],
+        [
+          "Hawaii.",
+          "6, 449",
+          "191, 909"
+        ],
+        [
+          "Porto Rico.",
+          "3, 435",
+          "1, 118, 01.2"
+        ],
+        [
+          "Military and naval service abroad.",
+          "",
+          "55,608"
+        ],
+        [
+          "Philippine Islands.",
+          "115, 026",
+          "17,635,426"
+        ],
+        [
+          "Panama Canal Zone.",
+          "436",
+          "262,810"
+        ],
+        [
+          "Guam (population estimated)",
+          "210",
+          "9, 000"
+        ],
+        [
+          "Samoa (population estimated)",
+          "77",
+          "6, 100"
+        ]
+      ],
+      "cell_ocr_ids": [
+        [
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ]
+        ],
+        [
+          [
+            10,
+            13
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ]
+        ],
+        [
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ]
+        ],
+        [
+          [
+            17
+          ],
+          [
+            18
+          ],
+          [
+            19
+          ]
+        ],
+        [
+          [
+            20
+          ],
+          [
+            21
+          ],
+          [
+            22
+          ]
+        ],
+        [
+          [
+            23
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ]
+        ],
+        [
+          [
+            26
+          ],
+          [],
+          [
+            27
+          ]
+        ],
+        [
+          [
+            28
+          ],
+          [
+            29
+          ],
+          [
+            30
+          ]
+        ],
+        [
+          [
+            31
+          ],
+          [
+            32
+          ],
+          [
+            33
+          ]
+        ],
+        [
+          [
+            34
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ]
+        ],
+        [
+          [
+            37
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ]
+        ]
+      ]
+    }
+  ],
+  "review_required": [
+    "OCR text is unchanged, including misread headers, footnote digits and punctuation.",
+    "Single ruled-table heuristic; merged cells, borderless and multiple tables are unsupported."
+  ]
+}

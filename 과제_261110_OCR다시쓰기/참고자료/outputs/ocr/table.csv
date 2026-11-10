@@ -1,0 +1,12 @@
+﻿area,gross_area_sq_miles,population,population_year,notes
+"United States, with outlying possessions",3743306,101115487,1910,Aggregate; includes outlying possessions; year exceptions in component rows
+"United States, exclusive of outlying possessions",3026789,91972266,1910,Aggregate component
+Outlying possessions,716517,9143221,1910,Subtotal; includes mixed-year and estimated components
+Alaska,590884,64356,1910,Component of outlying possessions
+Hawaii,6449,191909,1910,Component of outlying possessions
+Porto Rico,3435,1118012,1910,Historical spelling retained
+Military and naval service abroad,,55608,1910,Area not supplied in source; not zero
+Philippine Islands,115026,7635426,1903,Footnote 1: Population in 1903
+Panama Canal Zone,436,62810,1912,Footnote 2: Population in 1912
+Guam (population estimated),210,9000,1910,Estimated population; table heading year
+Samoa (population estimated),77,6100,1910,Estimated population; table heading year

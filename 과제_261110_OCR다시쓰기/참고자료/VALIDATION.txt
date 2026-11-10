@@ -1,0 +1,13 @@
+Validation date: 2026-11-10
+PASS relocated scripts executed: extract_layout.py and reconstruct_table.py
+PASS Python syntax: all scripts
+PASS 11 x 3 automatic table; 3 separate text blocks
+PASS 33 unique body OCR assignments; no title or footnote in body
+PASS Missing area empty and OCR footnote errors preserved
+PASS 42 saved OCR regions; input SHA256 matches original manifest
+PASS 11 corrected rows and 33 review records
+PASS Final PDF: 7 readable pages, text inside page bounds; rendered pages inspected
+PASS README relative links: 33
+NOT RUN Full OCR inference and clean dependency installation; previous OCR evidence retained
+NOTE original manifest paths and environment refer to original Linux run; current output paths are documented in README
+PASS Final ZIP CRC; all submission members match working files

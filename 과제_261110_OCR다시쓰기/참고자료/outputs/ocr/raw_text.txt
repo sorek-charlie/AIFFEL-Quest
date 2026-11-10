@@ -1,0 +1,42 @@
+000	0.9067	able1
+001	0.9427	Gross area
+002	0.9515	Population:
+003	0.7483	ARDA.
+004	0.9267	land and water)
+005	0.9950	in square miles.
+006	0.9711	1010
+007	0.9538	United States, with outlying possessions.
+008	0.9160	3, 743, 306
+009	0.9865	101, 115, 487
+010	0.9779	United States, exclusive of outlying possessions
+011	0.9965	3, 026, 789
+012	0.9918	91, 972, 266
+013	0.2907	-
+014	0.9891	Outlying possessions..
+015	0.9978	716, 517
+016	0.9974	9, 143, 221
+017	0.9987	Alaska.
+018	0.9582	590, 884.
+019	0.9946	64, 356
+020	0.9340	Hawaii.
+021	0.9871	6, 449
+022	0.9205	191, 909
+023	0.9787	Porto Rico.
+024	0.9565	3, 435
+025	0.9734	1, 118, 01.2
+026	0.9783	Military and naval service abroad.
+027	0.9133	55,608
+028	0.9994	Philippine Islands.
+029	0.9979	115, 026
+030	0.8993	17,635,426
+031	0.9469	Panama Canal Zone.
+032	0.9981	436
+033	0.9378	262,810
+034	0.9655	Guam (population estimated)
+035	0.9991	210
+036	0.9768	9, 000
+037	0.9941	Samoa (population estimated)
+038	0.9999	77
+039	0.9850	6, 100
+040	0.9391	1 Population in 1903.
+041	0.9491	 Population in 1912.

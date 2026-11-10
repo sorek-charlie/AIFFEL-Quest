@@ -1,0 +1,10 @@
+# Direct dependencies only; transitive dependencies are resolved by pip.
+# Full original runtime snapshot: environment-original.txt (reference only).
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+paddlex==3.7.2
+Pillow==13.0.0
+socksio==1.0.0
+
+opencv-python
+numpy

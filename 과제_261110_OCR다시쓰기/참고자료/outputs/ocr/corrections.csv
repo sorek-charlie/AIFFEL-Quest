@@ -1,0 +1,9 @@
+﻿location,raw_ocr,reviewed,evidence
+표 제목,id 0: able1,Table 1,원본 좌측 상단 제목
+첫 열 제목,id 3: ARDA.,AREA.,원본 열 제목
+인구 열 연도,id 6: 1010,1910,원본 상단 인구 열
+Porto Rico 인구,"id 25: 1, 118, 01.2",1118012,인구 칸의 불필요한 점 제거
+Philippine Islands 인구,"id 30: 17,635,426",7635426 / 1903년,위첨자 1을 각주로 분리
+Panama Canal Zone 인구,"id 33: 262,810",62810 / 1912년,위첨자 2를 각주로 분리
+해외 군인 면적,인식된 숫자 없음,빈 값,원문에도 면적 수치 없음
+Guam / Samoa,estimated 표기,추정치 유지,관측 확정치로 바꾸지 않음
