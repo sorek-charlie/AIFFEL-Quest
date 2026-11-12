@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+renders/
+source_media/
+work/
+.local/
