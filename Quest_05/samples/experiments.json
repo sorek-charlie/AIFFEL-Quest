@@ -1,0 +1,32 @@
+[
+  {
+    "experiment": 1,
+    "pose_id": 1,
+    "prompt": "full body photograph of one adult blonde female dancer, white sports jacket, black trousers, white sneakers, dark concert stage, blue and pink stage lighting, facing camera, realistic anatomy, feet visible",
+    "seed": 42,
+    "steps": 25,
+    "cfg": 7.5,
+    "controlnet_scale": 1,
+    "seconds": 16.7
+  },
+  {
+    "experiment": 2,
+    "pose_id": 1,
+    "prompt": "full body photograph of one adult female astronaut, silver space suit, boots, on a lunar base, soft cinematic lighting, facing camera, realistic anatomy, feet visible",
+    "seed": 42,
+    "steps": 25,
+    "cfg": 7.5,
+    "controlnet_scale": 1,
+    "seconds": 15.08
+  },
+  {
+    "experiment": 3,
+    "pose_id": 2,
+    "prompt": "full body photograph of one adult blonde female dancer, white sports jacket, black trousers, white sneakers, dark concert stage, blue and pink stage lighting, facing camera, realistic anatomy, feet visible",
+    "seed": 42,
+    "steps": 25,
+    "cfg": 7.5,
+    "controlnet_scale": 1,
+    "seconds": 15.07
+  }
+]

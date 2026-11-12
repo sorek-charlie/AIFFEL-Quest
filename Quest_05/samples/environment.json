@@ -1,0 +1,8 @@
+{
+  "torch": "2.14.1+cu130",
+  "diffusers": "0.35.1",
+  "transformers": "4.57.1",
+  "accelerate": "1.15.0",
+  "controlnet_aux": "0.0.10",
+  "Pillow": "11.3.0"
+}

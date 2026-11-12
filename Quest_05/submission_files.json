@@ -1,0 +1,106 @@
+[
+  {
+    "path": "README.md",
+    "label": "도구 설명 · README"
+  },
+  {
+    "path": "pose_tool.ipynb",
+    "label": "Colab 튜토리얼 노트"
+  },
+  {
+    "path": "prompts.md",
+    "label": "프롬프트 · 41초 동작 시간표"
+  },
+  {
+    "path": "pose_inputs.zip",
+    "label": "Colab 입력 사진 ZIP"
+  },
+  {
+    "path": "dance_final_41s.mp4",
+    "label": "41초 최종 댄스 MP4"
+  },
+  {
+    "path": "samples/led_motion_41s.mp4",
+    "label": "41초 LED 관절 MP4"
+  },
+  {
+    "path": "samples/comparison.png",
+    "label": "실험 비교판"
+  },
+  {
+    "path": "samples/pose_01.png",
+    "label": "포즈 1 · 한 팔 올리기"
+  },
+  {
+    "path": "samples/pose_02.png",
+    "label": "포즈 2 · 양팔 내리기"
+  },
+  {
+    "path": "samples/control_01.png",
+    "label": "포즈 1 · OpenPose"
+  },
+  {
+    "path": "samples/control_02.png",
+    "label": "포즈 2 · OpenPose"
+  },
+  {
+    "path": "samples/output_01.png",
+    "label": "실험 01 · 무대 댄서"
+  },
+  {
+    "path": "samples/output_02.png",
+    "label": "실험 02 · 우주비행사"
+  },
+  {
+    "path": "samples/output_03.png",
+    "label": "실험 03 · 다른 포즈의 댄서"
+  },
+  {
+    "path": "samples/execution_evidence.json",
+    "label": "실제 실행 증거"
+  },
+  {
+    "path": "samples/environment.json",
+    "label": "실행 패키지 버전"
+  },
+  {
+    "path": "samples/experiments.json",
+    "label": "실험 조건 JSON"
+  },
+  {
+    "path": "samples/joint_timeline.json",
+    "label": "LED 관절 시간표"
+  },
+  {
+    "path": "samples/blonde_dancers_reference.png",
+    "label": "영상 인물 참조 이미지"
+  },
+  {
+    "path": "samples/README.md",
+    "label": "samples 전체 목록"
+  },
+  {
+    "path": "pose-image-tool_submission.zip",
+    "label": "전체 제출 준비 ZIP"
+  },
+  {
+    "path": "start_demo.cmd",
+    "label": "실행파일 · 더블클릭"
+  },
+  {
+    "path": "launch_demo.py",
+    "label": "실행 도우미"
+  },
+  {
+    "path": "demo_server.py",
+    "label": "로컬 서버"
+  },
+  {
+    "path": "demo.html",
+    "label": "데모 화면"
+  },
+  {
+    "path": "samples/demo_screen.png",
+    "label": "검증한 실행 화면 캡처"
+  }
+]
