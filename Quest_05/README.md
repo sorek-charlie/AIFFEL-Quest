@@ -4,6 +4,18 @@
 
 ## 바로 실행
 
+### ▶ [브라우저에서 바로 실행](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_05/)
+
+설치 없이 위 링크를 누르면 포즈 선택·프롬프트·LED·41초 영상 데모가 열립니다. GitHub 파일 목록의 .cmd/.py/.html은 소스 보기 또는 다운로드용입니다. 웹 실행은 반드시 위 GitHub Pages 링크를 사용하세요.
+
+### ▶ [새 이미지를 실제 생성 — Colab 열기](https://colab.research.google.com/github/sorek-charlie/AIFFEL-Quest/blob/main/Quest_05/pose_tool.ipynb)
+
+Colab에서 GPU를 선택하고 셀을 위에서 아래로 실행합니다. 기본 포즈 사진은 공개 저장소에서 자동으로 가져오며 실패할 때만 업로드를 요청합니다. 로컬/웹 데모는 완성된 영상 재생이고, 새 프롬프트로 모델 추론하는 기능은 Colab입니다.
+
+### PC에서 실행
+
+전체 ZIP을 내려받아 압축을 풀고 실행합니다. .cmd 파일 하나만 다운로드하면 필요한 파일이 없어 실행되지 않습니다.
+
 **Windows: [start_demo.cmd](start_demo.cmd)를 더블클릭**합니다. Python 3가 설치되어 있어야 하며 추가 패키지는 필요 없습니다. 브라우저에 포즈·프롬프트·LED 관절·완성 영상·제출 파일 전체 링크가 나타납니다. 로컬 주소는 `http://127.0.0.1:8765/demo.html`입니다. 서버는 이 PC에서만 접근됩니다. 종료하려면 실행 중인 `demo_server.py` Python 프로세스를 종료합니다.
 
 빠른 로컬 데모는 이미 생성한 고정 결과를 재생합니다. 프롬프트의 양팔/V자·무릎 키워드는 관절 미리보기에만 반영됩니다. **새 사진·새 프롬프트로 실제 이미지 생성은 아래 Colab 노트에서 실행**합니다.

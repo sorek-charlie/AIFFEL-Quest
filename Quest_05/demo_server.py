@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import unquote,urlsplit
 import mimetypes,re
 ROOT=Path(__file__).resolve().parent
-FILES={'demo.html','README.md','pose_tool.ipynb','prompts.md','dance_final_41s.mp4','submission_files.json','pose-image-tool_submission.zip','pose_inputs.zip','start_demo.cmd','launch_demo.py','demo_server.py'}
+FILES={'index.html','demo.html','README.md','pose_tool.ipynb','prompts.md','dance_final_41s.mp4','submission_files.json','pose-image-tool_submission.zip','pose_inputs.zip','start_demo.cmd','launch_demo.py','demo_server.py'}
 class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         path=unquote(urlsplit(self.path).path).lstrip('/') or 'demo.html'

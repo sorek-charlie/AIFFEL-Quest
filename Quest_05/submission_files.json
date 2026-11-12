@@ -84,6 +84,10 @@
     "label": "전체 제출 준비 ZIP"
   },
   {
+    "path": "index.html",
+    "label": "브라우저 실행 시작 페이지"
+  },
+  {
     "path": "start_demo.cmd",
     "label": "실행파일 · 더블클릭"
   },
