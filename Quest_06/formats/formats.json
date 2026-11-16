@@ -1,0 +1,34 @@
+[
+  {
+    "format": "원본 .ply",
+    "file": "scene.ply",
+    "bytes": 49463548,
+    "convert_sec": null,
+    "n_splats": 727399,
+    "bytes_per_splat": 68.00057190070375
+  },
+  {
+    "format": ".compressed.ply",
+    "file": "scene.compressed.ply",
+    "bytes": 11843668,
+    "convert_sec": 3.82,
+    "n_splats": 727399,
+    "bytes_per_splat": 16.28221650016016
+  },
+  {
+    "format": ".sog",
+    "file": "scene.sog",
+    "bytes": 3670320,
+    "convert_sec": 5.06,
+    "n_splats": 727399,
+    "bytes_per_splat": 5.045813920558043
+  },
+  {
+    "format": ".spz",
+    "file": "scene.spz",
+    "bytes": 4373324,
+    "convert_sec": 5.04,
+    "n_splats": 727399,
+    "bytes_per_splat": 6.012276618472118
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "origin_cameras": 0,
+  "camera_motion_ratio": 0.3551,
+  "floor_correction_deg": 44.9,
+  "n_splats": 727399,
+  "sog_bytes": 3670320,
+  "n_points": 3112868,
+  "n_cameras": 16,
+  "elapsed_sec": 225.6
+}

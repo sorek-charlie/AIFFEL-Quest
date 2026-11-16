@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>빔프로젝터 3D 뷰어</title>
+<style>
+  :root{--bg:#0b0f14;--panel:rgba(11,15,20,.9);--line:#1e293b;--fg:#e2e8f0;--dim:#64748b;
+    --accent:#7dd3fc;--ok:#86efac;--bad:#fca5a5}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+  #c{display:block;width:100%;height:100%;touch-action:none}
+  .panel{position:fixed;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:10px 13px;font-size:12.5px;line-height:1.6;backdrop-filter:blur(6px)}
+  #hud{left:12px;top:12px;max-width:min(330px,calc(100vw - 24px))}
+  #hud h1{margin:0 0 4px;font-size:14px;color:var(--accent);font-weight:600}
+  #steps{margin:0;padding:0;list-style:none}
+  #steps li{padding:1px 0;color:var(--dim)}
+  #steps li::before{display:inline-block;width:2.2em;content:""}
+  #steps li.ok{color:var(--ok)}  #steps li.ok::before{content:"OK";color:#22c55e;font-weight:700}
+  #steps li.bad{color:var(--bad)} #steps li.bad::before{content:"X";color:#ef4444;font-weight:700}
+  #steps li.run{color:var(--fg)} #steps li.run::before{content:"..";color:#eab308}
+  #meta{margin-top:6px;color:#cbd5e1}
+  #meta b{color:#fbbf24;font-weight:600}
+  #fix{margin-top:8px;padding:8px;border-radius:8px;background:#2a1215;border:1px solid #7f1d1d;
+    color:#fecaca;display:none;white-space:pre-wrap}
+  #fix.show{display:block}
+  #ctl{right:12px;top:12px;text-align:right;max-width:calc(100vw - 24px)}
+  button,select{background:#1e293b;color:var(--fg);border:1px solid #334155;border-radius:8px;
+    padding:6px 10px;font-size:12px;cursor:pointer;margin:2px;font-family:inherit}
+  button:hover{background:#334155}
+  button.on{background:#0369a1;border-color:#0ea5e9}
+  #cmp{left:12px;bottom:12px;max-width:min(560px,calc(100vw - 24px));display:none}
+  #cmp.show{display:block}
+  #cmp h2{margin:0 0 4px;font-size:13px;color:#fbbf24}
+  table{border-collapse:collapse;font-size:11.5px;width:100%}
+  th,td{padding:2px 6px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--dim);font-weight:500}
+  tr.cur td{color:var(--accent)}
+  .dim{color:var(--dim)}
+  #drop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+    background:rgba(3,105,161,.25);border:3px dashed #0ea5e9;font-size:18px;color:#e0f2fe;z-index:9}
+  #drop.show{display:flex}
+  @media (max-width:640px){
+    #hud{font-size:11.5px;padding:8px 10px}
+    #ctl{top:auto;bottom:12px;right:12px;left:12px;text-align:center}
+    #cmp{bottom:120px}
+    .hide-m{display:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="panel" id="hud">
+  <h1>빔프로젝터 3D <span class="dim" style="font-size:11px">· 사진 16장 → 가우시안 스플랫</span></h1>
+  <ul id="steps">
+    <li id="s1">라이브러리 불러오기</li>
+    <li id="s2">렌더러 넣기</li>
+    <li id="s3">파일 받기</li>
+    <li id="s4">알갱이로 풀기</li>
+    <li id="s5">크기 재기</li>
+  </ul>
+  <div id="meta"></div>
+  <div id="fix"></div>
+</div>
+
+<div class="panel" id="ctl">
+  <div>
+    <select id="pick" title="같은 장면의 다른 형식 불러오기">
+      <option value="scene.sog">scene.sog</option>
+      <option value="formats/scene.spz">scene.spz</option>
+      <option value="formats/scene.compressed.ply">scene.compressed.ply</option>
+    </select>
+  </div>
+  <div><button id="fit">화면에 맞추기</button><button id="flip">위아래 뒤집기</button></div>
+  <div><button id="spin">자동 회전</button><button id="cmpBtn">형식 비교표</button></div>
+  <div class="dim hide-m" style="margin-top:4px">파일을 화면에 끌어다 놓으면 비교표에 추가됩니다<br>(.sog .spz .ply .compressed.ply .splat)</div>
+</div>
+
+<div class="panel" id="cmp">
+  <h2>형식 비교 (이 기기에서 측정)</h2>
+  <table>
+    <thead><tr><th>파일</th><th>형식 이름</th><th>크기</th><th>받기/읽기</th><th>풀기</th><th>알갱이</th><th>B/개</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="dim" style="margin-top:4px">같은 시점에서 비교하려면 카메라를 움직이지 말고 다른 형식을 고르거나 끌어다 놓으세요.</div>
+</div>
+
+<div id="drop">여기에 놓으면 이 장면을 바꿔 그리고 비교표에 추가합니다</div>
+
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+  "@sparkjsdev/spark":"https://sparkjs.dev/releases/spark/2.4.0/spark.module.js"
+}}
+</script>
+<script type="module">
+/* ===================================================================
+   여기 한 곳만 고치면 됩니다.
+   =================================================================== */
+let SPLAT_FILE = "scene.sog";   // 같은 폴더의 장면 파일 (?f=다른파일 로도 바꿀 수 있음)
+const FLIP_YZ  = false;         // make_splat.py 에서 이미 y,z 를 뒤집었으므로 false
+/* =================================================================== */
+SPLAT_FILE = new URLSearchParams(location.search).get("f") || SPLAT_FILE;
+
+/* 확장자 → Spark 안쪽 형식 이름. .sog 는 "pcsogszip" 이어야 한다.
+   .compressed.ply 도 Spark 는 "ply" 로 받아 안에서 압축 여부를 가린다. */
+const TYPE_OF = { "compressed.ply": "ply", ply: "ply", spz: "spz", splat: "splat",
+                  ksplat: "ksplat", sog: "pcsogszip", rad: "rad" };
+function fileTypeOf(name) {
+  const n = name.toLowerCase();
+  if (n.endsWith(".compressed.ply")) return ["compressed.ply", TYPE_OF["compressed.ply"]];
+  const ext = n.split(".").pop();
+  return [ext, TYPE_OF[ext]];
+}
+
+const el = id => document.getElementById(id);
+const mark = (id, cls, text) => { el(id).className = cls; if (text) el(id).textContent = text; };
+const fmtB = b => b >= 1048576 ? (b / 1048576).toFixed(2) + "MB" : (b / 1024).toFixed(0) + "KB";
+function fail(msg) { const f = el("fix"); f.classList.add("show"); f.textContent = "막혔습니다\n" + msg; }
+addEventListener("error", e => fail("자바스크립트 오류: " + (e?.message ?? String(e))));
+addEventListener("unhandledrejection", e => fail("처리 못 한 실패: " + (e.reason?.message || e.reason)));
+
+const pageT0 = performance.now();
+let THREE, OrbitControls, SPARK;
+mark("s1", "run");
+try {
+  THREE = await import("three");
+  ({ OrbitControls } = await import("three/addons/controls/OrbitControls.js"));
+  SPARK = await import("@sparkjsdev/spark");
+  mark("s1", "ok", "라이브러리 불러오기 (three 0.180.0 · Spark 2.4.0)");
+} catch (e) {
+  mark("s1", "bad");
+  fail("three.js 나 Spark 를 못 불러왔습니다. 인터넷 연결과 CDN 차단 여부를 보세요.\n" + (e?.message ?? e));
+  throw e;
+}
+
+const canvas = el("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0f14);
+const camera = new THREE.PerspectiveCamera(55, 1, 0.01, 1000);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+camera.position.set(1.6, 1.4, 1.6);
+
+/* SparkRenderer 를 장면에 넣지 않으면 오류 없이 검은 화면만 나온다. */
+const spark = new SPARK.SparkRenderer({ renderer });
+scene.add(spark);
+mark("s2", "ok", "렌더러 넣기 (SparkRenderer → scene)");
+
+function resize() {
+  renderer.setSize(innerWidth, innerHeight, false);
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize); resize();
+
+let mesh = null, flipped = false, firstFrameMs = null;
+const results = [];
+
+async function show(name, bytes, fetchMs, source) {
+  const [kind, fileType] = fileTypeOf(name);
+  mark("s4", "run", "알갱이로 풀기");
+  if (!fileType) throw new Error(`Spark 가 모르는 확장자입니다: ${name}`);
+  const t0 = performance.now();
+  const m = new SPARK.SplatMesh({ fileBytes: new Uint8Array(bytes), fileType });
+  await m.initialized;
+  const decodeMs = performance.now() - t0;
+  const n = m.numSplats ?? m.packedSplats?.numSplats ?? 0;
+  if (!n) throw new Error("알갱이가 0개입니다");
+  if (mesh) { scene.remove(mesh); mesh.dispose?.(); }
+  mesh = m; scene.add(mesh);
+  if (flipped || FLIP_YZ) { mesh.scale.y = -1; mesh.scale.z = -1; flipped = true; }
+  mark("s4", "ok", `알갱이로 풀기 ${n.toLocaleString("ko-KR")}개 · ${(decodeMs / 1000).toFixed(2)}초`);
+  el("meta").innerHTML =
+    `파일 <b>${name}</b> · 형식 <b>${fileType}</b><br>` +
+    `크기 <b>${fmtB(bytes.byteLength)}</b> (${bytes.byteLength.toLocaleString("ko-KR")} B) · ` +
+    `${source === "drop" ? "읽기" : "받기"} <b>${(fetchMs / 1000).toFixed(2)}초</b><br>` +
+    `알갱이 <b>${n.toLocaleString("ko-KR")}</b>개 · 알갱이당 <b>${(bytes.byteLength / n).toFixed(2)}</b> B`;
+  results.push({ name, kind, fileType, size: bytes.byteLength, fetchMs, decodeMs, n });
+  drawTable();
+  return n;
+}
+
+function drawTable() {
+  el("rows").innerHTML = results.map((r, i) =>
+    `<tr class="${i === results.length - 1 ? "cur" : ""}"><td>${r.name}</td><td>${r.fileType}</td>` +
+    `<td>${fmtB(r.size)}</td><td>${(r.fetchMs / 1000).toFixed(2)}s</td><td>${(r.decodeMs / 1000).toFixed(2)}s</td>` +
+    `<td>${r.n.toLocaleString("ko-KR")}</td><td>${(r.size / r.n).toFixed(2)}</td></tr>`).join("");
+  if (results.length > 1) el("cmp").classList.add("show");
+}
+
+async function loadUrl(url, keepView) {
+  mark("s3", "run", `파일 받기 ${url}`);
+  let buf, ms;
+  try {
+    const t0 = performance.now();
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`서버가 ${r.status} 를 돌려줬습니다`);
+    buf = await r.arrayBuffer();
+    ms = performance.now() - t0;
+    mark("s3", "ok", `파일 받기 ${url} · ${fmtB(buf.byteLength)} · ${(ms / 1000).toFixed(2)}초`);
+  } catch (e) {
+    mark("s3", "bad");
+    fail(`"${url}" 를 못 받았습니다. ${e?.message ?? e}\n` +
+      "1. 파일이 페이지와 같은 폴더에 있는지 (철자·대소문자)\n" +
+      "2. file:// 로 열지 않았는지 (python -m http.server 로 여세요)\n" +
+      "3. 웹에 올렸다면 주소 뒤에 /scene.sog 를 붙여 파일이 내려오는지");
+    throw e;
+  }
+  try { await show(url.split("/").pop(), buf, ms, "url"); }
+  catch (e) { mark("s4", "bad"); fail("파일은 받았는데 알갱이로 못 풀었습니다. " + (e?.message ?? e)); throw e; }
+  if (!keepView) fit();
+}
+
+/* 알갱이 덩어리는 일반 메시가 아니라 Box3.setFromObject 가 빈 상자를 준다.
+   Spark 의 getBoundingBox() 로 크기를 잰다. */
+function fit() {
+  let box = null;
+  try { box = mesh.getBoundingBox(true); } catch (e) {}
+  if (!box || box.isEmpty()) {
+    mark("s5", "bad", "크기 재기 실패 — 카메라를 임의 위치에 놓았습니다");
+    camera.position.set(1.6, 1.4, 1.6); controls.target.set(0, 0.5, 0); return;
+  }
+  const c = box.getCenter(new THREE.Vector3());
+  const radius = box.getSize(new THREE.Vector3()).length() * 0.5;
+  // 프로젝터(가운데 위쪽)를 바라보며, 사진을 찍은 높이·거리 근처에서 시작
+  const tgt = new THREE.Vector3(c.x, c.y + radius * 0.15, c.z);
+  controls.target.copy(tgt);
+  // 세로 화면(폰)에서는 좌우가 좁으므로 그만큼 뒤로 물러난다
+  const back = Math.max(1, 0.9 / camera.aspect);
+  camera.position.copy(tgt).add(new THREE.Vector3(radius * 0.75, radius * 0.55, radius * 0.95).multiplyScalar(back));
+  camera.near = Math.max(radius / 1000, 0.001);
+  camera.far = radius * 60;
+  // 처음 열 때만 주소의 시점을 따른다: ?cam=x,y,z&tgt=x,y,z (같은 시점 비교·시점 링크용)
+  let named = false;
+  if (!fit.done) {
+    const q = new URLSearchParams(location.search);
+    const v3 = s => { const a = (s || "").split(",").map(Number); return a.length === 3 && a.every(isFinite) ? a : null; };
+    const cp = v3(q.get("cam")), tp = v3(q.get("tgt"));
+    if (tp) controls.target.set(...tp);
+    if (cp) { camera.position.set(...cp); named = true; }
+    fit.done = true;
+  }
+  camera.updateProjectionMatrix();
+  mark("s5", "ok", `크기 재기 (Spark getBoundingBox) · 반지름 ${radius.toFixed(2)}` + (named ? " · 지정 시점" : ""));
+}
+
+await loadUrl(SPLAT_FILE);
+
+el("fit").onclick = fit;
+el("flip").onclick = () => {
+  flipped = !flipped;
+  mesh.scale.y *= -1; mesh.scale.z *= -1; mesh.updateMatrixWorld(true); fit();
+  el("flip").classList.toggle("on", flipped);
+};
+let spinning = false;
+el("spin").onclick = e => {
+  spinning = !spinning; controls.autoRotate = spinning; controls.autoRotateSpeed = 0.8;
+  e.target.classList.toggle("on", spinning);
+};
+el("cmpBtn").onclick = () => el("cmp").classList.toggle("show");
+el("pick").value = [...el("pick").options].some(o => o.value === SPLAT_FILE) ? SPLAT_FILE : "scene.sog";
+el("pick").onchange = e => loadUrl(e.target.value, true);
+
+/* 끌어다 놓기: 같은 시점을 유지한 채 장면만 바꿔 그린다 */
+let dragDepth = 0;
+addEventListener("dragenter", e => { e.preventDefault(); dragDepth++; el("drop").classList.add("show"); });
+addEventListener("dragleave", e => { if (--dragDepth <= 0) { dragDepth = 0; el("drop").classList.remove("show"); } });
+addEventListener("dragover", e => e.preventDefault());
+addEventListener("drop", async e => {
+  e.preventDefault(); dragDepth = 0; el("drop").classList.remove("show");
+  for (const f of e.dataTransfer.files) {
+    mark("s3", "run", `파일 읽기 ${f.name}`);
+    const t0 = performance.now();
+    const buf = await f.arrayBuffer();
+    const ms = performance.now() - t0;
+    mark("s3", "ok", `파일 읽기 ${f.name} · ${fmtB(buf.byteLength)} · ${(ms / 1000).toFixed(2)}초 (로컬)`);
+    try { await show(f.name, buf, ms, "drop"); }
+    catch (err) { mark("s4", "bad"); fail(`${f.name}: ` + (err?.message ?? err)); }
+  }
+});
+
+// 콘솔·자동 측정용
+window.room3d = { THREE, SPARK, scene, camera, controls, renderer, spark, get mesh() { return mesh; },
+                  fit, results, loadUrl, get firstFrameMs() { return firstFrameMs; } };
+
+(function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  renderer.render(scene, camera);
+  if (firstFrameMs === null && mesh) {
+    firstFrameMs = performance.now() - pageT0;
+    document.title = `빔프로젝터 3D 뷰어`;
+    window.room3d.ready = true;
+    console.log(`[room3d] 첫 화면까지 ${(firstFrameMs / 1000).toFixed(2)}초`);
+  }
+})();
+</script>
+</body>
+</html>

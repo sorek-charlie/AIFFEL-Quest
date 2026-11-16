@@ -1,0 +1,33 @@
+{
+  "firstFrameMs": 1581.0999999940395,
+  "results": [
+    {
+      "name": "scene.sog",
+      "kind": "sog",
+      "fileType": "pcsogszip",
+      "size": 3670320,
+      "fetchMs": 81.09999999403954,
+      "decodeMs": 483.59999999403954,
+      "n": 727399
+    }
+  ],
+  "steps": [
+    "ok 라이브러리 불러오기 (three 0.180.0 · Spark 2.4.0)",
+    "ok 렌더러 넣기 (SparkRenderer → scene)",
+    "ok 파일 받기 scene.sog · 3.50MB · 0.08초",
+    "ok 알갱이로 풀기 727,399개 · 0.48초",
+    "ok 크기 재기 (Spark getBoundingBox) · 반지름 1.32"
+  ],
+  "fix": "",
+  "url": "http://127.0.0.1:8790/",
+  "ready": true,
+  "decoded_sec": 1.71,
+  "visible_sec": 33.22,
+  "lit_pixels": 211148,
+  "viewport": [
+    1400,
+    860
+  ],
+  "mobile": false,
+  "cap_js": null
+}

@@ -1,0 +1,62 @@
+[   0.0s] [0/8] GPU 확인
+[   0.0s]    GPU: Tesla T4, 15360 MiB
+[   0.0s] [1/8] map-anything 설치
+[   0.0s] $ git clone -q --depth 1 https://github.com/facebookresearch/map-anything.git
+[   1.4s] $ /usr/bin/python3 -m pip install -q -e /content/map-anything
+[  21.4s]    ... pip install 진행 중 (20초)
+[  24.2s]    map-anything 준비 완료
+[  24.2s] [2/8] 사진 풀기
+[  24.2s]    사진 폴더: /content/sample_01/sample_01 / 16장
+[  24.2s] [3/8] 복원 — 사진 전부를 한 번의 infer 에
+[  40.3s]    모델 받기 (facebook/map-anything-apache, 약 4.9GB, 3분쯤)
+/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_auth.py:138: UserWarning: 
+Error while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.
+  warnings.warn(f"\nError while fetching `HF_TOKEN` secret value from your vault: '{str(e)}'.")
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+config.json:   0%|          | 0.00/5.78k [00:00<?, ?B/s]
+Loading pretrained dinov2_vitg14 from torch hub
+Downloading: "https://github.com/facebookresearch/dinov2/zipball/main" to /root/.cache/torch/hub/main.zip
+[  60.3s]    ... 모델 받기 진행 중 (20초)
+[  80.3s]    ... 모델 받기 진행 중 (40초)
+model.safetensors: reconstructing file:   0%|          |  0.00B / 4.91GB        
+model.safetensors: downloading bytes:           |  0.00B            
+[ 100.4s]    ... 모델 받기 진행 중 (60초)
+[ 120.4s]    ... 모델 받기 진행 중 (80초)
+[ 140.4s]    ... 모델 받기 진행 중 (100초)
+[ 160.4s]    ... 모델 받기 진행 중 (120초)
+[ 180.4s]    ... 모델 받기 진행 중 (140초)
+[ 188.3s]    불러온 사진: 16장
+[ 199.5s]    복원 완료: 11.3초, 최대 GPU 메모리 10.64 GB
+[ 199.5s] [4/8] 점구름 합치기와 다듬기
+[ 204.0s]    저장: /content/scene_points.npz (39.4MB)
+[ 204.0s] [4/8] 점구름 점검
+[ 204.4s]    점 개수: 3,112,868, 카메라 16대
+[ 204.4s]    카메라 움직인 폭 / 장면 대각선: 0.355  (0.1 보다 커야 함)
+[ 204.4s]    원점에 있는 카메라 수: 0  (0 또는 1 이면 정상)
+[ 204.4s] [5/8] 미리보기 preview.png
+[ 208.0s]    저장: /content/preview.png
+[ 208.1s] [6-7/8] 바닥 수평·자르기·알갱이 .ply (make_splat.py, K=1.4, CROP=0.8)
+[ 208.1s] $ /usr/bin/python3 make_splat.py scene_points.npz scene.ply 1.4 0.8
+   | 바닥 기울기 보정: 44.9도
+   | 물체 중심 [0.01 0.37 0.04], 반경 0.80, 높이 1.49 안쪽만 남김
+   | 알갱이 727,399개, 가장 긴 변 1.60, K=1.4, 반지름 0.00263
+   | 썼습니다: scene.ply  (49.5MB 데이터)
+   | 카메라 높이(바닥 기준) 평균: 2.04
+[ 209.5s]    scene.ply 49.5MB
+[ 209.5s] [8/8] .sog 로 줄이기 (@playcanvas/splat-transform@3.10.3)
+[ 209.5s] $ npx -y @playcanvas/splat-transform@3.10.3 -w scene.ply scene.sog
+   | splat-transform v3.10.3 (4f90012)
+   | ▸ [2/2] Output scene.sog
+   |   · 727K gaussians · 0 SH bands
+   |   ▸ Writing
+   |     · scene.sog (3.5MB)
+   | done in 6.057s  [peak cpu=302.1MB]
+   | npm notice
+   | npm notice New major version of npm available! 10.8.2 -> 12.2.2
+   | npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+   | npm notice To update run: npm install -g npm@12.2.2
+   | npm notice
+[ 225.6s]    scene.sog 3.67MB
+[ 225.6s] 완료
+RESULT_JSON {"origin_cameras": 0, "camera_motion_ratio": 0.3551, "floor_correction_deg": 44.9, "n_splats": 727399, "sog_bytes": 3670320, "n_points": 3112868, "n_cameras": 16, "elapsed_sec": 225.6}

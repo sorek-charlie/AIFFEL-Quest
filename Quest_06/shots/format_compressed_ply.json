@@ -1,0 +1,33 @@
+{
+  "firstFrameMs": 1964.7000000029802,
+  "results": [
+    {
+      "name": "scene.compressed.ply",
+      "kind": "compressed.ply",
+      "fileType": "ply",
+      "size": 11843668,
+      "fetchMs": 285.29999999701977,
+      "decodeMs": 446.70000000298023,
+      "n": 727399
+    }
+  ],
+  "steps": [
+    "ok 라이브러리 불러오기 (three 0.180.0 · Spark 2.4.0)",
+    "ok 렌더러 넣기 (SparkRenderer → scene)",
+    "ok 파일 받기 formats/scene.compressed.ply · 11.30MB · 0.29초",
+    "ok 알갱이로 풀기 727,399개 · 0.45초",
+    "ok 크기 재기 (Spark getBoundingBox) · 반지름 1.32"
+  ],
+  "fix": "",
+  "url": "http://127.0.0.1:8790/?f=formats/scene.compressed.ply",
+  "ready": true,
+  "decoded_sec": 2.18,
+  "visible_sec": 34.14,
+  "lit_pixels": 211156,
+  "viewport": [
+    1400,
+    860
+  ],
+  "mobile": false,
+  "cap_js": null
+}

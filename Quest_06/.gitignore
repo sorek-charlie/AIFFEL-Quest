@@ -1,0 +1,5 @@
+# 큰 작업 파일 (원본 PLY 49.5MB / 211.7MB 등) — GitHub 100MiB 제한, 제출에 불필요
+work/
+*.ply
+!formats/scene.compressed.ply
+__pycache__/
