@@ -3,6 +3,18 @@
 노드07 「우리가 사는 3차원은」 과제 제출물입니다.
 사진 16장 → MapAnything(점과 카메라) → 가우시안 스플랫 `.ply` → `.sog` 로 줄여 → 브라우저 뷰어
 
+[![한 바퀴 돌려 본 장면 — 누르면 3D 뷰어가 열립니다](shots/turntable.gif)](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_06/)
+
+**▶ [3D 뷰어 열기 (마우스로 돌려 보기)](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_06/)**: 위 그림을 눌러도 열립니다.
+GitHub README 는 보안상 자바스크립트를 실행하지 않아서, README 안의 그림은 회전 GIF 로만 보여 줄 수 있습니다. 직접 조작은 뷰어에서 합니다.
+
+| 조작 | PC | 폰 |
+|---|---|---|
+| 돌리기 | 왼쪽 버튼 끌기 | 한 손가락 끌기 |
+| 상하좌우 이동 | 오른쪽 버튼 끌기 (또는 Shift+끌기), 방향키 | 두 손가락 끌기 |
+| 확대·축소 | 휠 | 두 손가락 벌리기 |
+| 자동 회전 | 처음부터 켜져 있음. 끄는 동안 멈췄다가 손을 떼고 3초 뒤 다시 돎. 오른쪽 위 단추로 끄기 | 같음 |
+
 ![뷰어 화면](shots/viewer.png)
 
 | 제출 | 주소 |
@@ -72,6 +84,8 @@
 | 기기 | 통신 | 파일 받기 | 알갱이 풀기 | 첫 화면 | 비고 |
 |---|---|---:|---:|---:|---|
 | Windows PC, Chrome (로컬 서버) | localhost | 0.08초 | 0.48초 | 약 2초 | 뷰어 HUD 값 |
+| Windows PC (Intel Iris Xe), 헤드리스 Chrome GPU | localhost | 0.1초 | 0.5초 | **약 5초** | 장면이 실제로 보일 때까지 |
+| 같은 PC, 헤드리스 Chrome, **Pages 주소** | 인터넷 (PC 회선) | 0.48초 | 0.84초 | | 폰 크기(390×844) 화면으로 열어 봄 |
 | 내 폰 _(배포 후 기입)_ | _예: LTE / Wi-Fi_ | | | | 처음 받는 상태 |
 | 다른 사람 폰 _(배포 후 기입)_ | | | | | 처음 받는 상태 |
 
@@ -111,6 +125,7 @@ Quest_06/
 ├── README.md           이 문서
 ├── shots/
 │   ├── viewer.png      화면 갈무리 (제출용 대표 이미지)
+│   ├── turntable.gif   한 바퀴 회전 GIF (README 맨 위, tools/make_turntable.py)
 │   ├── view_good.png · limit_below.png · limit_gap.png   시점별 비교
 │   ├── format_*.png    형식별 같은 시점 비교
 │   ├── mobile.png      폰 크기 화면
@@ -120,6 +135,7 @@ Quest_06/
     ├── make_splat.py       점 → INRIA 3DGS .ply (K, CROP, N_KEEP)
     ├── convert_formats.py  세 형식 변환 + 측정표
     ├── capture_viewer.py   헤드리스 Chrome 갈무리 + 시간 측정
+    ├── make_turntable.py   한 바퀴 돌려 찍어 회전 GIF 만들기
     ├── remote_reconstruct.py  Colab 복원 스크립트
     └── reconstruct_remote.log · reconstruct_result.json   복원 기록
 ```
@@ -142,4 +158,5 @@ python -m http.server 8790   # → http://127.0.0.1:8790/
 
 뷰어 주소 옵션:
 - `?f=formats/scene.spz`: 다른 파일 열기
-- `?cam=x,y,z&tgt=x,y,z`: 처음 시점 지정. 예: `?cam=0.5,0.18,0.65&tgt=0,1.05,0` 은 아래에서 올려다보는 시점
+- `?cam=x,y,z&tgt=x,y,z`: 처음 시점 지정 (이때는 자동 회전 없이 시작). 예: `?cam=0.5,0.18,0.65&tgt=0,1.05,0` 은 아래에서 올려다보는 시점
+- `?spin=0` / `?spin=1`: 자동 회전 끄고 / 켜고 시작

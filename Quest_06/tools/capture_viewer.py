@@ -28,8 +28,9 @@ _s = socket.socket(); _s.bind(("127.0.0.1", 0)); PORT = _s.getsockname()[1]; _s.
 
 prof = tempfile.mkdtemp(prefix="cap-chrome-")
 proc = subprocess.Popen([CHROME, "--headless=new", f"--remote-debugging-port={PORT}",
-                         f"--user-data-dir={prof}", "--enable-unsafe-swiftshader",
-                         "--use-angle=swiftshader", "--ignore-gpu-blocklist",
+                         f"--user-data-dir={prof}", "--ignore-gpu-blocklist",
+                         *(["--use-angle=d3d11", "--enable-gpu"] if os.environ.get("CAP_GPU")
+                           else ["--enable-unsafe-swiftshader", "--use-angle=swiftshader"]),
                          f"--window-size={W},{H}", "--hide-scrollbars", "about:blank"],
                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 try:

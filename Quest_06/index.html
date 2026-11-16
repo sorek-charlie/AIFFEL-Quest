@@ -42,7 +42,9 @@
   #drop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
     background:rgba(3,105,161,.25);border:3px dashed #0ea5e9;font-size:18px;color:#e0f2fe;z-index:9}
   #drop.show{display:flex}
+  .show-m{display:none}
   @media (max-width:640px){
+    .show-m{display:inline}
     #hud{font-size:11.5px;padding:8px 10px}
     #ctl{top:auto;bottom:12px;right:12px;left:12px;text-align:center}
     #cmp{bottom:120px}
@@ -76,6 +78,10 @@
   </div>
   <div><button id="fit">화면에 맞추기</button><button id="flip">위아래 뒤집기</button></div>
   <div><button id="spin">자동 회전</button><button id="cmpBtn">형식 비교표</button></div>
+  <div class="dim" style="margin-top:4px;line-height:1.5">
+    <span class="hide-m">왼쪽 끌기: 돌리기 · 오른쪽 끌기/Shift+끌기: 상하좌우 이동<br>휠: 확대·축소 · 방향키: 상하좌우 이동<br></span>
+    <span class="show-m">한 손가락: 돌리기 · 두 손가락: 확대·이동<br></span>
+  </div>
   <div class="dim hide-m" style="margin-top:4px">파일을 화면에 끌어다 놓으면 비교표에 추가됩니다<br>(.sog .spz .ply .compressed.ply .splat)</div>
 </div>
 
@@ -147,6 +153,18 @@ const camera = new THREE.PerspectiveCamera(55, 1, 0.01, 1000);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.dampingFactor = 0.08;
+// 마우스: 왼쪽 끌기 = 돌리기, 오른쪽(또는 Shift/Ctrl+왼쪽) 끌기 = 상하좌우 이동, 휠 = 확대
+controls.enablePan = true;
+controls.screenSpacePanning = true;       // 이동이 화면 기준 상하좌우가 되게
+controls.listenToKeyEvents(window);       // 방향키로 상하좌우 이동
+controls.keyPanSpeed = 20;
+// 끄는 동안은 자동 회전을 잠시 멈추고, 손을 뗀 뒤 3초가 지나면 다시 돈다
+let resumeTimer = null;
+controls.addEventListener("start", () => { clearTimeout(resumeTimer); controls.autoRotate = false; });
+controls.addEventListener("end", () => {
+  clearTimeout(resumeTimer);
+  resumeTimer = setTimeout(() => { try { controls.autoRotate = spinning; } catch (e) {} }, 3000);
+});
 camera.position.set(1.6, 1.4, 1.6);
 
 /* SparkRenderer 를 장면에 넣지 않으면 오류 없이 검은 화면만 나온다. */
@@ -260,11 +278,16 @@ el("flip").onclick = () => {
   mesh.scale.y *= -1; mesh.scale.z *= -1; mesh.updateMatrixWorld(true); fit();
   el("flip").classList.toggle("on", flipped);
 };
-let spinning = false;
-el("spin").onclick = e => {
-  spinning = !spinning; controls.autoRotate = spinning; controls.autoRotateSpeed = 0.8;
-  e.target.classList.toggle("on", spinning);
-};
+// 자동 회전: 기본으로 켜 둔다. ?spin=0 이면 멈춘 채 시작 (시점 지정 링크 등)
+const spinParam = new URLSearchParams(location.search).get("spin");
+let spinning = spinParam !== null ? spinParam !== "0" : !new URLSearchParams(location.search).has("cam");
+function setSpin(on) {
+  spinning = on; controls.autoRotate = on; controls.autoRotateSpeed = 1.2;
+  el("spin").classList.toggle("on", on);
+  el("spin").textContent = on ? "자동 회전 멈추기" : "자동 회전";
+}
+setSpin(spinning);
+el("spin").onclick = () => setSpin(!spinning);
 el("cmpBtn").onclick = () => el("cmp").classList.toggle("show");
 el("pick").value = [...el("pick").options].some(o => o.value === SPLAT_FILE) ? SPLAT_FILE : "scene.sog";
 el("pick").onchange = e => loadUrl(e.target.value, true);
