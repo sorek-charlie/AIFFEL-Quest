@@ -7,10 +7,17 @@ ROOT_FILES = ('README.md', 'PRODUCT.md', 'DESIGN.md', 'AGENTS.md', 'requirements
               '.gitignore', '.env.example', 'AI_API_키_설정.cmd', '.github/workflows/demo-pages.yml')
 WEB = ('index.html', 'landing.html', 'demo.html', 'app.js', 'styles.css', 'playful.css', 'motion.js')
 DOCS = ('PRD.md', '문제정의_및_평가.md', '간략보고서_분석.md', '심층분석_양식.md',
-        '정기_브리핑.md', '정책공고_API_확인.md', '로컬_LLM_사양.md')
+        '정기_브리핑.md', '정책공고_API_확인.md', '로컬_LLM_사양.md', '구조와_운영도구.md',
+        'assets/brief-sample.png', 'assets/deep-sample.png', 'assets/comprehensive-sample.png',
+        'assets/adjustment-demo.png', 'assets/meeting-demo.png', 'assets/document-demo.png',
+        'assets/issue-demo.png', 'assets/policy-demo.png',
+        'assets/workroom-brief.jpg', 'assets/workroom-deep.jpg', 'assets/workroom-comprehensive.jpg',
+        'assets/workroom-adjustment.jpg', 'assets/workroom-meeting.jpg', 'assets/workroom-document.jpg',
+        'assets/workroom-issue.jpg', 'assets/workroom-policy.jpg', 'assets/workroom-quick-demo.mp4')
 SCRIPTS = ('build_submission.py', 'prepare_finance_demo.py', 'render_demo_html.py', 'build_cloudflare_pages.py', 'cloudflare_demo_worker.mjs', 'record_workroom_demo.py',
            'install_hermes_workroom.py', 'hermes_workroom_hook.py',
-           'provider_keys_setup.py', 'policy_key_setup.py', 'launcher.py', 'check_ui.py',
+           'provider_keys_setup.py', 'policy_key_setup.py', 'launcher.py', 'quick_demo.py',
+           'check_ui.py',
            'finance_reports.js', 'finance_decks.js', 'render_policy_report_image.py',
            'register_daily_news_task.ps1', 'register_policy_task.ps1', 'register_policy_weekly_task.ps1')
 EXAMPLES = ('meeting.txt', 'policy.json', 'issue.json', 'finance-demo.csv')

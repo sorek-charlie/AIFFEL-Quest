@@ -135,7 +135,7 @@ def news_message(report, label=''):
 
 def send_news(report, token, chat, label=''):
     body = news_message(report, label)
-    send(body, token, chat)
+    send(body, token, chat, links=True)
     telegram_event('issue', 'Daily News 메시지', 'sent', text=body)
 
 

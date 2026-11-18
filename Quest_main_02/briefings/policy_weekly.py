@@ -135,8 +135,24 @@ def render_digest(document, now, benefits=None):
     return '\n'.join(lines)
 
 
-def send(message, token, chat, opener=None):
-    req=Request('https://api.telegram.org/bot'+token+'/sendMessage',data=json.dumps({'chat_id':chat,'text':message,'link_preview_options':{'is_disabled':True}},ensure_ascii=False).encode(),headers={'Content-Type':'application/json'})
+def titled_links(message):
+    """'제목' 줄 다음 '주소' 줄 쌍을 제목에 링크를 건 텔레그램 HTML로 바꾼다. 주소 줄은 보이지 않는다."""
+    from html import escape
+    out=[]
+    for line in message.split('\n'):
+        url=line.strip()
+        if valid_url(url) and out and out[-1][1] and not out[-1][0].lstrip().startswith(('<a ','■')):
+            title,_=out.pop()
+            out.append(('<a href="'+escape(url,quote=True)+'">'+title+'</a>',False))
+        else:
+            out.append((escape(line,quote=False),bool(line.strip()) and not valid_url(url)))
+    return '\n'.join(text for text,_ in out)
+
+
+def send(message, token, chat, opener=None, links=False):
+    payload={'chat_id':chat,'text':titled_links(message) if links else message,'link_preview_options':{'is_disabled':True}}
+    if links:payload['parse_mode']='HTML'
+    req=Request('https://api.telegram.org/bot'+token+'/sendMessage',data=json.dumps(payload,ensure_ascii=False).encode(),headers={'Content-Type':'application/json'})
     try:
         with (opener or build_opener(NoRedirect())).open(req,timeout=30) as response:
             result=json.load(response)
@@ -272,7 +288,7 @@ def _run_locked(now):
     record('policy-report','텔레그램 발송 확인',90)
     with closing(sqlite3.connect(DB,timeout=10)) as db:
         from app.output_delivery import send_document
-        text_sent=deliver_once(db,'deliveries',week,lambda:send(body,token,chat))
+        text_sent=deliver_once(db,'deliveries',week,lambda:send(body,token,chat,links=True))
         if text_sent:telegram_event('policy','정부정책 메시지','sent',text=body)
         pdf_sent=deliver_once(db,'pdf_deliveries',week,lambda:send_document(pdf_path.read_bytes(),pdf_path.name,'정부정책 주간 보고 PDF',token,chat))
         if pdf_sent:telegram_event('policy','정부정책 PDF','sent',file=pdf_path)

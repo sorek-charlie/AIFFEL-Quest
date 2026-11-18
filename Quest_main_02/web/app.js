@@ -45,11 +45,9 @@ function showSentArticleLinks(holder, sent) {
   const title=lines[previous];
   if(!title||/^https?:\/\//i.test(title))continue;
   const item=document.createElement('li');
-  const heading=document.createElement('strong');
-  heading.textContent=title;heading.title=title;
   const link=document.createElement('a');
-  link.href=line;link.target='_blank';link.rel='noopener noreferrer';link.className='sent-link-btn';link.textContent='원문 ↗';link.title=line;link.setAttribute('aria-label',title+' 원문 열기');
-  item.append(heading,link);entries.push(item);
+  link.href=line;link.target='_blank';link.rel='noopener noreferrer';link.className='sent-link-title';link.textContent=title;link.title=title+' · 원문 열기';
+  item.append(link);entries.push(item);
  }
  if(!entries.length){holder.textContent=sent;return;}
  const list=document.createElement('ul');

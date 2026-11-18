@@ -38,7 +38,7 @@ def run():
     def save():state.write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding='utf8')
     save(); token,chat=weekly.load_bot()
     status['message']='unknown';save()
-    weekly.send(body,token,chat)
+    weekly.send(body,token,chat,links=True)
     telegram_event('policy','정부정책 메시지','sent',text=body)
     status['message']='sent';status['pdf']='unknown';save()
     send_document(pdf.read_bytes(),pdf.name,'정부정책 현재 업데이트 PDF',token,chat)

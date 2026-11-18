@@ -37,6 +37,22 @@ class WeeklyTests(unittest.TestCase):
         opener=MockOpener()
         self.assertEqual(send('test','test-token','123',opener),'123')
         self.assertEqual(opener.body['chat_id'],'123')
+        self.assertNotIn('parse_mode',opener.body)
+
+    def test_links_are_put_on_titles_without_visible_urls(self):
+        class MockOpener:
+            def open(self,req,timeout):
+                self.body=json.loads(req.data)
+                return io.BytesIO(b'{"ok":true,"result":{"message_id":7}}')
+        opener=MockOpener()
+        message='[Daily News]\n\n■ AI\nA&B <제목>\nhttps://example.org/a?x=1&y="2"\n다음 제목\nhttps://example.org/b'
+        send(message,'test-token','123',opener,links=True)
+        self.assertEqual(opener.body['parse_mode'],'HTML')
+        text=opener.body['text']
+        self.assertIn('<a href="https://example.org/a?x=1&amp;y=&quot;2&quot;">A&amp;B &lt;제목&gt;</a>',text)
+        self.assertIn('<a href="https://example.org/b">다음 제목</a>',text)
+        self.assertIn('■ AI',text)
+        self.assertNotIn('\nhttps://',text)
 
     def test_weekly_delivery_is_not_duplicated(self):
         from briefings.policy_weekly import run

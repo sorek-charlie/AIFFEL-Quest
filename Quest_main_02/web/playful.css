@@ -693,3 +693,19 @@ body[data-view] footer{display:none}
 .writing-current strong { font-variant-numeric: tabular-nums; }
 #reports .telegram-panel .panel-head { padding-bottom: 12px; }
 #reports .telegram-panel .telegram-stage { padding: 18px 22px; }
+
+/* 2026-11-18 보고 화면: 텔레그램 발송 로그를 가운데 열로, 가운데 열 20% 축소·3열 20% 확대(PDF 한 쪽 전체 보기) */
+.report-middle{display:flex;flex-direction:column;gap:14px;min-width:0}
+.report-middle>.telegram-panel{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+.report-middle>.telegram-panel>.telegram-stage{flex:1}
+.report-middle>.monitor-panel{flex:0 0 auto;min-height:0;grid-template-rows:auto}
+@media(min-width:851px){.report-layout{grid-template-columns:minmax(0,.46fr) minmax(0,.736fr) minmax(0,.984fr)}}
+@media(min-width:851px) and (max-width:1200px){
+  .report-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .report-middle{grid-column:1/-1;grid-row:2}
+}
+@media(min-width:1201px) and (min-height:600px){
+  #reports .report-layout{grid-template-columns:minmax(0,.64fr) minmax(0,.704fr) minmax(0,.936fr)}
+  #reports .report-middle{height:100%;min-height:0}
+  #reports .report-middle>.monitor-panel{max-height:36%;overflow:hidden;display:flex;flex-direction:column}
+}

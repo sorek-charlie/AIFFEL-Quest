@@ -31,6 +31,11 @@ def open_when_ready(proc):
 def main():
     try:
         root = locate_root()
+        if sys.argv[1:] == ['--demo']:
+            return subprocess.call([
+                str(root / '.venv' / 'Scripts' / 'python.exe'),
+                '-m', 'scripts.quick_demo',
+            ], cwd=root)
         try:
             with urlopen('http://127.0.0.1:8765/api/health',timeout=1) as response:
                 existing=json.load(response)
