@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ko" data-type="software">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="description" content="재무·회의·문서 분석과 정기 보고를 한곳에서 관리하는 개인 업무 작업실">
+  <title>업무 작업실 | 일과 판단을 잇다</title>
+  <style>
+    :root{color-scheme:dark;--ink:#f8f7ff;--muted:#c9c6da;--line:#4b405f;--violet:#c0a0ff;--electric:#8d67ff;--black:#000}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3{word-break:keep-all}a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:4px}.skip{position:fixed;left:16px;top:-100px;z-index:100;background:#fff;color:#000;padding:12px}.skip:focus{top:12px}.wrap{width:min(100% - 72px,1400px);margin:auto}.top{height:78px;position:absolute;top:0;left:0;width:100%;z-index:5}.top .wrap{height:100%;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:16px;letter-spacing:-.02em}.brand-mark{display:grid;place-items:center;width:36px;height:36px;border:1px solid #ad96e6;border-radius:12px;color:#efeaff;font-weight:900;background:#171020}.top-links{display:flex;align-items:center;gap:28px;font-size:12px;color:#e0dceb}.top-links a:hover{color:#fff}.pill{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:45px;padding:0 19px;border-radius:999px;background:#fff;color:#111;font-size:12px;font-weight:800;transition:transform .18s,background .18s}.pill:hover{transform:translateY(-2px);background:#e9dfff}.pill:active{transform:translateY(1px)}.hero{min-height:100svh;position:relative;isolation:isolate;display:flex;align-items:stretch;overflow:hidden;background:#000}.hero:before{content:'';position:absolute;z-index:-2;inset:0;background:radial-gradient(ellipse at 51% 51%,#57208e 0,#1a0a32 17%,#080411 38%,#000 72%)}#particles{position:absolute;z-index:-1;inset:0;width:100%;height:100%;pointer-events:none}.hero-inner{min-height:100svh;position:relative;padding:130px 0 110px;display:flex;flex-direction:column;justify-content:space-between}.hero-top{max-width:73%}.eyebrow{font-family:Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:lowercase;color:#ddd0ff;margin:0 0 20px}.hero h1{font-size:clamp(45px,8.7vw,126px);line-height:1.03;letter-spacing:-.075em;margin:0;font-weight:900}.hero h1 span{display:block}.hero h1 .emphasis{color:#d1baff}.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:32px}.hero-copy{max-width:350px;color:#e2ddec;font-size:14px;line-height:1.8;word-break:keep-all}.hero-copy p{margin:0 0 20px}.hero-statement{text-align:right;font-size:clamp(24px,4.1vw,58px);line-height:1.1;letter-spacing:-.055em;font-weight:900;word-break:keep-all}.hero-meta{position:absolute;right:0;top:132px;text-align:right;font:11px/1.9 Consolas,monospace;color:#cec2e4;letter-spacing:.06em}.down{position:absolute;left:0;bottom:38px;color:#cfc6e0;font:11px Consolas,monospace;letter-spacing:.1em}.scene{min-height:100svh;position:relative;display:flex;align-items:center;padding:110px 0}.scene-work{background:#08060c;border-top:1px solid #251d2d}.scene-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:35px}.scene-head h2,.scene-bot h2{font-size:clamp(36px,6.8vw,90px);line-height:1.04;letter-spacing:-.06em;margin:0}.scene-head p{margin:0;color:var(--muted);line-height:1.8;font-size:13px}.work-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.work-card{min-height:230px;padding:20px;display:flex;flex-direction:column;background:#14101b;border:1px solid #463952;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);transition:transform .2s,border-color .2s,background .2s}.work-card:hover{transform:translateY(-4px);border-color:#bb9cff;background:#1d1529}.icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid #765fa4;border-radius:13px;background:#261a3a;color:#e7d9ff}.icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.work-card h3{font-size:19px;margin:auto 0 8px;letter-spacing:-.04em}.work-card p{color:#d0c9db;font-size:12px;line-height:1.6;margin:0}.work-card .arrow{color:#d9c3ff;margin-top:22px;font-size:16px}.scene-bot{background:#000;overflow:hidden}.bot-layout{display:grid;grid-template-columns:1fr .9fr;gap:8%;align-items:center}.bot-layout p{color:var(--muted);font-size:14px;line-height:1.9;max-width:480px;word-break:keep-all}.bot-layout .pill{margin-top:22px}.bot-card{min-height:380px;padding:30px;background:linear-gradient(145deg,#251447,#100b1b 60%,#08060c);border:1px solid #8f6cd0;clip-path:polygon(0 0,94% 0,100% 7%,100% 100%,6% 100%,0 93%);transform-style:preserve-3d;transition:transform .15s ease-out}.bot-card .bot-label{font:11px Consolas,monospace;letter-spacing:.12em;color:#dbc6ff}.bot-card h3{font-size:30px;letter-spacing:-.05em;margin:48px 0 14px}.bot-card .line{border-top:1px solid #685481;padding:14px 0;display:flex;justify-content:space-between;font-size:12px;color:#e4dcf0}.bot-card .line b{color:#fff}.bot-card .bot-note{font-size:11px;color:#d2c2e7;line-height:1.7;margin-top:24px}.footer{padding:34px 0 42px;border-top:1px solid #302738;color:#bdb4ca;font-size:11px;line-height:1.8}.footer .wrap{display:flex;justify-content:space-between;gap:24px}.footer strong{color:#eee7f7}.legal{max-width:600px;text-align:right;color:#c7bed2}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:1000px){.work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.work-card{min-height:190px}.bot-layout{gap:5%}.scene{min-height:auto;padding:90px 0}}@media(max-width:700px){.wrap{width:calc(100% - 36px)}.top{height:66px}.top-links{gap:12px}.top-links>a:not(.pill){display:none}.top .pill{min-height:40px;padding:0 14px}.brand{font-size:14px}.brand-mark{width:32px;height:32px}.hero-inner{padding:116px 0 115px}.hero-top{max-width:100%}.hero h1{font-size:clamp(43px,12vw,72px);letter-spacing:-.07em}.hero-meta{display:none}.hero-bottom{display:block}.hero-copy{font-size:13px;max-width:280px}.hero-statement{font-size:clamp(26px,8vw,42px);margin:38px 0 0;text-align:right}.down{bottom:36px}.scene{padding:72px 0}.scene-head{display:block}.scene-head p{margin-top:16px}.work-grid{grid-template-columns:1fr}.work-card{min-height:120px;display:grid;grid-template-columns:42px 1fr auto;column-gap:15px;align-items:center}.work-card h3{margin:0;font-size:17px}.work-card p{grid-column:2;grid-row:2;margin-top:4px}.work-card .arrow{grid-column:3;grid-row:1;margin:0}.bot-layout{grid-template-columns:1fr;gap:38px}.bot-card{min-height:310px}.bot-card h3{margin-top:32px}.footer .wrap{display:block}.legal{text-align:left;margin-top:12px}}
+    .top-links .pill:hover{color:#111}.eyebrow,.hero-meta,.down,.bot-card .bot-label{letter-spacing:.04em}.eyebrow,.hero-meta,.down,.bot-card .bot-label,.bot-card .bot-note{font-size:12px}.work-card{display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto 1fr auto;gap:14px;align-items:center}.work-card .icon{grid-column:1;grid-row:1}.work-card h3{grid-column:2;grid-row:1;margin:0}.work-card p{grid-column:1/-1;grid-row:2;align-self:end}.work-card .arrow{grid-column:2;grid-row:3;justify-self:end;margin:0}@media(max-width:700px){.work-card{grid-template-columns:42px 1fr auto;grid-template-rows:auto auto;gap:4px 15px}.work-card p{grid-column:2;grid-row:2}.work-card .arrow{grid-column:3;grid-row:1}}
+
+    /* Desktop: all five workflows and the private channel in one view. */
+    @media(min-width:701px){
+      .top{position:relative;height:64px}.wrap{width:min(100% - 64px,1400px)}
+      main{width:min(100% - 64px,1400px);margin:0 auto;min-height:calc(100svh - 118px);display:grid;grid-template-columns:minmax(0,1.7fr) minmax(290px,.85fr);grid-template-rows:auto 1fr;gap:clamp(14px,2vh,22px) 22px;align-content:start}
+      .hero{grid-column:1/-1;min-height:0;border:1px solid #32253f;clip-path:polygon(0 0,calc(100% - 25px) 0,100% 25px,100% 100%,0 100%)}
+      .hero:before{background:radial-gradient(ellipse at 72% 48%,#57208e 0,#1a0a32 25%,#080411 50%,#000 80%)}
+      .hero-inner{width:100%;min-height:0;padding:clamp(20px,3.5vh,34px);display:block}
+      .hero-top{max-width:none}.hero-top .eyebrow,.hero-meta,.hero-bottom,.down{display:none}
+      .hero h1{font-size:clamp(35px,4.4vw,62px);letter-spacing:-.04em;line-height:1.1}.hero h1 span{display:inline}
+      .hero h1:after{content:'수시 분석부터 정기 보고까지, 다섯 가지 AI 업무를 한곳에서.';display:block;font-size:clamp(12px,1vw,14px);font-weight:400;letter-spacing:0;line-height:1.6;margin-top:12px;color:#e4dfee}
+      
+      .scene{min-height:0;padding:0;background:transparent;border:0;display:block}.scene>.wrap{width:100%}
+      .scene-head{margin:0 0 12px;align-items:center}.scene-head .eyebrow{display:none}.scene-head h2,.scene-bot h2{font-size:clamp(21px,2vw,29px);letter-spacing:-.035em;line-height:1.2}.scene-head h2 br,.scene-bot h2 br{display:none}.scene-head p{font-size:12px;line-height:1.5;text-align:right}
+      .work-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.work-card{min-height:clamp(112px,17vh,150px);padding:14px;gap:8px 12px;grid-template-columns:38px 1fr;grid-template-rows:auto 1fr auto}.work-card .icon{width:38px;height:38px}.work-card h3{font-size:16px}.work-card p{font-size:12px;align-self:end}.work-card .arrow{font-size:14px}
+      .bot-layout{display:block}.bot-layout>.scene-inner{width:100%}.bot-layout>div:first-child .eyebrow{display:none}.bot-layout>div:first-child>p:not(.eyebrow){font-size:12px;line-height:1.5;margin:7px 0 12px}.bot-layout>div:first-child>.pill{display:none}
+      .bot-card{min-height:0;padding:17px 20px}.bot-card .bot-label{font-size:11px}.bot-card h3{font-size:21px;margin:14px 0 9px}.bot-card .line{padding:8px 0;font-size:12px}.bot-card .bot-note{font-size:11px;line-height:1.5;margin:10px 0 0}.bot-card .bot-note:after{content:' 연결 설정은 오른쪽 위에서 확인할 수 있습니다.'}
+      .footer{padding:8px 0 10px;font-size:10px;line-height:1.45}.footer .wrap{align-items:center}.footer .wrap>div:first-child{white-space:nowrap}.footer .wrap>div:first-child br,.legal br{display:none}.legal{max-width:none}.legal br+*{display:inline}
+    }
+    @media(min-width:701px) and (max-height:700px){.hero-inner{padding:16px 25px}.hero h1{font-size:36px}.hero h1:after{margin-top:5px}.work-card{min-height:100px}.bot-card{padding:12px 16px}.bot-card h3{margin:8px 0 5px}.bot-card .line{padding:5px 0}.bot-layout>div:first-child>p:not(.eyebrow){margin:4px 0 7px}}
+
+
+    /* On compact screens retain the same one-screen overview with smaller, tappable cards. */
+    @media(max-width:700px){
+      .top{position:relative;height:56px}.top .pill{min-height:38px}.wrap{width:calc(100% - 28px)}
+      main{width:calc(100% - 28px);margin:0 auto;display:grid;gap:11px}
+      .hero{min-height:0;border:1px solid #32253f}.hero-inner{width:100%;min-height:0;padding:15px}.hero-top{max-width:100%}.hero-top .eyebrow,.hero-meta,.hero-bottom,.down{display:none}
+      .hero h1{font-size:clamp(26px,7.2vw,36px);line-height:1.15;letter-spacing:-.04em}.hero h1 span{display:inline}.hero h1:after{content:'수시 분석 · 정기 보고 · 개인 텔레그램';display:block;font-size:11px;letter-spacing:0;line-height:1.5;font-weight:400;color:#e4dfee;margin-top:6px}
+      
+      .scene{min-height:0;padding:0;border:0;background:transparent;display:block}.scene>.wrap{width:100%}.scene-head{display:flex;margin:0 0 7px;align-items:center}.scene-head .eyebrow,.scene-head>p{display:none}.scene-head h2,.scene-bot h2{font-size:19px;line-height:1.2;letter-spacing:-.03em}.scene-head h2 br,.scene-bot h2 br{display:none}
+      .work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.work-card{min-height:72px;padding:9px;grid-template-columns:30px minmax(0,1fr) auto;grid-template-rows:auto auto;gap:3px 8px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}.work-card .icon{width:30px;height:30px;border-radius:9px}.work-card .icon svg{width:17px;height:17px}.work-card h3{font-size:14px;grid-column:2}.work-card p{font-size:11px;line-height:1.3;grid-column:2/4;grid-row:2}.work-card .arrow{grid-column:3;grid-row:1;font-size:12px}
+      .bot-layout{display:block}.bot-layout>div:first-child .eyebrow,.bot-layout>div:first-child>p:not(.eyebrow),.bot-layout>div:first-child>.pill{display:none}.bot-layout h2{margin-bottom:6px}.bot-card{min-height:0;padding:10px 13px}.bot-card .bot-label{font-size:11px}.bot-card h3{font-size:16px;margin:5px 0}.bot-card .line{padding:5px 0;font-size:11px}.bot-card .bot-note{font-size:11px;line-height:1.35;margin:7px 0 0}
+      .footer{padding:8px 0;font-size:10px;line-height:1.4}.footer .wrap{display:block}.footer .wrap>div:first-child{display:none}.legal{text-align:left;margin:0}.legal br{display:none}
+    }
+    @media(max-width:700px) and (max-height:760px){main{gap:7px}.hero-inner{padding:11px}.work-card{min-height:62px}.bot-card{padding:8px 11px}.bot-card .line{padding:3px 0}.bot-card .bot-note{margin-top:5px}}
+
+    @media(max-width:350px){.top{height:44px}.hero h1{font-size:25px}.footer{padding:5px 0}}
+
+    /* Readability for the work choices and assistant summary. */
+    .work-card{background:#191421;border-color:#655570}
+    .work-card h3{color:#fff;font-weight:800;letter-spacing:-.025em}
+    .work-card p{color:#f0edf8;word-break:keep-all}
+    .bot-card{border-color:#a788df}
+    .bot-card .bot-label{color:#e8d9ff;font-weight:700}
+    .bot-card .line{color:#f2eef8;gap:12px;line-height:1.5;font-variant-numeric:tabular-nums}
+    .bot-card .line b{white-space:nowrap}
+    .bot-card .bot-note{color:#ede6f7;word-break:keep-all}
+    .bot-card .bot-note:after{content:none}
+    @media(min-width:701px){
+      .scene-head h2,.scene-bot h2{font-size:clamp(25px,2.1vw,30px)}
+      .work-card{min-height:clamp(142px,19vh,165px);padding:16px}
+      .work-card h3{font-size:19px}.work-card p{font-size:15px;line-height:1.5}
+      .bot-card{padding:20px 22px}.bot-card .bot-label{display:block;font-size:13px;margin-bottom:12px}
+      .bot-card .line{font-size:15px;padding:12px 0}.bot-card .bot-note{font-size:13px;line-height:1.6;margin-top:12px}
+    }
+    @media(max-width:700px){
+      .scene-head h2,.scene-bot h2{font-size:22px}
+      .work-card{min-height:82px;padding:10px}.work-card h3{font-size:16px}.work-card p{font-size:13px;line-height:1.45}
+      .bot-card{padding:13px 15px}.bot-card .bot-label{display:block;font-size:12px;margin-bottom:7px}
+      .bot-card .line{font-size:14px;padding:7px 0}.bot-card .bot-note{font-size:12px;line-height:1.5;margin-top:9px}
+    }
+
+
+    /* The five tasks share one horizontal row; the assistant list stays concise. */
+    .assistant-heading{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 16px;width:100%}
+    @media(max-width:850px){.assistant-heading{grid-template-columns:minmax(0,1fr)}}
+    .assistant-heading #bot-title{font-size:clamp(22px,2.25vw,34px);white-space:nowrap}
+    .assistant-model{color:#211a08;background:#ffe38a;padding:.3em .55em;font-size:clamp(14px,1.05vw,16px);line-height:1.4;max-width:100%;width:fit-content;overflow-wrap:anywhere}
+    .private-label{font-size:.55em;color:#ded0f5;font-weight:600;letter-spacing:0}
+    .telegram-link{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:12px;padding:11px 16px;border:1px solid #b69ae1;border-radius:10px;background:#21182e;color:#fff;font-weight:700;font-size:14px}
+    .telegram-link span{color:#e2d2ff;font-weight:500;font-size:13px}
+    .telegram-link:hover{background:#342244;border-color:#e1d0ff}.telegram-link:focus-visible{outline:3px solid #fff;outline-offset:4px}
+    @media(min-width:701px){
+      main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:14px}
+      .hero{grid-column:1}.scene-head{margin-bottom:10px}.work-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+      .work-card{min-height:125px;padding:13px;grid-template-columns:36px minmax(0,1fr);gap:5px 9px}
+      .work-card h3{font-size:clamp(14px,1.25vw,18px);overflow-wrap:anywhere}.work-card p{font-size:clamp(12px,1vw,14px)}.work-card .icon{width:36px;height:36px}.policy-break{display:none}
+      .bot-layout{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;gap:9px;align-items:start}
+      .bot-layout>div:first-child{grid-column:1}.bot-card{grid-column:1;grid-row:2;padding:8px 18px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+      .bot-card .line{padding:5px 0;font-size:15px}.bot-card .line:first-child{border:0}.telegram-link{grid-column:1;grid-row:3;margin:0;align-self:center;justify-content:space-between}
+    }
+    @media(max-width:700px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.policy-break{display:none}.private-label{font-size:.55em}.bot-card{padding:6px 14px}.bot-card .line{padding:5px 0;font-size:14px}.bot-card .line:first-child{border:0}.telegram-link{margin-top:8px;font-size:13px}.telegram-link span{font-size:12px}}
+
+
+    /* Work on the left; assistant and its bot on the right. */
+    .bot-history{border:1px solid #655477;background:#171120;padding:12px 16px}
+    .history-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+    .history-head h3{font-size:17px;line-height:1.3;margin:0;color:#fff}
+    .history-head>span{font-size:11px;color:#e7ddf1}
+    .history-message{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #62536f;padding:7px 0;color:#f8f4ff;font-size:13px}
+    .history-message span{color:#ded4e9;font-size:12px}
+    @media(min-width:701px){
+      main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;gap:14px 22px;align-content:start}
+      .hero{grid-column:1/-1}.scene-work{grid-column:1;grid-row:2}.scene-bot{grid-column:2;grid-row:2}
+      .work-grid{grid-template-columns:minmax(0,1fr);gap:7px}
+      .work-card{min-height:54px;display:grid;grid-template-columns:36px minmax(120px,.7fr) minmax(0,1fr) 16px;grid-template-rows:auto;gap:10px;align-items:center;padding:8px 12px}
+      .work-card .icon{grid-column:1;grid-row:1}.work-card h3{grid-column:2;grid-row:1;font-size:16px}.work-card p{grid-column:3;grid-row:1;align-self:center;font-size:13px}.work-card .arrow{grid-column:4;grid-row:1}
+      .bot-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;gap:8px}.bot-layout>div:first-child{grid-column:1}.bot-card{grid-column:1;grid-row:2}.bot-history{grid-column:1;grid-row:3}
+    }
+    @media(min-width:701px) and (max-width:1000px){.work-card{grid-template-columns:32px minmax(0,.9fr) minmax(0,1.1fr) 12px}.work-card h3{grid-column:2}.work-card p{display:block;font-size:12px}.work-card .arrow{grid-column:4}}
+    @media(max-width:700px){.bot-history{margin-top:8px}.history-head h3{font-size:16px}}
+
+
+    /* One workspace screen, with the selected bot conversation only. */
+    @media(min-width:701px) and (min-height:640px){
+      main{height:calc(100svh - 118px);min-height:0;grid-template-rows:auto minmax(0,1fr)}
+      .scene-work,.scene-bot,.scene-inner{min-height:0;height:100%}.scene-work .scene-inner{display:flex;flex-direction:column;padding-bottom:20px}
+      .work-grid{flex:1;min-height:0;grid-template-rows:repeat(5,minmax(0,1fr));gap:8px}
+      .work-card{height:100%;min-height:0}.work-card h3{font-size:19px}.work-card p{font-size:15px;line-height:1.35}
+      .bot-layout{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}.bot-card{flex:none;width:100%;padding:5px 18px}
+      .bot-card .line{padding:3px 0;font-size:15px;line-height:1.4}
+      .bot-history{flex:1;min-height:110px;width:100%}
+    }
+    @media(min-width:701px) and (max-width:1100px){.work-card{grid-template-columns:32px minmax(0,.9fr) minmax(0,1.1fr) 12px}.work-card h3{font-size:16px}.work-card p{display:block;font-size:12px;line-height:1.35}.work-card .arrow{grid-column:4}}
+    .bot-history{display:flex;flex-direction:column;min-height:0;overflow:hidden;padding:0;border:1px solid #67587a;background:#15121c}
+    .history-head{display:flex;align-items:center;margin:0;padding:10px 14px;border-bottom:1px solid #54455d;gap:8px}
+    .history-head h3{font-size:16px}.history-head>div>span{font-size:12px;color:#d8cee8}
+    @media(max-width:700px){.bot-history{margin-top:0}.history-head{padding:9px 12px}}
+
+    /* Final communication: hourly list of confirmed sends, rightmost column. */
+    .comm-panel{display:flex;flex-direction:column;flex:1;min-height:0;border:1px solid #67587a;background:#15121c}
+    .comm-head{padding:10px 14px;border-bottom:1px solid #54455d}
+    .comm-list{list-style:none;margin:0;padding:4px 14px;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+    .comm-hour{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 10px;padding:8px 0;border-top:1px solid #3d3346}.comm-hour:first-child{border:0}
+    .comm-hour>time{font-weight:700;font-size:14px;color:#fff;font-variant-numeric:tabular-nums}
+    .comm-hour.empty>time,.comm-hour.empty>span{color:#a99bb8;font-size:12px;font-weight:500}
+    .comm-items{display:flex;flex-direction:column;gap:4px;min-width:0}
+    .comm-item{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;line-height:1.45;color:#f8f4ff;min-width:0}
+    .comm-item>span{min-width:0;overflow-wrap:anywhere}.comm-item small{color:#d8cee8;font-size:12px}
+    .comm-item.final>span>b{color:#fff}.comm-tag{display:inline-block;margin-left:4px;padding:0 6px;border-radius:99px;background:#4b3a12;color:#ffe3a3;font-size:11px;font-weight:700}
+    .comm-item a{flex:none;color:#e2d0ff;font-weight:700;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+    .comm-item a:hover{color:#fff}.comm-item a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    .comm-detail{font-size:12px;line-height:1.4;color:#ded5e8;padding:7px 14px;background:#1b1622}
+    .assistant-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:6px 0 8px;border-bottom:1px solid #54455d}
+    .a-tab{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:0;padding:6px 8px;border:1px solid transparent;border-radius:8px;background:transparent;color:#d9cdea;font:inherit;text-align:left;cursor:pointer}
+    .a-tab b{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.a-count{font-size:12px;color:#bfb0d3}
+    .a-tab:hover{background:#2a2036;color:#fff}.a-tab[aria-selected=true]{background:#e2d0ff;color:#1a1224}.a-tab[aria-selected=true] .a-count{color:#3e2d55}
+    .a-tab:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    .assistant-list{list-style:none;margin:0;padding:2px 0 4px;max-height:176px;overflow:auto;overscroll-behavior:contain}
+    .assistant-list li{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:8px;align-items:baseline;padding:5px 0;border-top:1px solid #3d3346;font-size:13px;line-height:1.45;color:#f2eef8}
+    .assistant-list li:first-child{border:0}.assistant-list time{color:#cfc2e0;font-size:12px;font-variant-numeric:tabular-nums}
+    .assistant-list .a-title{min-width:0;overflow-wrap:anywhere;white-space:pre-wrap}.assistant-list .a-title small{color:#cfc2e0;font-size:12px}
+    .assistant-list li.final .a-title>b::after{content:' · 최종';color:#e2d0ff;font-weight:600;font-size:12px}
+    .assistant-list a{color:#e2d0ff;font-weight:700;font-size:12px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+    .assistant-list a:hover{color:#fff}.assistant-list a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    .a-empty{display:block!important;color:#a99bb8;font-size:12px}
+    .comm-day{padding:8px 0 4px;font-size:12px;font-weight:700;color:#e2d0ff;border-top:1px solid #54455d;list-style:none}.comm-day:first-child{border:0}
+    .comm-more summary{cursor:pointer;color:#cfc2e0;font-size:12px;padding:2px 0}.comm-more summary:focus-visible{outline:3px solid #fff;outline-offset:2px}.comm-more .comm-items{margin-top:4px}
+    @media(max-width:1199px){.assistant-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:700px){.assistant-list{max-height:300px}.assistant-list li{grid-template-columns:64px minmax(0,1fr) auto}}
+    .comm-panel{flex:1}.comm-head h3{font-size:16px;line-height:1.35;margin:0;color:#fff}.comm-head h3 small{display:block;font-size:12px;font-weight:600;color:#e2d0ff;margin-top:2px}
+    @media(max-width:700px){.comm-list{max-height:360px}.comm-head{padding:9px 12px}}
+
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.work-card,.pill,.bot-card{transition:none!important;transform:none!important}}
+    /* Match the five icons in the workroom menu. */
+    #work .work-card .icon{
+      color:var(--work-ink);
+      background:radial-gradient(120% 120% at 28% 18%,#fff 0,var(--work-light) 42%,var(--work-color) 100%);
+      box-shadow:inset 0 1px 0 #ffffffd9;
+    }
+    #work .work-card .icon svg{fill:none;stroke:currentColor;stroke-width:1.9}
+    .work-card[href$="view=finance"]{--work-light:#d7eaff;--work-color:#9ccaff;--work-ink:#173f78}
+    .work-card[href$="view=meeting"]{--work-light:#ffdbe8;--work-color:#ffa8c8;--work-ink:#7d1a45}
+    .work-card[href$="view=document"]{--work-light:#ffefbf;--work-color:#ffd36b;--work-ink:#5c3c00}
+    .work-card[href$="view=issue"]{--work-light:#cff4e1;--work-color:#86dcb2;--work-ink:#0c5133}
+    .work-card[href$="view=policy"]{--work-light:#e6e0ff;--work-color:#b9a9ff;--work-ink:#3b2a8f}
+    #work .work-card h3{font-size:17px}
+    #work .work-card p{font-size:14px}
+    @media(min-width:701px) and (max-width:1100px){#work .work-card p{font-size:13px}}
+    @media(min-width:1101px) and (min-height:640px){#work .work-card h3{font-size:20px}#work .work-card p{font-size:16px}}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="top"><div class="wrap"><a class="brand" href="./" aria-label="업무 작업실 홈"><span class="brand-mark">W</span><span>업무 작업실</span></a><nav class="top-links" aria-label="빠른 이동"><a href="#work">업무</a><a href="#assistant">텔레그램</a><a class="pill" href="./index.html?view=settings">연결 설정 <span aria-hidden="true">↗</span></a></nav></div></header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title"><canvas id="particles" aria-hidden="true"></canvas><div class="wrap hero-inner"><div class="hero-top" data-enter><p class="eyebrow">private workspace · on demand & scheduled</p><h1 id="hero-title"><span>실시간 업무분석,</span> <span class="emphasis">실시간 의사결정</span></h1></div><div class="hero-meta">LOCAL WORKSPACE<br>ON DEMAND / SCHEDULED<br>PRIVATE TELEGRAM</div><div class="hero-bottom"><div class="hero-copy"><p>중소기업을 위한 다섯 가지 AI 업무.<br>수시 분석부터 정기 보고까지 한곳에서.</p><a class="pill" href="#work">업무 살펴보기 <span aria-hidden="true">↓</span></a></div><div class="hero-statement">필요할 때 분석하고,<br>정해진 때 받아보세요.</div></div><span class="down">SCROLL TO EXPLORE ↓</span></div></section>
+    <section class="scene scene-work" id="work" aria-labelledby="work-title"><div class="wrap scene-inner"><div class="scene-head"><div><p class="eyebrow">five ways to work</p><h2 id="work-title">나의 업무</h2></div></div><div class="work-grid">
+      <a class="work-card" href="./index.html?view=finance"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16 M6 17v-5 M12 17V5 M18 17V9"/></svg></span><h3>재무분석</h3><p>간략 · 심층 · 종합 보고</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="work-card" href="./index.html?view=meeting"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z M8 9h8 M8 12h5"/></svg></span><h3>회의록정리</h3><p>자필, 스캔문서, 음성, 영상 회의록 정리</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="work-card" href="./index.html?view=document"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v5h4 M9 12h6 M9 16h6"/></svg></span><h3>요약보고서</h3><p>자필, 스캔문서, 음성, 영상 회의록 정리</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="work-card" href="./index.html?view=issue"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z M7 8h4v4H7z M14 8h3 M14 11h3 M7 15h10"/></svg></span><h3>Daily News</h3><p>매일 09:00 뉴스 자동 수집 → 로컬 LLM 정리 → 텔레그램 보고</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="work-card" href="./index.html?view=policy"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5 M5 10v7 M10 10v7 M14 10v7 M19 10v7 M3 20h18"/></svg></span><h3>정부정책<br class="policy-break">(중소기업)</h3><p>매일 08:30 API 수집 → 로컬 LLM 정리 → 월요일 09:00 텔레그램 보고</p><span class="arrow" aria-hidden="true">↗</span></a>
+    </div></div></section>
+    <section class="scene scene-bot" id="assistant" aria-labelledby="bot-title"><div class="wrap bot-layout scene-inner"><div class="assistant-heading"><h2 id="bot-title">나의 비서 <span class="private-label">(Private Telegram)</span></h2><strong class="assistant-model">로컬 LLM · Qwen3.5-4B (Q4_K_M, llama-server)</strong></div><div class="bot-card"><div class="assistant-tabs" role="tablist" aria-label="나의 비서 최종 자료"><button type="button" role="tab" class="a-tab" id="tab-0" data-group="지시접수" aria-selected="true" aria-controls="assistant-panel"><b>지시접수</b><span class="a-count">–</span></button><button type="button" role="tab" class="a-tab" id="tab-1" data-group="분석결과 보고" aria-selected="false" aria-controls="assistant-panel"><b>분석결과 보고</b><span class="a-count">–</span></button><button type="button" role="tab" class="a-tab" id="tab-2" data-group="Daily News" aria-selected="false" aria-controls="assistant-panel"><b>Daily News</b><span class="a-count">–</span></button><button type="button" role="tab" class="a-tab" id="tab-3" data-group="정부정책" aria-selected="false" aria-controls="assistant-panel"><b>정부정책</b><span class="a-count">–</span></button></div><ol id="assistant-panel" class="assistant-list" role="tabpanel" aria-labelledby="tab-0" tabindex="0"><li class="a-empty">기록을 확인하고 있습니다.</li></ol></div><section class="bot-history comm-panel" aria-labelledby="comm-title"><div class="comm-head"><h3 id="comm-title">최종 커뮤니케이션(나의 로컬 AI 비서 봇) <small id="comm-asof">기준 시각 확인 중</small></h3></div><ol id="comm-list" class="comm-list" aria-label="시간대별 최종 커뮤니케이션" tabindex="0"><li class="comm-hour empty"><time>--:--</time><span>기록을 확인하고 있습니다.</span></li></ol><div id="comm-detail" class="comm-detail">로컬 발송·봇 기록만 표시</div></section></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><div><strong>업무 작업실</strong><br> 수시 분석 · 정기 보고 · 개인 텔레그램</div><div class="legal">이 자료가 외부로 유출될 경우 관련 법령 및 계약에 따른 법적 책임이 발생할 수 있습니다.<br> 자료의 이용 권한과 수신 대상을 확인해 주세요.</div></div></footer>
+  <script>
+  (()=>{
+    const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');let paused=reduced.matches,points=[],width=0,height=0,raf=0,tick=0;
+    function resize(){const ratio=Math.min(devicePixelRatio||1,1.5);width=canvas.clientWidth;height=canvas.clientHeight;canvas.width=Math.floor(width*ratio);canvas.height=Math.floor(height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);const count=width<700?220:520;points=Array.from({length:count},(_,i)=>{const angle=i*2.399963,r=Math.pow((i+1)/count,.65);return{a:angle,r,sz:.35+(i%9)/10,alpha:.25+(i%6)/10}});draw()}
+    function draw(){ctx.clearRect(0,0,width,height);const cx=width*.53,cy=height*.51,rx=Math.min(width*.45,620),ry=Math.min(height*.42,360);for(const p of points){const a=p.a+tick*(.03+p.r*.03),x=cx+Math.cos(a)*p.r*rx,y=cy+Math.sin(a)*p.r*ry;ctx.beginPath();ctx.fillStyle=`rgba(${180+Math.floor(p.r*60)},${135+Math.floor(p.r*70)},255,${p.alpha*(1-p.r*.45)})`;ctx.arc(x,y,p.sz,0,Math.PI*2);ctx.fill()}if(!paused&&!document.hidden){tick+=.006;raf=requestAnimationFrame(draw)}}
+    reduced.addEventListener('change',()=>{paused=reduced.matches;cancelAnimationFrame(raf);draw()});
+    addEventListener('resize',()=>{cancelAnimationFrame(raf);resize()});document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);draw()});resize();
+    const commList=document.getElementById('comm-list'),commAsof=document.getElementById('comm-asof'),commDetail=document.getElementById('comm-detail');let commSig='';
+    const kst=(v,o)=>{const d=new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleString('ko-KR',Object.assign({timeZone:'Asia/Seoul',hour12:false},o))};
+    const hm=v=>kst(v,{hour:'2-digit',minute:'2-digit'});
+    const md=v=>{const d=new Date(v);if(Number.isNaN(d.getTime()))return '';const p=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'2-digit',day:'2-digit'}).formatToParts(d).filter(x=>x.type!=='literal').map(x=>x.value);return p.join('.')+' '+hm(v)};
+    const tag=()=>{const s=document.createElement('span');s.className='comm-tag';s.textContent='가상 시연';return s};
+    function linkTo(a,it){a.href=it.link;a.target='_blank';a.rel='noopener';a.textContent='열기 ↗';a.setAttribute('aria-label',it.group+' '+it.title+' 열기')}
+    const label=it=>it.title.startsWith(it.group)?it.title:it.group+' · '+it.title;
+    const tabs=[...document.querySelectorAll('.a-tab')],panel=document.getElementById('assistant-panel');let lastData=null,activeTab=0;
+    try{activeTab=Math.min(3,Math.max(0,+sessionStorage.getItem('workroom-assistant-tab')||0))}catch(e){}
+    function renderTab(){if(!lastData)return;tabs.forEach((t,i)=>{t.setAttribute('aria-selected',String(i===activeTab));t.tabIndex=i===activeTab?0:-1});panel.setAttribute('aria-labelledby',tabs[activeTab].id);
+      const items=(lastData.groups||{})[tabs[activeTab].dataset.group]||[];panel.replaceChildren();
+      if(!items.length){const li=document.createElement('li');li.className='a-empty';li.textContent='기록 없음';panel.append(li);return}
+      items.forEach((it,i)=>{const li=document.createElement('li');if(i===0)li.className='final';const t=document.createElement('time');t.dateTime=it.time;t.textContent=md(it.time);
+        const span=document.createElement('span');span.className='a-title';const b=document.createElement('b');b.textContent=it.received_text||it.title;span.append(b);if(it.demo)span.append(' ',tag());const sm=document.createElement('small');sm.textContent=' · '+it.status;span.append(sm);
+        const a=document.createElement('a');linkTo(a,it);li.append(t,span,a);panel.append(li)});panel.scrollTop=0}
+    tabs.forEach((t,i)=>{t.addEventListener('click',()=>{activeTab=i;try{sessionStorage.setItem('workroom-assistant-tab',i)}catch(e){}renderTab()});
+      t.addEventListener('keydown',e=>{const k={ArrowRight:1,ArrowLeft:-1,ArrowDown:1,ArrowUp:-1}[e.key];if(!k)return;e.preventDefault();const n=(i+k+tabs.length)%tabs.length;tabs[n].focus();tabs[n].click()})});
+    function itemRow(it,last){const row=document.createElement('div');row.className='comm-item'+(last?' final':'');const text=document.createElement('span');const b=document.createElement('b');b.textContent=it.received_text||label(it);text.append(b);
+      if(it.demo)text.append(tag());const sm=document.createElement('small');sm.textContent=' '+hm(it.time)+' · '+it.status+(last?' · 최종':'');text.append(document.createElement('br'),sm);row.append(text);
+      const a=document.createElement('a');linkTo(a,it);row.append(a);return row}
+    function renderComm(data){
+      const next=JSON.stringify([data.groups,data.days]);if(next===commSig)return;commSig=next;lastData=data;
+      const d=new Date(data.as_of);
+      commAsof.textContent=Number.isNaN(d.getTime())?'기준 시각 확인 필요':'('+new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'2-digit',month:'2-digit',day:'2-digit'}).formatToParts(d).filter(x=>x.type!=='literal').map(x=>x.value).join('.')+' '+hm(data.as_of)+' 기준)';
+      tabs.forEach(t=>{t.querySelector('.a-count').textContent=((data.groups||{})[t.dataset.group]||[]).length+'건'});renderTab();
+      commList.replaceChildren();
+      for(const day of data.days||[]){const h=document.createElement('li');h.className='comm-day';const dd=new Date(day.date+'T00:00:00+09:00');h.textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',weekday:'short'}).format(dd);commList.append(h);
+        for(const slot of day.hours){const li=document.createElement('li');li.className='comm-hour'+(slot.items.length?'':' empty');const t=document.createElement('time');t.textContent=slot.hour;li.append(t);
+          if(!slot.items.length){const s=document.createElement('span');s.textContent='소통 없음';li.append(s)}else{const box=document.createElement('div');box.className='comm-items';const n=slot.items.length;
+            box.append(itemRow(slot.items[n-1],true));
+            if(n>1){const det=document.createElement('details');det.className='comm-more';const sum=document.createElement('summary');sum.textContent='이 시간 '+n+'건 모두 보기';det.append(sum);const inner=document.createElement('div');inner.className='comm-items';
+              slot.items.slice(0,n-1).reverse().forEach(it=>inner.append(itemRow(it,false)));det.append(inner);box.append(det)}
+            li.append(box)}
+          commList.append(li)}}
+      commDetail.textContent='전체 '+data.total+'건 · 오늘 '+data.today_total+'건 · 1분마다 갱신 · 로컬 발송·봇 기록 기준';
+    }
+    async function syncComm(){try{const r=await fetch('/api/communication-log',{cache:'no-store'});if(!r.ok)throw 0;const data=await r.json();if(!Array.isArray(data.days))throw 0;renderComm(data)}catch(e){if(!commSig){commAsof.textContent='기록 연결 안 됨';for(const t of tabs)t.querySelector('.a-count').textContent='연결 안 됨';commList.replaceChildren();const li=document.createElement('li');li.className='comm-hour empty';li.innerHTML='<time>--:--</time><span>실행파일과 로컬 발송 기록을 확인해 주세요.</span>';commList.append(li)}}}
+    syncComm();setInterval(()=>{if(!document.hidden)syncComm()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncComm()});
+    const card=document.querySelector('[data-tilt]');if(card&&!reduced.matches&&matchMedia('(pointer:fine)').matches){card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(1100px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`});card.addEventListener('pointerleave',()=>card.style.transform='')}
+    addEventListener('DOMContentLoaded',()=>{if(window.gsap&&window.ScrollTrigger&&!reduced.matches){gsap.registerPlugin(ScrollTrigger);gsap.from('[data-enter]',{y:20,opacity:0,duration:.8,ease:'power2.out'});}});
+  })();
+  </script>
+</body>
+</html>

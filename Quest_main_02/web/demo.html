@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>업무 작업실 데모</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #18232e;
+    --muted: #526374;
+    --line: #d7dee5;
+    --blue: #245a9a;
+    font: 16px/1.65 "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); background: #f4f6fa; word-break: keep-all; }
+  main { width: min(1200px, 100%); margin: auto; padding: clamp(18px, 4vw, 48px); }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.2; letter-spacing: -.04em; }
+  h2 { font-size: 25px; line-height: 1.35; }
+  h3 { font-size: 18px; line-height: 1.45; }
+  .intro { display: grid; gap: 12px; padding: clamp(22px, 5vw, 52px); border-radius: 28px; background: #eaf1ff; }
+  .intro p, .subdued { color: var(--muted); }
+  .flows { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0; }
+  .flows a, button {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px;
+    border: 1px solid var(--line); border-radius: 22px; background: #fff;
+    color: var(--blue); font: inherit; font-weight: 700; text-decoration: none;
+  }
+  .flows a[aria-current="true"], button { background: var(--blue); color: #fff; border-color: var(--blue); }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid #245a9a; outline-offset: 3px; }
+  .workspace { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 20px; }
+  .panel { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: #fff; }
+  .panel > * + * { margin-top: 14px; }
+  .bubble { padding: 12px 16px; background: #ecf6f1; border-radius: 16px; overflow-wrap: anywhere; }
+  .bubble strong { display: block; }
+  .steps { list-style-position: inside; margin-left: 0; padding: 0; }
+  .steps li { padding: 8px 0; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .steps li.done { color: #126047; }
+  .steps li[aria-current="step"] { color: var(--blue); font-weight: 700; }
+  .preview-list { margin: 0; padding: 0; }
+  .preview-list div { display: grid; gap: 2px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .preview-list dt { font-weight: 800; }
+  .preview-list dd { margin: 0; color: var(--muted); }
+  #sample-pdf { color: var(--blue); font-weight: 700; }
+  .walkthrough { margin-top: 20px; }
+  .walkthrough video { display: block; width: 100%; aspect-ratio: 8 / 5; border-radius: 14px; background: #18232e; }
+  #video-chapters { display: flex; flex-wrap: wrap; gap: 8px; }
+  #video-chapters button { background: #eaf1ff; color: var(--blue); border: 1px solid var(--line); }
+  @media(max-width: 760px) {
+    .workspace { grid-template-columns: 1fr; }
+    .panel { padding: 20px; }
+  }
+</style>
+<main>
+  <header class="intro">
+    <h1>업무 작업실 데모</h1>
+    <p>업무를 고르면 요청, 처리, 보고서 도착 순서로 재생됩니다. 예시 회사와 자료를 사용하는 로컬 시연입니다.</p>
+  </header>
+  <section class="panel walkthrough" id="walkthrough" hidden aria-labelledby="walkthrough-title">
+    <h2 id="walkthrough-title">실제 작업실 시연 영상</h2>
+    <p class="subdued">화면에서 버튼을 눌러 8개 업무 결과를 엽니다. 보고서와 발송 기록에는 공개용 가상 자료를 사용했습니다.</p>
+    <video id="workroom-film" controls playsinline preload="metadata" aria-label="업무 작업실 8개 결과 시연"></video>
+    <div id="video-chapters" role="group" aria-label="영상의 업무별 장면"></div>
+  </section>
+  <nav class="flows" aria-label="업무별 데모">
+    <a href="#brief">간략보고서</a><a href="#deep">심층보고서</a>
+    <a href="#comprehensive">종합보고서</a><a href="#adjustment">세무조정계산서</a>
+    <a href="#meeting">회의록정리</a><a href="#document">요약보고서</a>
+    <a href="#issue">Daily News</a><a href="#policy">정부정책</a>
+  </nav>
+  <div class="workspace">
+    <section class="panel" aria-labelledby="flow-title">
+      <h2 id="flow-title">간략보고서</h2>
+      <div class="bubble">
+        <strong id="request-source">개인 텔레그램 입력 예시</strong>
+        <p id="request-text">예시전자</p>
+        <p id="attachment" class="subdued" hidden></p>
+      </div>
+      <ol id="steps" class="steps"></ol>
+      <button type="button" id="replay">다시 재생</button>
+    </section>
+    <section class="panel" aria-labelledby="result-title">
+      <h2 id="result-title">문서 미리보기</h2>
+      <p id="result-state" role="status" class="subdued">시연을 준비하고 있습니다.</p>
+      <div id="result" hidden>
+        <h3 id="filename"></h3>
+        <dl id="preview-list" class="preview-list"></dl>
+        <a id="sample-pdf" hidden>가상 재무 PDF 내려받기</a>
+      </div>
+    </section>
+  </div>
+  <noscript>자동 재생에는 브라우저의 JavaScript가 필요합니다.</noscript>
+</main>
+<script>
+  const scenarios = {
+    brief: ['간략보고서', '예시전자', '', ['회사명으로 DART 검색', '연간 비교 재무표 확인', '간략보고서 PDF 작성'],
+      [['사업보고서', '예시전자 · 연결 기준 · 3개년'], ['손익과 재무상태', '매출액, 영업이익, 자산과 부채의 비교표']]],
+    deep: ['심층보고서', '예시전자 심층보고서', '재무제표.xlsx', ['첨부 수신', '손익·원가·재무상태 대조', '심층보고서 PDF 작성'],
+      [['손익 구성', '매출원가와 판매관리비를 항목별로 비교'], ['신용공여', '기관·만기 자료가 없는 칸은 자료 없음으로 표시']]],
+    comprehensive: ['종합보고서', '예시전자 종합보고서', '재무자료.zip', ['첨부 수신', '자료별 실적과 계획 분리', '종합보고서 PDF 작성'],
+      [['회사 개요와 성장 실적', '연간 매출 및 수익성 추이'], ['자금 활용과 이슈', '첨부 근거가 확인되는 항목을 정리']]],
+    adjustment: ['세무조정계산서 분석보고서', '예시전자 세무조정계산서', '세무조정계산서.pdf', ['첨부 수신', '금액 단위와 원문 쪽 확인', '세무조정 분석 PDF 작성'],
+      [['과세표준', '원문에 적힌 금액과 쪽 번호'], ['세액 공제', '누락되거나 서로 다른 값은 확인 필요로 표시']]],
+    meeting: ['회의록정리', '회의록정리', '회의녹음.m4a', ['첨부 수신', 'PC에서 음성 전사', '결정 사항과 할 일 정리'],
+      [['결정 사항', '예시 안건의 검토 일정을 확정'], ['할 일', '담당자와 기한을 원문에 있는 범위에서 기록']]],
+    document: ['요약보고서', '요약보고서', '업무안내.pdf', ['첨부 수신', 'PDF 원문 추출', '핵심 요약과 근거 정리'],
+      [['핵심 요약', '예시 절차의 신청, 검토, 완료 단계'], ['확인 필요', '본문에 없는 상세 일정은 확인 필요로 표시']]],
+    issue: ['Daily News', '지금 이슈 브리핑 해 줘', '', ['분야별 RSS 기사 수집', '로컬 AI 제목 기반 요약', 'Daily News PDF 작성'],
+      [['브리핑 구성', 'AI·경제·정치·사회·기술·주식'], ['출처', '실제 실행에서는 기사 링크와 게시 시각을 표시']]],
+    policy: ['정부정책', '지금 정부정책 정리해 줘', '', ['공공 API에서 공고 수집', '지역·마감일 확인 및 로컬 AI 요약', '정부정책 PDF 작성'],
+      [['대상 지역', '전국·서울·경기'], ['공고별 항목', '지원 대상, 신청 마감일, 원문 링크']]],
+  };
+  const get = id => document.getElementById(id);
+  let version = 0;
+  const wait = duration => new Promise(resolve => setTimeout(resolve, duration));
+  const backend = location.protocol.startsWith('http')
+    ? fetch('/api/demo', {signal: AbortSignal.timeout(3000)})
+        .then(response => response.ok ? response.json() : null)
+        .then(info => {
+          if (info?.walkthrough === true) setupWalkthrough();
+          return info?.mode === 'synthetic' && Array.isArray(info.reports) ? info.reports : [];
+        })
+        .catch(() => [])
+    : Promise.resolve([]);
+
+  async function setupWalkthrough() {
+    const video = get('workroom-film');
+    get('walkthrough').hidden = false;
+    video.poster = '/media/workroom-poster.jpg';
+    video.src = '/media/workroom-demo.mp4?v=1';
+    if (location.hash === '#walkthrough') get('walkthrough').scrollIntoView();
+    if (new URLSearchParams(location.search).get('play') === '1') {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+    try {
+      const response = await fetch('/media/workroom-chapters.json');
+      if (!response.ok) return;
+      const chapters = await response.json();
+      for (const {time, title} of chapters) {
+        const control = document.createElement('button');
+        control.type = 'button';
+        control.textContent = title;
+        control.addEventListener('click', () => {
+          video.currentTime = time;
+          video.play().catch(() => {});
+        });
+        get('video-chapters').append(control);
+      }
+    } catch (_) {
+      // The native video controls remain available if chapter labels fail to load.
+    }
+  }
+
+  async function play() {
+    const id = location.hash.slice(1);
+    const key = Object.hasOwn(scenarios, id) ? id : 'brief';
+    const run = ++version;
+    const [title, request, attachment, steps, preview] = scenarios[key];
+    document.querySelectorAll('.flows a').forEach(link => {
+      if (link.hash === '#' + key) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+    get('flow-title').textContent = title;
+    get('request-text').textContent = request;
+    get('attachment').hidden = !attachment;
+    get('attachment').textContent = attachment ? '첨부 ' + attachment : '';
+    get('result').hidden = true;
+    get('sample-pdf').hidden = true;
+    get('result-state').textContent = '개인 텔레그램에서 요청을 접수하는 흐름입니다.';
+    const entries = [...steps, '개인 텔레그램으로 PDF 발송'].map(step => {
+      const entry = document.createElement('li');
+      entry.textContent = step;
+      return entry;
+    });
+    get('steps').replaceChildren(...entries);
+    const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 30 : 620;
+    for (const entry of entries) {
+      if (run !== version) return;
+      entry.setAttribute('aria-current', 'step');
+      await wait(delay);
+      if (run !== version) return;
+      entry.removeAttribute('aria-current');
+      entry.className = 'done';
+    }
+    get('filename').textContent = title + '_시연.pdf';
+    const fields = preview.map(([label, example]) => {
+      const row = document.createElement('div');
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      dt.textContent = label;
+      dd.textContent = example;
+      row.append(dt, dd);
+      return row;
+    });
+    get('preview-list').replaceChildren(...fields);
+    get('result-state').textContent = '시연 완료 · 텔레그램 첨부 형식';
+    get('result').hidden = false;
+    const reports = await backend;
+    if (run !== version || !reports.includes(key)) return;
+    const pdf = get('sample-pdf');
+    pdf.href = '/api/demo/' + key + '.pdf';
+    pdf.hidden = false;
+  }
+
+  get('replay').addEventListener('click', play);
+  window.addEventListener('hashchange', play);
+  play();
+</script>
+</html>

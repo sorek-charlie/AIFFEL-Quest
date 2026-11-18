@@ -1,0 +1,9 @@
+{
+  "fixture": true,
+  "as_of": "2026-11-17",
+  "items": [
+    {"topic": "AI", "title": "가상 AI 기사", "summary": "확인된 사실과 핵심 내용을 표시합니다.", "published_at": null, "source": null, "url": null, "source_checked": false},
+    {"topic": "경제", "title": "가상 경제 기사", "summary": "관련 내용과 해석을 구분합니다.", "published_at": null, "source": null, "url": null, "source_checked": false}
+  ],
+  "source_failures": []
+}
