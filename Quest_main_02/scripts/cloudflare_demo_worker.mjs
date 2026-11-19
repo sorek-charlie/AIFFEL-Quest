@@ -1,9 +1,17 @@
 async function serveWalkthrough(request, env) {
   const range = request.headers.get('Range');
-  const asset = await env.ASSETS.fetch(range && request.method === 'GET' ? new Request(request.url) : request);
+  const url = new URL(request.url);
+  // ?download=1 → 브라우저가 재생 대신 파일로 저장한다.
+  const download = url.searchParams.has('download');
+  url.search = '';
+  const asset = await env.ASSETS.fetch(new Request(url, {method: request.method === 'HEAD' ? 'HEAD' : 'GET'}));
   if (!asset.ok) return asset;
   const headers = new Headers(asset.headers);
   headers.set('Accept-Ranges', 'bytes');
+  if (download) {
+    const name = url.pathname.split('/').pop();
+    headers.set('Content-Disposition', `attachment; filename="${name}"`);
+  }
   if (!range || request.method === 'HEAD') {
     return new Response(asset.body, {status: asset.status, headers});
   }

@@ -4,16 +4,19 @@
 
 재무자료, 회의 기록, 문서, 정책 공고를 분류하고 원문을 추출해 검토할 수 있는 PDF로 정리합니다. 재무 수치는 코드로 계산·검산하고, AI는 원문 요약과 설명을 맡습니다.
 
-웹 작업실은 재무분석, 회의록정리, 요약보고서, Daily News, 정부정책 다섯 업무를 제공합니다. 재무분석의 네 보고서 유형을 포함해 공개 데모에서는 여덟 가지 시나리오를 볼 수 있습니다.
+웹 작업실은 재무분석, 회의록정리, 요약보고서, Daily News, 정부정책 다섯 업무를 제공합니다. 재무분석의 네 보고서 유형을 포함해 여덟 가지 업무 결과를 화면에서 볼 수 있습니다.
 
-## 중요 링크
+## 제출 자료와 실행 방법
+
+1. [시연영상](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)에서 `업무작업실.exe`를 실행해 8개 업무를 하나씩 누르는 과정을 확인합니다.
+2. [작업실 화면](https://sme-ai-workroom-quest02.pages.dev/)에서 실행파일과 같은 화면을 직접 눌러 봅니다. 메뉴를 누르면 `데모자료` 폴더의 결과가 표시됩니다.
+3. PC에서 자체 자료로 실행하려면 [Windows에서 실제 실행](#windows에서-실제-실행)을 참고합니다. AI 연결과 텔레그램 전송은 해당 서비스 설정이 필요합니다.
 
 | 자료 | 확인할 내용 |
 |---|---|
-| [데모](docs/assets/workroom-quick-demo.mp4) | 실제 작업실에서 버튼 선택 → 가상 CSV 첨부 → 분석 → PDF 결과 재생 |
-| [실제 작업실 시연 영상](https://sme-ai-workroom-quest02.pages.dev/?play=1#walkthrough) | 버튼을 직접 눌러 8개 업무 결과를 순서대로 여는 51초 영상 |
-| [외부연결 URL](https://sme-ai-workroom-quest02.pages.dev/) | 브라우저에서 바로 여는 공개 데모 |
-| [프로그램 실행 화면](#프로그램-실행-화면) | 작업실 화면에 표시되는 데모 결과 8개 |
+| [시연영상](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4) | `업무작업실.exe` 홈 → 8개 업무 클릭 → 데모자료 결과 확대 보기 (85초) |
+| [작업실 화면](https://sme-ai-workroom-quest02.pages.dev/) | 업무작업실.exe와 같은 홈·작업실 화면. 버튼을 누르면 데모자료 결과 표시 |
+| [프로그램 실행 화면](#프로그램-실행-화면) | 작업실 화면에 표시되는 업무별 결과 8개 |
 | [제품 요구사항 PRD](docs/PRD.md) | 사용자, 입력·출력 범위, 검토 기준 |
 | [효과 검증](#개선-효과와-판정) | 측정 조건과 180초 판정 기준 |
 | [주요 산출물 이미지](#주요-산출물-이미지) | 가상 재무 PDF와 업무별 결과 화면 |
@@ -21,41 +24,44 @@
 | [GitHub 과제 폴더](https://github.com/sorek-charlie/AIFFEL-Quest/tree/main/Quest_main_02) | 제출 위치 |
 | [DART](https://dart.fss.or.kr/) · [기업마당](https://www.bizinfo.go.kr/) | 재무 공시와 지원사업 원문 사이트 |
 
-## 데모 바로 실행
+## 시연영상
 
-**[데모](docs/assets/workroom-quick-demo.mp4)** · **[외부연결 URL](https://sme-ai-workroom-quest02.pages.dev/)** · [8개 업무 시연 영상](https://sme-ai-workroom-quest02.pages.dev/?play=1#walkthrough) · [오프라인 시나리오](web/demo.html)
+[![업무작업실.exe 시연영상 — 홈 화면](docs/assets/workroom-walkthrough.jpg)](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)
 
-GitHub 링크로는 Windows 프로그램을 직접 실행할 수 없어 빠른 데모 영상이 열립니다. 영상은 작업실에서 기업명을 입력하고 가상 재무 CSV를 첨부한 뒤 분석 버튼을 눌러 PDF를 생성하는 과정을 보여줍니다.
+**[시연영상 재생 (85초, MP4)](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · **[시연영상 다운로드 (7.6MB)](https://github.com/sorek-charlie/AIFFEL-Quest/raw/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · [저장소의 영상 파일](docs/assets/workroom-walkthrough.mp4)
 
-### Windows EXE에서 자동 시연
+`dist\업무작업실.exe`를 실행한 뒤 Chrome 창에서 홈 → 재무분석(간략·심층·종합·세무조정계산서) → 회의록정리(데모버전_01·02) → 요약보고서 → 이슈 브리핑(Daily News) → 정부정책 순서로 클릭하고, 각 결과를 크게 열어 쪽을 넘깁니다. 화면 오른쪽 위의 `데모버전 · 데모자료 결과`와 아래쪽 자막은 녹화용 표시입니다.
 
-프로젝트 루트에서 [Windows 설치 절차](#windows에서-실제-실행)를 마치고 Chrome과 Playwright를 준비한 뒤 실행합니다.
+| 순서 | 업무 | 결과 출처 |
+|---|---|---|
+| 01–04 | 재무분석 4종 | `데모자료/01-1.간략보고서` ~ `01_4.세무조정계산서` |
+| 05 | 회의록정리 | `데모자료/02.회의록정리` |
+| 06 | 요약보고서 | `데모자료/03.요약보고서` |
+| 07 | Daily News | `데모자료/04.Daily News` |
+| 08 | 정부정책 | `데모자료/05.정부정책` |
+
+영상의 결과는 모두 `데모자료` 폴더의 예시 결과이며, 녹화 중에는 유료 AI 호출·파일 생성·텔레그램 발송을 하지 않았습니다. 이 PC의 실제 텔레그램 발송 기록 대신 데모자료 결과가 보이도록 발송 기록 조회만 빈 목록으로 응답합니다.
+
+### 같은 화면을 브라우저에서 열기
+
+**[작업실 화면 열기](https://sme-ai-workroom-quest02.pages.dev/)**
+
+외부 URL은 `업무작업실.exe`가 여는 홈과 작업실 화면(`web/landing.html`, `web/index.html`)을 덧붙인 표시 없이 그대로 씁니다. 시연영상과 같은 조건으로 발송 기록은 빈 목록이므로, 어떤 업무 버튼을 눌러도 실행파일과 같은 `데모자료` 결과가 열립니다. 분석·수집·텔레그램 발송 버튼은 실행되지 않고 실행파일에서 실행하라는 안내를 표시합니다. 설치 PC가 꺼져 있어도 열립니다.
+
+### 시연영상 다시 녹화하기
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install playwright
-.\dist\업무작업실.exe --demo
+.\.venv\Scripts\python.exe -m scripts.exe_walkthrough            # 화면에서 시연
+.\.venv\Scripts\python.exe -m scripts.exe_walkthrough --record   # 시연하면서 MP4로 저장
 ```
 
-`dist`의 EXE는 로컬 빌드 산출물입니다. 소스 ZIP에서 실행하려면 위 마지막 명령 대신 `.\.venv\Scripts\python.exe -m scripts.launcher --demo`를 사용합니다. 시연은 공개용 CSV를 실제로 검산해 PDF를 생성하며, 유료 AI와 텔레그램 연결은 사용하지 않습니다.
+`dist\업무작업실.exe`가 꺼져 있으면 먼저 실행합니다. `--pages N`으로 결과마다 넘길 쪽 수(기본 5)를, `--pause 1.5`로 속도를 조절합니다. 녹화 파일은 `output/exe-walkthrough/exe-walkthrough.mp4`에 저장되며, `docs/assets/workroom-walkthrough.mp4`로 복사하면 README와 외부 URL에 반영됩니다. `dist`의 EXE는 로컬 빌드 산출물이며, 소스 ZIP에서는 `.\.venv\Scripts\python.exe -m scripts.launcher`를 사용합니다.
 
-영상은 실제 작업실의 메뉴 선택과 결과 확대를 녹화했습니다. 보고서 내용과 텔레그램 기록은 공개용 가상 자료입니다. 플레이어 아래 업무 버튼을 누르면 해당 장면으로 이동합니다.
-
-업무별 링크를 열면 가상 입력, 처리 단계, 결과가 자동 재생됩니다. 간략·심층·종합 데모에서는 가상 재무자료로 생성한 PDF를 내려받을 수 있습니다. 공개 데모는 설치 PC가 꺼져 있어도 열립니다.
-
-| 업무 | 시연에서 확인할 내용 |
-|---|---|
-| [간략보고서](https://sme-ai-workroom-quest02.pages.dev/#brief) | 회사명 요청 → DART 공개 공시 경로 → 3개년 비교 미리보기 |
-| [심층보고서](https://sme-ai-workroom-quest02.pages.dev/#deep) | 재무제표 → 손익 구조 및 원가 대조 → 누락 항목 표시 |
-| [종합보고서](https://sme-ai-workroom-quest02.pages.dev/#comprehensive) | 자료 묶음 → 실적·계획 분리 → 성장 추이와 자금 활용 정리 |
-| [세무조정계산서 분석보고서](https://sme-ai-workroom-quest02.pages.dev/#adjustment) | 계산서 → 금액·단위·원문 쪽 연결 → 확인 필요 항목 표시 |
-| [회의록정리](https://sme-ai-workroom-quest02.pages.dev/#meeting) | 녹음 → 음성 전사 → 결정 사항과 후속 작업 |
-| [요약보고서](https://sme-ai-workroom-quest02.pages.dev/#document) | 문서 → 본문 추출 → 핵심 요약과 근거 |
-| [Daily News](https://sme-ai-workroom-quest02.pages.dev/#issue) | 기사 제목 수집 → 분야별 요약 → 게시 시각과 출처 |
-| [정부정책 주간보고](https://sme-ai-workroom-quest02.pages.dev/#policy) | 공고 수집 → 지원 대상·마감일 → 원문 링크 |
+외부 URL 사이트는 `python -m scripts.build_public_workroom`으로 만들고 Cloudflare Pages에 배포합니다.
 
 ## 프로그램 실행 화면
 
-공개 시연 영상에서 업무별 데모 결과가 표시되는 실제 작업실 화면을 캡처했습니다. 모든 결과와 발송 내역은 공개용 가상 자료입니다. 이미지를 누르면 원본 크기로 열립니다.
+실제 작업실 화면에서 업무별 데모자료 결과가 표시된 모습을 캡처했습니다. 모든 결과와 발송 내역은 공개용 가상 자료입니다. 이미지를 누르면 원본 크기로 열립니다.
 
 | 간략보고서 | 심층보고서 |
 |---|---|
@@ -159,7 +165,7 @@ flowchart LR
 | 재무·문서 브라우저 회귀 | Chrome과 모의 API 응답으로 보고서 선택, 진행률, PDF 다운로드, 다중 파일, 원본별 검색 PDF 및 요약 PDF 경로를 확인했습니다. |
 | 공개용 HTML 시나리오 | Chrome에서 8개 시나리오의 완료 결과, 스크립트 오류 및 화면 너비를 1440px·390px에서 확인했습니다. |
 | 가상 재무 산출물 | 동일 가상 CSV에서 간략 7쪽, 심층 8쪽, 종합 26쪽 PDF를 생성했습니다. |
-| 공개 링크 | Cloudflare 데모와 과제 제출 폼이 각각 HTTP 200을 반환했습니다. |
+| 공개 링크 | Cloudflare 작업실 화면과 과제 제출 폼이 각각 HTTP 200을 반환했습니다. |
 
 이번 Q 테스트는 유료 모델 호출, 실제 Telegram 발송, 예약 실행과 수작업 대비 효과를 새로 측정하지 않았습니다. 아래 Windows 실행 절의 연동 실적은 기존 운영 기록을 기준으로 합니다.
 
@@ -170,7 +176,7 @@ flowchart LR
 | Daily News 텔레그램 문자 | PDF와 함께 `[Daily News] 일시 기준` 머리말, 로컬 AI 메모, 분야별 상위 2건 기사를 문자로 보냅니다. 링크는 기사 제목에 걸고 주소는 표시하지 않습니다. 정부정책 문자도 같은 방식입니다. 4,000자(UTF-16) 이하로 자릅니다. | 단위 테스트와 실제 보고서 입력의 메시지 생성 확인. 새 형식의 실제 Telegram 수신은 미확인 |
 | 텔레그램 발송 기록 | 기사 1건을 한 줄로 표시하고 제목을 누르면 원문이 열립니다. | Playwright 1440px·1100px·390px |
 | 텔레그램 발송 로그 | 최신 기록이 맨 위에 쌓이고 30건을 넘으면 가장 오래된 기록부터 빠집니다(선입선출). 로그는 가운데 열에 있습니다. | 단위 테스트, Playwright |
-| 보고 화면 배치 | 가운데 열을 20% 줄이고 3열을 20% 넓혀 첨부 PDF를 한 쪽씩 전체 표시합니다. | Playwright 스크린샷 |
+| 보고 화면 배치 | 데스크톱에서 1·2열의 너비 배분 가중치를 각각 10% 낮추고 3열은 20% 높였습니다. 첨부 PDF는 패널 너비에 맞춰 표시하고 세로로 넘겨 봅니다. | Playwright에서 가상 첨부로 확인 |
 | 진행률 표시 | 뉴스 수집 단계도 시작 시 0%부터 진행률 강아지를 표시합니다. | Playwright 스크린샷 |
 | 제출 패키지 | `app/server.py`가 불러오는 스크립트와 README가 참조하는 문서·이미지를 공개 허용 목록에 추가했습니다. | 압축을 푼 패키지에서 테스트 62개 통과 |
 
@@ -184,7 +190,7 @@ flowchart LR
 |---|---|
 | 문제 정의와 개선 가설 | [대상 사용자, 적용 후보, 성공 기준](#문제-정의와-적용-지점) |
 | AI 모델 선정과 실험 | [선정 이유와 역할](#모델-선정과-실행-구조) · [실제 연동 확인](#개선-효과와-판정) |
-| 동작하는 PoC | [8개 시나리오와 실행 가능한 데모 소스](#데모-바로-실행) |
+| 동작하는 PoC | [시연영상과 실행파일과 같은 작업실 화면](#시연영상) |
 | 개선 효과 검증 | [측정값, 판정 기준, 미검증 항목](#개선-효과와-판정) |
 | 한계와 확장 시도 | 재무 결과 재사용, PDF 선공개, 정책 수집에서 출력까지 연결, 공개 시연 |
 
@@ -197,7 +203,7 @@ flowchart LR
 - 재무 공시 및 정책 원문은 공식 사이트에서 확인합니다. [DART](https://dart.fss.or.kr/) · [기업마당](https://www.bizinfo.go.kr/) · [K-Startup 공고 API](https://www.data.go.kr/data/15125364/openapi.do) · [판판대로 지원사업 API](https://www.data.go.kr/data/15163956/openapi.do) · [정부24 혜택 API](https://www.data.go.kr/data/15113968/openapi.do)
 - 과제 기준은 Main Quest 2 안내문 2쪽, 업무 병목과 후보 비교는 노드09 강의 14쪽 및 정리노트 5쪽, 정기 정책봇의 운영 설계는 정책봇·루프 정리노트 3쪽을 참고했습니다. [AIFFEL 노드09](https://aic-data.aiffel.io/curriculum/02-ai-understanding?n=8&course_id=272db749-07c1-449c-9cb4-4d7508a855ba#lesson)
 
-공개 데모의 모든 입력과 내용은 가상입니다. 실제 실행에서 자료 추출은 PC에서 진행하고, OpenAI를 선택한 업무는 필요한 추출 텍스트를 API로 보냅니다. 텔레그램 전송은 설정된 경로에서 별도로 실행됩니다.
+외부 URL 작업실 화면과 시연영상의 모든 입력과 결과는 가상입니다. 실제 실행에서 자료 추출은 PC에서 진행하고, OpenAI를 선택한 업무는 필요한 추출 텍스트를 API로 보냅니다. 텔레그램 전송은 설정된 경로에서 별도로 실행됩니다.
 
 ## Windows에서 실제 실행
 
@@ -212,7 +218,7 @@ python -m venv .venv
 
 [로컬 업무 작업실](http://127.0.0.1:8765/)을 엽니다. [AI 키 설정](AI_API_키_설정.cmd)으로 키를 로컬에 저장할 수 있습니다. 환경변수 목록은 [환경변수 예시](.env.example)에 있습니다. 회의록과 요약은 PC에서 원문을 추출한 뒤 선택한 AI 서비스에 원문을 보냅니다. 웹은 문서·이미지 25MB, 음성·영상 200MB, 텔레그램은 파일당 20MB까지 처리합니다. 영상은 음성 전사 범위를 처리합니다.
 
-가상 재무 결과는 프로젝트 루트에서 `python -m app.public_demo`를 실행한 뒤 [로컬 데모](http://127.0.0.1:8788/)에서 재현할 수 있습니다. 이 경로에서는 가상 CSV를 읽어 검산하고 간략·심층·종합 PDF를 제공하며 API 키와 Telegram 연결이 필요 없습니다.
+가상 재무 결과는 프로젝트 루트에서 `python -m app.public_demo`를 실행한 뒤 [로컬 화면](http://127.0.0.1:8788/)에서 재현할 수 있습니다. 이 경로에서는 가상 CSV를 읽어 검산하고 간략·심층·종합 PDF를 제공하며 API 키와 Telegram 연결이 필요 없습니다.
 
 ### 텔레그램 연결
 

@@ -1,0 +1,8 @@
+.public-demo-bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:10px;
+  max-width:calc(100vw - 32px);padding:8px 10px 8px 16px;border-radius:999px;background:#1d2433;color:#fff;
+  font:600 13px/1.4 "Pretendard","Malgun Gothic",system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.public-demo-bar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.public-demo-bar a{flex:none;color:#1d2433;background:#fff08e;border-radius:999px;padding:5px 12px;text-decoration:none;font-weight:800}
+.public-demo-bar a+a{background:#fff}
+.public-demo-bar a:focus-visible{outline:3px solid #9ccaff;outline-offset:2px}
+@media(max-width:640px){.public-demo-bar{bottom:8px;gap:6px;padding:6px 6px 6px 12px;font-size:12px}}

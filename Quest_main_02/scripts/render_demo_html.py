@@ -24,6 +24,7 @@ SOURCES = {  # 미리보기 키: (데모자료 하위 폴더, 페이지 단위�
 }
 HIDE_FIXED = """()=>{for(const e of document.querySelectorAll('body *')){const p=getComputedStyle(e).position;
  if(p==='fixed'||p==='sticky')e.style.setProperty('display','none','important')}}"""
+NARROW = {'policy': 860}  # 한 장짜리 주간보고는 좁은 폭으로 렌더해 화면 패널에서 글자가 크게 보이게 한다
 TOP_PAGES = "e=>!e.parentElement.closest('section, .slide, .page')"
 
 
@@ -33,6 +34,19 @@ def save_jpg(png: Path, dest: Path, width=1400):
         im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
     im.save(dest, 'JPEG', quality=86, optimize=True)
     png.unlink()
+
+
+def trim_margins(png: Path, keep=12):
+    """한 장짜리 긴 HTML(정부정책 주간보고)의 좌우·위쪽 배경 여백을 잘라 패널 너비를 꽉 채운다."""
+    from PIL import ImageChops
+    im = Image.open(png).convert('RGB')
+    bg = Image.new('RGB', im.size, im.getpixel((2, 2)))
+    box = ImageChops.difference(im, bg).convert('L').point(lambda v: 255 if v > 12 else 0).getbbox()
+    if not box:
+        return
+    left, top = max(0, box[0] - keep), max(0, box[1] - keep)
+    right = min(im.width, box[2] + keep)
+    im.crop((left, top, right, im.height)).save(png)
 
 
 H2_CUTS = """(minH) => { const hs = [...document.querySelectorAll('h2')];
@@ -104,6 +118,7 @@ def main():
                     print('건너뜀(HTML 없음):', folder)
                 continue
             dest = fresh_dir(key)
+            page.set_viewport_size({'width': NARROW.get(key, 1280), 'height': 900})
             page.goto(files[0].as_uri())
             page.wait_for_load_state('networkidle')
             page.evaluate(HIDE_FIXED)
@@ -120,6 +135,7 @@ def main():
             if not shots:
                 png = dest / '01.png'
                 page.screenshot(path=str(png), full_page=True)
+                trim_margins(png)
                 shots.append(png)
             names = []
             for png in shots:
