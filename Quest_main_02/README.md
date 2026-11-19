@@ -8,13 +8,13 @@
 
 ## 제출 자료와 실행 방법
 
-1. [시연영상](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)에서 `업무작업실.exe`를 실행해 8개 업무를 하나씩 누르는 과정을 확인합니다.
+1. [시연영상](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_main_02/docs/assets/workroom-walkthrough.mp4)에서 `업무작업실.exe`를 실행해 8개 업무를 하나씩 누르는 과정을 확인합니다.
 2. [작업실 화면](https://sme-ai-workroom-quest02.pages.dev/)에서 실행파일과 같은 화면을 직접 눌러 봅니다. 메뉴를 누르면 `데모자료` 폴더의 결과가 표시됩니다.
 3. PC에서 자체 자료로 실행하려면 [Windows에서 실제 실행](#windows에서-실제-실행)을 참고합니다. AI 연결과 텔레그램 전송은 해당 서비스 설정이 필요합니다.
 
 | 자료 | 확인할 내용 |
 |---|---|
-| [시연영상](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4) | `업무작업실.exe` 홈 → 8개 업무 클릭 → 데모자료 결과 확대 보기 (85초) |
+| [시연영상](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_main_02/docs/assets/workroom-walkthrough.mp4) | `업무작업실.exe` 홈 → 8개 업무 클릭 → 데모자료 결과 확대 보기 (85초) |
 | [작업실 화면](https://sme-ai-workroom-quest02.pages.dev/) | 업무작업실.exe와 같은 홈·작업실 화면. 버튼을 누르면 데모자료 결과 표시 |
 | [프로그램 실행 화면](#프로그램-실행-화면) | 작업실 화면에 표시되는 업무별 결과 8개 |
 | [제품 요구사항 PRD](docs/PRD.md) | 사용자, 입력·출력 범위, 검토 기준 |
@@ -26,9 +26,9 @@
 
 ## 시연영상
 
-[![업무작업실.exe 시연영상 — 홈 화면](docs/assets/workroom-walkthrough.jpg)](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)
+[![업무작업실.exe 시연영상 — 홈 화면](docs/assets/workroom-walkthrough.jpg)](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_main_02/docs/assets/workroom-walkthrough.mp4)
 
-**[시연영상 재생 (85초, MP4)](https://github.com/sorek-charlie/AIFFEL-Quest/blob/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · **[시연영상 다운로드 (7.6MB)](https://github.com/sorek-charlie/AIFFEL-Quest/raw/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · [저장소의 영상 파일](docs/assets/workroom-walkthrough.mp4)
+**[시연영상 재생 (85초, MP4)](https://sorek-charlie.github.io/AIFFEL-Quest/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · **[시연영상 다운로드 (7.6MB)](https://github.com/sorek-charlie/AIFFEL-Quest/raw/main/Quest_main_02/docs/assets/workroom-walkthrough.mp4)** · [저장소의 영상 파일](docs/assets/workroom-walkthrough.mp4)
 
 `dist\업무작업실.exe`를 실행한 뒤 Chrome 창에서 홈 → 재무분석(간략·심층·종합·세무조정계산서) → 회의록정리(데모버전_01·02) → 요약보고서 → 이슈 브리핑(Daily News) → 정부정책 순서로 클릭하고, 각 결과를 크게 열어 쪽을 넘깁니다. 화면 오른쪽 위의 `데모버전 · 데모자료 결과`와 아래쪽 자막은 녹화용 표시입니다.
 
